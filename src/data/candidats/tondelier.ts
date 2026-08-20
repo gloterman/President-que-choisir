@@ -1,0 +1,182 @@
+import type { Candidat } from '../types'
+import { note, positions } from './_helpers'
+
+export const tondelier: Candidat = {
+  id: 'tondelier',
+  prenom: 'Marine',
+  nom: 'Tondelier',
+  initiales: 'MT',
+  parti: 'Les Écologistes',
+  partiCourt: 'LE',
+  famille: 'ecologie',
+  couleurParti: '#1f8a4c',
+  naissance: '1986-10-16',
+  fonctionActuelle: 'Secrétaire nationale des Écologistes, conseillère municipale d’Hénin-Beaumont',
+  statutCandidature: 'pressenti',
+  presentation:
+    "Élue d'opposition à Hénin-Beaumont face au Rassemblement national depuis 2014, devenue en 2022 secrétaire nationale des Écologistes. Défend une planification écologique articulée à la justice sociale et une VIᵉ République parlementaire, avec un ancrage revendiqué dans les territoires populaires.",
+  positions: positions([-1, 1, 1, 2, 1, 2, 2, 2, -2, -1, -1, -2, 2, 2, 2, 0]),
+  positionsNotes: {
+    'mix-energetique':
+      "Sortie progressive du nucléaire et priorité au développement des renouvelables et à la sobriété.",
+    'defense-alliances':
+      "Soutien à l'Ukraine et à l'effort européen de défense, sans adhésion à un alignement atlantique renforcé : position médiane sur cet axe.",
+  },
+  notes: [
+    note(
+      'probite',
+      100,
+      'moyenne',
+      "Aucune procédure connue pour atteinte à la probité à la date de revue. La confiance reste moyenne tant que la vérification systématique auprès des sources primaires n'a pas été conduite.",
+      ['legifrance', 'hatvp'],
+    ),
+    note(
+      'transparence',
+      60,
+      'faible',
+      "Obligations déclaratives limitées faute de mandat national. Le financement du mouvement est public ; le chiffrage d'un programme présidentiel reste à publier.",
+      ['hatvp', 'cnccfp'],
+    ),
+    note(
+      'experience',
+      24,
+      'haute',
+      "Aucune fonction exécutive nationale ; conseillère municipale d'opposition depuis 2014, sans exécutif local, ce qui n'ouvre pas les points d'exécutif du barème ; aucun mandat parlementaire. Points attribués au titre de la direction d'un parti national. Ce profil illustre la limite du critère : il mesure les responsabilités exercées, pas l'aptitude.",
+      ['vie-publique'],
+    ),
+    note(
+      'constance',
+      88,
+      'moyenne',
+      "Parcours politique effectué dans une seule famille, sans changement de parti ni revirement documenté sur une position structurante.",
+      ['vie-publique'],
+    ),
+    note(
+      'clarte-programme',
+      55,
+      'faible',
+      "Corpus programmatique écologiste disponible et structuré, mais aucun programme présidentiel personnel chiffré et daté à la date de revue. Note appelée à évoluer fortement à la publication.",
+      ['programme-officiel'],
+    ),
+    note(
+      'credibilite-budgetaire',
+      50,
+      'faible',
+      "Aucune évaluation indépendante disponible faute de programme chiffré publié. Note neutre en attente, et non note de défiance.",
+      ['ofce', 'institut-montaigne'],
+    ),
+    note(
+      'etat-de-droit',
+      90,
+      'faible',
+      "Propositions institutionnelles orientées vers le renforcement du Parlement, de la proportionnelle et de l'indépendance de l'audiovisuel public. Aucune proposition affaiblissant un contre-pouvoir relevée.",
+      ['vie-publique'],
+    ),
+    note(
+      'capacite-rassemblement',
+      38,
+      'moyenne',
+      "Groupe parlementaire réduit et implantation surtout municipale dans les grandes villes. Réserve de voix réelle à gauche, mais base parlementaire étroite pour gouverner seule.",
+      ['assemblee'],
+    ),
+    note(
+      'engagement-national',
+      62,
+      'faible',
+      "Une quinzaine d'années d'engagement public continu, dont dix ans d'opposition municipale dans une commune tenue par le RN. Aucun conflit d'intérêts relevé, aucune dépendance financière documentée.",
+      ['hatvp'],
+    ),
+  ],
+  mesures: [
+    {
+      id: 'tondelier-m1',
+      themeId: 'ecologie',
+      titre: 'Plan de rénovation thermique massif du bâti',
+      detail:
+        "Rénovation performante de l'ensemble des passoires thermiques sur le quinquennat, financée par un fonds public dédié et un reste à charge nul pour les ménages modestes.",
+      chiffrage: { montantMdEurosAn: 20, sens: 'depense', origine: 'Ordres de grandeur du secteur' },
+      verification: 'estimation',
+      sourceIds: ['programme-officiel'],
+    },
+    {
+      id: 'tondelier-m2',
+      themeId: 'fiscalite',
+      titre: 'Impôt sur la fortune climatique',
+      detail:
+        "Rétablissement d'un impôt sur la fortune modulé selon l'empreinte carbone des patrimoines financiers.",
+      verification: 'estimation',
+      sourceIds: ['programme-officiel'],
+    },
+    {
+      id: 'tondelier-m3',
+      themeId: 'institutions',
+      titre: 'Proportionnelle intégrale aux législatives',
+      detail:
+        "Élection des députés à la représentation proportionnelle, assortie du non-cumul strict et d'une réforme du financement de la vie politique.",
+      verification: 'estimation',
+      sourceIds: ['programme-officiel'],
+    },
+    {
+      id: 'tondelier-m4',
+      themeId: 'social',
+      titre: 'Revenu d’autonomie pour les jeunes',
+      detail: "Ouverture des minima sociaux aux 18-25 ans, sous condition de ressources.",
+      verification: 'estimation',
+      sourceIds: ['programme-officiel'],
+    },
+  ],
+  faits: [
+    {
+      id: 'tondelier-f1',
+      date: '2014',
+      titre: 'Élue d’opposition à Hénin-Beaumont',
+      description:
+        "Conduit l'opposition municipale dans une commune passée au Rassemblement national, et en tire un livre-enquête sur la gestion municipale RN.",
+      categorie: 'mandat',
+      portee: 'majeur',
+      verification: 'a-verifier',
+      sourceIds: ['vie-publique'],
+    },
+    {
+      id: 'tondelier-f2',
+      date: '2022-12',
+      titre: 'Élue secrétaire nationale des Écologistes',
+      description: "Prend la tête du parti après le congrès de décembre 2022 et engage sa refondation.",
+      categorie: 'mandat',
+      portee: 'majeur',
+      verification: 'a-verifier',
+      sourceIds: ['vie-publique'],
+    },
+    {
+      id: 'tondelier-f3',
+      date: '2024-06',
+      titre: 'Négociatrice du Nouveau Front populaire',
+      description:
+        "Participe à la constitution de la coalition de gauche formée en quelques jours après la dissolution de juin 2024.",
+      categorie: 'prise-de-position',
+      portee: 'notable',
+      verification: 'a-verifier',
+      sourceIds: ['vie-publique'],
+    },
+  ],
+  judiciaire: [],
+  indicateurs: [
+    {
+      id: 'tondelier-i1',
+      label: 'Condamnations connues',
+      valeur: 'Aucune',
+      periode: 'À la date de revue',
+      verification: 'a-verifier',
+      sourceIds: ['legifrance'],
+    },
+    {
+      id: 'tondelier-i2',
+      label: 'Mandats exécutifs exercés',
+      valeur: 'Aucun',
+      periode: '2014-2026',
+      verification: 'a-verifier',
+      sourceIds: ['vie-publique'],
+    },
+  ],
+  derniereMaj: '2026-08-20',
+}

@@ -1,0 +1,277 @@
+@import 'tailwindcss';
+
+/*
+  Design tokens.
+  Palette de graphiques : instance de référence validée du guide dataviz
+  (validate_palette.js — 3 séries all-pairs, clair et sombre : PASS).
+  Les valeurs vivent dans des variables CSS classiques et sont exposées à
+  Tailwind via `@theme inline`, ce qui permet de les basculer au runtime
+  (préférence système + bascule manuelle) sans dupliquer les utilitaires.
+*/
+
+:root {
+  color-scheme: light;
+
+  /* Surfaces & encre */
+  --pqc-page: #f9f9f7;
+  --pqc-surface: #fcfcfb;
+  --pqc-surface-2: #f2f1ed;
+  --pqc-surface-3: #e9e8e2;
+  --pqc-ink: #0b0b0b;
+  --pqc-ink-2: #52514e;
+  --pqc-muted: #898781;
+  --pqc-line: rgba(11, 11, 11, 0.1);
+  --pqc-line-strong: rgba(11, 11, 11, 0.18);
+  --pqc-grid: #e1e0d9;
+  --pqc-axis: #c3c2b7;
+
+  /* Accent (= série 1, pour que l'interface et les graphiques parlent d'une voix) */
+  --pqc-accent: #2a78d6;
+  --pqc-accent-ink: #ffffff;
+  --pqc-accent-soft: #e8f1fd;
+  --pqc-accent-border: #b7d3f6;
+
+  /* Séries catégorielles (ordre figé — jamais recyclé, jamais réassigné au rang) */
+  --pqc-series-1: #2a78d6;
+  --pqc-series-2: #eb6834;
+  --pqc-series-3: #1baf7a;
+  --pqc-series-4: #eda100;
+  --pqc-series-5: #e87ba4;
+  --pqc-series-6: #008300;
+  --pqc-series-7: #4a3aa7;
+  --pqc-series-8: #e34948;
+
+  /* Rampe séquentielle (bleu, clair → foncé) */
+  --pqc-seq-100: #cde2fb;
+  --pqc-seq-250: #86b6ef;
+  --pqc-seq-400: #3987e5;
+  --pqc-seq-550: #1c5cab;
+  --pqc-seq-700: #0d366b;
+
+  /* Statuts — échelle fixe, jamais thématisée, toujours accompagnée d'une icône + d'un libellé */
+  --pqc-good: #0ca30c;
+  --pqc-warning: #fab219;
+  --pqc-serious: #ec835a;
+  --pqc-critical: #d03b3b;
+  --pqc-good-soft: #e7f6e7;
+  --pqc-warning-soft: #fdf3dd;
+  --pqc-serious-soft: #fbeae2;
+  --pqc-critical-soft: #f9e6e6;
+}
+
+/* Sombre : mêmes teintes, marches choisies pour la surface sombre. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --pqc-page: #0d0d0d;
+    --pqc-surface: #1a1a19;
+    --pqc-surface-2: #232322;
+    --pqc-surface-3: #2c2c2a;
+    --pqc-ink: #ffffff;
+    --pqc-ink-2: #c3c2b7;
+    --pqc-muted: #898781;
+    --pqc-line: rgba(255, 255, 255, 0.1);
+    --pqc-line-strong: rgba(255, 255, 255, 0.2);
+    --pqc-grid: #2c2c2a;
+    --pqc-axis: #383835;
+    --pqc-accent: #3987e5;
+    --pqc-accent-ink: #ffffff;
+    --pqc-accent-soft: #16283d;
+    --pqc-accent-border: #1c5cab;
+    --pqc-series-1: #3987e5;
+    --pqc-series-2: #d95926;
+    --pqc-series-3: #199e70;
+    --pqc-series-4: #c98500;
+    --pqc-series-5: #d55181;
+    --pqc-series-6: #008300;
+    --pqc-series-7: #9085e9;
+    --pqc-series-8: #e66767;
+    --pqc-seq-100: #0d366b;
+    --pqc-seq-250: #184f95;
+    --pqc-seq-400: #2a78d6;
+    --pqc-seq-550: #6da7ec;
+    --pqc-seq-700: #b7d3f6;
+    --pqc-good-soft: #14290f;
+    --pqc-warning-soft: #33280c;
+    --pqc-serious-soft: #331f16;
+    --pqc-critical-soft: #331414;
+  }
+}
+
+/* La bascule manuelle doit gagner dans les deux sens. */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --pqc-page: #0d0d0d;
+  --pqc-surface: #1a1a19;
+  --pqc-surface-2: #232322;
+  --pqc-surface-3: #2c2c2a;
+  --pqc-ink: #ffffff;
+  --pqc-ink-2: #c3c2b7;
+  --pqc-muted: #898781;
+  --pqc-line: rgba(255, 255, 255, 0.1);
+  --pqc-line-strong: rgba(255, 255, 255, 0.2);
+  --pqc-grid: #2c2c2a;
+  --pqc-axis: #383835;
+  --pqc-accent: #3987e5;
+  --pqc-accent-ink: #ffffff;
+  --pqc-accent-soft: #16283d;
+  --pqc-accent-border: #1c5cab;
+  --pqc-series-1: #3987e5;
+  --pqc-series-2: #d95926;
+  --pqc-series-3: #199e70;
+  --pqc-series-4: #c98500;
+  --pqc-series-5: #d55181;
+  --pqc-series-6: #008300;
+  --pqc-series-7: #9085e9;
+  --pqc-series-8: #e66767;
+  --pqc-seq-100: #0d366b;
+  --pqc-seq-250: #184f95;
+  --pqc-seq-400: #2a78d6;
+  --pqc-seq-550: #6da7ec;
+  --pqc-seq-700: #b7d3f6;
+  --pqc-good-soft: #14290f;
+  --pqc-warning-soft: #33280c;
+  --pqc-serious-soft: #331f16;
+  --pqc-critical-soft: #331414;
+}
+
+@theme inline {
+  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+  --color-page: var(--pqc-page);
+  --color-surface: var(--pqc-surface);
+  --color-surface-2: var(--pqc-surface-2);
+  --color-surface-3: var(--pqc-surface-3);
+  --color-ink: var(--pqc-ink);
+  --color-ink-2: var(--pqc-ink-2);
+  --color-muted: var(--pqc-muted);
+  --color-line: var(--pqc-line);
+  --color-line-strong: var(--pqc-line-strong);
+  --color-grid: var(--pqc-grid);
+  --color-axis: var(--pqc-axis);
+
+  --color-accent: var(--pqc-accent);
+  --color-accent-ink: var(--pqc-accent-ink);
+  --color-accent-soft: var(--pqc-accent-soft);
+  --color-accent-border: var(--pqc-accent-border);
+
+  --color-series-1: var(--pqc-series-1);
+  --color-series-2: var(--pqc-series-2);
+  --color-series-3: var(--pqc-series-3);
+
+  --color-good: var(--pqc-good);
+  --color-warning: var(--pqc-warning);
+  --color-serious: var(--pqc-serious);
+  --color-critical: var(--pqc-critical);
+  --color-good-soft: var(--pqc-good-soft);
+  --color-warning-soft: var(--pqc-warning-soft);
+  --color-serious-soft: var(--pqc-serious-soft);
+  --color-critical-soft: var(--pqc-critical-soft);
+}
+
+@layer base {
+  * {
+    border-color: var(--pqc-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background-color: var(--pqc-page);
+    color: var(--pqc-ink);
+    font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100dvh;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--pqc-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer utilities {
+  /* Curseurs de pondération — cible tactile confortable, rendu identique partout. */
+  .pqc-range {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 24px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .pqc-range::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--pqc-track, var(--pqc-surface-3));
+  }
+  .pqc-range::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--pqc-track, var(--pqc-surface-3));
+  }
+  .pqc-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    margin-top: -7px;
+    border-radius: 999px;
+    background: var(--pqc-accent);
+    border: 2px solid var(--pqc-surface);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+  .pqc-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    background: var(--pqc-accent);
+    border: 2px solid var(--pqc-surface);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+
+  .pqc-scroll-x {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+  }
+
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+  }
+}
