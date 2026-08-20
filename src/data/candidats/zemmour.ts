@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const zemmour: Candidat = {
   id: 'zemmour',
@@ -12,9 +12,19 @@ export const zemmour: Candidat = {
   couleurParti: '#5a3d8a',
   naissance: '1958-08-31',
   fonctionActuelle: 'Président de Reconquête',
-  statutCandidature: 'pressenti',
+  statutCandidature: 'declare',
   presentation:
     "Journaliste et essayiste entré en politique en 2021, candidat à la présidentielle de 2022 avec 7,07 % des suffrages exprimés. Défend une ligne identitaire assumée, articulée autour de l'arrêt de l'immigration, de la remigration et d'un libéralisme économique classique.",
+  liensOfficiels: [
+    {
+      label: 'Reconquête — site officiel du parti',
+      url: 'https://parti-reconquete.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.viePublique,
+    LIENS_INSTITUTIONNELS.cnccfp,
+  ],
   positions: positions([2, 1, -2, -2, -1, -1, -2, -2, 2, 2, 2, 2, 0, -2, -2, 0]),
   positionsNotes: {
     decentralisation: "Défend un État centralisé fort et l'unité de la loi sur tout le territoire.",
@@ -24,9 +34,18 @@ export const zemmour: Candidat = {
     note(
       'probite',
       100,
-      'moyenne',
-      "Aucune condamnation ni procédure connue pour atteinte à la probité à la date de revue. Ce critère ne prend pas en compte les condamnations d'une autre nature : celles qui figurent dans la section judiciaire de cette fiche relèvent du droit de la presse et de la lutte contre les discriminations, et sont affichées intégralement pour que chacun leur donne le poids qu'il juge bon.",
-      ['legifrance', 'hatvp'],
+      'haute',
+      "Aucune condamnation ni procédure connue pour atteinte à la probité. Attention à la lecture de cette note : elle ne signifie pas casier vierge. Éric Zemmour a été définitivement condamné à trois reprises, mais pour des faits qui relèvent du droit de la presse et de la lutte contre les discriminations, hors du champ de ce critère. Ces condamnations sont comptées par le critère « Antécédents judiciaires » et détaillées dans la section judiciaire de cette fiche.",
+      ['legifrance', 'franceinfo-zemmour-2019'],
+      'recoupe',
+    ),
+    note(
+      'antecedents-judiciaires',
+      40,
+      'haute',
+      "Barème appliqué : 100 points de base, moins 30 points pour la première condamnation définitive, moins 15 points par condamnation définitive supplémentaire, soit trois condamnations devenues définitives en 2025 — provocation à la haine raciale et injures racistes pour des propos de 2019, complicité d'injure publique et de provocation à la haine pour des propos de 2020, et diffamation. Le barème ne hiérarchise pas les infractions : c'est à chacun de régler le poids de ce critère.",
+      ['franceinfo-zemmour-2019', 'franceinfo-zemmour-mineurs', 'sos-racisme-zemmour'],
+      'recoupe',
     ),
     note(
       'transparence',
@@ -154,21 +173,54 @@ export const zemmour: Candidat = {
   judiciaire: [
     {
       id: 'zemmour-j1',
-      intitule: 'Condamnations relevant du droit de la presse et des discriminations',
+      intitule: 'Propos tenus à la « Convention de la droite » du 28 septembre 2019',
       resume:
-        "Plusieurs condamnations ont été prononcées à raison de propos tenus publiquement, sur le fondement des textes réprimant la provocation à la discrimination ou à la haine. D'autres poursuites ont donné lieu à des relaxes.",
+        "Procédure au long cours : condamnation par le tribunal judiciaire de Paris le 25 septembre 2020, relaxe prononcée par la cour d'appel de Paris le 8 septembre 2021, cassation de cette relaxe le 21 février 2023, puis nouvelle condamnation par la cour d'appel de Paris le 22 février 2024.",
       statut: 'condamnation-definitive',
       qualification:
-        "Provocation à la discrimination ou à la haine en raison de l'origine ou de la religion. Ces chefs ne relèvent pas des atteintes à la probité et ne modifient donc pas la note de probité.",
-      juridiction: 'Juridictions correctionnelles, plusieurs procédures distinctes',
+        "Provocation publique à la haine ou à la violence et injure publique à raison de l'origine, de l'ethnie, de la nation, de la race ou de la religion. Ces chefs ne relèvent pas des atteintes à la probité.",
+      juridiction: 'Cour d’appel de Paris, pourvoi rejeté par la Cour de cassation',
+      dateDecision: '2025-09-16',
+      peine:
+        "15 000 euros d'amende, et 1 000 euros de dommages et intérêts aux parties civiles.",
       recours:
-        "Le détail des décisions, leur date, leur juridiction et leur caractère définitif doivent être établis affaire par affaire sur source primaire avant publication. Cette entrée est volontairement générique tant que ce travail n'est pas fait.",
-      verification: 'a-verifier',
-      sourceIds: ['legifrance', 'decodeurs'],
+        "Pourvoi rejeté par la Cour de cassation le 16 septembre 2025 : la condamnation est définitive.",
+      verification: 'recoupe',
+      sourceIds: ['franceinfo-zemmour-2019', 'sos-racisme-zemmour', 'courdecassation'],
+    },
+    {
+      id: 'zemmour-j2',
+      intitule: 'Propos sur les mineurs isolés tenus en septembre 2020',
+      resume:
+        "Propos tenus à l'antenne alors qu'il était éditorialiste, jugés par la cour d'appel de Paris en septembre 2024 comme excédant les limites admissibles de la liberté d'expression en raison de leur violence et de leur généralité.",
+      statut: 'condamnation-definitive',
+      qualification:
+        "Complicité d'injure publique et de provocation à la haine. Ces chefs ne relèvent pas des atteintes à la probité.",
+      juridiction: 'Cour d’appel de Paris, pourvoi rejeté par la Cour de cassation',
+      dateDecision: '2025-12-02',
+      peine: "100 jours-amende de 100 euros, soit 10 000 euros.",
+      recours: "Pourvoi rejeté par la Cour de cassation le 2 décembre 2025 : la condamnation est définitive.",
+      verification: 'recoupe',
+      sourceIds: ['franceinfo-zemmour-mineurs', 'courdecassation'],
+    },
+    {
+      id: 'zemmour-j3',
+      intitule: 'Diffamation envers un avocat',
+      resume:
+        "Condamnation pour des propos tenus à l'encontre de l'avocat Patrick Klugman, à qui il reprochait de vouloir étouffer une affaire.",
+      statut: 'condamnation-definitive',
+      qualification: 'Diffamation publique. Ce chef ne relève pas des atteintes à la probité.',
+      juridiction: 'Cour d’appel, pourvoi rejeté par la Cour de cassation',
+      dateDecision: '2025-12-02',
+      peine: '1 000 euros d’amende.',
+      recours: 'Pourvoi rejeté le 2 décembre 2025 : la condamnation est définitive.',
+      verification: 'recoupe',
+      sourceIds: ['franceinfo-zemmour-mineurs', 'courdecassation'],
     },
   ],
   indicateurs: [
-    { id: 'zemmour-i1', label: 'Condamnations définitives pour atteinte à la probité', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'zemmour-i1', label: 'Condamnations définitives pour atteinte à la probité', valeur: 'Aucune', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'zemmour-i3', label: 'Condamnations définitives, toutes infractions', valeur: 'Trois (propos publics, 2025)', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['franceinfo-zemmour-2019', 'franceinfo-zemmour-mineurs'] },
     { id: 'zemmour-i2', label: 'Mandats électifs exercés', valeur: 'Aucun', periode: '2021-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],
   derniereMaj: '2026-08-20',

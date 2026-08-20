@@ -50,7 +50,8 @@ export const criteres: Critere[] = [
     bareme: [
       'Base de départ : 100 points.',
       '−45 points par condamnation définitive pour atteinte à la probité.',
-      '−25 points par condamnation non définitive (appel ou pourvoi en cours).',
+      '−35 points par condamnation prononcée en appel et frappée d’un pourvoi en cassation : les faits ont alors été jugés deux fois, mais la condamnation n’est pas définitive.',
+      '−25 points par condamnation de première instance frappée d’appel.',
       '−12 points par mise en examen en cours pour un fait de probité.',
       '−10 points par sanction de la HATVP ou rejet de comptes de campagne.',
       'Une relaxe, un non-lieu ou un classement sans suite ne retire aucun point.',
@@ -60,7 +61,8 @@ export const criteres: Critere[] = [
     paliers: [
       { min: 90, label: 'Aucun élément défavorable connu' },
       { min: 70, label: 'Procédure en cours, aucune condamnation définitive' },
-      { min: 45, label: 'Condamnation non définitive' },
+      { min: 60, label: 'Condamnation de première instance, appel en cours' },
+      { min: 45, label: 'Condamnation confirmée en appel, pourvoi en cours' },
       { min: 0, label: 'Condamnation définitive' },
     ],
     limites:
@@ -68,6 +70,40 @@ export const criteres: Critere[] = [
     poidsDefaut: 5,
     contestable: false,
     sensLecture: 'Une note haute signifie « aucun manquement établi », pas « personne vertueuse ».',
+  },
+  {
+    id: 'antecedents-judiciaires',
+    nom: 'Antécédents judiciaires',
+    nomCourt: 'Antécédents',
+    famille: 'integrite',
+    resume:
+      "Ensemble des condamnations prononcées, quelle que soit la nature de l'infraction.",
+    question: 'La personne a-t-elle déjà été condamnée, pour quoi que ce soit ?',
+    indicateurs: [
+      'Condamnations définitives, toutes infractions confondues',
+      'Condamnations non définitives, frappées d’appel ou de pourvoi',
+      'Nature de l’infraction et juridiction ayant statué',
+      'Relaxes, non-lieux et classements sans suite, qui ne retirent aucun point',
+    ],
+    bareme: [
+      'Base de départ : 100 points.',
+      '−30 points pour la première condamnation définitive, quelle que soit l’infraction.',
+      '−15 points par condamnation définitive supplémentaire.',
+      '−20 points pour une première condamnation non définitive, −10 par condamnation non définitive supplémentaire.',
+      'Une relaxe, un non-lieu ou un classement sans suite ne retire aucun point.',
+    ],
+    paliers: [
+      { min: 90, label: 'Aucune condamnation connue' },
+      { min: 70, label: 'Une condamnation' },
+      { min: 45, label: 'Plusieurs condamnations' },
+      { min: 0, label: 'Condamnations répétées' },
+    ],
+    limites:
+      "Ce critère additionne des choses que le droit distingue : une fraude fiscale, une infraction de presse et un délit d'audience n'ont ni la même gravité ni le même sens politique. C'est précisément pourquoi il est séparé de la probité, et pourquoi son poids par défaut est faible : à chacun de décider si une condamnation pour propos publics doit compter autant qu'un détournement de fonds — ou pas du tout. Attention aussi au double décompte : une condamnation pour atteinte à la probité fait baisser les deux critères à la fois, ce qui est voulu mais doit être su. Enfin, il pénalise mécaniquement les personnalités les plus exposées, davantage poursuivies parce que davantage écoutées.",
+    poidsDefaut: 2,
+    contestable: true,
+    sensLecture:
+      'Compte des condamnations, sans les hiérarchiser. La hiérarchie, c’est vous qui la faites en réglant le poids.',
   },
   {
     id: 'transparence',

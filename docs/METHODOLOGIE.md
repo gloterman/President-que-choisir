@@ -105,12 +105,49 @@ Affichée ramenée sur `[0, 100 %]` par `(τ + 1) / 2`. Une valeur élevée sign
 méthode ne change rien ; une valeur basse signale un champ de candidats aux profils déséquilibrés,
 que certaines méthodes pénalisent et d'autres non.
 
+## Probité et antécédents judiciaires : deux critères, deux questions
+
+La distinction est le point méthodologique le plus important du référentiel.
+
+- **Probité** répond à « cette personne a-t-elle été sanctionnée pour un manquement à la probité ? ».
+  Son barème ne connaît que les atteintes à la probité : corruption, détournement de fonds publics,
+  prise illégale d'intérêts, fraude fiscale. Une condamnation pour propos publics, pour rébellion ou
+  pour diffamation ne lui retire aucun point.
+- **Antécédents judiciaires** répond à « cette personne a-t-elle déjà été condamnée, pour quoi que
+  ce soit ? ». Son barème compte toutes les condamnations sans les hiérarchiser.
+
+Conséquence assumée : un candidat peut afficher 100 en probité et 40 en antécédents. Ce n'est pas
+une incohérence, c'est la traduction chiffrée d'une réalité juridique — les infractions de presse et
+les atteintes aux deniers publics ne sont pas la même chose. Le poids relatif des deux critères est
+un choix politique, et il appartient à l'utilisateur, pas au barème.
+
+Le double décompte est volontaire : une condamnation pour atteinte à la probité fait baisser les
+deux notes. Il est signalé dans le champ `limites` du critère.
+
+Degrés de juridiction, dans le barème de probité :
+
+| État | Points retirés |
+|---|---|
+| Condamnation définitive | −45 |
+| Condamnation confirmée en appel, pourvoi en cassation pendant | −35 |
+| Condamnation de première instance frappée d'appel | −25 |
+| Mise en examen en cours | −12 |
+| Enquête sans mise en examen | 0 |
+| Relaxe, non-lieu, classement sans suite | 0 |
+
+Une enquête ne retire rien : elle n'établit pas de culpabilité. Un test le vérifie.
+
 ## Tests
 
 `src/lib/scoring/scoring.test.ts` couvre les normalisations, les quatre méthodes, le tau de Kendall,
 l'affinité (accord parfait, opposition frontale, exclusion des importances nulles, pondération), le
 déterminisme et la calibration de l'analyse de sensibilité, et le classement complet (rangs, seuils
 rédhibitoires, exclusions, bascule à 100 % de programme, décompte des notes manquantes).
+
+`src/data/coherence.test.ts` teste le jeu de données lui-même : contrat de vérification (deux
+sources minimum pour un élément « recoupé », qualification et date obligatoires sur toute
+condamnation, sources existantes), cohérence entre les affaires et les notes dans les deux sens, et
+validité des liens officiels.
 
 ```bash
 npm test

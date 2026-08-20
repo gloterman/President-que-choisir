@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const retailleau: Candidat = {
   id: 'retailleau',
@@ -15,6 +15,17 @@ export const retailleau: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Longtemps président du conseil régional des Pays de la Loire puis du groupe LR au Sénat, ministre de l'Intérieur à partir de septembre 2024, il prend la tête des Républicains en 2025. Défend une ligne de fermeté régalienne et migratoire assumée, associée à une orthodoxie budgétaire.",
+  liensOfficiels: [
+    {
+      label: 'Les Républicains — site officiel du parti',
+      url: 'https://republicains.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.senat,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+  ],
   positions: positions([2, 0, -2, -2, -2, -1, -1, -2, 2, 2, 2, 2, 0, 1, -1, 1]),
   positionsNotes: {
     'souverainete-europeenne':
@@ -22,6 +33,14 @@ export const retailleau: Candidat = {
   },
   notes: [
     note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive, et aucune procédure en cours identifiée. Recherche conduite le 20 août 2026 sur les bases publiques et la presse de référence ; l'absence de résultat n'est pas une preuve d'absence, elle est datée.",
+      ['legifrance', 'courdecassation'],
+      'recoupe',
+    ),
     note(
       'transparence',
       80,
@@ -141,6 +160,7 @@ export const retailleau: Candidat = {
   ],
   judiciaire: [],
   indicateurs: [
+    { id: 'retailleau-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     { id: 'retailleau-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
     { id: 'retailleau-i2', label: 'Années de mandat parlementaire', valeur: 'Plus de 25 ans', periode: '1994-2026', verification: 'a-verifier', sourceIds: ['senat'] },
   ],

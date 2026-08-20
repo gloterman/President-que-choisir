@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const lepen: Candidat = {
   id: 'lepen',
@@ -12,9 +12,21 @@ export const lepen: Candidat = {
   couleurParti: '#1d3f6e',
   naissance: '1968-08-05',
   fonctionActuelle: 'Députée du Pas-de-Calais',
-  statutCandidature: 'hypothetique',
+  statutCandidature: 'declare',
   presentation:
-    "Trois fois candidate à la présidentielle, qualifiée au second tour en 2017 et 2022 avec 41,45 % des suffrages exprimés. Condamnée en première instance en mars 2025 dans l'affaire des assistants parlementaires européens, avec une peine d'inéligibilité assortie de l'exécution provisoire : sa capacité à se présenter en 2027 dépend de l'issue de l'appel.",
+    "Trois fois candidate à la présidentielle, qualifiée au second tour en 2017 et 2022 avec 41,45 % des suffrages exprimés. Condamnée en appel le 7 juillet 2026 pour détournement de fonds publics, mais avec une peine d'inéligibilité ramenée à quinze mois fermes déjà purgés : elle a annoncé sa candidature pour 2027 dans la foulée de cette décision, et s'est pourvue en cassation.",
+  liensOfficiels: [
+    {
+      label: 'Rassemblement national — site officiel du parti',
+      url: 'https://rassemblementnational.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.assemblee,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+    LIENS_INSTITUTIONNELS.cnccfp,
+  ],
   positions: positions([0, 2, -1, 1, 2, 1, -1, -2, 2, 2, 2, 1, 2, -1, -2, -1]),
   positionsNotes: {
     'souverainete-europeenne':
@@ -24,10 +36,19 @@ export const lepen: Candidat = {
   notes: [
     note(
       'probite',
-      75,
-      'moyenne',
-      "Barème appliqué : 100 points de base, moins 25 points pour une condamnation non définitive, frappée d'appel, pour détournement de fonds publics (jugement du 31 mars 2025). Aucune condamnation définitive pour atteinte à la probité à la date de revue : la présomption d'innocence demeure jusqu'à l'épuisement des voies de recours.",
-      ['legifrance', 'courdecassation'],
+      65,
+      'haute',
+      "Barème appliqué : 100 points de base, moins 35 points pour une condamnation prononcée en appel pour détournement de fonds publics et frappée d'un pourvoi en cassation (arrêt de la cour d'appel de Paris du 7 juillet 2026, confirmant la culpabilité retenue en première instance le 31 mars 2025). Les faits ont donc été jugés deux fois. La condamnation n'est pas définitive pour autant : le pourvoi est pendant et la présomption d'innocence demeure jusqu'à son examen.",
+      ['ca-paris-cp-20260707', 'franceinfo-lepen-appel', 'publicsenat-lepen-appel', 'legifrance'],
+      'recoupe',
+    ),
+    note(
+      'antecedents-judiciaires',
+      80,
+      'haute',
+      "Barème appliqué : 100 points de base, moins 20 points pour une condamnation non définitive. Aucune condamnation définitive à la date de revue.",
+      ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'],
+      'recoupe',
     ),
     note(
       'transparence',
@@ -136,13 +157,24 @@ export const lepen: Candidat = {
     {
       id: 'lepen-f2',
       date: '2025-03-31',
-      titre: 'Condamnation en première instance et inéligibilité',
+      titre: 'Condamnation en première instance et inéligibilité immédiate',
       description:
-        "Le tribunal correctionnel de Paris la condamne dans l'affaire des assistants parlementaires européens et prononce une peine d'inéligibilité assortie de l'exécution provisoire. Un appel est interjeté.",
+        "Le tribunal correctionnel de Paris la condamne à quatre ans d'emprisonnement dont deux ferme, 100 000 euros d'amende et cinq ans d'inéligibilité assortie de l'exécution provisoire, ce qui l'écarte alors de la présidentielle. Elle fait appel.",
       categorie: 'judiciaire',
       portee: 'majeur',
-      verification: 'a-verifier',
-      sourceIds: ['legifrance'],
+      verification: 'recoupe',
+      sourceIds: ['franceinfo-lepen-appel', 'touteleurope-lepen-appel'],
+    },
+    {
+      id: 'lepen-f4',
+      date: '2026-07-07',
+      titre: 'Condamnation confirmée en appel, mais éligibilité retrouvée',
+      description:
+        "La cour d'appel de Paris confirme la culpabilité et réduit la peine : trois ans d'emprisonnement dont deux avec sursis, la part ferme aménagée sous bracelet électronique, et 45 mois d'inéligibilité dont 30 avec sursis. Les quinze mois fermes ayant été purgés au 30 juin 2026, elle peut se présenter en 2027. Elle annonce sa candidature et forme un pourvoi en cassation.",
+      categorie: 'judiciaire',
+      portee: 'majeur',
+      verification: 'recoupe',
+      sourceIds: ['ca-paris-cp-20260707', 'rts-lepen-appel', 'touteleurope-lepen-appel'],
     },
     {
       id: 'lepen-f3',
@@ -161,23 +193,30 @@ export const lepen: Candidat = {
       id: 'lepen-j1',
       intitule: 'Assistants parlementaires européens du Rassemblement national',
       resume:
-        "Affaire portant sur l'emploi présumé d'assistants rémunérés par le Parlement européen pour des tâches relevant du parti national, sur la période 2004-2016.",
-      statut: 'condamnation-non-definitive',
+        "Affaire portant sur l'emploi présumé d'assistants rémunérés par le Parlement européen pour des tâches relevant du parti national, sur la période 2004-2016. Jugée en première instance le 31 mars 2025, puis en appel du 13 janvier au 12 février 2026, l'arrêt étant rendu le 7 juillet 2026. Douze prévenus ayant fait appel ont été déclarés coupables.",
+      statut: 'condamnation-appel-pourvoi',
       qualification: 'Détournement de fonds publics',
-      juridiction: 'Tribunal correctionnel de Paris',
-      dateDecision: '2025-03-31',
+      juridiction: 'Cour d’appel de Paris, chambre des appels correctionnels',
+      dateDecision: '2026-07-07',
       peine:
-        "Peine d'emprisonnement partiellement assortie du sursis, amende et cinq ans d'inéligibilité avec exécution provisoire, en première instance.",
+        "Trois ans d'emprisonnement dont deux ans avec sursis, la part ferme d'un an étant aménagée sous bracelet électronique ; 100 000 euros d'amende ; 45 mois d'inéligibilité dont 30 mois avec sursis. En première instance, la peine était de quatre ans d'emprisonnement dont deux ans ferme, 100 000 euros d'amende et cinq ans d'inéligibilité avec exécution provisoire.",
       recours:
-        "Appel interjeté : la condamnation n'est pas définitive et la présomption d'innocence demeure. Le détail de la peine et le calendrier d'appel doivent être recoupés sur source primaire avant publication.",
-      verification: 'a-verifier',
-      sourceIds: ['legifrance', 'decodeurs'],
+        "Pourvoi en cassation formé par les condamnés et par le Parlement européen : la condamnation n'est pas définitive. Conséquence électorale : les quinze mois d'inéligibilité ferme étaient purgés au 30 juin 2026, au titre de l'exécution provisoire ordonnée en première instance — Marine Le Pen est donc éligible pour la présidentielle des 18 avril et 2 mai 2027.",
+      verification: 'recoupe',
+      sourceIds: [
+        'ca-paris-cp-20260707',
+        'franceinfo-lepen-appel',
+        'publicsenat-lepen-appel',
+        'touteleurope-lepen-appel',
+        'rts-lepen-appel',
+      ],
     },
   ],
   indicateurs: [
     { id: 'lepen-i1', label: 'Score au second tour de la présidentielle', valeur: '41,45 %', periode: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
-    { id: 'lepen-i2', label: 'Condamnations définitives pour atteinte à la probité', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'lepen-i3', label: 'Condamnations non définitives pour atteinte à la probité', valeur: 'Une, frappée d’appel', periode: '2025', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'lepen-i2', label: 'Condamnations définitives pour atteinte à la probité', valeur: 'Aucune', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
+    { id: 'lepen-i3', label: 'Condamnations non définitives', valeur: 'Une, confirmée en appel, pourvoi en cours', periode: '2025-2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
+    { id: 'lepen-i4', label: 'Inéligibilité en cours', valeur: 'Aucune — quinze mois fermes purgés au 30 juin 2026', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['rts-lepen-appel', 'touteleurope-lepen-appel'] },
   ],
   derniereMaj: '2026-08-20',
 }

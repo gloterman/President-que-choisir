@@ -19,8 +19,7 @@ const ETAPES = [
   {
     numero: 2,
     titre: 'Vous fixez vos exigences',
-    texte:
-      "Onze critères d’évaluation — probité, clarté du programme, expérience, respect des institutions… Vous décidez du poids de chacun, et vous pouvez poser des seuils rédhibitoires qui écartent d’office un candidat.",
+    texte: `${criteres.length} critères d’évaluation — probité, antécédents judiciaires, clarté du programme, expérience, respect des institutions… Vous décidez du poids de chacun, et vous pouvez poser des seuils rédhibitoires qui écartent d’office un candidat.`,
     lien: '/criteres',
     libelleLien: 'Régler mes critères',
   },

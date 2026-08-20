@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const roussel: Candidat = {
   id: 'roussel',
@@ -15,6 +15,18 @@ export const roussel: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Secrétaire national du PCF depuis 2018 et candidat à la présidentielle de 2022 avec 2,28 % des suffrages exprimés. Défend une gauche du travail et de la production, favorable au nucléaire, à l'industrie et à une ligne régalienne plus ferme que le reste de la gauche radicale.",
+  liensOfficiels: [
+    {
+      label: 'Parti communiste français — site officiel',
+      url: 'https://www.pcf.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.assemblee,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+    LIENS_INSTITUTIONNELS.cnccfp,
+  ],
   positions: positions([-2, 2, 2, 2, 2, 2, 1, -2, -1, 0, 1, 0, 2, 0, -1, -1]),
   positionsNotes: {
     'mix-energetique': "Défend le nucléaire public comme socle de la souveraineté énergétique, à rebours du reste de la gauche.",
@@ -22,6 +34,14 @@ export const roussel: Candidat = {
   },
   notes: [
     note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive, et aucune procédure en cours identifiée. Recherche conduite le 20 août 2026 sur les bases publiques et la presse de référence ; l'absence de résultat n'est pas une preuve d'absence, elle est datée.",
+      ['legifrance', 'courdecassation'],
+      'recoupe',
+    ),
     note('transparence', 72, 'moyenne', "Déclarations HATVP déposées au titre du mandat de député. Comptes de campagne 2022 déposés et publiés.", ['hatvp', 'cnccfp']),
     note(
       'experience',
@@ -105,6 +125,7 @@ export const roussel: Candidat = {
   ],
   judiciaire: [],
   indicateurs: [
+    { id: 'roussel-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     { id: 'roussel-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
     { id: 'roussel-i2', label: 'Score au premier tour de la présidentielle', valeur: '2,28 %', periode: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],

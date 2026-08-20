@@ -320,7 +320,7 @@ export function Comparateur() {
           {selection.length >= 2 && (
             <Carte>
               <EnteteCarte
-                titre="Notes sur les onze critères"
+                titre={`Notes sur les ${criteres.length} critères`}
                 soustitre="Valeurs brutes issues des barèmes, avant application de vos pondérations."
               />
               <div className="pqc-scroll-x">

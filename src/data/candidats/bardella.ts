@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const bardella: Candidat = {
   id: 'bardella',
@@ -15,6 +15,17 @@ export const bardella: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Président du Rassemblement national depuis 2022, tête de liste victorieuse aux européennes de 2024 et candidat désigné du camp national aux législatives anticipées qui ont suivi. Profil de campagne construit sur le pouvoir d'achat, la sécurité et l'immigration.",
+  liensOfficiels: [
+    {
+      label: 'Rassemblement national — site officiel du parti',
+      url: 'https://rassemblementnational.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.europarl,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+  ],
   positions: positions([0, 2, -1, 0, 1, 1, -2, -2, 2, 2, 2, 2, 1, -1, -2, -1]),
   positionsNotes: {
     'ambition-climat': "Opposition frontale au pacte vert européen, présenté comme une charge pour les ménages et les agriculteurs.",
@@ -23,9 +34,18 @@ export const bardella: Candidat = {
     note(
       'probite',
       100,
-      'faible',
-      "Aucune condamnation ni mise en examen personnelle connue à la date de revue. La confiance est marquée faible : la vérification systématique auprès des sources primaires reste à conduire, et les procédures visant le mouvement portent sur des faits antérieurs à ses fonctions.",
-      ['legifrance', 'hatvp'],
+      'moyenne',
+      "Aucune condamnation ni mise en examen personnelle. Une enquête du Parquet européen porte sur des soupçons de fraude autour de formations aux médias dont il aurait bénéficié pendant la campagne présidentielle de 2022 : le barème ne retire de points qu'à partir de la mise en examen, laquelle n'est pas intervenue à ce jour. L'enquête est affichée dans la section judiciaire de cette fiche, pour que chacun en tienne compte comme il l'entend.",
+      ['franceinfo-bardella-parquet-europeen', 'legifrance'],
+      'recoupe',
+    ),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive. Une enquête est en cours, mais une enquête ne retire aucun point : elle n'établit pas de culpabilité.",
+      ['franceinfo-bardella-parquet-europeen'],
+      'recoupe',
     ),
     note(
       'transparence',
@@ -128,6 +148,17 @@ export const bardella: Candidat = {
       sourceIds: ['assemblee'],
     },
     {
+      id: 'bardella-f4',
+      date: '2026',
+      titre: 'Enquête du Parquet européen',
+      description:
+        "Le Parquet européen ouvre une enquête sur des soupçons de fraude autour de formations aux médias liées à la campagne de 2022. Aucune mise en examen à ce stade.",
+      categorie: 'judiciaire',
+      portee: 'notable',
+      verification: 'recoupe',
+      sourceIds: ['franceinfo-bardella-parquet-europeen', 'anticor-bardella'],
+    },
+    {
       id: 'bardella-f3',
       date: '2022-11',
       titre: 'Élu président du Rassemblement national',
@@ -138,9 +169,23 @@ export const bardella: Candidat = {
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [],
+  judiciaire: [
+    {
+      id: 'bardella-j1',
+      intitule: 'Enquête du Parquet européen sur des formations aux médias',
+      resume:
+        "Le Parquet européen enquête sur des soupçons de fraude portant sur des formations aux médias dont Jordan Bardella aurait notamment bénéficié lors de la campagne présidentielle de 2022. Le Rassemblement national dénonce une instrumentalisation politique.",
+      statut: 'enquete',
+      juridiction: 'Parquet européen',
+      recours:
+        "Aucune mise en examen à la date de revue. Une enquête n'établit ni faute ni culpabilité : la présomption d'innocence s'applique pleinement.",
+      verification: 'recoupe',
+      sourceIds: ['franceinfo-bardella-parquet-europeen', 'anticor-bardella'],
+    },
+  ],
   indicateurs: [
-    { id: 'bardella-i1', label: 'Condamnations personnelles connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'bardella-i1', label: 'Condamnations personnelles connues', valeur: 'Aucune', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'bardella-i3', label: 'Procédures en cours', valeur: 'Une enquête du Parquet européen, sans mise en examen', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['franceinfo-bardella-parquet-europeen', 'anticor-bardella'] },
     { id: 'bardella-i2', label: 'Mandats exécutifs exercés', valeur: 'Aucun', periode: '2019-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],
   derniereMaj: '2026-08-20',

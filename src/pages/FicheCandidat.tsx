@@ -14,6 +14,72 @@ import { sourceById } from '@/data/sources'
 import { calculerAffinite } from '@/lib/scoring'
 import { usePreferences } from '@/lib/store'
 import { age, formatDate, LIKERT, milliards, palierDe, pourcent } from '@/lib/format'
+import type { LienOfficiel } from '@/data/types'
+
+const GROUPES_LIENS: { type: LienOfficiel['type']; titre: string; aide: string }[] = [
+  {
+    type: 'candidat',
+    titre: 'Ce que dit le candidat',
+    aide: 'Sa parole, telle qu’il la publie lui-même.',
+  },
+  { type: 'parti', titre: 'Son parti', aide: 'Le programme et la ligne officielle du mouvement.' },
+  {
+    type: 'institution',
+    titre: 'Registres publics',
+    aide: 'Les portails officiels où vérifier ce qui est affirmé ici.',
+  },
+]
+
+/**
+ * Pages officielles.
+ *
+ * Placé délibérément en tête de colonne latérale : c'est le point de départ de
+ * toute vérification, et le moyen le plus direct de sortir de cet outil pour
+ * aller lire la source.
+ */
+function PagesOfficielles({ liens }: { liens: LienOfficiel[] }) {
+  return (
+    <Carte className="p-4">
+      <p className="text-[0.85rem] font-semibold text-ink">Pages officielles</p>
+      <p className="mt-1 text-[0.75rem] leading-snug text-ink-2">
+        Pour vérifier par vous-même, sans passer par nous.
+      </p>
+      {GROUPES_LIENS.map((groupe) => {
+        const duGroupe = liens.filter((l) => l.type === groupe.type)
+        if (duGroupe.length === 0) return null
+        return (
+          <section key={groupe.type} className="mt-4">
+            <h3 className="text-[0.7rem] font-semibold uppercase tracking-[0.06em] text-muted">
+              {groupe.titre}
+            </h3>
+            <ul className="mt-1.5 space-y-2">
+              {duGroupe.map((lien) => (
+                <li key={lien.url}>
+                  <a
+                    href={lien.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[0.82rem] font-medium leading-snug text-accent hover:underline"
+                  >
+                    {lien.label} ↗
+                  </a>
+                  {lien.usage && (
+                    <p className="mt-0.5 text-[0.72rem] leading-snug text-muted">{lien.usage}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )
+      })}
+      <p className="mt-4 border-t border-line pt-3 text-[0.72rem] leading-snug text-muted">
+        Les liens institutionnels pointent vers les annuaires officiels, pas vers une fiche
+        nominative : relever l’identifiant exact d’une personne fait partie de la vérification, et
+        une URL devinée vaut moins qu’un point d’entrée sûr.
+      </p>
+    </Carte>
+  )
+}
 
 function ListeSources({ sourceIds }: { sourceIds: string[] }) {
   if (sourceIds.length === 0) return null
@@ -185,7 +251,7 @@ export function FicheCandidat() {
 
           <Carte className="p-5">
             <Radar
-              titre="Profil sur les onze critères"
+              titre={`Profil sur les ${criteres.length} critères`}
               soustitre="Notes brutes, avant application de vos pondérations."
               axes={criteres.map((c) => c.nomCourt)}
               series={[
@@ -316,6 +382,8 @@ export function FicheCandidat() {
         </div>
 
         <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
+          <PagesOfficielles liens={candidat.liensOfficiels} />
+
           {affinite && (
             <Carte className="p-4">
               {nbReponses === 0 ? (

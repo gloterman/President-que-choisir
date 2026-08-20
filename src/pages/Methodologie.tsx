@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { EnTetePage } from '@/components/layout/EnTetePage'
-import { Alerte, Carte, Depliant, EnteteCarte } from '@/components/ui/base'
+import { Carte, Depliant, EnteteCarte } from '@/components/ui/base'
 import { criteres, criteresParFamille } from '@/data/criteres'
 import { axes, propositions, themes } from '@/data/referentiel'
 import { candidats } from '@/data/candidats'
@@ -268,15 +268,74 @@ export function Methodologie() {
           </ul>
         </Carte>
 
-        <Alerte titre="Traitement du volet judiciaire" ton="neutre" icone="§">
-          Quatre états procéduraux sont distingués et jamais confondus : enquête, mise en examen,
-          condamnation non définitive, condamnation définitive. Une relaxe, un non-lieu ou un
-          classement sans suite ne retirent aucun point. La note de probité ne prend en compte que
-          les atteintes à la probité — corruption, détournement de fonds publics, prise illégale
-          d’intérêts, fraude fiscale. Les condamnations d’une autre nature figurent intégralement
-          sur les fiches, sans être converties en points : ce choix est délibéré, et chacun reste
-          libre de leur donner le poids qu’il estime juste.
-        </Alerte>
+        <Carte>
+          <EnteteCarte
+            titre="Probité et antécédents judiciaires : deux critères, deux questions"
+            soustitre="La distinction la plus importante du référentiel, et la plus facile à mal lire."
+          />
+          <div className="space-y-4 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
+            <p>
+              <strong className="font-semibold text-ink">Probité</strong> répond à une question
+              étroite : cette personne a-t-elle été sanctionnée pour un manquement à la probité ?
+              Son barème ne connaît que la corruption, le détournement de fonds publics, la prise
+              illégale d’intérêts et la fraude fiscale. Une condamnation pour propos publics, pour
+              rébellion ou pour diffamation ne lui retire aucun point.
+            </p>
+            <p>
+              <strong className="font-semibold text-ink">Antécédents judiciaires</strong> répond à
+              la question large : cette personne a-t-elle déjà été condamnée, pour quoi que ce
+              soit ? Son barème compte toutes les condamnations sans les hiérarchiser.
+            </p>
+            <p>
+              Conséquence assumée : un candidat peut afficher 100 en probité et 40 en antécédents.
+              Ce n’est pas une incohérence, c’est la traduction d’une réalité juridique — une
+              infraction de presse et une atteinte aux deniers publics ne sont pas la même chose.
+              Le poids relatif des deux vous appartient. Une condamnation pour atteinte à la probité
+              fait baisser les deux notes : ce double décompte est voulu, et signalé.
+            </p>
+            <div className="pqc-scroll-x rounded-xl border border-line">
+              <table className="w-full border-collapse text-left text-[0.82rem]">
+                <caption className="sr-only">
+                  Points retirés par le barème de probité selon l’état procédural
+                </caption>
+                <thead>
+                  <tr className="border-b border-line bg-surface-2">
+                    <th scope="col" className="px-3 py-2 font-semibold text-ink-2">
+                      État procédural
+                    </th>
+                    <th scope="col" className="px-3 py-2 text-right font-semibold text-ink-2">
+                      Points retirés
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ['Condamnation définitive', '−45'],
+                    ['Condamnation confirmée en appel, pourvoi en cours', '−35'],
+                    ['Condamnation de première instance frappée d’appel', '−25'],
+                    ['Mise en examen en cours', '−12'],
+                    ['Enquête sans mise en examen', '0'],
+                    ['Relaxe, non-lieu, classement sans suite', '0'],
+                  ].map(([etat, points]) => (
+                    <tr key={etat} className="border-b border-line last:border-0">
+                      <th scope="row" className="px-3 py-2 font-normal text-ink">
+                        {etat}
+                      </th>
+                      <td className="tabular px-3 py-2 text-right font-medium text-ink">{points}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p>
+              Une enquête ne retire rien, parce qu’elle n’établit aucune culpabilité. Un test
+              automatique le vérifie sur le jeu de données, dans les deux sens : il refuse une note
+              de probité maximale en face d’une condamnation pour détournement de fonds, et il
+              refuse tout autant que le barème soit détourné pour sanctionner des faits qu’il ne
+              prétend pas mesurer.
+            </p>
+          </div>
+        </Carte>
 
         <Carte>
           <EnteteCarte
@@ -285,12 +344,16 @@ export function Methodologie() {
           />
           <div className="space-y-3 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
             <p>
-              Chaque affirmation factuelle porte l’un de trois statuts :{' '}
-              <strong className="font-medium text-ink">vérifié</strong> (recoupé sur une source
-              primaire — Légifrance, HATVP, Journal officiel, décision de justice),{' '}
-              <strong className="font-medium text-ink">à vérifier</strong> (saisi depuis une source
-              secondaire), <strong className="font-medium text-ink">estimation</strong> (synthèse
-              éditoriale). Le détail par candidat figure sur la page{' '}
+              Chaque affirmation factuelle porte l’un de quatre statuts :{' '}
+              <strong className="font-medium text-ink">vérifié</strong> (source primaire ouverte et
+              lue — Légifrance, HATVP, Journal officiel, décision de justice),{' '}
+              <strong className="font-medium text-ink">recoupé</strong> (au moins deux sources
+              indépendantes et concordantes, référence primaire identifiée mais document non
+              ouvert), <strong className="font-medium text-ink">à vérifier</strong> (source
+              secondaire unique), <strong className="font-medium text-ink">estimation</strong>{' '}
+              (synthèse éditoriale). Le volet judiciaire est aujourd’hui au statut « recoupé » ; les
+              positions programmatiques restent des estimations. Le détail par candidat figure sur
+              la page{' '}
               <Link to="/sources" className="font-medium text-accent hover:underline">
                 Sources
               </Link>

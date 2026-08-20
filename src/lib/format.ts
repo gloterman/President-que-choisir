@@ -40,6 +40,13 @@ export const VERIFICATION: Record<
     icone: '✓',
     explication: 'Recoupé sur une source primaire.',
   },
+  recoupe: {
+    label: 'Recoupé',
+    ton: 'accent',
+    icone: '⊙',
+    explication:
+      'Recoupé sur au moins deux sources indépendantes et concordantes. La source primaire est référencée mais n’a pas été ouverte directement : il reste une lecture du document à faire avant de tenir le fait pour définitivement établi.',
+  },
   'a-verifier': {
     label: 'À vérifier',
     ton: 'warning',
@@ -74,6 +81,13 @@ export const STATUT_JUDICIAIRE: Record<
     ton: 'critical',
     icone: '■',
     explication: 'Toutes les voies de recours sont épuisées : la culpabilité est établie.',
+  },
+  'condamnation-appel-pourvoi': {
+    label: 'Condamné en appel, pourvoi en cours',
+    ton: 'serious',
+    icone: '◆',
+    explication:
+      'Les faits ont été jugés deux fois et la culpabilité retenue en appel. Un pourvoi en cassation est pendant : il ne rejuge pas les faits mais contrôle l’application du droit, et la condamnation n’est pas encore définitive.',
   },
   'condamnation-non-definitive': {
     label: 'Condamnation non définitive',

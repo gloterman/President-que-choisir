@@ -49,3 +49,56 @@ export function positions(valeurs: readonly Likert[]): Record<string, Likert> {
   }
   return Object.fromEntries(ORDRE_AXES.map((axe, i) => [axe, valeurs[i]]))
 }
+
+/**
+ * Liens institutionnels réutilisables.
+ *
+ * Ce sont des annuaires et des portails, pas des fiches nominatives : le lien
+ * profond vers la fiche d'une personne exige de relever son identifiant sur le
+ * site concerné, ce qui fait partie du travail de vérification décrit dans
+ * `docs/DONNEES.md`. Mieux vaut un point d'entrée exact qu'une URL devinée.
+ */
+export const LIENS_INSTITUTIONNELS = {
+  hatvp: {
+    label: 'Déclarations de patrimoine et d’intérêts (HATVP)',
+    url: 'https://www.hatvp.fr/consulter-les-declarations/',
+    type: 'institution' as const,
+    usage: 'Vérifier le patrimoine déclaré, les intérêts et les activités annexes.',
+  },
+  assemblee: {
+    label: 'Fiche de député (Assemblée nationale)',
+    url: 'https://www.assemblee-nationale.fr/dyn/deputes',
+    type: 'institution' as const,
+    usage: 'Vérifier les mandats, les votes, les textes déposés et la participation.',
+  },
+  senat: {
+    label: 'Fiche de sénateur (Sénat)',
+    url: 'https://www.senat.fr/senateurs/senatl.html',
+    type: 'institution' as const,
+    usage: 'Vérifier les mandats, les votes et les travaux en commission.',
+  },
+  europarl: {
+    label: 'Fiche de député européen (Parlement européen)',
+    url: 'https://www.europarl.europa.eu/meps/fr/home',
+    type: 'institution' as const,
+    usage: 'Vérifier les mandats européens, les votes et les rapports.',
+  },
+  viePublique: {
+    label: 'Biographie et discours publics (vie-publique.fr)',
+    url: 'https://www.vie-publique.fr/',
+    type: 'institution' as const,
+    usage: 'Vérifier le parcours institutionnel et retrouver les discours officiels.',
+  },
+  cnccfp: {
+    label: 'Comptes de campagne (CNCCFP)',
+    url: 'https://www.cnccfp.fr/',
+    type: 'institution' as const,
+    usage: 'Vérifier le financement des campagnes et les décisions sur les comptes.',
+  },
+  legifrance: {
+    label: 'Textes et jurisprudence (Légifrance)',
+    url: 'https://www.legifrance.gouv.fr/',
+    type: 'institution' as const,
+    usage: 'Retrouver les textes portés ou les décisions publiées.',
+  },
+} satisfies Record<string, { label: string; url: string; type: 'institution'; usage: string }>

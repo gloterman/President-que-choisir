@@ -96,6 +96,18 @@ for (const candidat of candidats) {
     if (!idsAxes.has(axeId)) erreurs.push(`${prefixe} : axe inconnu « ${axeId} » dans les notes de position.`)
   }
 
+  if (candidat.liensOfficiels.length === 0) {
+    avertissements.push(`${prefixe} : aucun lien officiel renseigné.`)
+  }
+  for (const lien of candidat.liensOfficiels) {
+    if (!/^https:\/\//.test(lien.url)) {
+      erreurs.push(`${prefixe} : lien officiel « ${lien.label} » — URL invalide ou non sécurisée.`)
+    }
+  }
+  if (!candidat.liensOfficiels.some((l) => l.type === 'institution')) {
+    avertissements.push(`${prefixe} : aucun lien institutionnel, la vérification n'a pas de point d'entrée public.`)
+  }
+
   const notees = new Set<string>()
   for (const note of candidat.notes) {
     if (!idsCriteres.has(note.critereId)) {
@@ -155,7 +167,8 @@ const parStatut = tousFaits.reduce<Record<string, number>>((acc, f) => {
 console.log(`\nCandidats : ${candidats.length} · Critères : ${criteres.length} · Propositions : ${propositions.length}`)
 console.log(
   `Éléments factuels : ${tousFaits.length} — vérifiés ${parStatut.verifie ?? 0}, ` +
-    `à vérifier ${parStatut['a-verifier'] ?? 0}, estimations ${parStatut.estimation ?? 0}`,
+    `recoupés ${parStatut.recoupe ?? 0}, à vérifier ${parStatut['a-verifier'] ?? 0}, ` +
+    `estimations ${parStatut.estimation ?? 0}`,
 )
 
 if (avertissements.length > 0) {

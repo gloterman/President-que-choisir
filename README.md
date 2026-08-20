@@ -11,7 +11,7 @@ fait, puis montre ce que cela donne — **y compris quand le résultat ne tient 
 | | |
 |---|---|
 | **Boussole programmatique** | 47 propositions réparties en 8 thèmes et 16 axes. Pour chacune, l'utilisateur donne son avis *et* l'importance qu'il y accorde. Une proposition marquée « peu importe » est retirée du calcul, pas comptée comme un accord neutre. |
-| **Notation multicritère** | 11 critères — probité, transparence, rapport aux faits, respect des institutions, expérience, assiduité, constance, clarté du programme, crédibilité budgétaire, capacité à gouverner, engagement public. Chacun déclare ses indicateurs, son barème, ses paliers et ses limites. |
+| **Notation multicritère** | 12 critères — probité, antécédents judiciaires, transparence, rapport aux faits, respect des institutions, expérience, assiduité, constance, clarté du programme, crédibilité budgétaire, capacité à gouverner, engagement public. Chacun déclare ses indicateurs, son barème, ses paliers et ses limites. |
 | **Quatre méthodes d'agrégation** | Somme pondérée, produit pondéré (moyenne géométrique), TOPSIS, duels de Condorcet (Copeland). Elles ne classent pas toujours pareil — l'écart est une information, pas un bug. |
 | **Seuils rédhibitoires** | Une note minimale exigée sur n'importe quel critère écarte d'office les candidats qui ne l'atteignent pas. |
 | **Analyse de sensibilité** | 1 000 tirages de pondérations autour des réglages de l'utilisateur, par une loi de Dirichlet, pour mesurer si le vainqueur en est vraiment un. Déterministe : mêmes réglages, mêmes chiffres. |
@@ -35,11 +35,16 @@ sont marqués « contestable » et peuvent être mis à zéro d'un clic.
 > recoupement fait par fait sur les sources primaires reste à conduire. Rien de ce qui est affiché
 > ne doit être cité comme un fait établi sans vérification indépendante.
 
-Chaque élément factuel porte l'un de trois statuts, affiché dans l'interface :
+Chaque élément factuel porte l'un de quatre statuts, affiché dans l'interface :
 
-- **vérifié** — recoupé sur une source primaire (Légifrance, HATVP, Journal officiel, décision de justice) ;
-- **à vérifier** — saisi depuis une source secondaire, en attente de recoupement ;
+- **vérifié** — source primaire ouverte et lue (Légifrance, HATVP, Journal officiel, décision de justice) ;
+- **recoupé** — au moins deux sources indépendantes et concordantes, référence primaire identifiée mais document non ouvert ; ce statut est vérifié par un test automatique qui refuse toute mention « recoupé » appuyée sur une seule source ;
+- **à vérifier** — saisi depuis une source secondaire unique ;
 - **estimation** — synthèse éditoriale d'une ligne politique, pas une citation.
+
+Le volet judiciaire est aujourd'hui au statut **recoupé** : les décisions ont été croisées sur plusieurs
+rédactions et leurs références sont indiquées, y compris le communiqué de la juridiction lorsqu'il
+existe. Les positions programmatiques restent des **estimations** par construction.
 
 La procédure de passage de l'un à l'autre est décrite dans [`docs/DONNEES.md`](docs/DONNEES.md).
 
@@ -62,7 +67,7 @@ src/
   data/           Modèle et jeu de données — aucune logique
     types.ts        Le contrat : positions, critères, faits, affaires judiciaires
     referentiel.ts  Thèmes, axes et propositions du questionnaire
-    criteres.ts     Les 11 critères, leurs indicateurs et leurs barèmes
+    criteres.ts     Les 12 critères, leurs indicateurs et leurs barèmes
     sources.ts      Registre des sources
     candidats/      Un fichier par candidat
   lib/

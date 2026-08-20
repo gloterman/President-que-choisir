@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const glucksmann: Candidat = {
   id: 'glucksmann',
@@ -15,6 +15,17 @@ export const glucksmann: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Essayiste devenu député européen en 2019, réélu en 2024 en tête de la liste sociale-démocrate. Défend une ligne social-démocrate et résolument pro-européenne, centrée sur la défense de l'État de droit, le soutien à l'Ukraine et la régulation des géants du numérique.",
+  liensOfficiels: [
+    {
+      label: 'Place publique — site officiel du mouvement',
+      url: 'https://place-publique.eu/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.europarl,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+  ],
   positions: positions([0, 1, 1, 1, 0, 1, 2, 0, -1, 0, 0, -1, 1, 1, 2, 2]),
   positionsNotes: {
     'souverainete-europeenne':
@@ -28,6 +39,14 @@ export const glucksmann: Candidat = {
       'moyenne',
       "Aucune procédure connue pour atteinte à la probité à la date de revue.",
       ['legifrance', 'hatvp'],
+    ),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive, et aucune procédure en cours identifiée. Recherche conduite le 20 août 2026 sur les bases publiques et la presse de référence ; l'absence de résultat n'est pas une preuve d'absence, elle est datée.",
+      ['legifrance', 'courdecassation'],
+      'recoupe',
     ),
     note(
       'transparence',
@@ -159,6 +178,7 @@ export const glucksmann: Candidat = {
   ],
   judiciaire: [],
   indicateurs: [
+    { id: 'glucksmann-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     {
       id: 'glucksmann-i1',
       label: 'Condamnations connues',

@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const attal: Candidat = {
   id: 'attal',
@@ -15,6 +15,17 @@ export const attal: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Plus jeune Premier ministre de la Ve République, en fonction de janvier à septembre 2024, après avoir été porte-parole du gouvernement puis ministre de l'Éducation nationale. Incarne la continuité de la ligne centrale : offre libérale sur l'économie et fermeté sur l'ordre public.",
+  liensOfficiels: [
+    {
+      label: 'Renaissance — site officiel du parti',
+      url: 'https://parti-renaissance.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.assemblee,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+  ],
   positions: positions([2, 0, -1, -1, -2, -1, 1, -2, 1, 1, 1, 1, -1, 0, 2, 2]),
   positionsNotes: {
     retraites: "Défend la réforme de 2023 portant l'âge légal à 64 ans, adoptée sous son camp.",
@@ -22,6 +33,14 @@ export const attal: Candidat = {
   },
   notes: [
     note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive, et aucune procédure en cours identifiée. Recherche conduite le 20 août 2026 sur les bases publiques et la presse de référence ; l'absence de résultat n'est pas une preuve d'absence, elle est datée.",
+      ['legifrance', 'courdecassation'],
+      'recoupe',
+    ),
     note(
       'transparence',
       80,
@@ -141,6 +160,7 @@ export const attal: Candidat = {
   ],
   judiciaire: [],
   indicateurs: [
+    { id: 'attal-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     { id: 'attal-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
     { id: 'attal-i2', label: 'Durée passée à Matignon', valeur: 'Environ 8 mois', periode: '2024', verification: 'a-verifier', sourceIds: ['journal-officiel'] },
   ],

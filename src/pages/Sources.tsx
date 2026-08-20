@@ -26,7 +26,11 @@ export function Sources() {
         ...candidat.judiciaire,
         ...candidat.indicateurs,
       ]
-      const verifies = elements.filter((e) => e.verification === 'verifie').length
+      // On compte ensemble le vérifié et le recoupé : les deux sortent de la
+      // simple saisie, ce qui est la distinction utile à afficher ici.
+      const verifies = elements.filter(
+        (e) => e.verification === 'verifie' || e.verification === 'recoupe',
+      ).length
       return {
         candidat,
         total: elements.length,
@@ -41,7 +45,7 @@ export function Sources() {
       ...c.judiciaire,
       ...c.indicateurs,
     ])
-    const parStatut = (['verifie', 'a-verifier', 'estimation'] as Verification[]).map((statut) => ({
+    const parStatut = (['verifie', 'recoupe', 'a-verifier', 'estimation'] as Verification[]).map((statut) => ({
       statut,
       nombre: tous.filter((e) => e.verification === statut).length,
     }))
@@ -72,11 +76,12 @@ export function Sources() {
 
       <div className="mb-6">
         <Alerte titre="Le jeu de données n’est pas encore consolidé">
-          Les fiches sont structurées, sourcées au niveau des portails et cohérentes entre elles,
-          mais le recoupement fait par fait sur les sources primaires reste à conduire. Concrètement :
-          les barèmes et les calculs sont opérationnels, les valeurs qu’ils digèrent sont
-          provisoires. Rien de ce qui est affiché ne doit être cité comme un fait établi sans
-          vérification indépendante.
+          Les décisions de justice ont été recoupées sur plusieurs sources indépendantes et
+          concordantes, et la référence de la décision est indiquée à chaque fois — mais ces
+          documents n’ont pas été ouverts un à un, ce qui est la dernière étape de la procédure.
+          Les positions programmatiques restent des synthèses éditoriales. Concrètement : les
+          barèmes et les calculs sont opérationnels, le volet judiciaire est solide, les positions
+          sont discutables par construction.
         </Alerte>
       </div>
 
@@ -109,7 +114,7 @@ export function Sources() {
         <Carte className="p-5">
           <BarresClassement
             titre="Éléments recoupés sur source primaire"
-            soustitre="Part des faits, mesures, décisions et indicateurs passés au statut « vérifié », par fiche."
+            soustitre="Part des faits, mesures, décisions et indicateurs sortis de la simple saisie — recoupés ou lus sur source primaire — par fiche."
             donnees={bilan.parCandidat.map((ligne) => ({
               id: ligne.candidat.id,
               label: `${ligne.candidat.prenom} ${ligne.candidat.nom}`,

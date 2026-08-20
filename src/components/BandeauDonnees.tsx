@@ -4,6 +4,7 @@ import { Alerte } from './ui/base'
 
 const elements = candidats.flatMap((c) => [...c.mesures, ...c.faits, ...c.judiciaire, ...c.indicateurs])
 const verifies = elements.filter((e) => e.verification === 'verifie').length
+const recoupes = elements.filter((e) => e.verification === 'recoupe').length
 
 /**
  * Bandeau affiché en tête des pages qui exposent des faits.
@@ -14,10 +15,13 @@ const verifies = elements.filter((e) => e.verification === 'verifie').length
  */
 export function BandeauDonnees() {
   return (
-    <Alerte titre={`Jeu de données en cours de vérification — ${verifies} élément(s) sur ${elements.length} recoupés sur source primaire`}>
-      Les positions programmatiques sont des synthèses éditoriales, les faits et décisions de
-      justice sont saisis mais pas encore recoupés un à un. Ne tenez aucun élément pour établi
-      avant de l’avoir vérifié : chaque affirmation porte son statut et ses sources.{' '}
+    <Alerte
+      titre={`Jeu de données en cours de vérification — ${recoupes} élément(s) recoupés, ${verifies} lus sur source primaire, sur ${elements.length}`}
+    >
+      Les décisions de justice ont été recoupées sur plusieurs sources concordantes et leurs
+      références primaires sont indiquées ; il reste à ouvrir ces documents un à un. Les positions
+      programmatiques, elles, sont des synthèses éditoriales. Chaque affirmation porte son statut
+      et ses sources.{' '}
       <Link to="/sources" className="font-medium text-accent hover:underline">
         Voir l’état de vérification
       </Link>

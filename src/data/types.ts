@@ -14,9 +14,19 @@
 
 /** Niveau de vérification d'une donnée. Rien n'est affiché sans ce marqueur. */
 export type Verification =
-  /** Recoupé sur une source primaire (Légifrance, HATVP, JO, décision de justice). */
+  /**
+   * Recoupé sur une source primaire consultée directement : décision de
+   * justice, déclaration HATVP, Journal officiel, scrutin d'une assemblée.
+   */
   | 'verifie'
-  /** Saisi depuis une source secondaire, en attente de recoupement. */
+  /**
+   * Recoupé sur au moins deux sources secondaires indépendantes et
+   * concordantes, avec la référence de la source primaire identifiée mais
+   * non ouverte. Statut intermédiaire honnête : plus solide qu'une simple
+   * saisie, moins qu'une lecture du document lui-même.
+   */
+  | 'recoupe'
+  /** Saisi depuis une source secondaire unique, en attente de recoupement. */
   | 'a-verifier'
   /** Synthèse éditoriale d'une ligne politique, pas une citation. */
   | 'estimation'
@@ -171,6 +181,9 @@ export interface Fait {
  */
 export type StatutJudiciaire =
   | 'condamnation-definitive'
+  /** Condamné en appel, pourvoi en cassation pendant : les faits sont jugés deux fois. */
+  | 'condamnation-appel-pourvoi'
+  /** Condamné en première instance, appel pendant. */
   | 'condamnation-non-definitive'
   | 'mise-en-examen'
   | 'enquete'
@@ -217,6 +230,15 @@ export interface Mesure {
 }
 
 /** Indicateur brut, affiché tel quel sur la fiche : c'est la matière des notes. */
+/** Lien vers une page officielle : celle du candidat, de son parti, ou d'une institution. */
+export interface LienOfficiel {
+  label: string
+  url: string
+  type: 'candidat' | 'parti' | 'institution'
+  /** Ce que le lien permet de vérifier. */
+  usage?: string
+}
+
 export interface Indicateur {
   id: string
   label: string
@@ -263,6 +285,12 @@ export interface Candidat {
   statutCandidature: StatutCandidature
   presentation: string
   siteProgramme?: string
+  /**
+   * Pages officielles : site du candidat ou de son parti d'une part, pages
+   * institutionnelles d'autre part. C'est le point de départ de toute
+   * vérification — la parole du candidat et le registre public.
+   */
+  liensOfficiels: LienOfficiel[]
   /** Position sur chaque axe, indexée par `Axe.id`. */
   positions: Record<string, Likert>
   /** Justification courte d'une position, indexée par `Axe.id`. */

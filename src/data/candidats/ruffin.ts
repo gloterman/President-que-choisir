@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const ruffin: Candidat = {
   id: 'ruffin',
@@ -15,6 +15,13 @@ export const ruffin: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Journaliste et documentariste devenu député de la Somme en 2017, d'abord au sein de La France insoumise puis en rupture avec elle à partir de 2024. Défend une ligne sociale centrée sur les classes populaires des territoires périphériques et une reconquête de l'électorat passé au vote RN.",
+  liensOfficiels: [
+    // Le mouvement « Debout ! » n'a pas de domaine officiel confirmé à la date de
+    // revue : aucune URL n'est inventée pour combler le trou.
+    LIENS_INSTITUTIONNELS.assemblee,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+  ],
   positions: positions([-2, 2, 1, 2, 2, 2, 1, 1, -1, 0, 0, -1, 2, 1, -1, -1]),
   positionsNotes: {
     'flux-migratoires':
@@ -22,6 +29,14 @@ export const ruffin: Candidat = {
   },
   notes: [
     note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive, et aucune procédure en cours identifiée. Recherche conduite le 20 août 2026 sur les bases publiques et la presse de référence ; l'absence de résultat n'est pas une preuve d'absence, elle est datée.",
+      ['legifrance', 'courdecassation'],
+      'recoupe',
+    ),
     note(
       'transparence',
       75,
@@ -141,6 +156,7 @@ export const ruffin: Candidat = {
   ],
   judiciaire: [],
   indicateurs: [
+    { id: 'ruffin-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     { id: 'ruffin-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
     { id: 'ruffin-i2', label: 'Années de mandat parlementaire', valeur: 'Environ 9 ans', periode: '2017-2026', verification: 'a-verifier', sourceIds: ['assemblee'] },
   ],

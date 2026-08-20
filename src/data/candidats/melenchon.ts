@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const melenchon: Candidat = {
   id: 'melenchon',
@@ -12,9 +12,27 @@ export const melenchon: Candidat = {
   couleurParti: '#c9462c',
   naissance: '1951-08-19',
   fonctionActuelle: 'Fondateur de La France insoumise',
-  statutCandidature: 'pressenti',
+  statutCandidature: 'declare',
   presentation:
     "Figure de la gauche de rupture depuis quinze ans, trois fois candidat à la présidentielle avec une progression continue (11,1 % en 2012, 19,6 % en 2017, 21,95 % en 2022). Défend une bifurcation écologique et sociale financée par la fiscalité sur les hauts patrimoines, et la convocation d'une assemblée constituante pour une VIᵉ République.",
+  liensOfficiels: [
+    {
+      label: 'Mélenchon 2027 — site de campagne',
+      url: 'https://melenchon2027.fr/',
+      type: 'candidat',
+      usage: 'Programme et engagements pris par le candidat lui-même.',
+    },
+    {
+      label: 'La France insoumise — site officiel du mouvement',
+      url: 'https://lafranceinsoumise.fr/',
+      type: 'parti',
+      usage: 'Corpus programmatique et positions du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.assemblee,
+    LIENS_INSTITUTIONNELS.europarl,
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+  ],
   positions: positions([
     -2, 2, 2, 2, 2, 2, 2, 2, -2, -2, -1, -2, 2, 0, -1, -2,
   ]),
@@ -29,9 +47,18 @@ export const melenchon: Candidat = {
     note(
       'probite',
       100,
-      'moyenne',
-      "Aucune condamnation pour atteinte à la probité connue à la date de revue. La condamnation prononcée en décembre 2019 relève d'un autre chef (rébellion, provocation) et n'entre pas dans le barème de ce critère : elle figure intégralement dans la section judiciaire de cette fiche.",
-      ['legifrance', 'hatvp'],
+      'haute',
+      "Aucune condamnation ni mise en examen personnelle pour atteinte à la probité. Deux vérifications appuient cette note : l'instruction sur les assistants parlementaires européens qui le visait a été close en mai 2026 sans aucune mise en examen le concernant, et dans l'affaire des comptes de campagne de 2017, les quatre mises en examen prononcées concernent d'autres personnes et structures, pas lui. La condamnation de décembre 2019 relève d'un autre chef — rébellion et provocation — et n'entre pas dans ce barème : elle est comptée par le critère « Antécédents judiciaires » et figure intégralement dans la section judiciaire de cette fiche.",
+      ['touteleurope-melenchon-assistants', 'europe1-lfi-comptes-2017', 'legifrance'],
+      'recoupe',
+    ),
+    note(
+      'antecedents-judiciaires',
+      70,
+      'haute',
+      "Barème appliqué : 100 points de base, moins 30 points pour une condamnation définitive — celle de décembre 2019 pour rébellion et provocation, devenue définitive faute d'appel. Aucune autre condamnation connue.",
+      ['publicsenat-melenchon-perquisition', 'legifrance'],
+      'recoupe',
     ),
     note(
       'transparence',
@@ -177,6 +204,28 @@ export const melenchon: Candidat = {
       sourceIds: ['legifrance'],
     },
     {
+      id: 'melenchon-f5',
+      date: '2026-05-03',
+      titre: 'Candidature déclarée pour 2027',
+      description:
+        "Annonce sa quatrième candidature à l'élection présidentielle, quelques jours avant la clôture de l'enquête sur les assistants parlementaires européens qui le visait.",
+      categorie: 'prise-de-position',
+      portee: 'majeur',
+      verification: 'recoupe',
+      sourceIds: ['lcp-candidats-2027', 'publicsenat-candidats-2027'],
+    },
+    {
+      id: 'melenchon-f6',
+      date: '2026-05',
+      titre: 'Clôture sans mise en examen de l’instruction sur les assistants européens',
+      description:
+        "Après huit ans d'enquête, les juges closent l'instruction le visant dans l'affaire des assistants parlementaires européens, sans l'avoir mis en examen. Le parquet doit encore prendre ses réquisitions avant qu'un non-lieu ou un renvoi soit décidé.",
+      categorie: 'judiciaire',
+      portee: 'majeur',
+      verification: 'recoupe',
+      sourceIds: ['cnews-melenchon-instruction', 'touteleurope-melenchon-assistants'],
+    },
+    {
       id: 'melenchon-f4',
       date: '2000',
       titre: 'Ministre délégué à l’Enseignement professionnel (2000-2002)',
@@ -193,15 +242,42 @@ export const melenchon: Candidat = {
       id: 'melenchon-j1',
       intitule: 'Perquisition du siège de La France insoumise',
       resume:
-        "Poursuites engagées à la suite de la perquisition d'octobre 2018 au siège du mouvement, pour les faits survenus pendant l'opération.",
-      statut: 'condamnation-non-definitive',
-      qualification: 'Rébellion et provocation. Ces chefs ne relèvent pas des atteintes à la probité.',
+        "Poursuites engagées à la suite de la perquisition d'octobre 2018 au siège du mouvement, pour les faits survenus pendant l'opération : appel à forcer la porte et bousculade d'un représentant du parquet et d'un policier.",
+      statut: 'condamnation-definitive',
+      qualification:
+        'Rébellion et provocation. Ces chefs ne relèvent pas des atteintes à la probité et ne modifient donc pas la note de probité ; ils sont comptés par le critère « Antécédents judiciaires ».',
       juridiction: 'Tribunal correctionnel de Bobigny',
       dateDecision: '2019-12-09',
-      peine: 'Trois mois d’emprisonnement avec sursis et amende, en première instance',
-      recours: 'Suites données en appel à vérifier sur source primaire avant publication.',
-      verification: 'a-verifier',
-      sourceIds: ['legifrance', 'decodeurs'],
+      peine: 'Trois mois d’emprisonnement avec sursis et 8 000 euros d’amende',
+      recours:
+        "Aucun. Jean-Luc Mélenchon a annoncé publiquement qu'il ne ferait pas appel : la condamnation est donc devenue définitive.",
+      verification: 'recoupe',
+      sourceIds: ['publicsenat-melenchon-perquisition', 'aljazeera-melenchon-2019', 'legifrance'],
+    },
+    {
+      id: 'melenchon-j2',
+      intitule: 'Assistants parlementaires européens de La France insoumise',
+      resume:
+        "Signalement de l'Office européen de lutte antifraude en 2017, puis information judiciaire ouverte en France en 2018, portant sur l'emploi d'assistants du Parlement européen pour des activités politiques nationales.",
+      statut: 'enquete',
+      juridiction: 'Juges d’instruction, Paris',
+      dateDecision: '2026-05',
+      recours:
+        "Instruction close en mai 2026 sans aucune mise en examen de Jean-Luc Mélenchon, après huit ans d'enquête. Ce n'est pas encore un non-lieu : le parquet doit prendre ses réquisitions, après quoi les juges décideront d'un non-lieu ou d'un renvoi. Deux anciens assistants conservent le statut de témoin assisté. Les sources consultées divergent sur le jour exact de la clôture, d'où une date au mois.",
+      verification: 'recoupe',
+      sourceIds: ['cnews-melenchon-instruction', 'touteleurope-melenchon-assistants'],
+    },
+    {
+      id: 'melenchon-j3',
+      intitule: 'Comptes de campagne de la présidentielle de 2017',
+      resume:
+        "Enquête ouverte en 2018 après un signalement de la CNCCFP, portant sur une possible surfacturation de prestataires liés au mouvement. Quatre mises en examen ont été prononcées, visant d'autres personnes et structures ; Jean-Luc Mélenchon n'est personnellement ni mis en examen ni placé sous statut de témoin assisté à la date de revue.",
+      statut: 'enquete',
+      juridiction: 'Juges d’instruction, Paris',
+      recours:
+        "Procédure en cours contre d'autres personnes. Cette entrée figure ici parce que l'affaire est régulièrement associée à son nom : elle ne lui est pas imputée.",
+      verification: 'recoupe',
+      sourceIds: ['europe1-lfi-comptes-2017', 'cnccfp'],
     },
   ],
   indicateurs: [
@@ -224,10 +300,18 @@ export const melenchon: Candidat = {
     {
       id: 'melenchon-i3',
       label: 'Condamnations définitives pour atteinte à la probité',
-      valeur: 'Aucune connue',
-      periode: 'À la date de revue',
-      verification: 'a-verifier',
-      sourceIds: ['legifrance'],
+      valeur: 'Aucune',
+      periode: 'Au 20 août 2026',
+      verification: 'recoupe',
+      sourceIds: ['touteleurope-melenchon-assistants', 'europe1-lfi-comptes-2017'],
+    },
+    {
+      id: 'melenchon-i4',
+      label: 'Condamnations définitives, toutes infractions',
+      valeur: 'Une (rébellion et provocation, 2019)',
+      periode: 'Au 20 août 2026',
+      verification: 'recoupe',
+      sourceIds: ['publicsenat-melenchon-perquisition', 'aljazeera-melenchon-2019'],
     },
   ],
   derniereMaj: '2026-08-20',

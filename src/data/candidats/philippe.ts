@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const philippe: Candidat = {
   id: 'philippe',
@@ -15,6 +15,17 @@ export const philippe: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Premier ministre de 2017 à 2020, maire du Havre, il a annoncé publiquement sa candidature à la présidentielle de 2027. Défend une ligne libérale sur l'économie et les finances publiques, conservatrice sur l'ordre public, et une continuité européenne assumée.",
+  liensOfficiels: [
+    {
+      label: 'Horizons — site officiel du parti',
+      url: 'https://horizonsleparti.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+    LIENS_INSTITUTIONNELS.legifrance,
+  ],
   positions: positions([2, -1, -2, -2, -2, -2, 1, -2, 1, 1, 1, 1, -1, 1, 1, 2]),
   positionsNotes: {
     'pression-fiscale': "Défend une réduction de la dépense publique comme préalable à toute baisse d'impôts.",
@@ -22,6 +33,14 @@ export const philippe: Candidat = {
   },
   notes: [
     note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive, et aucune procédure en cours identifiée. Recherche conduite le 20 août 2026 sur les bases publiques et la presse de référence ; l'absence de résultat n'est pas une preuve d'absence, elle est datée.",
+      ['legifrance', 'courdecassation'],
+      'recoupe',
+    ),
     note(
       'transparence',
       80,
@@ -141,6 +160,7 @@ export const philippe: Candidat = {
   ],
   judiciaire: [],
   indicateurs: [
+    { id: 'philippe-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     { id: 'philippe-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
     { id: 'philippe-i2', label: 'Années à la tête d’un exécutif', valeur: 'Environ 13 ans', periode: '2010-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],

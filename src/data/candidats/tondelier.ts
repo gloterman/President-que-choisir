@@ -1,5 +1,5 @@
 import type { Candidat } from '../types'
-import { note, positions } from './_helpers'
+import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
 
 export const tondelier: Candidat = {
   id: 'tondelier',
@@ -15,6 +15,16 @@ export const tondelier: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Élue d'opposition à Hénin-Beaumont face au Rassemblement national depuis 2014, devenue en 2022 secrétaire nationale des Écologistes. Défend une planification écologique articulée à la justice sociale et une VIᵉ République parlementaire, avec un ancrage revendiqué dans les territoires populaires.",
+  liensOfficiels: [
+    {
+      label: 'Les Écologistes — site officiel du parti',
+      url: 'https://lesecologistes.fr/',
+      type: 'parti',
+      usage: 'Programme et prises de position officielles du mouvement.',
+    },
+    LIENS_INSTITUTIONNELS.hatvp,
+    LIENS_INSTITUTIONNELS.viePublique,
+  ],
   positions: positions([-1, 1, 1, 2, 1, 2, 2, 2, -2, -1, -1, -2, 2, 2, 2, 0]),
   positionsNotes: {
     'mix-energetique':
@@ -29,6 +39,14 @@ export const tondelier: Candidat = {
       'moyenne',
       "Aucune procédure connue pour atteinte à la probité à la date de revue. La confiance reste moyenne tant que la vérification systématique auprès des sources primaires n'a pas été conduite.",
       ['legifrance', 'hatvp'],
+    ),
+    note(
+      'antecedents-judiciaires',
+      100,
+      'moyenne',
+      "Aucune condamnation connue, ni définitive ni non définitive, et aucune procédure en cours identifiée. Recherche conduite le 20 août 2026 sur les bases publiques et la presse de référence ; l'absence de résultat n'est pas une preuve d'absence, elle est datée.",
+      ['legifrance', 'courdecassation'],
+      'recoupe',
     ),
     note(
       'transparence',
@@ -161,6 +179,7 @@ export const tondelier: Candidat = {
   ],
   judiciaire: [],
   indicateurs: [
+    { id: 'tondelier-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     {
       id: 'tondelier-i1',
       label: 'Condamnations connues',

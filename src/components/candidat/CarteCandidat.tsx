@@ -4,8 +4,25 @@ import { Badge, Carte } from '@/components/ui/base'
 import { Pastille } from './Pastille'
 import { Jauge } from '@/components/charts/Jauge'
 import { STATUTS_CANDIDATURE } from '@/data/candidats'
-import { clsx, pourcent } from '@/lib/format'
-import type { Candidat } from '@/data/types'
+import { clsx, pourcent, STATUT_JUDICIAIRE } from '@/lib/format'
+import type { Candidat, StatutJudiciaire } from '@/data/types'
+
+/** Du plus grave au moins grave : la pastille annonce l'état le plus lourd de la fiche. */
+const GRAVITE: StatutJudiciaire[] = [
+  'condamnation-definitive',
+  'condamnation-appel-pourvoi',
+  'condamnation-non-definitive',
+  'mise-en-examen',
+  'enquete',
+  'prescription',
+  'classement-sans-suite',
+  'non-lieu',
+  'relaxe',
+]
+
+function statutLePlusGrave(candidat: Candidat): StatutJudiciaire | null {
+  return GRAVITE.find((statut) => candidat.judiciaire.some((a) => a.statut === statut)) ?? null
+}
 
 export function CarteCandidat({
   candidat,
@@ -47,11 +64,19 @@ export function CarteCandidat({
         >
           {statut.nom}
         </Badge>
-        {candidat.judiciaire.length > 0 && (
-          <Badge ton="neutre" icone="§" titre="Des éléments judiciaires figurent sur la fiche.">
-            {candidat.judiciaire.length} affaire{candidat.judiciaire.length > 1 ? 's' : ''}
-          </Badge>
-        )}
+        {(() => {
+          // Un simple compteur d'affaires met sur le même plan une relaxe et une
+          // condamnation définitive. La pastille nomme donc l'état le plus lourd.
+          const statut = statutLePlusGrave(candidat)
+          if (!statut) return null
+          const meta = STATUT_JUDICIAIRE[statut]
+          return (
+            <Badge ton={meta.ton} icone={meta.icone} titre={meta.explication}>
+              {meta.label}
+              {candidat.judiciaire.length > 1 && ` · ${candidat.judiciaire.length} affaires`}
+            </Badge>
+          )
+        })()}
       </div>
 
       {affinite !== undefined && (
