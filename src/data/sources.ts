@@ -292,6 +292,22 @@ export const sources: Source[] = [
     type: 'ong',
   },
   {
+    id: 'cnews-lisnard-programme',
+    titre: 'Présidentielle 2027 : dans son programme, David Lisnard défend une « révolution de l’école de la Démocratie »',
+    editeur: 'CNews',
+    url: 'https://www.cnews.fr/france/2026-07-10/presidentielle-2027-dans-son-programme-david-lisnard-defend-une-revolution-de',
+    date: '2026-07-10',
+    type: 'presse',
+  },
+  {
+    id: 'jdd-candidats-2027',
+    titre: 'Présidentielle 2027 : la liste des candidats déclarés ou pressentis',
+    editeur: 'Le Journal du Dimanche',
+    url: 'https://www.lejdd.fr/politique/presidentielle-2027-la-liste-des-40-candidats-declares-ou-pressentis-177960',
+    date: '2026-08-01',
+    type: 'presse',
+  },
+  {
     id: 'lcp-candidats-2027',
     titre: 'Présidentielle 2027 : la liste des candidats déjà en lice et des prétendants',
     editeur: 'LCP — Assemblée nationale',

@@ -10,13 +10,24 @@ fait, puis montre ce que cela donne — **y compris quand le résultat ne tient 
 
 | | |
 |---|---|
-| **Boussole programmatique** | 47 propositions réparties en 8 thèmes et 16 axes. Pour chacune, l'utilisateur donne son avis *et* l'importance qu'il y accorde. Une proposition marquée « peu importe » est retirée du calcul, pas comptée comme un accord neutre. |
+| **Boussole programmatique** | 64 propositions réparties en 8 thèmes et 16 axes, dont 17 arbitrages de principe indépendants de l'actualité. Pour chacune, l'utilisateur donne son avis *et* l'importance qu'il y accorde. Une proposition marquée « peu importe » est retirée du calcul, pas comptée comme un accord neutre. Une version courte limitée aux questions de principe est proposée. |
 | **Notation multicritère** | 12 critères — probité, antécédents judiciaires, transparence, rapport aux faits, respect des institutions, expérience, assiduité, constance, clarté du programme, crédibilité budgétaire, capacité à gouverner, engagement public. Chacun déclare ses indicateurs, son barème, ses paliers et ses limites. |
 | **Quatre méthodes d'agrégation** | Somme pondérée, produit pondéré (moyenne géométrique), TOPSIS, duels de Condorcet (Copeland). Elles ne classent pas toujours pareil — l'écart est une information, pas un bug. |
 | **Seuils rédhibitoires** | Une note minimale exigée sur n'importe quel critère écarte d'office les candidats qui ne l'atteignent pas. |
 | **Analyse de sensibilité** | 1 000 tirages de pondérations autour des réglages de l'utilisateur, par une loi de Dirichlet, pour mesurer si le vainqueur en est vraiment un. Déterministe : mêmes réglages, mêmes chiffres. |
 | **Comparateur** | Trois candidats côte à côte : positions axe par axe, mesures thème par thème, notes critère par critère. |
 | **Fiches candidats** | Parcours, mesures chiffrées, faits marquants, situation judiciaire, indicateurs — chaque élément avec son statut de vérification et ses sources. |
+
+## Neutralité de formulation
+
+C'est le point le plus facile à truquer dans un outil de ce genre. Huit règles s'appliquent donc à
+chaque énoncé — pas de justification intégrée, pas de superlatif, une seule idée par proposition,
+pas de fausse alternative, pas de « il faut », pas de vocabulaire militant, pas de présupposé dans
+le verbe, polarités mélangées dans chaque thème.
+
+Les six premières sont **exécutables** : `npm run lint:data` échoue si un énoncé les enfreint, et
+toute exception doit être inscrite dans le code avec sa raison. Les formulations ont par ailleurs
+été soumises à une relecture indépendante.
 
 ## Deux principes de conception
 

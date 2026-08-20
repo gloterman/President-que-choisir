@@ -85,6 +85,98 @@ export function Methodologie() {
 
         <Carte>
           <EnteteCarte
+            titre="Comment les questions sont rédigées"
+            soustitre="Une proposition mal formulée fabrique le résultat qu’elle prétend mesurer."
+          />
+          <div className="space-y-4 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
+            <p>
+              C’est le point le plus facile à truquer dans un outil de ce genre, et le plus difficile
+              à repérer pour qui répond. Huit règles s’appliquent donc à chaque énoncé, et les six
+              premières sont vérifiées par un contrôle automatique à chaque modification du
+              questionnaire.
+            </p>
+            <ol className="space-y-2.5">
+              {[
+                [
+                  'Pas de justification intégrée',
+                  '« Assouplir les licenciements pour encourager l’embauche » fait accepter une thèse économique contestée en même temps que la mesure. On énonce la mesure, pas son bénéfice supposé.',
+                ],
+                [
+                  'Pas de superlatif ni d’adverbe d’appréciation',
+                  '« Le meilleur levier », « massivement », « fortement » demandent d’adhérer à une intensité autant qu’à une idée.',
+                ],
+                [
+                  'Une seule chose par proposition',
+                  '« Poursuivi et amplifié » mélange deux questions dont on ne peut plus séparer les réponses.',
+                ],
+                [
+                  'Pas de fausse alternative dans une mesure',
+                  'Construire des prisons et développer les peines alternatives ne s’excluent pas : ce sont deux énoncés distincts. L’arbitrage n’est admis que dans une question de principe, où les deux termes sont nommés symétriquement.',
+                ],
+                [
+                  'Pas de « il faut »',
+                  'La formule installe une nécessité avant même la réponse. On écrit qui doit faire quoi.',
+                ],
+                [
+                  'Pas de vocabulaire militant repris tel quel',
+                  '« Préférence nationale », « assistanat », « ultra-riches » : on décrit le mécanisme, pas le slogan.',
+                ],
+                [
+                  'Pas de présupposé dans le verbe',
+                  '« Rétablir » suppose qu’un état antérieur était légitime. On écrit « instaurer », ou on décrit.',
+                ],
+                [
+                  'Polarités mélangées dans chaque thème',
+                  'Si tous les énoncés d’un thème vont dans le même sens, la tendance à approuver quoi qu’on demande se transforme en résultat politique.',
+                ],
+              ].map(([titre, texte], i) => (
+                <li key={titre} className="flex gap-3">
+                  <span
+                    aria-hidden="true"
+                    className="mt-0.5 grid h-6 w-8 shrink-0 place-items-center rounded-md bg-surface-2 text-[0.72rem] font-bold text-ink-2"
+                  >
+                    R{i + 1}
+                  </span>
+                  <span>
+                    <strong className="font-semibold text-ink">{titre}.</strong> {texte}
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <p>
+              Les rares cas où un motif se déclenche sans que la règle soit enfreinte font l’objet
+              d’une dérogation écrite dans le code, avec sa raison : une exception assumée n’est pas
+              un oubli.
+            </p>
+            <div className="rounded-xl bg-surface-2 p-4">
+              <p className="text-[0.85rem] font-semibold text-ink">
+                Questions de principe et questions de mesure
+              </p>
+              <p className="mt-2">
+                {propositions.filter((p) => p.nature === 'principe').length} des{' '}
+                {propositions.length} propositions sont des{' '}
+                <strong className="font-medium text-ink">arbitrages de principe</strong> — « entre la
+                stabilité de l’emploi et la souplesse des entreprises, laquelle doit primer ? » —
+                rédigés pour survivre au cycle médiatique. Les autres sont des mesures concrètes,
+                telles qu’elles se discutent aujourd’hui.
+              </p>
+              <p className="mt-2">
+                La distinction n’est pas décorative : un questionnaire composé uniquement de mesures
+                d’actualité mesure surtout la position de chacun dans le débat du moment, et devient
+                faux dès que le débat se déplace. Le questionnaire propose donc une version courte,
+                limitée aux questions de principe.
+              </p>
+            </div>
+            <p className="text-muted">
+              Ces règles ont été soumises à une relecture indépendante, dont les corrections
+              retenues sont intégrées. Si une formulation vous paraît encore orientée, elle est
+              contestable comme le reste : le texte de chaque proposition est dans le dépôt public.
+            </p>
+          </div>
+        </Carte>
+
+        <Carte>
+          <EnteteCarte
             titre="Comment l’affinité programmatique est calculée"
             soustitre="La partie « boussole » de l’outil."
           />

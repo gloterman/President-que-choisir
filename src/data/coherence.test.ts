@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { candidats } from './candidats'
 import { criteres } from './criteres'
+import { axes, propositions, themes } from './referentiel'
 import { sourceById } from './sources'
 
 /**
@@ -147,6 +148,64 @@ describe('référentiel des critères', () => {
   it('couvre toute l’échelle de notes par ses paliers', () => {
     for (const critere of criteres) {
       expect(Math.min(...critere.paliers.map((p) => p.min)), critere.id).toBe(0)
+    }
+  })
+})
+
+describe('formulation du questionnaire', () => {
+  it('ne répète aucun énoncé', () => {
+    const vus = new Map<string, string>()
+    for (const proposition of propositions) {
+      const cle = proposition.texte.toLowerCase().replace(/\s+/g, ' ').trim()
+      expect(vus.get(cle), `doublon avec ${vus.get(cle)}`).toBeUndefined()
+      vus.set(cle, proposition.id)
+    }
+  })
+
+  it('pose au moins un arbitrage de principe par thème', () => {
+    for (const theme of themes) {
+      const duTheme = propositions.filter((p) => p.themeId === theme.id)
+      expect(
+        duTheme.some((p) => p.nature === 'principe'),
+        `${theme.id} : uniquement des mesures d’actualité`,
+      ).toBe(true)
+    }
+  })
+
+  it('mélange les polarités au sein de chaque thème', () => {
+    // Sans ce mélange, la tendance à approuver quoi qu'on demande —
+    // le biais d'acquiescement — se transforme en résultat politique.
+    for (const theme of themes) {
+      const duTheme = propositions.filter((p) => p.themeId === theme.id)
+      const positives = duTheme.filter((p) => p.polarite === 1).length
+      const minoritaire = Math.min(positives, duTheme.length - positives)
+      expect(minoritaire / duTheme.length, `${theme.id}`).toBeGreaterThanOrEqual(0.25)
+    }
+  })
+
+  it('rattache chaque proposition à un axe du thème annoncé', () => {
+    for (const proposition of propositions) {
+      const axe = axes.find((a) => a.id === proposition.axeId)
+      expect(axe, proposition.id).toBeDefined()
+      expect(axe!.themeId, proposition.id).toBe(proposition.themeId)
+    }
+  })
+
+  it('donne à chaque proposition un énoncé et un contexte exploitables', () => {
+    for (const proposition of propositions) {
+      expect(proposition.texte, proposition.id).toMatch(/^[A-ZÀ-Ý«]/)
+      expect(proposition.texte, proposition.id).toMatch(/\.$/)
+      expect(proposition.texte.length, proposition.id).toBeLessThanOrEqual(190)
+      expect(proposition.contexte.length, proposition.id).toBeGreaterThan(40)
+      // Le contexte informe, il ne prescrit pas.
+      expect(proposition.contexte, proposition.id).not.toMatch(/\bil faut\b/i)
+    }
+  })
+
+  it('couvre chaque axe par au moins deux propositions', () => {
+    for (const axe of axes) {
+      const nb = propositions.filter((p) => p.axeId === axe.id).length
+      expect(nb, `${axe.id} : ${nb} proposition(s)`).toBeGreaterThanOrEqual(2)
     }
   })
 })

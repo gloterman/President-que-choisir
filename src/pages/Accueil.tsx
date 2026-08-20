@@ -7,12 +7,13 @@ import { propositions, themes } from '@/data/referentiel'
 import { METHODES } from '@/lib/scoring'
 import { usePreferences } from '@/lib/store'
 
+const nbPrincipes = propositions.filter((p) => p.nature === 'principe').length
+
 const ETAPES = [
   {
     numero: 1,
     titre: 'Vous vous situez',
-    texte:
-      "Quarante-sept propositions concrètes, réparties en huit thèmes. Pour chacune, vous dites si vous êtes d’accord et surtout à quel point le sujet compte pour vous. Un sujet marqué « peu importe » sort entièrement du calcul.",
+    texte: `${propositions.length} propositions réparties en ${themes.length} thèmes, dont ${nbPrincipes} arbitrages de principe qui ne dépendent pas de l’actualité. Pour chacune, vous dites si vous êtes d’accord et surtout à quel point le sujet compte pour vous. Un sujet marqué « peu importe » sort entièrement du calcul.`,
     lien: '/questionnaire',
     libelleLien: 'Commencer le questionnaire',
   },

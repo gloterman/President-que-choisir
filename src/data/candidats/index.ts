@@ -1,14 +1,18 @@
 import type { Candidat, FamillePolitique } from '../types'
 import { attal } from './attal'
 import { bardella } from './bardella'
+import { batho } from './batho'
+import { bertrand } from './bertrand'
 import { glucksmann } from './glucksmann'
 import { lepen } from './lepen'
+import { lisnard } from './lisnard'
 import { melenchon } from './melenchon'
 import { philippe } from './philippe'
 import { retailleau } from './retailleau'
 import { roussel } from './roussel'
 import { ruffin } from './ruffin'
 import { tondelier } from './tondelier'
+import { villepin } from './villepin'
 import { zemmour } from './zemmour'
 
 /**
@@ -19,10 +23,14 @@ export const candidats: Candidat[] = [
   melenchon,
   roussel,
   ruffin,
+  batho,
   tondelier,
   glucksmann,
+  villepin,
   attal,
   philippe,
+  bertrand,
+  lisnard,
   retailleau,
   lepen,
   bardella,

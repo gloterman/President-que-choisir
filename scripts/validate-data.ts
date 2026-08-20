@@ -63,13 +63,18 @@ for (const axe of axes) {
   else if (nb < 2) avertissements.push(`Axe « ${axe.id} » : une seule proposition rattachée.`)
 }
 
-// Équilibre des polarités : un thème dont toutes les propositions vont dans le
-// même sens expose au biais d'acquiescement.
+// R8 — équilibre des polarités. Un thème dont les propositions vont toutes dans
+// le même sens transforme la tendance à approuver en résultat politique.
 for (const theme of themes) {
   const duTheme = propositions.filter((p) => p.themeId === theme.id)
-  if (duTheme.length >= 3 && duTheme.every((p) => p.polarite === duTheme[0].polarite)) {
+  if (duTheme.length < 3) continue
+  const positives = duTheme.filter((p) => p.polarite === 1).length
+  const minoritaire = Math.min(positives, duTheme.length - positives)
+  if (minoritaire === 0) {
+    erreurs.push(`Thème « ${theme.id} » : toutes les propositions ont la même polarité (R8).`)
+  } else if (minoritaire / duTheme.length < 0.25) {
     avertissements.push(
-      `Thème « ${theme.id} » : toutes les propositions ont la même polarité (biais d'acquiescement).`,
+      `Thème « ${theme.id} » : ${minoritaire} proposition(s) de polarité minoritaire sur ${duTheme.length} (R8).`,
     )
   }
 }
@@ -156,6 +161,123 @@ for (const candidat of candidats) {
   if (!ISO.test(candidat.derniereMaj)) erreurs.push(`${prefixe} : date de dernière mise à jour mal formée.`)
 }
 
+
+// ---------------------------------------------------------------------------
+// Contrôle de formulation des propositions
+// ---------------------------------------------------------------------------
+
+/**
+ * Les règles de rédaction (R1 à R8, documentées en tête de `referentiel.ts`)
+ * sont ici rendues exécutables. Une règle écrite dans un commentaire finit
+ * toujours par être oubliée ; une règle testée, non.
+ *
+ * Les motifs sont volontairement larges : ils signalent des candidats, pas des
+ * fautes certaines. Toute exception doit être inscrite ci-dessous avec sa
+ * raison — c'est ce qui distingue une dérogation assumée d'un oubli.
+ */
+const REGLES: { code: string; libelle: string; motif: RegExp; natures?: string[] }[] = [
+  {
+    code: 'R1',
+    libelle: 'justification intégrée (« pour + infinitif »)',
+    motif: /\bpour\s+(?:[a-zà-öø-ÿ]{3,}(?:er|ir|re)|que)\b/i,
+  },
+  {
+    code: 'R2',
+    libelle: 'superlatif ou adverbe d’appréciation',
+    motif:
+      /\b(?:le meilleur|la meilleure|le pire|massivement|fortement|drastiquement|évidemment|scandaleu|indispensable|urgent|véritable|simplement)\w*/i,
+  },
+  {
+    code: 'R3',
+    libelle: 'proposition double',
+    motif:
+      /\b(?:doit|doivent|peut|peuvent)\s+(?:être\s+)?[a-zà-öø-ÿ]+(?:é|ée|és|ées|er|ir)\s+et\s+[a-zà-öø-ÿ]+(?:é|ée|és|ées|er|ir)\b/i,
+  },
+  {
+    code: 'R4',
+    libelle: 'fausse alternative dans une mesure',
+    motif: /\bplut[oô]t qu/i,
+    natures: ['mesure'],
+  },
+  { code: 'R5', libelle: '« il faut »', motif: /\bil faut\b/i },
+  {
+    code: 'R6',
+    libelle: 'vocabulaire militant repris tel quel',
+    motif:
+      /\b(?:préférence nationale|assistanat|ultra-riches|grand remplacement|ensauvagement|wokisme|immigrationniste)\b/i,
+  },
+  {
+    code: 'R7',
+    libelle: 'présupposé dans le verbe (« rétablir », « restaurer »)',
+    motif: /\b(?:rétabli|restaur)(?:r|e|es|s|é|ée|ées|és|er)?\b/i,
+  },
+]
+
+/**
+ * Dérogations assumées. Chaque entrée dit pourquoi le motif est déclenché sans
+ * que la règle soit enfreinte. Une proposition absente de cette liste et qui
+ * déclenche un motif fait échouer le contrôle.
+ */
+const DEROGATIONS: Record<string, { regle: string; raison: string }[]> = {
+  'p-int-3': [
+    {
+      regle: 'R1',
+      raison:
+        '« pour financer des dépenses communes » décrit l’objet de l’emprunt, pas un bénéfice attendu : sans ce complément, la proposition ne dit pas de quoi on parle.',
+    },
+  ],
+  'p-ecolo-2': [
+    {
+      regle: 'R1',
+      raison:
+        '« Pour réduire les émissions » pose l’objectif commun aux deux branches de l’arbitrage ; il ne plaide pour aucune des deux.',
+    },
+  ],
+  'p-soc-3': [
+    {
+      regle: 'R1',
+      raison:
+        '« pour une retraite à taux plein » est le nom du dispositif visé, pas une justification.',
+    },
+  ],
+}
+
+for (const proposition of propositions) {
+  for (const regle of REGLES) {
+    if (regle.natures && !regle.natures.includes(proposition.nature)) continue
+    const trouve = proposition.texte.match(regle.motif)
+    if (!trouve) continue
+    const derogation = (DEROGATIONS[proposition.id] ?? []).find((d) => d.regle === regle.code)
+    if (derogation) continue
+    erreurs.push(
+      `Proposition « ${proposition.id} » : ${regle.code} — ${regle.libelle}. Extrait : « ${trouve[0]} ». ` +
+        'Reformuler, ou inscrire une dérogation motivée dans scripts/validate-data.ts.',
+    )
+  }
+
+  if (proposition.texte.length > 190) {
+    avertissements.push(
+      `Proposition « ${proposition.id} » : énoncé de ${proposition.texte.length} caractères, difficile à trancher d’un seul regard.`,
+    )
+  }
+}
+
+// Chaque thème doit poser au moins un arbitrage de principe, sinon il ne mesure
+// que la position de l'utilisateur dans le débat du moment.
+for (const theme of themes) {
+  const duTheme = propositions.filter((p) => p.themeId === theme.id)
+  if (!duTheme.some((p) => p.nature === 'principe')) {
+    erreurs.push(`Thème « ${theme.id} » : aucune proposition de principe, uniquement des mesures d’actualité.`)
+  }
+}
+
+const nbPrincipes = propositions.filter((p) => p.nature === 'principe').length
+if (nbPrincipes / propositions.length < 0.2) {
+  avertissements.push(
+    `Propositions de principe : ${nbPrincipes} sur ${propositions.length}, soit moins d’un cinquième du questionnaire.`,
+  )
+}
+
 // Bilan de vérification, affiché à chaque exécution : c'est l'indicateur de
 // maturité du jeu de données.
 const tousFaits = candidats.flatMap((c) => [...c.mesures, ...c.faits, ...c.judiciaire, ...c.indicateurs])
@@ -164,7 +286,10 @@ const parStatut = tousFaits.reduce<Record<string, number>>((acc, f) => {
   return acc
 }, {})
 
-console.log(`\nCandidats : ${candidats.length} · Critères : ${criteres.length} · Propositions : ${propositions.length}`)
+console.log(
+  `\nCandidats : ${candidats.length} · Critères : ${criteres.length} · ` +
+    `Propositions : ${propositions.length} (${nbPrincipes} de principe, ${propositions.length - nbPrincipes} de mesure)`,
+)
 console.log(
   `Éléments factuels : ${tousFaits.length} — vérifiés ${parStatut.verifie ?? 0}, ` +
     `recoupés ${parStatut.recoupe ?? 0}, à vérifier ${parStatut['a-verifier'] ?? 0}, ` +

@@ -1,27 +1,43 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { EnTetePage } from '@/components/layout/EnTetePage'
-import { Bouton, Carte, Depliant, Alerte } from '@/components/ui/base'
+import { Alerte, Badge, Bouton, Carte, Depliant } from '@/components/ui/base'
 import { GroupeSegmente } from '@/components/ui/controles'
-import { axeById, propositionsParTheme, themes } from '@/data/referentiel'
+import { axeById, propositions, propositionsParTheme, themes } from '@/data/referentiel'
 import { IMPORTANCE, LIKERT, clsx } from '@/lib/format'
 import { usePreferences } from '@/lib/store'
-import type { Importance, Likert } from '@/data/types'
+import type { Importance, Likert, NatureProposition } from '@/data/types'
+
+type Mode = 'tout' | 'principe'
+
+const NB_PRINCIPES = propositions.filter((p) => p.nature === 'principe').length
 
 export function Questionnaire() {
   const { preferences, repondre, reinitialiserQuestionnaire, nbReponses, nbPropositions } =
     usePreferences()
   const [indexTheme, setIndexTheme] = useState(0)
+  const [mode, setMode] = useState<Mode>('tout')
 
-  const groupe = propositionsParTheme[indexTheme]
-  const dernier = indexTheme === propositionsParTheme.length - 1
+  // La version courte ne retire rien du calcul : elle masque les mesures
+  // d'actualité pour ne garder que les arbitrages de valeurs.
+  const visible = (nature: NatureProposition) => mode === 'tout' || nature === 'principe'
+
+  const groupes = useMemo(
+    () =>
+      propositionsParTheme.map((g) => ({
+        ...g,
+        propositions: g.propositions.filter((p) => visible(p.nature)),
+      })),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [mode],
+  )
+
+  const groupe = groupes[indexTheme]
+  const dernier = indexTheme === groupes.length - 1
 
   const repondusParTheme = useMemo(
-    () =>
-      propositionsParTheme.map(
-        (g) => g.propositions.filter((p) => preferences.reponses[p.id] !== undefined).length,
-      ),
-    [preferences.reponses],
+    () => groupes.map((g) => g.propositions.filter((p) => preferences.reponses[p.id] !== undefined).length),
+    [groupes, preferences.reponses],
   )
 
   return (
@@ -46,11 +62,39 @@ export function Questionnaire() {
         }
       />
 
+      <Carte className="mb-6 p-4">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div className="min-w-0">
+            <p className="text-[0.85rem] font-medium text-ink">Longueur du questionnaire</p>
+            <p className="mt-0.5 text-[0.78rem] leading-snug text-ink-2">
+              La version courte ne garde que les arbitrages de principe, ceux qui ne dépendent pas
+              de l’actualité. Vos réponses sont conservées si vous changez d’avis.
+            </p>
+          </div>
+          <div className="w-full sm:w-[22rem]">
+            <GroupeSegmente
+              nom="mode-questionnaire"
+              legende="Longueur du questionnaire"
+              taille="petite"
+              options={[
+                { valeur: 'tout' as Mode, label: `Complet · ${nbPropositions}` },
+                { valeur: 'principe' as Mode, label: `Principes · ${NB_PRINCIPES}` },
+              ]}
+              valeur={mode}
+              onChange={(v) => {
+                setMode(v)
+                setIndexTheme(0)
+              }}
+            />
+          </div>
+        </div>
+      </Carte>
+
       {/* Sommaire des thèmes : sert de progression et de navigation directe. */}
       <nav aria-label="Thèmes du questionnaire" className="pqc-scroll-x -mx-4 mb-6 px-4 sm:mx-0 sm:px-0">
         <ol className="flex gap-2">
           {themes.map((theme, i) => {
-            const total = propositionsParTheme[i].propositions.length
+            const total = groupes[i].propositions.length
             const faits = repondusParTheme[i]
             const actif = i === indexTheme
             return (
@@ -107,6 +151,15 @@ export function Questionnaire() {
                     <p className="text-[0.98rem] font-medium leading-snug text-ink">
                       {proposition.texte}
                     </p>
+                    {proposition.nature === 'principe' && (
+                      <Badge
+                        ton="accent"
+                        className="mt-2"
+                        titre="Arbitrage de valeurs, rédigé pour ne pas dépendre de l’actualité."
+                      >
+                        Question de principe
+                      </Badge>
+                    )}
 
                     <Depliant resume="Contexte" className="mt-2">
                       <p>{proposition.contexte}</p>
@@ -191,7 +244,7 @@ export function Questionnaire() {
           ) : (
             <Bouton
               variante="primaire"
-              onClick={() => setIndexTheme((i) => Math.min(propositionsParTheme.length - 1, i + 1))}
+              onClick={() => setIndexTheme((i) => Math.min(groupes.length - 1, i + 1))}
             >
               Thème suivant →
             </Bouton>

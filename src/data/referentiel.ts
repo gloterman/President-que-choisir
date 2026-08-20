@@ -3,12 +3,37 @@ import type { Axe, Proposition, Theme } from './types'
 /**
  * Référentiel des thèmes, axes et propositions du questionnaire.
  *
- * Règles de rédaction appliquées à chaque proposition :
- *  — affirmative, sans négation ni double négation ;
- *  — sans adverbe d'appréciation (« enfin », « évidemment », « scandaleux ») ;
- *  — les deux pôles de l'axe sont rédigés pour être également défendables ;
- *  — la moitié des propositions d'un thème sont de polarité inversée, pour
- *    limiter le biais d'acquiescement.
+ * Une proposition mal rédigée fabrique le résultat qu'elle prétend mesurer.
+ * Huit règles s'appliquent donc à chaque énoncé ; les six premières sont
+ * contrôlées automatiquement par `npm run lint:data`.
+ *
+ *  R1. Pas de justification intégrée. « Assouplir les licenciements pour
+ *      encourager l'embauche » fait accepter une thèse économique contestée
+ *      en même temps que la mesure. On énonce la mesure, pas son bénéfice
+ *      supposé.
+ *  R2. Pas de superlatif ni d'adverbe d'appréciation : « le meilleur levier »,
+ *      « massivement », « fortement », « évidemment ». Ils demandent d'adhérer
+ *      à une intensité autant qu'à une idée.
+ *  R3. Une seule chose par proposition. « Poursuivi et amplifié » mélange deux
+ *      questions dont on ne peut plus séparer les réponses.
+ *  R4. Pas de fausse alternative dans une proposition de mesure. Construire des
+ *      prisons et développer les peines alternatives ne s'excluent pas : ce
+ *      sont deux énoncés distincts. L'opposition n'est admise que dans une
+ *      proposition de principe, où l'arbitrage est précisément l'objet et où
+ *      les deux termes sont nommés symétriquement.
+ *  R5. Pas de « il faut ». La formule installe une nécessité avant même la
+ *      réponse ; on écrit qui doit faire quoi.
+ *  R6. Pas de vocabulaire militant repris tel quel — « préférence nationale »,
+ *      « assistanat », « ultra-riches ». On décrit le mécanisme, pas le slogan.
+ *  R7. Pas de présupposé dans le verbe. « Rétablir » suppose qu'un état
+ *      antérieur était légitime ; on écrit « instaurer » ou on décrit.
+ *  R8. Polarités mélangées au sein d'un thème, pour limiter le biais
+ *      d'acquiescement — la tendance à approuver quoi qu'on demande.
+ *
+ * Les propositions de principe portent sur des arbitrages de valeurs et sont
+ * rédigées pour survivre au cycle médiatique : un questionnaire composé
+ * uniquement de mesures d'actualité mesure surtout la position d'une personne
+ * dans le débat du moment.
  */
 
 export const themes: Theme[] = [
@@ -215,395 +240,714 @@ export const propositions: Proposition[] = [
     id: 'p-eco-1',
     axeId: 'marche-travail',
     themeId: 'economie',
-    texte: "Les règles de licenciement économique doivent être assouplies pour encourager l'embauche.",
-    polarite: 1,
+    nature: 'principe',
+    polarite: -1,
+    texte:
+      "Entre la stabilité de l’emploi et la souplesse de gestion des entreprises, la loi doit privilégier la stabilité.",
     contexte:
-      "Le débat oppose la sécurisation du contrat de travail à l'idée qu'un licenciement plus simple lève un frein à l'embauche.",
+      "Les deux objectifs sont poursuivis par tous les pays développés ; ils entrent en tension dès qu’il s’agit de fixer les règles du licenciement.",
   },
   {
     id: 'p-eco-2',
     axeId: 'marche-travail',
     themeId: 'economie',
-    texte: 'La durée légale du travail doit être ramenée à 32 heures par semaine.',
-    polarite: -1,
-    contexte: "La durée légale est fixée à 35 heures depuis 2000. La ramener à 32 heures suppose un accord sur son financement.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Un employeur doit pouvoir rompre un contrat de travail plus facilement qu’aujourd’hui.",
+    contexte:
+      "Le droit du licenciement a été modifié à plusieurs reprises depuis 2016, notamment sur le barème des indemnités prud’homales.",
   },
   {
     id: 'p-eco-3',
     axeId: 'marche-travail',
     themeId: 'economie',
-    texte: "Le versement des allocations chômage doit être conditionné à l'acceptation des offres d'emploi proposées.",
-    polarite: 1,
-    contexte: "Les règles d'indemnisation ont été resserrées à plusieurs reprises depuis 2019. Le débat porte sur le degré de contrainte.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "La durée légale du travail doit être abaissée en dessous de 35 heures hebdomadaires.",
+    contexte:
+      "La durée légale est fixée à 35 heures depuis 2000. Elle détermine le seuil de déclenchement des heures supplémentaires, pas un plafond de travail.",
   },
   {
     id: 'p-eco-4',
-    axeId: 'interventionnisme',
+    axeId: 'marche-travail',
     themeId: 'economie',
-    texte: "L'État doit pouvoir prendre le contrôle d'entreprises jugées stratégiques.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "La nationalisation totale ou partielle est un outil déjà utilisé (EDF en 2023) ; sa généralisation reste discutée.",
+    texte:
+      "Le versement des allocations chômage doit être suspendu après le refus de plusieurs offres d’emploi.",
+    contexte:
+      "Un dispositif de ce type existe déjà ; le débat porte sur le nombre de refus, la définition d’une offre acceptable et la durée de la suspension.",
   },
   {
     id: 'p-eco-5',
     axeId: 'interventionnisme',
     themeId: 'economie',
-    texte: 'La France doit instaurer des droits de douane pour protéger sa production nationale.',
+    nature: 'principe',
     polarite: 1,
-    contexte: "La politique commerciale est une compétence exclusive de l'Union européenne : une mesure nationale suppose de renégocier ce cadre.",
+    texte:
+      "Lorsqu’un intérêt économique national est en jeu, l’État doit pouvoir passer outre les règles du marché.",
+    contexte:
+      "Cette question traverse les familles politiques : elle oppose la confiance dans la concurrence à la volonté de piloter certaines activités.",
   },
   {
     id: 'p-eco-6',
     axeId: 'interventionnisme',
     themeId: 'economie',
-    texte: 'Les accords de libre-échange négociés par l’Union européenne doivent être ratifiés.',
-    polarite: -1,
-    contexte: "Les accords récents (Mercosur, CETA) cristallisent l'opposition entre débouchés à l'export et concurrence sur l'agriculture.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "L’État doit pouvoir prendre le contrôle du capital d’entreprises qu’il juge stratégiques.",
+    contexte:
+      "L’État détient déjà des participations dans plusieurs grands groupes ; la nationalisation complète reste un outil exceptionnel.",
   },
-
-  // — Fiscalité —
+  {
+    id: 'p-eco-7',
+    axeId: 'interventionnisme',
+    themeId: 'economie',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Des droits de douane doivent être appliqués aux produits importés qui concurrencent la production française.",
+    contexte:
+      "La politique commerciale est une compétence exclusive de l’Union européenne : une mesure nationale supposerait de renégocier ce cadre.",
+  },
+  {
+    id: 'p-eco-8',
+    axeId: 'interventionnisme',
+    themeId: 'economie',
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "Les accords de libre-échange négociés par l’Union européenne doivent être ratifiés.",
+    contexte:
+      "Ces accords ouvrent des débouchés à l’exportation et exposent certaines filières, agricoles notamment, à une concurrence accrue.",
+  },
+  // — Fiscalité et dépense publique —
   {
     id: 'p-fis-1',
     axeId: 'pression-fiscale',
     themeId: 'fiscalite',
-    texte: 'Le nombre d’agents publics doit être réduit pour alléger la dépense publique.',
+    nature: 'principe',
     polarite: -1,
-    contexte: "La fonction publique représente environ 5,7 millions d'agents, dont plus de la moitié dans les collectivités et l'hôpital.",
+    texte:
+      "Entre baisser les impôts et maintenir le niveau des services publics, la priorité doit aller à la baisse des impôts.",
+    contexte:
+      "La France figure parmi les pays où le taux de prélèvements obligatoires est le plus élevé, comme le niveau de dépense publique.",
   },
   {
     id: 'p-fis-2',
     axeId: 'pression-fiscale',
     themeId: 'fiscalite',
-    texte: 'Un impôt sur les grandes fortunes doit être rétabli.',
-    polarite: 1,
-    contexte: "L'ISF a été remplacé en 2018 par l'impôt sur la fortune immobilière. Le rendement d'un rétablissement fait l'objet d'estimations divergentes.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "Le nombre d’agents publics doit diminuer au cours du prochain quinquennat.",
+    contexte:
+      "La fonction publique compte environ 5,7 millions d’agents, dont plus de la moitié dans les collectivités territoriales et l’hôpital.",
   },
   {
     id: 'p-fis-3',
     axeId: 'pression-fiscale',
     themeId: 'fiscalite',
-    texte: 'Les droits de succession doivent être alourdis sur les patrimoines les plus élevés.',
+    nature: 'mesure',
     polarite: 1,
-    contexte: "La France a des droits de succession parmi les plus élevés de l'OCDE en taux, avec de nombreux dispositifs d'exonération.",
+    texte:
+      "Un impôt annuel doit porter sur les patrimoines les plus élevés.",
+    contexte:
+      "L’impôt de solidarité sur la fortune a été remplacé en 2018 par un impôt limité au patrimoine immobilier.",
   },
   {
     id: 'p-fis-4',
-    axeId: 'redistribution',
+    axeId: 'pression-fiscale',
     themeId: 'fiscalite',
-    texte: "L'écart de rémunération au sein d'une entreprise doit être plafonné par la loi.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "Un plafonnement légal (souvent évoqué à 1 pour 20) n'existe aujourd'hui dans aucun pays du G7.",
+    texte:
+      "Les droits de succession doivent augmenter sur les patrimoines les plus élevés.",
+    contexte:
+      "Les taux français sont parmi les plus élevés de l’OCDE, avec de nombreux dispositifs d’exonération qui en réduisent la portée.",
   },
   {
     id: 'p-fis-5',
     axeId: 'redistribution',
     themeId: 'fiscalite',
-    texte: 'Le SMIC doit être augmenté d’au moins 10 % dès le début du quinquennat.',
-    polarite: 1,
-    contexte: "Le SMIC est revalorisé automatiquement selon l'inflation ; un « coup de pouce » discrétionnaire est possible mais rare.",
+    nature: 'principe',
+    polarite: -1,
+    texte:
+      "Un écart de revenus important est acceptable lorsqu’il récompense un effort ou une prise de risque.",
+    contexte:
+      "L’acceptabilité des inégalités est l’un des clivages les plus stables mesurés par les enquêtes d’opinion, indépendamment de l’actualité.",
   },
   {
     id: 'p-fis-6',
     axeId: 'redistribution',
     themeId: 'fiscalite',
-    texte: "Baisser les cotisations des entreprises est le meilleur levier pour augmenter les salaires nets.",
-    polarite: -1,
-    contexte: "Les allégements de cotisations représentent plus de 70 milliards d'euros par an ; leur effet sur les salaires est débattu.",
+    nature: 'principe',
+    polarite: 1,
+    texte:
+      "La collectivité doit garantir à chacun un revenu minimum, sans condition d’activité.",
+    contexte:
+      "Plusieurs pays ont expérimenté un revenu inconditionnel. En France, les minima sociaux restent conditionnés à des critères de ressources ou d’insertion.",
   },
-
-  // — Social —
+  {
+    id: 'p-fis-7',
+    axeId: 'redistribution',
+    themeId: 'fiscalite',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "La loi doit plafonner l’écart de rémunération au sein d’une même entreprise.",
+    contexte:
+      "Aucun pays du G7 n’applique aujourd’hui un tel plafond légal ; certains imposent la publication de l’écart.",
+  },
+  {
+    id: 'p-fis-8',
+    axeId: 'redistribution',
+    themeId: 'fiscalite',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Le salaire minimum doit augmenter plus vite que l’inflation.",
+    contexte:
+      "Le SMIC est revalorisé automatiquement selon l’inflation ; une hausse supérieure relève d’une décision discrétionnaire du gouvernement.",
+  },
+  // — Protection sociale, retraites et santé —
   {
     id: 'p-soc-1',
     axeId: 'retraites',
     themeId: 'social',
-    texte: "L'âge légal de départ à la retraite doit être ramené à 60 ans.",
-    polarite: 1,
-    contexte: "La réforme de 2023 porte l'âge légal à 64 ans. Un retour à 60 ans suppose de nouvelles recettes ou une baisse des pensions.",
+    nature: 'principe',
+    polarite: -1,
+    texte:
+      "L’équilibre du système de retraite doit être recherché en travaillant plus longtemps plutôt qu’en augmentant les prélèvements.",
+    contexte:
+      "Trois leviers existent et se substituent l’un à l’autre : la durée d’activité, le niveau des cotisations et le montant des pensions.",
   },
   {
     id: 'p-soc-2',
     axeId: 'retraites',
     themeId: 'social',
-    texte: "L'allongement de la durée de cotisation est nécessaire pour équilibrer le système.",
-    polarite: -1,
-    contexte: "Le Conseil d'orientation des retraites publie chaque année des projections d'équilibre selon plusieurs scénarios.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "L’âge légal de départ à la retraite doit être abaissé.",
+    contexte:
+      "La réforme de 2023 porte l’âge légal à 64 ans. Le Conseil d’orientation des retraites publie chaque année des projections d’équilibre.",
   },
   {
     id: 'p-soc-3',
     axeId: 'retraites',
     themeId: 'social',
-    texte: 'La pénibilité doit permettre de partir plus tôt sans réduction de pension.',
-    polarite: 1,
-    contexte: "Le compte professionnel de prévention couvre six facteurs de risque depuis 2017, après en avoir couvert dix.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "La durée de cotisation exigée pour une retraite à taux plein doit être allongée.",
+    contexte:
+      "Cette durée augmente déjà progressivement pour atteindre 43 annuités, indépendamment de l’âge légal.",
   },
   {
     id: 'p-soc-4',
-    axeId: 'services-publics',
+    axeId: 'retraites',
     themeId: 'social',
-    texte: "L'hôpital public doit recruter massivement, même au prix d'un déficit accru.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "Le déficit des hôpitaux publics s'est creusé depuis 2022, dans un contexte de postes vacants durablement non pourvus.",
+    texte:
+      "Un travail reconnu comme pénible doit ouvrir un départ anticipé sans réduction de pension.",
+    contexte:
+      "Le compte professionnel de prévention couvre six facteurs de risque depuis 2017, après en avoir couvert dix.",
   },
   {
     id: 'p-soc-5',
     axeId: 'services-publics',
     themeId: 'social',
-    texte: "La liberté d'installation des médecins doit être encadrée pour lutter contre les déserts médicaux.",
+    nature: 'principe',
     polarite: 1,
-    contexte: "La régulation à l'installation existe pour d'autres professions de santé (infirmiers, pharmaciens) mais pas pour les médecins.",
+    texte:
+      "Un service public doit rester accessible partout, même là où il coûte plus qu’il ne rapporte.",
+    contexte:
+      "La question se pose pour l’école, la poste, l’hôpital ou le rail dans les zones peu peuplées.",
   },
   {
     id: 'p-soc-6',
     axeId: 'services-publics',
     themeId: 'social',
-    texte: "Une part plus grande de l'éducation et de la santé peut être confiée au secteur privé.",
-    polarite: -1,
-    contexte: "Le privé assure déjà une part significative de l'offre de soins ; l'enseignement privé sous contrat scolarise environ 17 % des élèves.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Le nombre de soignants à l’hôpital public doit augmenter, même si le déficit se creuse.",
+    contexte:
+      "Le déficit des hôpitaux publics s’est creusé depuis 2022, dans un contexte de postes durablement non pourvus.",
   },
-
-  // — Écologie —
+  {
+    id: 'p-soc-7',
+    axeId: 'services-publics',
+    themeId: 'social',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Le lieu d’installation des médecins libéraux doit être encadré par la puissance publique.",
+    contexte:
+      "Une régulation à l’installation existe pour les infirmiers et les pharmaciens, mais pas pour les médecins.",
+  },
+  {
+    id: 'p-soc-8',
+    axeId: 'services-publics',
+    themeId: 'social',
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "Une part plus grande de l’offre de soins et d’enseignement peut être assurée par des acteurs privés.",
+    contexte:
+      "Le privé assure déjà une part significative de l’offre de soins ; l’enseignement privé sous contrat scolarise environ 17 % des élèves.",
+  },
+  // — Écologie et énergie —
   {
     id: 'p-ecolo-1',
     axeId: 'ambition-climat',
     themeId: 'ecologie',
-    texte: 'Les normes environnementales imposées aux agriculteurs doivent être allégées.',
-    polarite: -1,
-    contexte: "Les mobilisations agricoles de 2024 ont porté sur la charge administrative et la concurrence des importations.",
+    nature: 'principe',
+    polarite: 1,
+    texte:
+      "La protection de l’environnement doit primer sur la croissance économique lorsque les deux s’opposent.",
+    contexte:
+      "Les deux objectifs coïncident dans certains secteurs et divergent dans d’autres ; cette question porte sur les cas de divergence.",
   },
   {
     id: 'p-ecolo-2',
     axeId: 'ambition-climat',
     themeId: 'ecologie',
-    texte: 'La fin de la vente de véhicules thermiques neufs en 2035 doit être maintenue.',
+    nature: 'principe',
     polarite: 1,
-    contexte: "Cette échéance résulte d'un règlement européen, assorti d'une clause de revoyure.",
+    texte:
+      "Pour réduire les émissions, l’État doit imposer des changements de mode de vie plutôt que s’en remettre aux choix individuels.",
+    contexte:
+      "La contrainte réglementaire et l’incitation économique sont les deux instruments classiques des politiques environnementales.",
   },
   {
     id: 'p-ecolo-3',
     axeId: 'ambition-climat',
     themeId: 'ecologie',
-    texte: 'La rénovation thermique des logements doit être financée par un grand emprunt public.',
-    polarite: 1,
-    contexte: "Les estimations de besoin d'investissement pour le bâtiment se situent entre 15 et 25 milliards d'euros par an.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "Les obligations environnementales pesant sur les exploitations agricoles doivent être réduites.",
+    contexte:
+      "Ces obligations résultent en grande partie de règles européennes ; les mobilisations agricoles de 2024 ont porté sur leur charge administrative.",
   },
   {
     id: 'p-ecolo-4',
-    axeId: 'mix-energetique',
+    axeId: 'ambition-climat',
     themeId: 'ecologie',
-    texte: 'La France doit construire de nouveaux réacteurs nucléaires.',
-    polarite: -1,
-    contexte: "Un programme de six EPR2 a été engagé, avec des débats sur le calendrier, le coût et le financement.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "La vente de véhicules neufs à moteur thermique doit cesser à une date fixée par la loi.",
+    contexte:
+      "Un règlement européen fixe cette échéance à 2035, assortie d’une clause de réexamen.",
   },
   {
     id: 'p-ecolo-5',
+    axeId: 'ambition-climat',
+    themeId: 'ecologie',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "La rénovation énergétique des logements doit être financée par l’emprunt public.",
+    contexte:
+      "Les estimations de besoin d’investissement pour le bâtiment se situent entre 15 et 25 milliards d’euros par an.",
+  },
+  {
+    id: 'p-ecolo-6',
     axeId: 'mix-energetique',
     themeId: 'ecologie',
-    texte: "Le déploiement de l'éolien doit être accéléré, y compris en mer.",
-    polarite: 1,
-    contexte: "La France est en retard sur ses objectifs de renouvelables ; l'éolien terrestre suscite des oppositions locales.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "De nouveaux réacteurs nucléaires doivent être construits en France.",
+    contexte:
+      "Un programme de six réacteurs a été engagé ; les débats portent sur le calendrier, le coût et le mode de financement.",
   },
-
-  // — Immigration —
+  {
+    id: 'p-ecolo-7',
+    axeId: 'mix-energetique',
+    themeId: 'ecologie',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "La production d’électricité éolienne doit augmenter, y compris en mer.",
+    contexte:
+      "La France est en retard sur ses objectifs de production renouvelable ; l’éolien terrestre suscite des oppositions locales.",
+  },
+  // — Immigration et identité —
   {
     id: 'p-imm-1',
     axeId: 'flux-migratoires',
     themeId: 'immigration',
-    texte: "Des quotas annuels votés par le Parlement doivent plafonner l'immigration légale.",
+    nature: 'principe',
     polarite: 1,
-    contexte: "Plusieurs pays appliquent des quotas par motif. Le droit d'asile et le regroupement familial relèvent d'engagements internationaux.",
+    texte:
+      "L’entrée sur le territoire relève d’abord d’une décision souveraine de la nation, avant d’être un droit de la personne.",
+    contexte:
+      "Le droit d’asile et le droit à la vie familiale découlent d’engagements internationaux ratifiés par la France.",
   },
   {
     id: 'p-imm-2',
     axeId: 'flux-migratoires',
     themeId: 'immigration',
-    texte: "Les travailleurs sans papiers employés dans des métiers en tension doivent être régularisés.",
-    polarite: -1,
-    contexte: "La loi de 2024 a créé un titre de séjour « métiers en tension » délivré à titre exceptionnel et temporaire.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Le Parlement doit fixer chaque année un plafond au nombre de titres de séjour délivrés.",
+    contexte:
+      "Plusieurs pays appliquent des quotas par motif. Un plafond ne peut porter sur les titres découlant d’engagements internationaux.",
   },
   {
     id: 'p-imm-3',
     axeId: 'flux-migratoires',
     themeId: 'immigration',
-    texte: 'Le regroupement familial doit être fortement restreint.',
-    polarite: 1,
-    contexte: "Le regroupement familial représente une part minoritaire des premiers titres de séjour délivrés chaque année.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "Une personne sans titre de séjour qui travaille depuis plusieurs années doit pouvoir être régularisée.",
+    contexte:
+      "La loi de 2024 a créé un titre de séjour « métiers en tension », délivré à titre exceptionnel et temporaire.",
   },
   {
     id: 'p-imm-4',
-    axeId: 'integration-identite',
+    axeId: 'flux-migratoires',
     themeId: 'immigration',
-    texte: "L'accès aux prestations sociales non contributives doit être réservé en priorité aux nationaux.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "Une telle « préférence nationale » se heurterait au principe d'égalité ; ses promoteurs proposent une révision constitutionnelle.",
+    texte:
+      "Les conditions du regroupement familial doivent être durcies.",
+    contexte:
+      "Le regroupement familial représente une part minoritaire des premiers titres de séjour délivrés chaque année.",
   },
   {
     id: 'p-imm-5',
     axeId: 'integration-identite',
     themeId: 'immigration',
-    texte: "L'acquisition de la nationalité par le droit du sol doit être conditionnée à une démarche volontaire.",
+    nature: 'principe',
     polarite: 1,
-    contexte: "Le droit du sol est aujourd'hui automatique à 18 ans sous conditions de résidence, avec possibilité d'anticipation.",
+    texte:
+      "Une société tient mieux ensemble lorsqu’elle demande à chacun d’adopter des usages communs que lorsqu’elle reconnaît les particularités de chacun.",
+    contexte:
+      "Ce clivage entre modèle assimilationniste et modèle multiculturel structure le débat dans la plupart des démocraties.",
   },
   {
     id: 'p-imm-6',
     axeId: 'integration-identite',
     themeId: 'immigration',
-    texte: "Le port de signes religieux doit rester libre à l'université et dans la rue.",
-    polarite: -1,
-    contexte: "L'interdiction de 2004 vise les écoles, collèges et lycées publics ; elle ne s'applique pas à l'enseignement supérieur.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Certaines prestations sociales doivent être réservées aux personnes de nationalité française.",
+    contexte:
+      "Une telle distinction se heurterait au principe constitutionnel d’égalité ; ses promoteurs proposent une révision de la Constitution.",
   },
-
+  {
+    id: 'p-imm-7',
+    axeId: 'integration-identite',
+    themeId: 'immigration',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "L’acquisition de la nationalité par la naissance en France doit être subordonnée à une démarche de l’intéressé.",
+    contexte:
+      "Elle est aujourd’hui automatique à 18 ans sous conditions de résidence, avec possibilité d’anticipation dès 13 ans.",
+  },
+  {
+    id: 'p-imm-8',
+    axeId: 'integration-identite',
+    themeId: 'immigration',
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "Le port de signes religieux doit être autorisé dans l’ensemble des établissements d’enseignement supérieur.",
+    contexte:
+      "L’interdiction de 2004 vise les écoles, collèges et lycées publics ; elle ne s’applique pas à l’université.",
+  },
   // — Sécurité et justice —
   {
     id: 'p-sec-1',
     axeId: 'fermete-penale',
     themeId: 'securite',
-    texte: 'Des peines planchers doivent être rétablies pour les récidivistes.',
+    nature: 'principe',
     polarite: 1,
-    contexte: "Instaurées en 2007, les peines planchers ont été supprimées en 2014. Les évaluations de leur effet sur la récidive divergent.",
+    texte:
+      "La peine a d’abord pour objet de sanctionner, avant de préparer la réinsertion.",
+    contexte:
+      "Le code pénal assigne les deux finalités à la peine ; leur hiérarchie relève d’un choix politique.",
   },
   {
     id: 'p-sec-2',
     axeId: 'fermete-penale',
     themeId: 'securite',
-    texte: "Il faut construire davantage de places de prison plutôt que développer les peines alternatives.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "La densité carcérale dépasse 150 % dans les maisons d'arrêt, ce qui a valu à la France plusieurs condamnations européennes.",
+    texte:
+      "La loi doit fixer des peines minimales que le juge ne peut pas abaisser.",
+    contexte:
+      "Instaurées en 2007 et supprimées en 2014, les peines planchers pouvaient être écartées par décision motivée.",
   },
   {
     id: 'p-sec-3',
     axeId: 'fermete-penale',
     themeId: 'securite',
-    texte: "L'atténuation de peine pour les mineurs délinquants doit être maintenue.",
-    polarite: -1,
-    contexte: "Ce principe, de valeur constitutionnelle, permet au juge de l'écarter par décision motivée dans certains cas.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Le nombre de places de prison doit augmenter.",
+    contexte:
+      "La densité carcérale dépasse 150 % dans les maisons d’arrêt, ce qui a valu à la France plusieurs condamnations européennes.",
   },
   {
     id: 'p-sec-4',
-    axeId: 'libertes-surveillance',
+    axeId: 'fermete-penale',
     themeId: 'securite',
-    texte: "La reconnaissance faciale doit être autorisée dans l'espace public à des fins de sécurité.",
-    polarite: 1,
-    contexte: "Le règlement européen sur l'IA encadre strictement l'identification biométrique à distance en temps réel.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "Les peines exécutées hors de la prison doivent être développées.",
+    contexte:
+      "Travail d’intérêt général, bracelet électronique et sursis probatoire concernent déjà une part importante des condamnations.",
   },
   {
     id: 'p-sec-5',
-    axeId: 'libertes-surveillance',
+    axeId: 'fermete-penale',
     themeId: 'securite',
-    texte: 'Le nombre de caméras de vidéoprotection doit être fortement augmenté.',
+    nature: 'mesure',
     polarite: 1,
-    contexte: "Les évaluations disponibles concluent à un effet variable selon le type de délinquance et l'accompagnement humain.",
+    texte:
+      "Un mineur délinquant doit pouvoir être jugé comme un majeur.",
+    contexte:
+      "L’atténuation de la peine en raison de la minorité a valeur constitutionnelle ; le juge peut déjà l’écarter par décision motivée.",
   },
   {
     id: 'p-sec-6',
     axeId: 'libertes-surveillance',
     themeId: 'securite',
-    texte: "Les techniques de renseignement doivent être davantage contrôlées par un juge.",
+    nature: 'principe',
     polarite: -1,
-    contexte: "Le contrôle relève aujourd'hui d'une autorité administrative indépendante, la CNCTR, et non d'un magistrat du siège.",
+    texte:
+      "Entre la protection de la vie privée et l’efficacité des dispositifs de sécurité, la loi doit privilégier la vie privée.",
+    contexte:
+      "Les deux termes sont nommés pour éviter de faire porter l’énoncé par un seul des deux camps. La question porte sur l’arbitrage, indépendamment de l’efficacité réelle de tel ou tel dispositif.",
   },
-
-  // — Institutions —
+  {
+    id: 'p-sec-7',
+    axeId: 'libertes-surveillance',
+    themeId: 'securite',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "L’identification des personnes par reconnaissance faciale doit être autorisée dans l’espace public.",
+    contexte:
+      "Le règlement européen sur l’intelligence artificielle encadre strictement l’identification biométrique à distance en temps réel.",
+  },
+  {
+    id: 'p-sec-8',
+    axeId: 'libertes-surveillance',
+    themeId: 'securite',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Le nombre de caméras de surveillance dans l’espace public doit augmenter.",
+    contexte:
+      "Les évaluations disponibles concluent à un effet variable selon le type de délinquance et selon l’accompagnement humain du dispositif.",
+  },
+  {
+    id: 'p-sec-9',
+    axeId: 'libertes-surveillance',
+    themeId: 'securite',
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "La mise en œuvre des techniques de renseignement doit être autorisée par un juge.",
+    contexte:
+      "Le contrôle relève aujourd’hui d’une autorité administrative indépendante, la CNCTR, et non d’un magistrat du siège.",
+  },
+  // — Institutions et démocratie —
   {
     id: 'p-ins-1',
     axeId: 'democratie-directe',
     themeId: 'institutions',
-    texte: 'Un référendum d’initiative citoyenne doit pouvoir être déclenché par pétition.',
+    nature: 'principe',
     polarite: 1,
-    contexte: "Le référendum d'initiative partagée existe depuis 2008 mais n'a jamais abouti, faute d'atteindre les seuils requis.",
+    texte:
+      "Sur les sujets qui engagent durablement le pays, la décision revient aux citoyens plutôt qu’aux élus.",
+    contexte:
+      "La Constitution combine les deux logiques : représentation parlementaire et recours au référendum.",
   },
   {
     id: 'p-ins-2',
     axeId: 'democratie-directe',
     themeId: 'institutions',
-    texte: 'Les députés doivent être élus à la proportionnelle intégrale.',
+    nature: 'mesure',
     polarite: 1,
-    contexte: "Le scrutin majoritaire à deux tours favorise des majorités nettes ; la proportionnelle reflète mieux les rapports de force.",
+    texte:
+      "Un référendum doit pouvoir être déclenché par une pétition citoyenne atteignant un seuil de signatures.",
+    contexte:
+      "Le référendum d’initiative partagée existe depuis 2008 mais n’a jamais abouti, faute d’atteindre les seuils requis.",
   },
   {
     id: 'p-ins-3',
     axeId: 'democratie-directe',
     themeId: 'institutions',
-    texte: "L'article 49.3 doit être supprimé de la Constitution.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "Le 49.3 permet d'adopter un texte sans vote, sauf motion de censure. Son usage est limité depuis 2008 hors textes budgétaires.",
+    texte:
+      "Les députés doivent être élus à la représentation proportionnelle.",
+    contexte:
+      "Le scrutin majoritaire à deux tours favorise des majorités nettes ; la proportionnelle reflète plus fidèlement les rapports de force.",
   },
   {
     id: 'p-ins-4',
-    axeId: 'decentralisation',
+    axeId: 'democratie-directe',
     themeId: 'institutions',
-    texte: 'Les régions doivent disposer d’un pouvoir réglementaire propre.',
+    nature: 'mesure',
     polarite: 1,
-    contexte: "La Constitution prévoit un droit à l'expérimentation, dont les conditions d'exercice restent restrictives.",
+    texte:
+      "Le gouvernement doit perdre la possibilité de faire adopter un texte sans vote de l’Assemblée.",
+    contexte:
+      "L’article 49.3 permet cette adoption, sauf motion de censure. Son usage est limité depuis 2008 hors textes budgétaires.",
   },
   {
     id: 'p-ins-5',
     axeId: 'decentralisation',
     themeId: 'institutions',
-    texte: 'Une autonomie de la Corse doit être inscrite dans la Constitution.',
-    polarite: 1,
-    contexte: "Un projet de révision constitutionnelle a été négocié en 2024 ; son adoption suppose une majorité des trois cinquièmes du Congrès.",
+    nature: 'principe',
+    polarite: -1,
+    texte:
+      "Une règle identique partout garantit mieux l’égalité qu’une règle adaptée à chaque territoire.",
+    contexte:
+      "L’unité de la loi et l’adaptation locale sont deux façons opposées de comprendre l’égalité entre citoyens.",
   },
   {
     id: 'p-ins-6',
     axeId: 'decentralisation',
     themeId: 'institutions',
-    texte: "L'État doit reprendre la main sur des compétences déléguées aux collectivités.",
-    polarite: -1,
-    contexte: "Les collectivités portent une part importante de l'investissement public, avec des écarts de moyens marqués entre territoires.",
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Les régions doivent pouvoir édicter leurs propres règles dans leurs domaines de compétence.",
+    contexte:
+      "La Constitution prévoit un droit à l’expérimentation, dont les conditions d’exercice restent restrictives.",
   },
-
-  // — International —
+  {
+    id: 'p-ins-7',
+    axeId: 'decentralisation',
+    themeId: 'institutions',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "Un statut d’autonomie doit pouvoir être accordé à un territoire qui le demande.",
+    contexte:
+      "Un projet de révision constitutionnelle sur la Corse a été négocié en 2024 ; son adoption suppose une majorité des trois cinquièmes du Congrès.",
+  },
+  {
+    id: 'p-ins-8',
+    axeId: 'decentralisation',
+    themeId: 'institutions',
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "L’État doit reprendre des compétences aujourd’hui exercées par les collectivités.",
+    contexte:
+      "Les collectivités portent une part importante de l’investissement public, avec des écarts de moyens marqués entre territoires.",
+  },
+  // — Europe, défense et international —
   {
     id: 'p-int-1',
     axeId: 'souverainete-europeenne',
     themeId: 'international',
-    texte: 'Le droit national doit primer sur le droit européen en cas de conflit.',
+    nature: 'principe',
     polarite: -1,
-    contexte: "La primauté du droit de l'Union est un principe fondateur ; le Conseil constitutionnel réserve le cas de l'identité constitutionnelle.",
+    texte:
+      "Un État doit pouvoir écarter une règle internationale qu’il a acceptée, s’il l’estime contraire à son intérêt.",
+    contexte:
+      "Cette question porte sur la valeur de l’engagement international en général, avant tout cas particulier.",
   },
   {
     id: 'p-int-2',
     axeId: 'souverainete-europeenne',
     themeId: 'international',
-    texte: 'La France doit soutenir un budget européen commun financé par l’emprunt.',
-    polarite: 1,
-    contexte: "Le plan de relance de 2020 a créé un précédent d'emprunt commun, présenté à l'époque comme exceptionnel.",
+    nature: 'mesure',
+    polarite: -1,
+    texte:
+      "En cas de contradiction, le droit français doit l’emporter sur le droit de l’Union européenne.",
+    contexte:
+      "La primauté du droit de l’Union est un principe fondateur ; le Conseil constitutionnel réserve le cas de l’identité constitutionnelle de la France.",
   },
   {
     id: 'p-int-3',
     axeId: 'souverainete-europeenne',
     themeId: 'international',
-    texte: "La règle de l'unanimité au Conseil européen doit être abandonnée en matière fiscale.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "L'unanimité protège le veto de chaque État mais bloque de nombreux dossiers, dont la fiscalité et la politique étrangère.",
+    texte:
+      "L’Union européenne doit pouvoir emprunter en commun pour financer des dépenses communes.",
+    contexte:
+      "Le plan de relance de 2020 a créé un précédent d’emprunt commun, présenté à l’époque comme exceptionnel.",
   },
   {
     id: 'p-int-4',
-    axeId: 'defense-alliances',
+    axeId: 'souverainete-europeenne',
     themeId: 'international',
-    texte: 'Le budget de la défense doit atteindre 3 % du produit intérieur brut.',
+    nature: 'mesure',
     polarite: 1,
-    contexte: "La loi de programmation militaire 2024-2030 prévoit 413 milliards d'euros, soit un effort proche de 2 % du PIB.",
+    texte:
+      "Les décisions fiscales européennes doivent pouvoir être prises sans l’accord de tous les États membres.",
+    contexte:
+      "L’unanimité protège le veto de chaque État et bloque de nombreux dossiers, dont la fiscalité et la politique étrangère.",
   },
   {
     id: 'p-int-5',
     axeId: 'defense-alliances',
     themeId: 'international',
-    texte: "La France doit rester dans le commandement militaire intégré de l'OTAN.",
+    nature: 'principe',
     polarite: 1,
-    contexte: "La France a quitté ce commandement en 1966 et l'a réintégré en 2009, tout en conservant sa dissuasion autonome.",
+    texte:
+      "La sécurité du pays est mieux assurée au sein d’alliances militaires que par une défense indépendante.",
+    contexte:
+      "La France combine les deux : elle appartient à l’OTAN et conserve une dissuasion nucléaire autonome.",
   },
   {
     id: 'p-int-6',
     axeId: 'defense-alliances',
     themeId: 'international',
-    texte: "Le soutien militaire à l'Ukraine doit être poursuivi et amplifié.",
+    nature: 'mesure',
     polarite: 1,
-    contexte: "Le soutien français combine livraisons d'équipements, formation et accord bilatéral de sécurité signé en 2024.",
+    texte:
+      "La part du budget de l’État consacrée à la défense doit augmenter.",
+    contexte:
+      "La loi de programmation militaire 2024-2030 prévoit 413 milliards d’euros, soit un effort proche de 2 % du produit intérieur brut.",
+  },
+  {
+    id: 'p-int-7',
+    axeId: 'defense-alliances',
+    themeId: 'international',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "La France doit rester dans le commandement militaire intégré de l’OTAN.",
+    contexte:
+      "La France a quitté ce commandement en 1966 et l’a réintégré en 2009, tout en conservant sa dissuasion autonome.",
+  },
+  {
+    id: 'p-int-8',
+    axeId: 'defense-alliances',
+    themeId: 'international',
+    nature: 'mesure',
+    polarite: 1,
+    texte:
+      "La France doit continuer à livrer des armes à l’Ukraine.",
+    contexte:
+      "Le soutien français combine livraisons d’équipements, formation et accord bilatéral de sécurité signé en 2024.",
   },
 ]
-
 export const themeById = new Map(themes.map((t) => [t.id, t]))
 export const axeById = new Map(axes.map((a) => [a.id, a]))
 export const propositionById = new Map(propositions.map((p) => [p.id, p]))

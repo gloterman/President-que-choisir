@@ -175,14 +175,39 @@ Ce sont les deux chantiers de données les plus utiles à mener en premier.
 
 ## Rédiger une proposition de questionnaire
 
-Les règles appliquées, vérifiables dans `src/data/referentiel.ts` :
+Huit règles, documentées en tête de `src/data/referentiel.ts`. Les six premières sont **contrôlées
+automatiquement** par `npm run lint:data`, qui échoue si un énoncé les enfreint.
 
-- affirmative, sans négation ni double négation ;
-- sans adverbe d'appréciation (« enfin », « évidemment », « scandaleux ») ;
-- les deux pôles de l'axe sont rédigés pour être **également défendables** ;
-- au sein d'un thème, les polarités sont mélangées, pour limiter le biais d'acquiescement — le
-  contrôle d'intégrité émet un avertissement si un thème n'a qu'une seule polarité ;
-- le champ `contexte` donne un élément factuel utile à la décision, sans prendre parti.
+| | Règle | Pourquoi |
+|---|---|---|
+| R1 | Pas de justification intégrée | « Assouplir X pour encourager Y » fait accepter une thèse contestée en même temps que la mesure. |
+| R2 | Pas de superlatif ni d'adverbe d'appréciation | « Le meilleur levier », « massivement » : on demande d'adhérer à une intensité autant qu'à une idée. |
+| R3 | Une seule chose par proposition | « Poursuivi et amplifié » mélange deux questions dont on ne peut plus séparer les réponses. |
+| R4 | Pas de fausse alternative dans une mesure | Construire des prisons et développer les peines alternatives ne s'excluent pas. Admis en question de principe si les deux termes sont nommés symétriquement. |
+| R5 | Pas de « il faut » | La formule installe une nécessité avant la réponse. |
+| R6 | Pas de vocabulaire militant repris tel quel | On décrit le mécanisme, pas le slogan. |
+| R7 | Pas de présupposé dans le verbe | « Rétablir » suppose qu'un état antérieur était légitime. |
+| R8 | Polarités mélangées dans chaque thème | Sinon le biais d'acquiescement devient un résultat politique. Au moins un quart de polarité minoritaire. |
+
+Le champ `contexte` donne un élément factuel utile à la décision, sans prendre parti — il est lui
+aussi testé (il ne peut pas contenir « il faut »).
+
+**Dérogations.** Un motif peut se déclencher sans que la règle soit enfreinte : « emprunter pour
+financer des dépenses communes » décrit l'objet de l'emprunt, pas un bénéfice attendu. Ces cas
+s'inscrivent dans la table `DEROGATIONS` de `scripts/validate-data.ts`, **avec leur raison**. Une
+proposition qui déclenche un motif sans dérogation écrite fait échouer le contrôle.
+
+### Principe ou mesure ?
+
+Le champ `nature` distingue deux familles :
+
+- `principe` — un arbitrage de valeurs, rédigé pour survivre au cycle médiatique : « entre la
+  stabilité de l'emploi et la souplesse des entreprises, laquelle doit primer ? » ;
+- `mesure` — une mesure concrète, telle qu'elle se discute aujourd'hui.
+
+Un questionnaire composé uniquement de mesures d'actualité mesure surtout la position d'une personne
+dans le débat du moment, et devient faux dès que le débat se déplace. Chaque thème doit porter au
+moins une question de principe — c'est une erreur bloquante, pas un avertissement.
 
 ## Rédiger un barème de critère
 

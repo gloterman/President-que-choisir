@@ -85,11 +85,30 @@ export interface Axe {
   boussole: { eco: number; soc: number }
 }
 
+/**
+ * Nature d'une proposition.
+ *
+ * La distinction n'est pas cosmétique : un questionnaire composé uniquement de
+ * mesures d'actualité mesure surtout la position d'une personne dans le débat
+ * du moment. Les propositions de principe portent sur des arbitrages de valeurs
+ * qui survivent au cycle médiatique, et permettent une version courte du
+ * questionnaire.
+ */
+export type NatureProposition =
+  /** Arbitrage de valeurs, formulé indépendamment de l'actualité. */
+  | 'principe'
+  /** Mesure concrète, telle qu'elle se discute aujourd'hui. */
+  | 'mesure'
+
 export interface Proposition {
   id: string
   axeId: string
   themeId: string
-  /** Formulée à la première personne du pluriel, affirmative, sans adverbe orienté. */
+  nature: NatureProposition
+  /**
+   * Énoncé soumis à l'utilisateur. Les règles de rédaction sont listées en tête
+   * de `referentiel.ts` et contrôlées automatiquement par `npm run lint:data`.
+   */
   texte: string
   /** +1 : « d'accord » pousse vers le pôle positif de l'axe. −1 : l'inverse. */
   polarite: 1 | -1

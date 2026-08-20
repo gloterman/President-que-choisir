@@ -95,6 +95,12 @@ export const LIENS_INSTITUTIONNELS = {
     type: 'institution' as const,
     usage: 'Vérifier le financement des campagnes et les décisions sur les comptes.',
   },
+  journalOfficiel: {
+    label: 'Nominations et décrets (Journal officiel)',
+    url: 'https://www.legifrance.gouv.fr/jorf/jo',
+    type: 'institution' as const,
+    usage: 'Vérifier les dates exactes d’entrée et de sortie de fonctions gouvernementales.',
+  },
   legifrance: {
     label: 'Textes et jurisprudence (Légifrance)',
     url: 'https://www.legifrance.gouv.fr/',
