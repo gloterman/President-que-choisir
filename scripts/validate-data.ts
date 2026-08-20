@@ -63,18 +63,69 @@ for (const axe of axes) {
   else if (nb < 2) avertissements.push(`Axe « ${axe.id} » : une seule proposition rattachée.`)
 }
 
-// R8 — équilibre des polarités. Un thème dont les propositions vont toutes dans
-// le même sens transforme la tendance à approuver en résultat politique.
-for (const theme of themes) {
-  const duTheme = propositions.filter((p) => p.themeId === theme.id)
-  if (duTheme.length < 3) continue
-  const positives = duTheme.filter((p) => p.polarite === 1).length
-  const minoritaire = Math.min(positives, duTheme.length - positives)
-  if (minoritaire === 0) {
-    erreurs.push(`Thème « ${theme.id} » : toutes les propositions ont la même polarité (R8).`)
-  } else if (minoritaire / duTheme.length < 0.25) {
+/**
+ * R8 — équilibre des polarités.
+ *
+ * Le contrôle porte sur l'AXE, pas seulement sur le thème. C'est la leçon d'une
+ * relecture externe : un thème pouvait sembler équilibré alors que l'un de ses
+ * deux axes n'avait aucune proposition à contre-sens, et c'est bien la position
+ * sur l'axe que le calcul d'affinité utilise. Sans cette vérification, la
+ * tendance à approuver quoi qu'on demande — le biais d'acquiescement, cinq à
+ * dix points selon la littérature — se transforme en résultat politique sur cet
+ * axe précis.
+ */
+function equilibrePolarites(
+  ensemble: typeof propositions,
+  etiquette: string,
+  seuilBloquant: number,
+) {
+  if (ensemble.length < 3) return
+  const positives = ensemble.filter((p) => p.polarite === 1).length
+  const minoritaire = Math.min(positives, ensemble.length - positives)
+  const part = minoritaire / ensemble.length
+  if (part < seuilBloquant) {
+    erreurs.push(
+      `${etiquette} : ${minoritaire} proposition(s) de polarité minoritaire sur ${ensemble.length} (R8). ` +
+        'Inverser le sens d’un énoncé, ou en ajouter un rédigé depuis le pôle opposé.',
+    )
+  } else if (part < 0.3) {
     avertissements.push(
-      `Thème « ${theme.id} » : ${minoritaire} proposition(s) de polarité minoritaire sur ${duTheme.length} (R8).`,
+      `${etiquette} : équilibre de polarité tout juste atteint, ${minoritaire} sur ${ensemble.length} (R8).`,
+    )
+  }
+}
+
+for (const axe of axes) {
+  equilibrePolarites(
+    propositions.filter((p) => p.axeId === axe.id),
+    `Axe « ${axe.id} »`,
+    0.25,
+  )
+}
+for (const theme of themes) {
+  equilibrePolarites(
+    propositions.filter((p) => p.themeId === theme.id),
+    `Thème « ${theme.id} »`,
+    0.25,
+  )
+}
+
+/**
+ * Cohérence des modaux au sein d'un axe.
+ *
+ * « doit pouvoir » demande d'approuver une possibilité, « doit » une
+ * obligation : la première est nettement plus facile à accepter. Mélanger les
+ * deux à l'intérieur d'un même axe rend les propositions non comparables entre
+ * elles. L'écart est signalé, pas interdit : autoriser quelque chose s'énonce
+ * légitimement au permissif.
+ */
+for (const axe of axes) {
+  const duAxe = propositions.filter((p) => p.axeId === axe.id)
+  const permissifs = duAxe.filter((p) => /\b(?:doit|doivent)\s+pouvoir\b|\b(?:peut|peuvent)\b/.test(p.texte))
+  if (permissifs.length > 0 && permissifs.length < duAxe.length) {
+    avertissements.push(
+      `Axe « ${axe.id} » : ${permissifs.length} énoncé(s) au modal permissif sur ${duAxe.length}. ` +
+        'Un « doit pouvoir » s’approuve plus facilement qu’un « doit » ; vérifier que le mélange est justifié.',
     )
   }
 }
@@ -231,6 +282,13 @@ const DEROGATIONS: Record<string, { regle: string; raison: string }[]> = {
       regle: 'R1',
       raison:
         '« Pour réduire les émissions » pose l’objectif commun aux deux branches de l’arbitrage ; il ne plaide pour aucune des deux.',
+    },
+  ],
+  'p-soc-1': [
+    {
+      regle: 'R1',
+      raison:
+        '« Pour équilibrer le système de retraite » pose l’objectif commun aux trois leviers mis en balance ; il ne plaide pour aucun d’entre eux.',
     },
   ],
   'p-soc-3': [

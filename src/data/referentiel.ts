@@ -254,9 +254,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Un employeur doit pouvoir rompre un contrat de travail plus facilement qu’aujourd’hui.",
+      "Un employeur doit pouvoir licencier un salarié avec moins de contraintes de motif, de procédure et d’indemnisation qu’aujourd’hui.",
     contexte:
-      "Le droit du licenciement a été modifié à plusieurs reprises depuis 2016, notamment sur le barème des indemnités prud’homales.",
+      "Le droit du licenciement a été modifié à plusieurs reprises depuis 2016, notamment par le plafonnement des indemnités prud’homales.",
   },
   {
     id: 'p-eco-3',
@@ -276,20 +276,20 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Le versement des allocations chômage doit être suspendu après le refus de plusieurs offres d’emploi.",
+      "Les règles de suspension des allocations chômage en cas de refus d’offres d’emploi doivent être durcies par rapport au droit actuel.",
     contexte:
-      "Un dispositif de ce type existe déjà ; le débat porte sur le nombre de refus, la définition d’une offre acceptable et la durée de la suspension.",
+      "Une suspension est déjà prévue après deux refus d’offres jugées raisonnables ; le débat porte sur le nombre de refus, la définition d’une offre acceptable et la durée de la suspension.",
   },
   {
     id: 'p-eco-5',
     axeId: 'interventionnisme',
     themeId: 'economie',
     nature: 'principe',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "Lorsqu’un intérêt économique national est en jeu, l’État doit pouvoir passer outre les règles du marché.",
+      "Lorsque les règles de concurrence et un intérêt économique national s’opposent, les règles de concurrence doivent l’emporter.",
     contexte:
-      "Cette question traverse les familles politiques : elle oppose la confiance dans la concurrence à la volonté de piloter certaines activités.",
+      "Le droit européen de la concurrence encadre les aides d’État et les concentrations ; il prévoit des dérogations, dont la portée est discutée.",
   },
   {
     id: 'p-eco-6',
@@ -298,7 +298,7 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "L’État doit pouvoir prendre le contrôle du capital d’entreprises qu’il juge stratégiques.",
+      "L’État doit pouvoir prendre le contrôle du capital d’entreprises considérées comme stratégiques.",
     contexte:
       "L’État détient déjà des participations dans plusieurs grands groupes ; la nationalisation complète reste un outil exceptionnel.",
   },
@@ -320,7 +320,7 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: -1,
     texte:
-      "Les accords de libre-échange négociés par l’Union européenne doivent être ratifiés.",
+      "La France doit soutenir la ratification de nouveaux accords de libre-échange par l’Union européenne.",
     contexte:
       "Ces accords ouvrent des débouchés à l’exportation et exposent certaines filières, agricoles notamment, à une concurrence accrue.",
   },
@@ -334,7 +334,7 @@ export const propositions: Proposition[] = [
     texte:
       "Entre baisser les impôts et maintenir le niveau des services publics, la priorité doit aller à la baisse des impôts.",
     contexte:
-      "La France figure parmi les pays où le taux de prélèvements obligatoires est le plus élevé, comme le niveau de dépense publique.",
+      "Rapportés au produit intérieur brut, les prélèvements obligatoires et la dépense publique français sont parmi les plus élevés de l’OCDE ; une partie de cet écart tient au périmètre plus large du financement public, notamment des retraites et de la santé.",
   },
   {
     id: 'p-fis-2',
@@ -376,7 +376,7 @@ export const propositions: Proposition[] = [
     nature: 'principe',
     polarite: -1,
     texte:
-      "Un écart de revenus important est acceptable lorsqu’il récompense un effort ou une prise de risque.",
+      "Entre récompenser l’effort individuel et limiter les écarts de revenus, la société doit d’abord récompenser l’effort.",
     contexte:
       "L’acceptabilité des inégalités est l’un des clivages les plus stables mesurés par les enquêtes d’opinion, indépendamment de l’actualité.",
   },
@@ -400,7 +400,7 @@ export const propositions: Proposition[] = [
     texte:
       "La loi doit plafonner l’écart de rémunération au sein d’une même entreprise.",
     contexte:
-      "Aucun pays du G7 n’applique aujourd’hui un tel plafond légal ; certains imposent la publication de l’écart.",
+      "Aucun pays du G7 n’impose de plafond légal à l’écart de rémunération dans les entreprises privées ; plusieurs imposent la publication de cet écart, et la France plafonne déjà la rémunération des dirigeants des entreprises qu’elle contrôle.",
   },
   {
     id: 'p-fis-8',
@@ -421,7 +421,7 @@ export const propositions: Proposition[] = [
     nature: 'principe',
     polarite: -1,
     texte:
-      "L’équilibre du système de retraite doit être recherché en travaillant plus longtemps plutôt qu’en augmentant les prélèvements.",
+      "Pour équilibrer le système de retraite, la priorité doit aller à l’allongement de la durée d’activité, plutôt qu’à la hausse des cotisations ou à la baisse des pensions.",
     contexte:
       "Trois leviers existent et se substituent l’un à l’autre : la durée d’activité, le niveau des cotisations et le montant des pensions.",
   },
@@ -454,7 +454,7 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Un travail reconnu comme pénible doit ouvrir un départ anticipé sans réduction de pension.",
+      "Les critères de pénibilité ouvrant droit à un départ anticipé à taux plein doivent être élargis.",
     contexte:
       "Le compte professionnel de prévention couvre six facteurs de risque depuis 2017, après en avoir couvert dix.",
   },
@@ -463,9 +463,9 @@ export const propositions: Proposition[] = [
     axeId: 'services-publics',
     themeId: 'social',
     nature: 'principe',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "Un service public doit rester accessible partout, même là où il coûte plus qu’il ne rapporte.",
+      "Un service public peut être fermé là où son coût par usager est très supérieur à la moyenne.",
     contexte:
       "La question se pose pour l’école, la poste, l’hôpital ou le rail dans les zones peu peuplées.",
   },
@@ -476,7 +476,7 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Le nombre de soignants à l’hôpital public doit augmenter, même si le déficit se creuse.",
+      "Le nombre de soignants à l’hôpital public doit augmenter, même si cela suppose d’accroître les dépenses publiques.",
     contexte:
       "Le déficit des hôpitaux publics s’est creusé depuis 2022, dans un contexte de postes durablement non pourvus.",
   },
@@ -498,9 +498,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: -1,
     texte:
-      "Une part plus grande de l’offre de soins et d’enseignement peut être assurée par des acteurs privés.",
+      "Une part plus grande de l’offre de soins doit être assurée par des acteurs privés.",
     contexte:
-      "Le privé assure déjà une part significative de l’offre de soins ; l’enseignement privé sous contrat scolarise environ 17 % des élèves.",
+      "Cliniques et hôpitaux privés assurent déjà une part importante des séjours, notamment en chirurgie ; leur place varie fortement selon les spécialités et les territoires.",
   },
   // — Écologie et énergie —
   {
@@ -521,9 +521,9 @@ export const propositions: Proposition[] = [
     nature: 'principe',
     polarite: 1,
     texte:
-      "Pour réduire les émissions, l’État doit imposer des changements de mode de vie plutôt que s’en remettre aux choix individuels.",
+      "Pour réduire les émissions, l’État doit recourir à des obligations réglementaires plutôt qu’à des incitations laissant le choix aux ménages et aux entreprises.",
     contexte:
-      "La contrainte réglementaire et l’incitation économique sont les deux instruments classiques des politiques environnementales.",
+      "La contrainte réglementaire et l’incitation économique sont les deux instruments classiques des politiques environnementales ; les deux sont employés aujourd’hui.",
   },
   {
     id: 'p-ecolo-3',
@@ -532,18 +532,18 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: -1,
     texte:
-      "Les obligations environnementales pesant sur les exploitations agricoles doivent être réduites.",
+      "Les obligations environnementales applicables aux exploitations agricoles doivent être réduites.",
     contexte:
-      "Ces obligations résultent en grande partie de règles européennes ; les mobilisations agricoles de 2024 ont porté sur leur charge administrative.",
+      "Issues en grande partie de règles européennes, ces obligations portent notamment sur l’usage des pesticides, la qualité de l’eau et le maintien de surfaces non cultivées.",
   },
   {
     id: 'p-ecolo-4',
     axeId: 'ambition-climat',
     themeId: 'ecologie',
     nature: 'mesure',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "La vente de véhicules neufs à moteur thermique doit cesser à une date fixée par la loi.",
+      "La date d’interdiction de vente des véhicules neufs à moteur thermique doit être repoussée.",
     contexte:
       "Un règlement européen fixe cette échéance à 2035, assortie d’une clause de réexamen.",
   },
@@ -554,9 +554,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "La rénovation énergétique des logements doit être financée par l’emprunt public.",
+      "L’État doit financer la rénovation énergétique des logements, y compris en recourant à l’emprunt.",
     contexte:
-      "Les estimations de besoin d’investissement pour le bâtiment se situent entre 15 et 25 milliards d’euros par an.",
+      "Les estimations de besoin d’investissement pour le bâtiment se situent entre 15 et 25 milliards d’euros par an, publics et privés confondus.",
   },
   {
     id: 'p-ecolo-6',
@@ -586,11 +586,11 @@ export const propositions: Proposition[] = [
     axeId: 'flux-migratoires',
     themeId: 'immigration',
     nature: 'principe',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "L’entrée sur le territoire relève d’abord d’une décision souveraine de la nation, avant d’être un droit de la personne.",
+      "L’entrée sur le territoire relève d’abord d’un droit de la personne, avant d’être une décision souveraine de la nation.",
     contexte:
-      "Le droit d’asile et le droit à la vie familiale découlent d’engagements internationaux ratifiés par la France.",
+      "L’admission des étrangers relève en principe de la compétence de chaque État ; la France a limité cette compétence en ratifiant des engagements internationaux, notamment en matière d’asile et de vie familiale.",
   },
   {
     id: 'p-imm-2',
@@ -610,9 +610,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: -1,
     texte:
-      "Une personne sans titre de séjour qui travaille depuis plusieurs années doit pouvoir être régularisée.",
+      "Une personne sans titre de séjour qui occupe un emploi depuis au moins trois ans doit être régularisée.",
     contexte:
-      "La loi de 2024 a créé un titre de séjour « métiers en tension », délivré à titre exceptionnel et temporaire.",
+      "La loi de 2024 a créé un titre de séjour « métiers en tension », délivré à titre exceptionnel et temporaire, sans droit à la régularisation.",
   },
   {
     id: 'p-imm-4',
@@ -623,16 +623,16 @@ export const propositions: Proposition[] = [
     texte:
       "Les conditions du regroupement familial doivent être durcies.",
     contexte:
-      "Le regroupement familial représente une part minoritaire des premiers titres de séjour délivrés chaque année.",
+      "Le regroupement familial est soumis à des conditions de durée de séjour, de ressources et de logement ; il constitue l’un des motifs de délivrance des titres de séjour, distinct de l’immigration familiale prise dans son ensemble.",
   },
   {
     id: 'p-imm-5',
     axeId: 'integration-identite',
     themeId: 'immigration',
     nature: 'principe',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "Une société tient mieux ensemble lorsqu’elle demande à chacun d’adopter des usages communs que lorsqu’elle reconnaît les particularités de chacun.",
+      "Une société tient mieux ensemble lorsqu’elle reconnaît les particularités de chacun que lorsqu’elle demande à tous d’adopter des usages communs.",
     contexte:
       "Ce clivage entre modèle assimilationniste et modèle multiculturel structure le débat dans la plupart des démocraties.",
   },
@@ -643,9 +643,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Certaines prestations sociales doivent être réservées aux personnes de nationalité française.",
+      "Les prestations sociales non contributives, comme le revenu de solidarité active ou les aides au logement, doivent être réservées aux personnes de nationalité française.",
     contexte:
-      "Une telle distinction se heurterait au principe constitutionnel d’égalité ; ses promoteurs proposent une révision de la Constitution.",
+      "Une telle distinction se heurterait au principe constitutionnel d’égalité ; ses promoteurs proposent une révision de la Constitution par référendum.",
   },
   {
     id: 'p-imm-7',
@@ -665,9 +665,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: -1,
     texte:
-      "Le port de signes religieux doit être autorisé dans l’ensemble des établissements d’enseignement supérieur.",
+      "Le port de signes religieux doit rester autorisé dans les établissements d’enseignement supérieur.",
     contexte:
-      "L’interdiction de 2004 vise les écoles, collèges et lycées publics ; elle ne s’applique pas à l’université.",
+      "L’interdiction de 2004 vise les écoles, collèges et lycées publics et ne s’applique pas à l’université ; des propositions d’extension au supérieur reviennent régulièrement.",
   },
   // — Sécurité et justice —
   {
@@ -675,9 +675,9 @@ export const propositions: Proposition[] = [
     axeId: 'fermete-penale',
     themeId: 'securite',
     nature: 'principe',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "La peine a d’abord pour objet de sanctionner, avant de préparer la réinsertion.",
+      "La peine a d’abord pour objet de préparer la réinsertion, avant de sanctionner.",
     contexte:
       "Le code pénal assigne les deux finalités à la peine ; leur hiérarchie relève d’un choix politique.",
   },
@@ -701,7 +701,7 @@ export const propositions: Proposition[] = [
     texte:
       "Le nombre de places de prison doit augmenter.",
     contexte:
-      "La densité carcérale dépasse 150 % dans les maisons d’arrêt, ce qui a valu à la France plusieurs condamnations européennes.",
+      "La densité carcérale dépasse 150 % dans les maisons d’arrêt et la France a été condamnée pour les conditions de détention qui en résultent ; le débat porte sur la réponse à y apporter.",
   },
   {
     id: 'p-sec-4',
@@ -721,9 +721,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Un mineur délinquant doit pouvoir être jugé comme un majeur.",
+      "L’atténuation de peine liée à la minorité ne doit plus s’appliquer par principe aux mineurs de 16 à 18 ans.",
     contexte:
-      "L’atténuation de la peine en raison de la minorité a valeur constitutionnelle ; le juge peut déjà l’écarter par décision motivée.",
+      "Ce principe a valeur constitutionnelle. Le juge peut déjà l’écarter par décision spécialement motivée ; la question porte sur le renversement de la règle.",
   },
   {
     id: 'p-sec-6',
@@ -732,9 +732,9 @@ export const propositions: Proposition[] = [
     nature: 'principe',
     polarite: -1,
     texte:
-      "Entre la protection de la vie privée et l’efficacité des dispositifs de sécurité, la loi doit privilégier la vie privée.",
+      "Entre la protection de la vie privée et les moyens accordés aux services chargés de la sécurité, la loi doit privilégier la vie privée.",
     contexte:
-      "Les deux termes sont nommés pour éviter de faire porter l’énoncé par un seul des deux camps. La question porte sur l’arbitrage, indépendamment de l’efficacité réelle de tel ou tel dispositif.",
+      "Vidéoprotection, fichiers de police et techniques de renseignement supposent tous une collecte de données personnelles ; leur encadrement est fixé par la loi, sous le contrôle du Conseil constitutionnel.",
   },
   {
     id: 'p-sec-7',
@@ -777,9 +777,9 @@ export const propositions: Proposition[] = [
     nature: 'principe',
     polarite: 1,
     texte:
-      "Sur les sujets qui engagent durablement le pays, la décision revient aux citoyens plutôt qu’aux élus.",
+      "Sur les sujets qui engagent durablement le pays, la décision doit être prise par référendum plutôt que par le Parlement.",
     contexte:
-      "La Constitution combine les deux logiques : représentation parlementaire et recours au référendum.",
+      "La Constitution combine les deux procédures : le référendum est prévu par l’article 11, le vote parlementaire est la voie ordinaire.",
   },
   {
     id: 'p-ins-2',
@@ -790,7 +790,7 @@ export const propositions: Proposition[] = [
     texte:
       "Un référendum doit pouvoir être déclenché par une pétition citoyenne atteignant un seuil de signatures.",
     contexte:
-      "Le référendum d’initiative partagée existe depuis 2008 mais n’a jamais abouti, faute d’atteindre les seuils requis.",
+      "Le référendum d’initiative partagée, créé en 2008, suppose le soutien d’un cinquième des parlementaires puis d’un dixième des électeurs inscrits, soit environ 4,8 millions de signatures.",
   },
   {
     id: 'p-ins-3',
@@ -808,11 +808,11 @@ export const propositions: Proposition[] = [
     axeId: 'democratie-directe',
     themeId: 'institutions',
     nature: 'mesure',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "Le gouvernement doit perdre la possibilité de faire adopter un texte sans vote de l’Assemblée.",
+      "Le gouvernement doit conserver un moyen de faire adopter un texte lorsque l’Assemblée ne parvient pas à se prononcer.",
     contexte:
-      "L’article 49.3 permet cette adoption, sauf motion de censure. Son usage est limité depuis 2008 hors textes budgétaires.",
+      "L’article 49.3 permet cette adoption, sauf si une motion de censure est votée. Son usage est limité depuis 2008 aux textes budgétaires et à un texte par session.",
   },
   {
     id: 'p-ins-5',
@@ -832,7 +832,7 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Les régions doivent pouvoir édicter leurs propres règles dans leurs domaines de compétence.",
+      "Les régions doivent pouvoir adapter les lois nationales, voire y déroger, dans leurs domaines de compétence.",
     contexte:
       "La Constitution prévoit un droit à l’expérimentation, dont les conditions d’exercice restent restrictives.",
   },
@@ -843,9 +843,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "Un statut d’autonomie doit pouvoir être accordé à un territoire qui le demande.",
+      "Un statut d’autonomie, comportant un pouvoir d’adaptation des lois, doit pouvoir être accordé à une collectivité qui le demande.",
     contexte:
-      "Un projet de révision constitutionnelle sur la Corse a été négocié en 2024 ; son adoption suppose une majorité des trois cinquièmes du Congrès.",
+      "Un projet de révision constitutionnelle sur la Corse a été négocié en 2024 ; plusieurs collectivités d’outre-mer disposent déjà d’un statut de ce type.",
   },
   {
     id: 'p-ins-8',
@@ -866,9 +866,9 @@ export const propositions: Proposition[] = [
     nature: 'principe',
     polarite: -1,
     texte:
-      "Un État doit pouvoir écarter une règle internationale qu’il a acceptée, s’il l’estime contraire à son intérêt.",
+      "Un État doit pouvoir cesser d’appliquer une règle internationale lorsqu’elle est contraire à son intérêt national.",
     contexte:
-      "Cette question porte sur la valeur de l’engagement international en général, avant tout cas particulier.",
+      "Le droit international repose sur la règle selon laquelle les traités ratifiés doivent être exécutés ; plusieurs États en ont néanmoins suspendu unilatéralement l’application.",
   },
   {
     id: 'p-int-2',
@@ -888,9 +888,9 @@ export const propositions: Proposition[] = [
     nature: 'mesure',
     polarite: 1,
     texte:
-      "L’Union européenne doit pouvoir emprunter en commun pour financer des dépenses communes.",
+      "L’Union européenne doit pouvoir recourir durablement à l’emprunt commun pour financer ses politiques, comme la défense ou l’énergie.",
     contexte:
-      "Le plan de relance de 2020 a créé un précédent d’emprunt commun, présenté à l’époque comme exceptionnel.",
+      "Le plan de relance de 2020 a créé un précédent d’emprunt commun, présenté à l’époque comme exceptionnel et non reconductible.",
   },
   {
     id: 'p-int-4',
@@ -930,11 +930,11 @@ export const propositions: Proposition[] = [
     axeId: 'defense-alliances',
     themeId: 'international',
     nature: 'mesure',
-    polarite: 1,
+    polarite: -1,
     texte:
-      "La France doit rester dans le commandement militaire intégré de l’OTAN.",
+      "La France doit quitter le commandement militaire intégré de l’OTAN.",
     contexte:
-      "La France a quitté ce commandement en 1966 et l’a réintégré en 2009, tout en conservant sa dissuasion autonome.",
+      "La France a quitté ce commandement en 1966 et l’a réintégré en 2009, tout en conservant en propre sa dissuasion nucléaire.",
   },
   {
     id: 'p-int-8',

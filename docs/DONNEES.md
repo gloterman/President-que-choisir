@@ -187,7 +187,7 @@ automatiquement** par `npm run lint:data`, qui échoue si un énoncé les enfrei
 | R5 | Pas de « il faut » | La formule installe une nécessité avant la réponse. |
 | R6 | Pas de vocabulaire militant repris tel quel | On décrit le mécanisme, pas le slogan. |
 | R7 | Pas de présupposé dans le verbe | « Rétablir » suppose qu'un état antérieur était légitime. |
-| R8 | Polarités mélangées dans chaque thème | Sinon le biais d'acquiescement devient un résultat politique. Au moins un quart de polarité minoritaire. |
+| R8 | Polarités mélangées dans chaque **axe**, et dans chaque thème | Sinon le biais d'acquiescement devient un résultat politique. Au moins un quart de polarité minoritaire de chaque côté. |
 
 Le champ `contexte` donne un élément factuel utile à la décision, sans prendre parti — il est lui
 aussi testé (il ne peut pas contenir « il faut »).
@@ -196,6 +196,42 @@ aussi testé (il ne peut pas contenir « il faut »).
 financer des dépenses communes » décrit l'objet de l'emprunt, pas un bénéfice attendu. Ces cas
 s'inscrivent dans la table `DEROGATIONS` de `scripts/validate-data.ts`, **avec leur raison**. Une
 proposition qui déclenche un motif sans dérogation écrite fait échouer le contrôle.
+
+### La relecture externe d'août 2026
+
+Les formulations ont été soumises à un relecteur indépendant, avec une grille de neuf biais et
+l'interdiction explicite de juger le fond des mesures. Il a signalé 31 propositions sur 64 et,
+surtout, **trois tendances que la relecture interne n'avait pas vues**.
+
+**1. Une asymétrie d'acquiescement que la règle R8 laissait passer.** R8 ne vérifiait l'équilibre
+des polarités que par *thème*. Or c'est la position sur l'*axe* qui alimente le calcul d'affinité :
+deux axes — *Participation citoyenne* et *Défense et alliances* — avaient quatre énoncés sur quatre
+dans le même sens, dans des thèmes qui semblaient équilibrés. Le biais d'acquiescement, cinq à dix
+points selon la littérature, s'y transformait mécaniquement en résultat politique. R8 vérifie
+désormais l'axe **et** le thème, et le questionnaire est passé de 69/31 à 56/44 en distribution
+globale, chaque axe étant au minimum à 25/75.
+
+**2. Des « principes » qui n'arbitraient pas entre deux termes symétriques.** Un pôle recevait un
+terme noble et incarné, l'autre un terme technique ou transgressif : « intérêt économique national »
+contre des « règles du marché » qu'il faudrait « passer outre » ; « les citoyens » contre « les
+élus ». Les énoncés concernés ont été réécrits pour nommer les deux procédures ou les deux valeurs
+à égalité — « par référendum plutôt que par le Parlement », par exemple.
+
+**3. Un contexte qui plaidait une fois sur cinq.** Le champ `contexte` est censé apporter un fait
+utile. Il retenait parfois le seul argument d'un camp — « le regroupement familial représente une
+part minoritaire des titres de séjour » est exactement l'argument employé pour dire que la mesure
+serait sans portée — ou commentait la méthode au lieu d'informer. Onze contextes ont été réécrits.
+
+Trois défauts ponctuels méritent d'être connus, parce qu'ils sont faciles à reproduire :
+
+- **faire approuver le droit en vigueur sous les dehors d'une réforme.** Trois énoncés portaient sur
+  des dispositifs déjà en place, ce qui produit un accord massif chez des répondants pourtant
+  opposés ;
+- **le modal permissif.** « Doit pouvoir » s'approuve bien plus facilement que « doit ». Le mélange
+  des deux au sein d'un même axe rend les propositions non comparables ; il est maintenant signalé ;
+- **la clause de faisabilité juridique** (« se heurterait au principe d'égalité », « supposerait de
+  renégocier ») attachée surtout aux mesures restrictives ou souverainistes, rarement aux mesures
+  d'extension : un signal implicite et inégal de « c'est de toute façon impossible ».
 
 ### Principe ou mesure ?
 

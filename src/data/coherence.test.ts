@@ -172,15 +172,36 @@ describe('formulation du questionnaire', () => {
     }
   })
 
+  it('mélange les polarités au sein de chaque axe', () => {
+    // C'est l'axe qui compte, pas seulement le thème : c'est la position sur
+    // l'axe que le calcul d'affinité utilise. Un thème peut sembler équilibré
+    // alors que l'un de ses deux axes n'a aucun énoncé à contre-sens, et la
+    // tendance à approuver quoi qu'on demande devient alors un résultat
+    // politique sur cet axe précis.
+    for (const axe of axes) {
+      const duAxe = propositions.filter((p) => p.axeId === axe.id)
+      if (duAxe.length < 3) continue
+      const positives = duAxe.filter((p) => p.polarite === 1).length
+      const minoritaire = Math.min(positives, duAxe.length - positives)
+      expect(minoritaire / duAxe.length, `axe ${axe.id}`).toBeGreaterThanOrEqual(0.25)
+    }
+  })
+
   it('mélange les polarités au sein de chaque thème', () => {
-    // Sans ce mélange, la tendance à approuver quoi qu'on demande —
-    // le biais d'acquiescement — se transforme en résultat politique.
     for (const theme of themes) {
       const duTheme = propositions.filter((p) => p.themeId === theme.id)
       const positives = duTheme.filter((p) => p.polarite === 1).length
       const minoritaire = Math.min(positives, duTheme.length - positives)
-      expect(minoritaire / duTheme.length, `${theme.id}`).toBeGreaterThanOrEqual(0.25)
+      expect(minoritaire / duTheme.length, `thème ${theme.id}`).toBeGreaterThanOrEqual(0.25)
     }
+  })
+
+  it('ne penche pas globalement d’un côté', () => {
+    // Le biais d'acquiescement joue aussi au niveau du questionnaire entier.
+    const positives = propositions.filter((p) => p.polarite === 1).length
+    const part = positives / propositions.length
+    expect(part).toBeGreaterThan(0.35)
+    expect(part).toBeLessThan(0.65)
   })
 
   it('rattache chaque proposition à un axe du thème annoncé', () => {

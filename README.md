@@ -26,8 +26,14 @@ pas de fausse alternative, pas de « il faut », pas de vocabulaire militant, pa
 le verbe, polarités mélangées dans chaque thème.
 
 Les six premières sont **exécutables** : `npm run lint:data` échoue si un énoncé les enfreint, et
-toute exception doit être inscrite dans le code avec sa raison. Les formulations ont par ailleurs
-été soumises à une relecture indépendante.
+toute exception doit être inscrite dans le code avec sa raison.
+
+Les formulations ont été soumises à une relecture indépendante en août 2026, qui a signalé
+31 propositions sur 64 et une faille dans la règle R8 elle-même : elle vérifiait l'équilibre des
+polarités par thème, alors que c'est la position sur l'*axe* qui alimente le calcul. Deux axes
+avaient quatre énoncés sur quatre dans le même sens. R8 contrôle désormais les deux niveaux, et la
+distribution globale est passée de 69/31 à 56/44. Le détail des corrections est dans
+[`docs/DONNEES.md`](docs/DONNEES.md).
 
 ## Deux principes de conception
 
