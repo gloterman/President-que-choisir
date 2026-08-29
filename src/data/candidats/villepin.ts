@@ -15,8 +15,9 @@ export const villepin: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Ministre des Affaires étrangères lors du discours de 2003 à l'ONU contre la guerre en Irak, puis Premier ministre de 2005 à 2007. Revenu au premier plan par ses positions sur la politique étrangère, il a lancé le mouvement La France humaniste pour 2027. Défend une ligne gaulliste d'indépendance diplomatique, associée à un discours social et à une hostilité marquée aux logiques de bloc.",
-  // Aucun compte X officiel confirmé à la date de revue.
-  compteX: null,
+  // Aucun compte social officiel confirmé à la date de revue : la collecte
+  // s'appuie alors sur les seules sources parlementaires.
+  comptesSociaux: [],
   liensOfficiels: [
     LIENS_INSTITUTIONNELS.viePublique,
     LIENS_INSTITUTIONNELS.journalOfficiel,

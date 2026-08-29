@@ -8,9 +8,10 @@ import { bilanVeracite, notesVeraciteDynamiques, ECHANTILLON_MINIMAL } from './v
 const citation = (id: string, candidatId = 'melenchon') => ({
   id,
   candidatId,
+  plateforme: 'assemblee',
   compte: 'compte',
   postId: id,
-  url: `https://x.com/compte/status/${id}`,
+  url: 'https://www.nosdeputes.fr/compte/interventions',
   texte: 'Un texte de test suffisamment long pour être exploitable.',
   affirmation: 'Un texte de test.',
   datePublication: '2026-08-01T10:00:00.000Z',
@@ -37,6 +38,7 @@ const instantane = (partiel: Record<string, unknown> = {}) => ({
   comptes: [],
   citations: [],
   verifications: [],
+  veille: [],
   ...partiel,
 })
 
@@ -52,7 +54,9 @@ describe('validation de l’instantané', () => {
 
   it('écarte une URL de message qui n’est pas https', () => {
     const { instantane: valide, rejets } = validerInstantane(
-      instantane({ citations: [{ ...citation('a'), url: 'http://x.com/compte/status/a' }] }),
+      instantane({
+        citations: [{ ...citation('a'), url: 'http://www.nosdeputes.fr/compte/interventions' }],
+      }),
     )
     expect(valide.citations).toHaveLength(0)
     expect(rejets).toBe(1)
@@ -63,6 +67,64 @@ describe('validation de l’instantané', () => {
       instantane({ citations: [{ ...citation('a'), url: 'https://exemple.test/faux' }] }),
     )
     expect(valide.citations).toHaveLength(0)
+  })
+
+  it('refuse une citation dont l’URL appartient à une autre plateforme que la sienne', () => {
+    // Une intervention parlementaire qui renverrait vers un réseau social
+    // ferait passer un message pour un compte rendu de séance.
+    const { instantane: valide } = validerInstantane(
+      instantane({
+        citations: [
+          { ...citation('a'), plateforme: 'assemblee', url: 'https://x.com/compte/status/a' },
+        ],
+      }),
+    )
+    expect(valide.citations).toHaveLength(0)
+  })
+
+  it('écarte une plateforme inconnue', () => {
+    const { instantane: valide } = validerInstantane(
+      instantane({ citations: [{ ...citation('a'), plateforme: 'facebook' }] }),
+    )
+    expect(valide.citations).toHaveLength(0)
+  })
+
+  it('écarte une entrée de veille dont le lien n’est pas https', () => {
+    const { instantane: valide } = validerInstantane(
+      instantane({
+        veille: [
+          {
+            id: 'v1',
+            titre: 'Un titre',
+            url: 'http://exemple.test/article',
+            editeur: 'Rédaction',
+            datePublication: '2026-08-01',
+            collecteLe: '2026-08-02T10:00:00.000Z',
+            candidatsPressentis: [],
+          },
+        ],
+      }),
+    )
+    expect(valide.veille).toHaveLength(0)
+  })
+
+  it('accepte une entrée de veille bien formée', () => {
+    const { instantane: valide } = validerInstantane(
+      instantane({
+        veille: [
+          {
+            id: 'v1',
+            titre: 'Un titre',
+            url: 'https://exemple.test/article',
+            editeur: 'Rédaction',
+            datePublication: '2026-08-01',
+            collecteLe: '2026-08-02T10:00:00.000Z',
+            candidatsPressentis: ['melenchon'],
+          },
+        ],
+      }),
+    )
+    expect(valide.veille).toHaveLength(1)
   })
 
   it('écarte un lien de source en javascript:, qui serait exécuté dans un href', () => {
@@ -204,17 +266,29 @@ describe('instantané publié avec le site', () => {
   })
 })
 
-describe('comptes X des candidats', () => {
-  it('n’accepte que des identifiants de compte plausibles', () => {
+describe('comptes sociaux des candidats', () => {
+  it('n’accepte que des identifiants plausibles pour chaque plateforme', () => {
     for (const candidat of candidats) {
-      if (candidat.compteX === null) continue
-      expect(candidat.compteX, candidat.id).toMatch(/^[A-Za-z0-9_]{1,15}$/)
+      for (const compte of candidat.comptesSociaux) {
+        if (compte.plateforme === 'x') {
+          expect(compte.identifiant, candidat.id).toMatch(/^[A-Za-z0-9_]{1,15}$/)
+        } else {
+          expect(compte.identifiant, candidat.id).toMatch(/^[a-z0-9.-]+\.[a-z]{2,}$/)
+        }
+      }
     }
   })
 
-  it('déclare explicitement l’absence de compte plutôt que de l’omettre', () => {
+  it('déclare la liste des comptes plutôt que de l’omettre', () => {
     for (const candidat of candidats) {
-      expect(candidat, candidat.id).toHaveProperty('compteX')
+      expect(Array.isArray(candidat.comptesSociaux), candidat.id).toBe(true)
+    }
+  })
+
+  it('ne déclare pas deux fois la même plateforme pour un candidat', () => {
+    for (const candidat of candidats) {
+      const plateformes = candidat.comptesSociaux.map((c) => c.plateforme)
+      expect(new Set(plateformes).size, candidat.id).toBe(plateformes.length)
     }
   })
 })

@@ -2,8 +2,9 @@ name: Collecte des déclarations
 
 on:
   schedule:
-    # Une fois par jour. Chaque lecture étant facturée, la fréquence est un
-    # arbitrage coût contre fraîcheur : à ajuster selon le budget.
+    # Les sources par défaut sont gratuites : la fréquence n'est plus un
+    # arbitrage de budget, seulement de fraîcheur et de courtoisie envers les
+    # serveurs interrogés.
     - cron: '0 5 * * *'
   workflow_dispatch:
 
@@ -23,28 +24,22 @@ jobs:
 
       - run: npm ci
 
-      - name: Vérifier la présence du jeton
-        id: jeton
-        run: |
-          if [ -z "${{ secrets.X_BEARER_TOKEN }}" ]; then
-            echo "present=false" >> "$GITHUB_OUTPUT"
-            echo "Aucun jeton X_BEARER_TOKEN configuré : collecte ignorée."
-          else
-            echo "present=true" >> "$GITHUB_OUTPUT"
-          fi
-
+      # Aucun secret n'est requis : les sources par défaut sont publiques,
+      # gratuites et sans clé. X n'est interrogé que si un jeton est fourni.
       - name: Collecter
-        if: steps.jeton.outputs.present == 'true'
         env:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
-        run: npm run collecte:citations
+        run: |
+          if [ -n "$X_BEARER_TOKEN" ]; then
+            npm run collecte:citations -- --sources=nosdeputes,nossenateurs,bluesky,veille,x
+          else
+            npm run collecte:citations
+          fi
 
       - name: Contrôler l’instantané produit
-        if: steps.jeton.outputs.present == 'true'
         run: npm test
 
       - name: Publier la mise à jour
-        if: steps.jeton.outputs.present == 'true'
         run: |
           if git diff --quiet public/donnees/factcheck.json; then
             echo "Aucune nouvelle citation."

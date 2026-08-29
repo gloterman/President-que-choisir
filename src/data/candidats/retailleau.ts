@@ -15,7 +15,9 @@ export const retailleau: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Longtemps président du conseil régional des Pays de la Loire puis du groupe LR au Sénat, ministre de l'Intérieur à partir de septembre 2024, il prend la tête des Républicains en 2025. Défend une ligne de fermeté régalienne et migratoire assumée, associée à une orthodoxie budgétaire.",
-  compteX: 'BrunoRetailleau',
+  comptesSociaux: [
+    { plateforme: 'x', identifiant: 'BrunoRetailleau' },
+  ],
   liensOfficiels: [
     {
       label: 'Les Républicains — site officiel du parti',

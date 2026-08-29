@@ -15,8 +15,9 @@ export const bertrand: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Ministre de la Santé puis du Travail sous Jacques Chirac et Nicolas Sarkozy, président des Hauts-de-France depuis 2015, il a officialisé sa candidature dès février 2024 à la tête du mouvement Nous France. Défend une droite sociale et territoriale, attentive aux classes populaires du nord de la France et frontalement opposée au Rassemblement national.",
-  // Aucun compte X officiel confirmé à la date de revue.
-  compteX: null,
+  // Aucun compte social officiel confirmé à la date de revue : la collecte
+  // s'appuie alors sur les seules sources parlementaires.
+  comptesSociaux: [],
   liensOfficiels: [
     LIENS_INSTITUTIONNELS.hatvp,
     LIENS_INSTITUTIONNELS.viePublique,

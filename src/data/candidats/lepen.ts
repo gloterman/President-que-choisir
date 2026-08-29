@@ -15,7 +15,9 @@ export const lepen: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Trois fois candidate à la présidentielle, qualifiée au second tour en 2017 et 2022 avec 41,45 % des suffrages exprimés. Condamnée en appel le 7 juillet 2026 pour détournement de fonds publics, mais avec une peine d'inéligibilité ramenée à quinze mois fermes déjà purgés : elle a annoncé sa candidature pour 2027 dans la foulée de cette décision, et s'est pourvue en cassation.",
-  compteX: 'MLP_officiel',
+  comptesSociaux: [
+    { plateforme: 'x', identifiant: 'MLP_officiel' },
+  ],
   liensOfficiels: [
     {
       label: 'Rassemblement national — site officiel du parti',

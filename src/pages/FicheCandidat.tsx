@@ -18,7 +18,7 @@ import {
   ECHANTILLON_MINIMAL,
   notesVeraciteDynamiques,
 } from '@/lib/factcheck/veracite'
-import { VERDICTS } from '@/data/factcheck'
+import { PLATEFORMES, VERDICTS } from '@/data/factcheck'
 import { usePreferences } from '@/lib/store'
 import { age, formatDate, LIKERT, milliards, palierDe, pourcent } from '@/lib/format'
 import type { LienOfficiel } from '@/data/types'
@@ -149,6 +149,7 @@ export function FicheCandidat() {
   // La note « rapport aux faits » vient des vérifications publiées, pas de la
   // fiche : elle doit donc afficher ici la même valeur que dans le classement.
   const notesDynamiques = notesVeraciteDynamiques(instantane, [candidat.id])[candidat.id] ?? []
+  const plateformesCollectees = [...new Set(citationsDuCandidat.map((c) => c.plateforme))]
   const faitsTries = [...candidat.faits].sort((a, b) => b.date.localeCompare(a.date))
   const enComparaison = preferences.comparaison.includes(candidat.id)
 
@@ -209,9 +210,9 @@ export function FicheCandidat() {
             <EnteteCarte
               titre="Vérification de ses déclarations"
               soustitre={
-                candidat.compteX
-                  ? `Déclarations publiées sur @${candidat.compteX}, confrontées aux données disponibles.`
-                  : 'Aucun compte X officiel confirmé pour ce candidat : ses déclarations ne sont pas collectées.'
+                plateformesCollectees.length > 0
+                  ? `Déclarations relevées sur ${plateformesCollectees.map((p) => PLATEFORMES[p].label).join(', ')}, confrontées aux données disponibles.`
+                  : 'Déclarations collectées depuis les sources publiques et gratuites : comptes rendus de séance et réseaux sociaux à lecture ouverte.'
               }
               action={
                 <Link
@@ -233,10 +234,10 @@ export function FicheCandidat() {
               )}
               {etatFactCheck === 'pret' && citationsDuCandidat.length === 0 && (
                 <p className="text-[0.83rem] leading-relaxed text-ink-2">
-                  Aucune déclaration collectée à ce jour.{' '}
-                  {candidat.compteX
-                    ? 'Cela ne signifie pas que ses déclarations sont exactes : simplement qu’aucune n’a encore été examinée.'
-                    : 'Renseigner un compte officiel vérifié permettrait de l’inclure dans la collecte.'}
+                  Aucune déclaration collectée à ce jour. Cela ne dit rien de l’exactitude de ses
+                  propos : simplement qu’aucun n’a encore été relevé.{' '}
+                  {candidat.comptesSociaux.length === 0 &&
+                    'Aucun compte social officiel n’a pu être confirmé pour ce candidat ; la collecte repose alors sur les seuls comptes rendus de séance.'}
                 </p>
               )}
               {etatFactCheck === 'pret' && citationsDuCandidat.length > 0 && (
@@ -464,16 +465,20 @@ export function FicheCandidat() {
         <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
           <PagesOfficielles
             liens={[
-              ...(candidat.compteX
-                ? [
-                    {
-                      label: `@${candidat.compteX} — compte X officiel`,
-                      url: `https://x.com/${candidat.compteX}`,
-                      type: 'candidat' as const,
-                      usage: 'Ses déclarations publiques, telles qu’il les publie. C’est la source de la collecte.',
-                    },
-                  ]
-                : []),
+              ...candidat.comptesSociaux.map((compte) => ({
+                label:
+                  compte.plateforme === 'x'
+                    ? `@${compte.identifiant} — compte X`
+                    : `${compte.identifiant} — compte Bluesky`,
+                url:
+                  compte.plateforme === 'x'
+                    ? `https://x.com/${compte.identifiant}`
+                    : `https://bsky.app/profile/${compte.identifiant}`,
+                type: 'candidat' as const,
+                usage: PLATEFORMES[compte.plateforme].gratuite
+                  ? 'Ses déclarations publiques. Lecture ouverte : cette source alimente la collecte.'
+                  : 'Ses déclarations publiques. Lecture payante : cette source n’alimente la collecte que si l’exploitant y a souscrit.',
+              })),
               ...candidat.liensOfficiels,
             ]}
           />

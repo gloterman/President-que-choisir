@@ -15,8 +15,9 @@ export const lisnard: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Maire de Cannes depuis 2014 et président de l'Association des maires de France, il a fondé Nouvelle Énergie en 2021 puis quitté Les Républicains le 31 mars 2026, jour où il a déclaré sa candidature. Défend une ligne libérale et décentralisatrice : réduction de la bureaucratie et de la dépense publique, transfert de compétences aux communes, autorité de l'État recentrée sur ses missions régaliennes.",
-  // Aucun compte X officiel confirmé à la date de revue.
-  compteX: null,
+  // Aucun compte social officiel confirmé à la date de revue : la collecte
+  // s'appuie alors sur les seules sources parlementaires.
+  comptesSociaux: [],
   liensOfficiels: [
     {
       label: 'Nouvelle Énergie — site officiel du mouvement',

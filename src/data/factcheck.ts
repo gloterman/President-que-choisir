@@ -14,7 +14,58 @@ import type { Ton } from '@/lib/format'
  * inséré en HTML brut.
  */
 
-export const VERSION_INSTANTANE = 1
+export const VERSION_INSTANTANE = 2
+
+/**
+ * Origine d'une citation.
+ *
+ * Le socle est l'open data : les interventions en séance sont publiques,
+ * verbatim, gratuites et réutilisables. Les réseaux sociaux complètent, quand
+ * la plateforme expose une lecture publique sans authentification.
+ */
+export type Plateforme =
+  /** Compte rendu de séance, Assemblée nationale (via NosDéputés.fr). */
+  | 'assemblee'
+  /** Compte rendu de séance, Sénat (via NosSénateurs.fr). */
+  | 'senat'
+  /** Réseau social à lecture publique et gratuite. */
+  | 'bluesky'
+  /** Réseau social à lecture authentifiée et facturée. Optionnel. */
+  | 'x'
+
+export const PLATEFORMES: Record<
+  Plateforme,
+  { label: string; court: string; gratuite: boolean; explication: string }
+> = {
+  assemblee: {
+    label: 'Assemblée nationale',
+    court: 'Assemblée',
+    gratuite: true,
+    explication:
+      'Intervention en séance publique, retranscrite au compte rendu. Source ouverte et gratuite, republiée par NosDéputés.fr sous licence ODbL.',
+  },
+  senat: {
+    label: 'Sénat',
+    court: 'Sénat',
+    gratuite: true,
+    explication:
+      'Intervention en séance publique, retranscrite au compte rendu. Source ouverte et gratuite, republiée par NosSénateurs.fr sous licence ODbL.',
+  },
+  bluesky: {
+    label: 'Bluesky',
+    court: 'Bluesky',
+    gratuite: true,
+    explication:
+      'Message public, lu via l’API publique de Bluesky, qui ne demande ni compte ni paiement.',
+  },
+  x: {
+    label: 'X',
+    court: 'X',
+    gratuite: false,
+    explication:
+      'Message public, lu via l’API de X, qui exige un jeton et facture chaque lecture. Source optionnelle, désactivée par défaut.',
+  },
+}
 
 export type Verdict =
   /** Conforme aux données disponibles. */
@@ -94,9 +145,13 @@ export const VERDICTS: Record<
 export interface Citation {
   id: string
   candidatId: string
-  /** Compte X, sans arobase. */
+  plateforme: Plateforme
+  /**
+   * Identifiant de l'auteur chez la source : compte social sans arobase, ou
+   * identifiant du parlementaire dans le jeu de données.
+   */
   compte: string
-  /** Identifiant du message chez la plateforme. */
+  /** Identifiant du message ou de l'intervention chez la source. */
   postId: string
   /** Lien permanent vers le message d'origine. */
   url: string
@@ -113,6 +168,29 @@ export interface Citation {
   themeId?: string
   /** ISO 8601. Date de la collecte. */
   collecteLe: string
+  /** Contexte de l'intervention : titre du débat, du dossier législatif. */
+  contexte?: string
+}
+
+/**
+ * Vérification déjà publiée par une rédaction, repérée par flux RSS.
+ *
+ * Ces éléments ne sont pas des verdicts du site : ce sont des pistes. Les
+ * rattacher à un candidat et à une citation reste un travail humain, parce
+ * qu'un titre d'article ne dit pas de façon fiable qui a dit quoi ni ce qui a
+ * été conclu.
+ */
+export interface VeillePublication {
+  id: string
+  titre: string
+  url: string
+  editeur: string
+  /** ISO 8601. */
+  datePublication: string
+  /** ISO 8601. */
+  collecteLe: string
+  /** Candidats dont le nom apparaît dans le titre, à confirmer à la main. */
+  candidatsPressentis: string[]
 }
 
 export interface LienVerification {
@@ -146,6 +224,7 @@ export interface Verification {
 /** Compte suivi pour un candidat, et résultat de la dernière collecte. */
 export interface CompteSuivi {
   candidatId: string
+  plateforme: Plateforme
   compte: string
   /** Nombre de messages examinés lors de la dernière collecte. */
   messagesExamines?: number
@@ -164,6 +243,8 @@ export interface InstantaneFactCheck {
   comptes: CompteSuivi[]
   citations: Citation[]
   verifications: Verification[]
+  /** Vérifications publiées ailleurs, en attente de rattachement. */
+  veille: VeillePublication[]
 }
 
 export const INSTANTANE_VIDE: InstantaneFactCheck = {
@@ -172,4 +253,5 @@ export const INSTANTANE_VIDE: InstantaneFactCheck = {
   comptes: [],
   citations: [],
   verifications: [],
+  veille: [],
 }

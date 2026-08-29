@@ -3,19 +3,46 @@
 Comment les citations arrivent sur le site, comment elles sont vérifiées, et pourquoi
 l'architecture est celle-là.
 
+## Les sources
+
+Toutes les sources activées par défaut sont **publiques, gratuites et sans clé d'accès**.
+
+| Source | Nature | Éditeur | Licence |
+|---|---|---|---|
+| **NosDéputés.fr** | Interventions en séance, verbatim | Regards Citoyens | ODbL |
+| **NosSénateurs.fr** | Interventions en séance, verbatim | Regards Citoyens | ODbL |
+| **Bluesky** | Messages publics, API de lecture ouverte | — | Propos de leurs auteurs, cités avec lien |
+| **Veille RSS** | Vérifications déjà publiées | Le Monde, AFP, franceinfo, Libération | Titre et lien seuls, avec attribution |
+| **X** *(optionnel, désactivé)* | Messages publics | — | Lecture authentifiée et facturée |
+
+**L'open data parlementaire est le socle.** Une intervention en séance est verbatim, horodatée,
+rattachée à un débat identifié, publiée sous licence ouverte — et elle ne disparaît pas si son
+auteur l'efface. C'est une bien meilleure matière première qu'un message de réseau social, et elle
+ne coûte rien.
+
+Les réseaux sociaux complètent, mais seulement ceux dont la lecture est ouverte. Dans les faits, la
+plupart des responsables politiques français sont restés sur X : la couverture sociale est donc
+partielle, et le site le dit plutôt que de le masquer.
+
+**X n'est pas utilisé par défaut.** Son API exige un jeton et facture chaque lecture depuis
+février 2026 — environ 0,005 $ par message et 0,010 $ par compte, le palier gratuit étant fermé aux
+nouveaux développeurs. La source reste disponible pour qui y a souscrit (`--sources=…,x` avec
+`X_BEARER_TOKEN`), mais rien n'en dépend.
+
 ## Pourquoi la collecte n'a pas lieu dans le navigateur
 
 Le site charge les citations à l'ouverture de la page et propose un bouton d'actualisation — c'est
-ce que voit le visiteur. Mais ce qu'il charge est un **fichier publié**, pas une réponse de X.
-Trois obstacles rendent l'appel direct impossible :
+ce que voit le visiteur. Mais ce qu'il charge est un **fichier publié**, pas une réponse des
+sources. Deux obstacles valent quelle que soit la source :
 
-1. **Authentification.** L'API X exige un jeton porteur. Un jeton livré dans le paquet JavaScript
-   est lisible par quiconque ouvre les outils de développement.
-2. **CORS.** L'API X ne renvoie pas les en-têtes qui autoriseraient une page web à lire la réponse.
-   Le navigateur refuserait la réponse même avec un jeton valide.
-3. **Coût.** Depuis février 2026, X facture à l'usage : environ 0,005 $ par message lu et 0,010 $
-   par lecture de compte, le palier gratuit étant fermé aux nouveaux développeurs. Une collecte à
-   chaque ouverture de page ferait payer une lecture par visiteur, pour un contenu identique.
+1. **CORS.** La plupart de ces services ne renvoient pas les en-têtes qui autoriseraient une page
+   web à lire leur réponse. Le navigateur la refuserait.
+2. **Redondance.** Une collecte à chaque ouverture referait le même travail des milliers de fois
+   pour un contenu identique, aux frais des serveurs interrogés.
+
+Pour X s'y ajoute un troisième obstacle, dirimant : le jeton livré dans le paquet JavaScript serait
+lisible par quiconque ouvre les outils de développement — et chaque lecture étant facturée, un
+jeton exposé se traduit en facture.
 
 D'où la séparation en deux temps :
 
@@ -31,20 +58,47 @@ D'où la séparation en deux temps :
 ## Lancer une collecte
 
 ```bash
-npm run collecte:citations -- --essai     # montre ce qui serait fait, sans appel réseau
-X_BEARER_TOKEN=…  npm run collecte:citations
+npm run collecte:citations -- --essai            # montre ce qui serait fait, sans appel réseau
+npm run collecte:citations                       # sources gratuites, aucune clé requise
+npm run collecte:citations -- --sources=bluesky  # une source en particulier
 ```
+
+Aucun jeton n'est nécessaire. `--sources=` accepte `nosdeputes`, `nossenateurs`, `bluesky`,
+`veille` et `x` ; sans ce drapeau, tout est collecté **sauf** X.
 
 Le script :
 
-- n'interroge que les candidats dont le champ `compteX` est renseigné, et **liste ceux qui ne le
-  sont pas** — un identifiant deviné ferait citer la mauvaise personne ;
+- retrouve les candidats dans l'annuaire parlementaire **par leur nom**, sans configuration : aucun
+  identifiant à renseigner à la main ;
+- n'interroge des comptes sociaux que ceux déclarés dans `comptesSociaux`, et **liste les candidats
+  qui n'en ont pas** — un identifiant deviné ferait citer la mauvaise personne, et un compte de
+  soutien tenu par une équipe ne serait pas la parole du candidat ;
 - ne retient que les messages contenant une affirmation vérifiable (une quantité, ou un chiffre
   accompagné d'un comparatif). Le filtre penche volontairement vers l'inclusion : mieux vaut
   collecter une citation qui se révélera invérifiable que d'écarter en amont, par une règle opaque,
   une déclaration qui méritait examen ;
 - **n'écrase jamais une vérification existante** et ne supprime aucune citation ;
-- affiche le volume facturable de la collecte.
+- affiche un bilan par source, avec le motif exact de chaque échec.
+
+> **Adresses à confirmer.** L'environnement de développement de ce dépôt n'a pas d'accès sortant
+> vers ces domaines : les chemins d'API et les adresses de flux ont été écrits d'après la
+> documentation publique mais **n'ont pas pu être appelés**. Ils portent `urlConfirmee: false` dans
+> `src/data/sources-citations.ts`, et le collecteur le rappelle à chaque échec. Corriger une adresse
+> fautive tient en une chaîne de caractères ; la première exécution réelle dira lesquelles.
+
+## La veille des vérifications publiées
+
+Les flux RSS des rédactions spécialisées sont relevés en parallèle. **Ils ne produisent aucun
+verdict** : un titre d'article ne dit pas de façon fiable qui a dit quoi ni ce qui a été conclu.
+Chaque entrée conserve le titre, le lien, l'éditeur, la date, et la liste des candidats dont le nom
+apparaît dans le titre — à confirmer à la main.
+
+Seuls le titre et le lien sont repris, avec attribution : le texte des articles appartient à leurs
+auteurs.
+
+C'est ce qui rend le travail de vérification tenable. Plutôt que de partir de zéro sur chaque
+citation, le vérificateur dispose d'un flux de vérifications déjà faites, qu'il rattache quand elles
+correspondent — en s'appuyant sur le champ `reprise`.
 
 ## Vérifier une citation
 
@@ -112,9 +166,9 @@ VITE_FACTCHECK_ENDPOINT=https://exemple.test/factcheck npm run build
 ```
 
 Le contrat est minimal : répondre en `application/json` avec un instantané au même format, et
-autoriser le site par CORS. **Le service détient le jeton, met le résultat en cache et n'expose que
-l'instantané** — il ne relaie pas l'API X message par message, sans quoi le problème de coût
-reviendrait par la fenêtre.
+autoriser le site par CORS. **Le service met le résultat en cache et n'expose que l'instantané** —
+il ne relaie pas les API source requête par requête, sans quoi la redondance reviendrait par la
+fenêtre.
 
 Si le service est absent, lent ou en panne, le site retombe automatiquement sur l'instantané publié
 et le signale. Sans point d'accès configuré, tout fonctionne : c'est le mode par défaut.
@@ -128,6 +182,11 @@ qui n'est pas numérique.
 
 ## Données personnelles
 
-Le site ne charge aucun script de X et n'incorpore aucun message : les textes sont affichés depuis
-le fichier publié, en texte brut. Le visiteur n'est donc pas exposé aux traceurs de la plateforme,
-et le lien vers le message d'origine porte `rel="noopener noreferrer nofollow"`.
+Le site ne charge aucun script tiers et n'incorpore aucun message : les textes sont affichés depuis
+le fichier publié, en texte brut. Le visiteur n'est donc pas exposé aux traceurs des plateformes, et
+le lien vers la source d'origine porte `rel="noopener noreferrer nofollow"`.
+
+Une citation ne peut renvoyer que vers le domaine de sa propre plateforme : une intervention
+parlementaire dont le lien pointerait vers un réseau social est rejetée à la validation. Sans cette
+contrainte, un instantané compromis pourrait faire passer n'importe quoi pour un compte rendu de
+séance.

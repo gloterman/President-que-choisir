@@ -15,7 +15,9 @@ export const ruffin: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Journaliste et documentariste devenu député de la Somme en 2017, d'abord au sein de La France insoumise puis en rupture avec elle à partir de 2024. Défend une ligne sociale centrée sur les classes populaires des territoires périphériques et une reconquête de l'électorat passé au vote RN.",
-  compteX: 'Francois_Ruffin',
+  comptesSociaux: [
+    { plateforme: 'x', identifiant: 'Francois_Ruffin' },
+  ],
   liensOfficiels: [
     // Le mouvement « Debout ! » n'a pas de domaine officiel confirmé à la date de
     // revue : aucune URL n'est inventée pour combler le trou.

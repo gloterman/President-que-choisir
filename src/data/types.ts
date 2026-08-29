@@ -250,6 +250,13 @@ export interface Mesure {
 
 /** Indicateur brut, affiché tel quel sur la fiche : c'est la matière des notes. */
 /** Lien vers une page officielle : celle du candidat, de son parti, ou d'une institution. */
+/** Compte officiel sur une plateforme à lecture publique. */
+export interface CompteSocial {
+  plateforme: 'x' | 'bluesky'
+  identifiant: string
+}
+
+/** Lien vers une page officielle : celle du candidat, de son parti, ou d'une institution. */
 export interface LienOfficiel {
   label: string
   url: string
@@ -305,12 +312,14 @@ export interface Candidat {
   presentation: string
   siteProgramme?: string
   /**
-   * Compte X officiel, sans arobase, ou `null` quand aucun compte n'a pu être
-   * confirmé. Le collecteur de citations n'interroge que les comptes renseignés
-   * ici, et signale les candidats laissés à `null` : mieux vaut un trou déclaré
+   * Comptes sociaux officiels, sans arobase. Le collecteur n'interroge que ce
+   * qui est déclaré ici et signale les absences : mieux vaut un trou assumé
    * qu'un identifiant deviné, qui ferait citer la mauvaise personne.
+   *
+   * Un compte de soutien ou de campagne tenu par une équipe n'a pas sa place
+   * ici : ses messages ne sont pas la parole du candidat.
    */
-  compteX: string | null
+  comptesSociaux: CompteSocial[]
   /**
    * Pages officielles : site du candidat ou de son parti d'une part, pages
    * institutionnelles d'autre part. C'est le point de départ de toute

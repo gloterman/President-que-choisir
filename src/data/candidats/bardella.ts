@@ -15,7 +15,9 @@ export const bardella: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Président du Rassemblement national depuis 2022, tête de liste victorieuse aux européennes de 2024 et candidat désigné du camp national aux législatives anticipées qui ont suivi. Profil de campagne construit sur le pouvoir d'achat, la sécurité et l'immigration.",
-  compteX: 'J_Bardella',
+  comptesSociaux: [
+    { plateforme: 'x', identifiant: 'J_Bardella' },
+  ],
   liensOfficiels: [
     {
       label: 'Rassemblement national — site officiel du parti',

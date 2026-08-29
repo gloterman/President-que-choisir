@@ -4,7 +4,8 @@ import { EnTetePage } from '@/components/layout/EnTetePage'
 import { Alerte, Badge, Bouton, Carte, Depliant, EnteteCarte } from '@/components/ui/base'
 import { Pastille } from '@/components/candidat/Pastille'
 import { candidats, candidatById } from '@/data/candidats'
-import { VERDICTS, type Verdict } from '@/data/factcheck'
+import { PLATEFORMES, VERDICTS, type Verdict } from '@/data/factcheck'
+import { SOURCES_PARLEMENTAIRES, SOURCES_VEILLE } from '@/data/sources-citations'
 import { sourceById } from '@/data/sources'
 import { themeById } from '@/data/referentiel'
 import { useFactCheck } from '@/lib/factcheck/store'
@@ -60,8 +61,15 @@ export function Verifications() {
     return { total, verifiees, enAttente: total - verifiees }
   }, [instantane])
 
-  const candidatsSuivis = candidats.filter((c) => c.compteX)
-  const candidatsSansCompte = candidats.filter((c) => !c.compteX)
+  // Un candidat est « couvert » dès qu'au moins une de ses déclarations a été
+  // relevée, quelle que soit la source : le compte social n'est plus le seul
+  // point d'entrée depuis que la collecte s'appuie sur l'open data parlementaire.
+  const candidatsCouverts = candidats.filter((c) =>
+    instantane.citations.some((cit) => cit.candidatId === c.id),
+  )
+  const candidatsSansSource = candidats.filter(
+    (c) => c.comptesSociaux.every((s) => !PLATEFORMES[s.plateforme].gratuite),
+  )
 
   return (
     <div>
@@ -69,9 +77,10 @@ export function Verifications() {
         titre="Vérification des déclarations"
         chapo={
           <>
-            Les déclarations publiées par les candidats sur X sont collectées, puis confrontées aux
-            données disponibles. Chaque verdict affiche son raisonnement et ses sources, et renvoie
-            au message d’origine pour que vous puissiez lire la citation entière.
+            Les déclarations publiques des candidats sont collectées depuis des sources ouvertes et
+            gratuites — comptes rendus de séance et réseaux sociaux à lecture libre — puis
+            confrontées aux données disponibles. Chaque verdict affiche son raisonnement et ses
+            sources, et renvoie à l’original pour que vous puissiez lire la déclaration entière.
           </>
         }
         actions={
@@ -179,7 +188,7 @@ export function Verifications() {
                 aria-label="Filtrer par candidat"
               >
                 <option value="tous">Tous les candidats</option>
-                {candidatsSuivis.map((c) => (
+                {candidatsCouverts.map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.prenom} {c.nom}
                   </option>
@@ -221,9 +230,13 @@ export function Verifications() {
                         </Link>
                       </p>
                       <p className="text-[0.75rem] text-muted">
-                        @{citation.compte} · {formatDate(citation.datePublication.slice(0, 10))}
+                        {formatDate(citation.datePublication.slice(0, 10))}
+                        {citation.contexte ? ` · ${citation.contexte}` : ''}
                       </p>
                     </div>
+                    <Badge ton="neutre" titre={PLATEFORMES[citation.plateforme].explication}>
+                      {PLATEFORMES[citation.plateforme].court}
+                    </Badge>
                     <Badge ton={meta.ton} icone={meta.icone} titre={meta.explication}>
                       {meta.label}
                     </Badge>
@@ -241,7 +254,9 @@ export function Verifications() {
                       rel="noopener noreferrer nofollow"
                       className="text-[0.78rem] text-accent hover:underline"
                     >
-                      Voir le message d’origine ↗
+                      {citation.plateforme === 'assemblee' || citation.plateforme === 'senat'
+                        ? 'Voir le compte rendu de séance ↗'
+                        : 'Voir le message d’origine ↗'}
                     </a>
                     {citation.themeId && (
                       <span className="text-[0.75rem] text-muted">
@@ -332,10 +347,50 @@ export function Verifications() {
         </>
       )}
 
+      {instantane.veille.length > 0 && (
+        <Carte className="mt-8">
+          <EnteteCarte
+            titre="Vérifications publiées ailleurs"
+            soustitre="Relevées par flux RSS chez les rédactions spécialisées. Ce sont des pistes, pas des verdicts de ce site."
+          />
+          <ul className="divide-y divide-[color:var(--pqc-line)]">
+            {instantane.veille.slice(0, 25).map((publication) => (
+              <li key={publication.id} className="p-4">
+                <a
+                  href={publication.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[0.85rem] font-medium leading-snug text-accent hover:underline"
+                >
+                  {publication.titre} ↗
+                </a>
+                <p className="mt-1 text-[0.75rem] text-muted">
+                  {publication.editeur}
+                  {publication.datePublication
+                    ? ` · ${formatDate(publication.datePublication.slice(0, 10))}`
+                    : ''}
+                  {publication.candidatsPressentis.length > 0 &&
+                    ` · mentionne ${publication.candidatsPressentis
+                      .map((id) => candidatById.get(id)?.nom)
+                      .filter(Boolean)
+                      .join(', ')}`}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <p className="border-t border-line px-4 py-3 text-[0.75rem] leading-relaxed text-muted">
+            Seuls le titre et le lien sont repris, avec attribution : le texte des articles
+            appartient à leurs auteurs. Rattacher une de ces publications à une citation et à un
+            verdict reste un travail humain — un titre ne dit pas de façon fiable qui a dit quoi ni
+            ce qui a été conclu.
+          </p>
+        </Carte>
+      )}
+
       <Carte className="mt-8">
         <EnteteCarte
           titre="Comment cette page fonctionne"
-          soustitre="Et pourquoi la collecte n’a pas lieu dans votre navigateur."
+          soustitre="D’où viennent les citations, et pourquoi la collecte n’a pas lieu dans votre navigateur."
         />
         <div className="space-y-3 p-4 text-[0.85rem] leading-relaxed text-ink-2 sm:p-5">
           <p>
@@ -344,22 +399,41 @@ export function Verifications() {
             site, ou d’un service de collecte si l’exploitant en a mis un en place.
           </p>
           <p>
-            L’interrogation de X, elle, se fait en amont. Trois raisons l’imposent : l’API exige un
-            jeton, qui serait lisible par tout le monde s’il était livré dans le code de la page ;
-            X ne renvoie pas les en-têtes qui autoriseraient un navigateur à lire la réponse ; et
-            depuis février 2026 chaque lecture est facturée, si bien qu’une collecte par visiteur
-            reviendrait à payer plusieurs fois le même contenu.
+            Les déclarations viennent de sources <strong className="font-medium text-ink">publiques,
+            gratuites et sans clé d’accès</strong>. Le socle est l’open data parlementaire :{' '}
+            {SOURCES_PARLEMENTAIRES.map((s) => `${s.nom} (${s.editeur}, licence ${s.licence})`).join(
+              ' et ',
+            )}
+            . Une intervention en séance est verbatim, horodatée, rattachée à un débat identifié, et
+            elle ne disparaît pas si son auteur l’efface. S’y ajoutent les réseaux sociaux dont la
+            lecture est ouverte, Bluesky en particulier.
+          </p>
+          <p>
+            La collecte a lieu en amont plutôt que dans votre navigateur, pour deux raisons qui
+            valent quelle que soit la source : la plupart de ces services ne renvoient pas les
+            en-têtes qui autoriseraient une page web à lire leur réponse, et une collecte par
+            visiteur referait le même travail des milliers de fois pour un contenu identique.
+          </p>
+          <p>
+            X n’est pas utilisé par défaut : son API exige un jeton et facture chaque lecture depuis
+            février 2026. La source reste disponible pour qui y a souscrit, mais rien n’en dépend.
           </p>
           <p>
             Les verdicts ne sont pas automatiques. Une affirmation politique se vérifie en allant
             chercher la donnée et en la lisant — c’est un travail humain, et c’est pourquoi une
-            citation peut rester longtemps « en attente ».
+            citation peut rester longtemps « en attente ». Pour l’outiller, les flux des rédactions
+            spécialisées sont relevés en parallèle —{' '}
+            {SOURCES_VEILLE.map((s) => `${s.nom} (${s.editeur})`).join(', ')} — mais leurs articles
+            servent de pistes, jamais de verdicts repris tels quels.
           </p>
-          {candidatsSansCompte.length > 0 && (
+          {candidatsSansSource.length > 0 && (
             <p>
-              {candidatsSansCompte.length} candidat(s) ne sont pas suivis, faute de compte X
-              officiel confirmé : {candidatsSansCompte.map((c) => c.nom).join(', ')}. Un compte
-              deviné ferait citer la mauvaise personne.
+              La couverture par les réseaux sociaux est partielle, et ce n’est pas un défaut de
+              l’outil : la plupart des responsables politiques français publient sur X, dont la
+              lecture est payante. {candidatsSansSource.length} des {candidats.length} candidats
+              n’ont donc aucun compte à lecture gratuite confirmé. Ils restent couverts par les
+              comptes rendus de séance s’ils exercent un mandat parlementaire — une source à la fois
+              plus fiable et plus durable, puisqu’une intervention en séance ne s’efface pas.
             </p>
           )}
           <p className="text-muted">
@@ -382,7 +456,7 @@ export function Verifications() {
             soustitre={`Une note n’est produite qu’à partir de ${ECHANTILLON_MINIMAL} vérifications.`}
           />
           <ul className="divide-y divide-[color:var(--pqc-line)]">
-            {candidatsSuivis.map((candidat) => {
+            {candidatsCouverts.map((candidat) => {
               const bilan = bilanVeracite(instantane, candidat.id)
               return (
                 <li key={candidat.id} className="flex flex-wrap items-center gap-3 p-4">

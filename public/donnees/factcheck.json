@@ -1,7 +1,8 @@
 {
-  "version": 1,
+  "version": 2,
   "genereLe": "",
   "comptes": [],
   "citations": [],
-  "verifications": []
+  "verifications": [],
+  "veille": []
 }

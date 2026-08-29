@@ -1,12 +1,15 @@
 import {
+  PLATEFORMES,
   VERDICTS,
   VERSION_INSTANTANE,
   type Citation,
   type CompteSuivi,
   type InstantaneFactCheck,
   type LienVerification,
+  type Plateforme,
   type Verdict,
   type Verification,
+  type VeillePublication,
 } from '@/data/factcheck'
 
 /**
@@ -24,6 +27,7 @@ import {
 /** Bornes de sécurité : un instantané anormalement gros est tronqué, pas rendu. */
 export const LIMITES = {
   citations: 2000,
+  veille: 500,
   verifications: 2000,
   comptes: 200,
   texte: 4000,
@@ -54,12 +58,27 @@ function estUrlSure(v: unknown): v is string {
   }
 }
 
-/** Un lien de citation doit pointer vers la plateforme d'origine. */
-function estUrlDeMessage(v: unknown): v is string {
+/**
+ * Domaines admis par plateforme.
+ *
+ * Une citation doit renvoyer vers la source qui l'a publiée, et vers elle
+ * seule : sans cette contrainte, un instantané compromis pourrait faire pointer
+ * « le message d'origine » vers n'importe quoi.
+ */
+const HOTES_PAR_PLATEFORME: Record<Plateforme, string[]> = {
+  assemblee: ['nosdeputes.fr', 'www.nosdeputes.fr', 'assemblee-nationale.fr', 'www.assemblee-nationale.fr'],
+  senat: ['nossenateurs.fr', 'www.nossenateurs.fr', 'senat.fr', 'www.senat.fr'],
+  bluesky: ['bsky.app', 'staging.bsky.app'],
+  x: ['x.com', 'www.x.com', 'twitter.com', 'www.twitter.com'],
+}
+
+function estUrlDeMessage(v: unknown, plateforme: Plateforme): v is string {
   if (!estUrlSure(v)) return false
   const hote = new URL(v).hostname.toLowerCase()
-  return hote === 'x.com' || hote === 'twitter.com' || hote.endsWith('.x.com')
+  return HOTES_PAR_PLATEFORME[plateforme].includes(hote)
 }
+
+const PLATEFORMES_CONNUES = new Set(Object.keys(PLATEFORMES))
 
 const VERDICTS_CONNUS = new Set(Object.keys(VERDICTS))
 
@@ -70,15 +89,18 @@ function validerCitation(brut: unknown): Citation | null {
   if (!estChaine(c.candidatId)) return null
   if (!estChaine(c.compte)) return null
   if (!estChaine(c.postId)) return null
-  if (!estUrlDeMessage(c.url)) return null
+  if (typeof c.plateforme !== 'string' || !PLATEFORMES_CONNUES.has(c.plateforme)) return null
+  if (!estUrlDeMessage(c.url, c.plateforme as Plateforme)) return null
   if (!estChaine(c.texte, LIMITES.texte)) return null
   if (!estChaine(c.affirmation, LIMITES.texte)) return null
   if (!estDateIso(c.datePublication)) return null
   if (!estDateIso(c.collecteLe)) return null
   if (!estChaineFacultative(c.themeId)) return null
+  if (!estChaineFacultative(c.contexte)) return null
   return {
     id: c.id,
     candidatId: c.candidatId,
+    plateforme: c.plateforme as Plateforme,
     compte: c.compte,
     postId: c.postId,
     url: c.url,
@@ -87,6 +109,28 @@ function validerCitation(brut: unknown): Citation | null {
     datePublication: c.datePublication,
     collecteLe: c.collecteLe,
     themeId: c.themeId as string | undefined,
+    contexte: c.contexte as string | undefined,
+  }
+}
+
+function validerVeille(brut: unknown): VeillePublication | null {
+  if (typeof brut !== 'object' || brut === null) return null
+  const v = brut as Record<string, unknown>
+  if (!estChaine(v.id)) return null
+  if (!estChaine(v.titre, LIMITES.texte)) return null
+  if (!estUrlSure(v.url)) return null
+  if (!estChaine(v.editeur)) return null
+  if (!estDateIso(v.collecteLe)) return null
+  return {
+    id: v.id,
+    titre: v.titre,
+    url: v.url,
+    editeur: v.editeur,
+    datePublication: estDateIso(v.datePublication) ? (v.datePublication as string) : '',
+    collecteLe: v.collecteLe,
+    candidatsPressentis: Array.isArray(v.candidatsPressentis)
+      ? v.candidatsPressentis.filter((c): c is string => estChaine(c))
+      : [],
   }
 }
 
@@ -139,8 +183,10 @@ function validerCompte(brut: unknown): CompteSuivi | null {
   if (typeof brut !== 'object' || brut === null) return null
   const c = brut as Record<string, unknown>
   if (!estChaine(c.candidatId) || !estChaine(c.compte)) return null
+  if (typeof c.plateforme !== 'string' || !PLATEFORMES_CONNUES.has(c.plateforme)) return null
   return {
     candidatId: c.candidatId,
+    plateforme: c.plateforme as Plateforme,
     compte: c.compte,
     messagesExamines: typeof c.messagesExamines === 'number' ? c.messagesExamines : undefined,
     erreur: typeof c.erreur === 'string' ? c.erreur.slice(0, LIMITES.champCourt) : undefined,
@@ -194,6 +240,7 @@ export function validerInstantane(brut: unknown): ResultatValidation {
       comptes: garder(i.comptes, LIMITES.comptes, validerCompte),
       citations,
       verifications,
+      veille: garder(i.veille, LIMITES.veille, validerVeille),
     },
     rejets,
   }

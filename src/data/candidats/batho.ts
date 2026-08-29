@@ -15,8 +15,9 @@ export const batho: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Députée des Deux-Sèvres, ministre de l'Écologie en 2012-2013 — fonction qu'elle a quittée après avoir critiqué publiquement le budget de son ministère —, elle a déclaré sa candidature le 25 novembre 2025. Porte une écologie de rupture assumée, articulée autour de la sobriété et de la remise en cause de la croissance comme objectif.",
-  // Aucun compte X officiel confirmé à la date de revue.
-  compteX: null,
+  // Aucun compte social officiel confirmé à la date de revue : la collecte
+  // s'appuie alors sur les seules sources parlementaires.
+  comptesSociaux: [],
   liensOfficiels: [
     LIENS_INSTITUTIONNELS.assemblee,
     LIENS_INSTITUTIONNELS.hatvp,

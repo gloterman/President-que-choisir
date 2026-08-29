@@ -15,7 +15,9 @@ export const roussel: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Secrétaire national du PCF depuis 2018 et candidat à la présidentielle de 2022 avec 2,28 % des suffrages exprimés. Défend une gauche du travail et de la production, favorable au nucléaire, à l'industrie et à une ligne régalienne plus ferme que le reste de la gauche radicale.",
-  compteX: 'Fabien_Roussel',
+  comptesSociaux: [
+    { plateforme: 'x', identifiant: 'Fabien_Roussel' },
+  ],
   liensOfficiels: [
     {
       label: 'Parti communiste français — site officiel',

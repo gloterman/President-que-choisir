@@ -15,7 +15,9 @@ export const zemmour: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Journaliste et essayiste entré en politique en 2021, candidat à la présidentielle de 2022 avec 7,07 % des suffrages exprimés. Défend une ligne identitaire assumée, articulée autour de l'arrêt de l'immigration, de la remigration et d'un libéralisme économique classique.",
-  compteX: 'ZemmourEric',
+  comptesSociaux: [
+    { plateforme: 'x', identifiant: 'ZemmourEric' },
+  ],
   liensOfficiels: [
     {
       label: 'Reconquête — site officiel du parti',
