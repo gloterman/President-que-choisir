@@ -255,6 +255,54 @@ export function Methodologie() {
 
         <Carte>
           <EnteteCarte
+            titre="D’où vient la note « rapport aux faits »"
+            soustitre="Le seul critère dont la valeur change sans que les fiches soient modifiées."
+          />
+          <div className="space-y-3 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
+            <p>
+              Ce critère n’est pas saisi à la main sur les fiches : il est calculé à partir des
+              vérifications publiées sur la page{' '}
+              <Link to="/verifications" className="font-medium text-accent hover:underline">
+                Vérification des déclarations
+              </Link>
+              . Les déclarations publiées par les candidats sur X sont collectées par un script
+              authentifié, puis confrontées une à une aux données disponibles.
+            </p>
+            <div className="rounded-xl bg-surface-2 p-4 text-[0.82rem]">
+              <p className="text-ink">
+                <strong className="font-semibold">Note</strong> = part des affirmations jugées
+                exactes ou plutôt exactes, parmi celles qui tranchent
+              </p>
+              <p className="mt-1.5 text-ink">
+                <strong className="font-semibold">+ 5</strong> si une rectification publique a suivi
+                une erreur · <strong className="font-semibold">− 10</strong> par reprise d’une
+                affirmation déjà démentie
+              </p>
+            </div>
+            <p>
+              Les verdicts « invérifiable » et « en attente » sont exclus du calcul : le premier
+              signale qu’aucune donnée publique ne permet de trancher, le second qu’aucun examen n’a
+              encore eu lieu. Ni l’un ni l’autre ne dit quoi que ce soit de l’exactitude.
+            </p>
+            <p>
+              <strong className="font-medium text-ink">
+                En dessous de dix vérifications pour un candidat, aucune note n’est produite
+              </strong>{' '}
+              et le critère reste non documenté. Une note calculée sur trois vérifications serait
+              plus trompeuse qu’une absence de note — et la limite figure déjà dans le barème publié
+              du critère.
+            </p>
+            <p className="text-muted">
+              Cette mécanique ne corrige pas le biais de sélection signalé dans les limites du
+              critère : les personnalités les plus exposées sont les plus vérifiées. Le nombre de
+              vérifications par candidat est affiché à côté de chaque note pour que l’écart soit
+              visible.
+            </p>
+          </div>
+        </Carte>
+
+        <Carte>
+          <EnteteCarte
             titre="L’analyse de sensibilité"
             soustitre="La fonctionnalité la plus utile de l’outil, et la moins spectaculaire."
           />

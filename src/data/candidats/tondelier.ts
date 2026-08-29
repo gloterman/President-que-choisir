@@ -15,6 +15,7 @@ export const tondelier: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Élue d'opposition à Hénin-Beaumont face au Rassemblement national depuis 2014, devenue en 2022 secrétaire nationale des Écologistes. Défend une planification écologique articulée à la justice sociale et une VIᵉ République parlementaire, avec un ancrage revendiqué dans les territoires populaires.",
+  compteX: 'marinetondelier',
   liensOfficiels: [
     {
       label: 'Les Écologistes — site officiel du parti',

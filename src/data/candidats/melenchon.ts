@@ -15,6 +15,7 @@ export const melenchon: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Figure de la gauche de rupture depuis quinze ans, trois fois candidat à la présidentielle avec une progression continue (11,1 % en 2012, 19,6 % en 2017, 21,95 % en 2022). Défend une bifurcation écologique et sociale financée par la fiscalité sur les hauts patrimoines, et la convocation d'une assemblée constituante pour une VIᵉ République.",
+  compteX: 'JLMelenchon',
   liensOfficiels: [
     {
       label: 'Mélenchon 2027 — site de campagne',

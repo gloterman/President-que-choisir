@@ -11,7 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint:data": "tsx scripts/validate-data.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "collecte:citations": "tsx scripts/collecter-citations.ts"
   },
   "dependencies": {
     "react": "^19.1.1",

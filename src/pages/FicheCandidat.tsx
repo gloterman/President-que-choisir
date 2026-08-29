@@ -12,6 +12,13 @@ import { criteres, criteresParFamille, critereById } from '@/data/criteres'
 import { axes, themeById, themes } from '@/data/referentiel'
 import { sourceById } from '@/data/sources'
 import { calculerAffinite } from '@/lib/scoring'
+import { useFactCheck } from '@/lib/factcheck/store'
+import {
+  bilanVeracite,
+  ECHANTILLON_MINIMAL,
+  notesVeraciteDynamiques,
+} from '@/lib/factcheck/veracite'
+import { VERDICTS } from '@/data/factcheck'
 import { usePreferences } from '@/lib/store'
 import { age, formatDate, LIKERT, milliards, palierDe, pourcent } from '@/lib/format'
 import type { LienOfficiel } from '@/data/types'
@@ -115,6 +122,7 @@ export function FicheCandidat() {
   const { id } = useParams<{ id: string }>()
   const candidat = id ? candidatById.get(id) : undefined
   const { preferences, basculerComparaison, nbReponses } = usePreferences()
+  const { instantane, etat: etatFactCheck } = useFactCheck()
 
   const affinite = useMemo(
     () => (candidat ? calculerAffinite(candidat, preferences.reponses) : null),
@@ -133,6 +141,14 @@ export function FicheCandidat() {
   }
 
   const statut = STATUTS_CANDIDATURE[candidat.statutCandidature]
+  const bilan = bilanVeracite(instantane, candidat.id)
+  const citationsDuCandidat = instantane.citations.filter((c) => c.candidatId === candidat.id)
+  const verificationsDuCandidat = instantane.verifications.filter((v) =>
+    citationsDuCandidat.some((c) => c.id === v.citationId),
+  )
+  // La note « rapport aux faits » vient des vérifications publiées, pas de la
+  // fiche : elle doit donc afficher ici la même valeur que dans le classement.
+  const notesDynamiques = notesVeraciteDynamiques(instantane, [candidat.id])[candidat.id] ?? []
   const faitsTries = [...candidat.faits].sort((a, b) => b.date.localeCompare(a.date))
   const enComparaison = preferences.comparaison.includes(candidat.id)
 
@@ -191,6 +207,68 @@ export function FicheCandidat() {
 
           <Carte>
             <EnteteCarte
+              titre="Vérification de ses déclarations"
+              soustitre={
+                candidat.compteX
+                  ? `Déclarations publiées sur @${candidat.compteX}, confrontées aux données disponibles.`
+                  : 'Aucun compte X officiel confirmé pour ce candidat : ses déclarations ne sont pas collectées.'
+              }
+              action={
+                <Link
+                  to="/verifications"
+                  className="text-[0.8rem] font-medium text-accent hover:underline"
+                >
+                  Toutes les vérifications →
+                </Link>
+              }
+            />
+            <div className="p-4 sm:p-5">
+              {etatFactCheck === 'chargement' && (
+                <p className="text-[0.83rem] text-muted">Chargement des vérifications…</p>
+              )}
+              {etatFactCheck === 'erreur' && (
+                <p className="text-[0.83rem] text-muted">
+                  Les vérifications n’ont pas pu être chargées. Le reste de la fiche reste à jour.
+                </p>
+              )}
+              {etatFactCheck === 'pret' && citationsDuCandidat.length === 0 && (
+                <p className="text-[0.83rem] leading-relaxed text-ink-2">
+                  Aucune déclaration collectée à ce jour.{' '}
+                  {candidat.compteX
+                    ? 'Cela ne signifie pas que ses déclarations sont exactes : simplement qu’aucune n’a encore été examinée.'
+                    : 'Renseigner un compte officiel vérifié permettrait de l’inclure dans la collecte.'}
+                </p>
+              )}
+              {etatFactCheck === 'pret' && citationsDuCandidat.length > 0 && (
+                <>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(Object.keys(VERDICTS) as (keyof typeof VERDICTS)[])
+                      .filter((v) => (bilan?.parVerdict[v] ?? 0) > 0)
+                      .map((v) => (
+                        <Badge
+                          key={v}
+                          ton={VERDICTS[v].ton}
+                          icone={VERDICTS[v].icone}
+                          titre={VERDICTS[v].explication}
+                        >
+                          {bilan!.parVerdict[v]} {VERDICTS[v].label.toLowerCase()}
+                        </Badge>
+                      ))}
+                  </div>
+                  <p className="mt-3 text-[0.83rem] leading-relaxed text-ink-2">
+                    {citationsDuCandidat.length} déclaration(s) collectée(s),{' '}
+                    {verificationsDuCandidat.length} examinée(s).{' '}
+                    {bilan && bilan.effectif >= ECHANTILLON_MINIMAL
+                      ? `L’échantillon dépasse le minimum de ${ECHANTILLON_MINIMAL} vérifications : le critère « rapport aux faits » est calculé à partir de ces données.`
+                      : `En dessous de ${ECHANTILLON_MINIMAL} vérifications, le critère « rapport aux faits » reste non documenté plutôt que calculé sur un échantillon trop petit.`}
+                  </p>
+                </>
+              )}
+            </div>
+          </Carte>
+
+          <Carte>
+            <EnteteCarte
               titre="Notes sur les critères d’évaluation"
               soustitre="Chaque note affiche le barème qui l’a produite, son niveau de confiance et ses sources."
             />
@@ -202,7 +280,9 @@ export function FicheCandidat() {
                   </h3>
                   <ul className="mt-3 space-y-4">
                     {famille.criteres.map((critere) => {
-                      const note = candidat.notes.find((n) => n.critereId === critere.id)
+                      const note =
+                        notesDynamiques.find((n) => n.critereId === critere.id) ??
+                        candidat.notes.find((n) => n.critereId === critere.id)
                       return (
                         <li key={critere.id}>
                           {note ? (
@@ -382,7 +462,21 @@ export function FicheCandidat() {
         </div>
 
         <aside className="space-y-6 lg:sticky lg:top-20 lg:self-start">
-          <PagesOfficielles liens={candidat.liensOfficiels} />
+          <PagesOfficielles
+            liens={[
+              ...(candidat.compteX
+                ? [
+                    {
+                      label: `@${candidat.compteX} — compte X officiel`,
+                      url: `https://x.com/${candidat.compteX}`,
+                      type: 'candidat' as const,
+                      usage: 'Ses déclarations publiques, telles qu’il les publie. C’est la source de la collecte.',
+                    },
+                  ]
+                : []),
+              ...candidat.liensOfficiels,
+            ]}
+          />
 
           {affinite && (
             <Carte className="p-4">

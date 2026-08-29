@@ -1,4 +1,4 @@
-import type { Candidat, MethodeAgregation, Preferences } from '@/data/types'
+import type { Candidat, MethodeAgregation, NoteCritere, Preferences } from '@/data/types'
 import { criteres } from '@/data/criteres'
 import type { MatriceDecision } from './matrice'
 import { normaliserPoids } from './matrice'
@@ -69,7 +69,23 @@ export interface Classement {
   notesManquantes: number
 }
 
-function noteDe(candidat: Candidat, critereId: string): { note: number; manquante: boolean } {
+/**
+ * Notes calculées hors des fiches, superposées aux notes statiques.
+ *
+ * Sert au critère « rapport aux faits », dont la valeur dépend des
+ * vérifications publiées et change donc sans que les fiches soient modifiées.
+ * Le moteur reste pur : il reçoit ces notes en entrée plutôt que d'aller les
+ * chercher.
+ */
+export type NotesDynamiques = Record<string, NoteCritere[]>
+
+function noteDe(
+  candidat: Candidat,
+  critereId: string,
+  dynamiques: NotesDynamiques,
+): { note: number; manquante: boolean } {
+  const dynamique = dynamiques[candidat.id]?.find((n) => n.critereId === critereId)
+  if (dynamique) return { note: dynamique.note, manquante: false }
   const trouvee = candidat.notes.find((n) => n.critereId === critereId)
   if (!trouvee) return { note: NOTE_NEUTRE, manquante: true }
   return { note: trouvee.note, manquante: false }
@@ -114,6 +130,7 @@ function rangsDepuisScores(scores: number[]): number[] {
 export function calculerClassement(
   tousCandidats: Candidat[],
   preferences: Preferences,
+  notesDynamiques: NotesDynamiques = {},
 ): Classement {
   const exclus = tousCandidats.filter((c) => preferences.exclus.includes(c.id))
   const candidatsRetenus = tousCandidats.filter((c) => !preferences.exclus.includes(c.id))
@@ -124,7 +141,11 @@ export function calculerClassement(
   for (const candidat of candidatsRetenus) {
     const motifs = Object.entries(preferences.seuils)
       .filter(([, seuil]) => seuil > 0)
-      .map(([critereId, seuil]) => ({ critereId, note: noteDe(candidat, critereId).note, seuil }))
+      .map(([critereId, seuil]) => ({
+        critereId,
+        note: noteDe(candidat, critereId, notesDynamiques).note,
+        seuil,
+      }))
       .filter((m) => m.note < m.seuil)
     if (motifs.length > 0) ecartes.push({ candidat, motifs })
     else enLice.push(candidat)
@@ -152,7 +173,7 @@ export function calculerClassement(
   let notesManquantes = 0
   const valeurs = enLice.map((candidat) => {
     const ligne = criteresActifs.map((c) => {
-      const { note, manquante } = noteDe(candidat, c.id)
+      const { note, manquante } = noteDe(candidat, c.id, notesDynamiques)
       if (manquante) notesManquantes++
       return note
     })
@@ -184,7 +205,7 @@ export function calculerClassement(
       const contributions: ContributionCritere[] = colonnes.map((critereId, j) => {
         const note = valeurs[i][j]
         const manquante =
-          critereId !== COLONNE_AFFINITE && noteDe(candidat, critereId).manquante
+          critereId !== COLONNE_AFFINITE && noteDe(candidat, critereId, notesDynamiques).manquante
         return {
           critereId,
           note,

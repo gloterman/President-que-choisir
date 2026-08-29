@@ -305,6 +305,13 @@ export interface Candidat {
   presentation: string
   siteProgramme?: string
   /**
+   * Compte X officiel, sans arobase, ou `null` quand aucun compte n'a pu être
+   * confirmé. Le collecteur de citations n'interroge que les comptes renseignés
+   * ici, et signale les candidats laissés à `null` : mieux vaut un trou déclaré
+   * qu'un identifiant deviné, qui ferait citer la mauvaise personne.
+   */
+  compteX: string | null
+  /**
    * Pages officielles : site du candidat ou de son parti d'une part, pages
    * institutionnelles d'autre part. C'est le point de départ de toute
    * vérification — la parole du candidat et le registre public.

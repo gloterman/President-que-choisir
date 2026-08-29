@@ -4,6 +4,7 @@ import { Entete } from '@/components/layout/Entete'
 import { PiedDePage } from '@/components/layout/PiedDePage'
 import { BarreMobile } from '@/components/layout/BarreMobile'
 import { FournisseurPreferences } from '@/lib/store'
+import { FournisseurFactCheck } from '@/lib/factcheck/store'
 import { Accueil } from '@/pages/Accueil'
 import { Questionnaire } from '@/pages/Questionnaire'
 import { Criteres } from '@/pages/Criteres'
@@ -13,6 +14,7 @@ import { Candidats } from '@/pages/Candidats'
 import { FicheCandidat } from '@/pages/FicheCandidat'
 import { Methodologie } from '@/pages/Methodologie'
 import { Sources } from '@/pages/Sources'
+import { Verifications } from '@/pages/Verifications'
 
 /** Remet la vue en haut à chaque changement de route. */
 function HautDePage() {
@@ -24,6 +26,9 @@ function HautDePage() {
 export function App() {
   return (
     <FournisseurPreferences>
+      {/* Les vérifications sont chargées une fois, à l'ouverture du site, et
+          partagées par la page dédiée, les fiches et le classement. */}
+      <FournisseurFactCheck>
       <HashRouter>
         <HautDePage />
         <a
@@ -44,12 +49,14 @@ export function App() {
             <Route path="/candidats/:id" element={<FicheCandidat />} />
             <Route path="/methodologie" element={<Methodologie />} />
             <Route path="/sources" element={<Sources />} />
+            <Route path="/verifications" element={<Verifications />} />
             <Route path="*" element={<Accueil />} />
           </Routes>
         </main>
         <PiedDePage />
         <BarreMobile />
       </HashRouter>
+      </FournisseurFactCheck>
     </FournisseurPreferences>
   )
 }

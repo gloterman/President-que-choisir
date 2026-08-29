@@ -16,6 +16,7 @@ fait, puis montre ce que cela donne — **y compris quand le résultat ne tient 
 | **Seuils rédhibitoires** | Une note minimale exigée sur n'importe quel critère écarte d'office les candidats qui ne l'atteignent pas. |
 | **Analyse de sensibilité** | 1 000 tirages de pondérations autour des réglages de l'utilisateur, par une loi de Dirichlet, pour mesurer si le vainqueur en est vraiment un. Déterministe : mêmes réglages, mêmes chiffres. |
 | **Comparateur** | Trois candidats côte à côte : positions axe par axe, mesures thème par thème, notes critère par critère. |
+| **Vérification des déclarations** | Les déclarations publiées sur X sont collectées par un script authentifié, publiées sous forme d'instantané, puis vérifiées à la main avec constat, raisonnement et sources. Le site charge l'instantané à l'ouverture et propose une actualisation. Ces verdicts alimentent le critère « rapport aux faits ». Voir [`docs/VERIFICATIONS.md`](docs/VERIFICATIONS.md). |
 | **Fiches candidats** | Parcours, mesures chiffrées, faits marquants, situation judiciaire, indicateurs — chaque élément avec son statut de vérification et ses sources. |
 
 ## Neutralité de formulation
@@ -73,6 +74,9 @@ npm run dev          # serveur de développement
 npm run build        # typecheck + build de production
 npm test             # tests du moteur de notation
 npm run lint:data    # contrôle d'intégrité du jeu de données
+
+npm run collecte:citations -- --essai   # ce que ferait la collecte, sans appel réseau
+X_BEARER_TOKEN=… npm run collecte:citations
 ```
 
 Node 20 ou supérieur.
@@ -87,6 +91,7 @@ src/
     criteres.ts     Les 12 critères, leurs indicateurs et leurs barèmes
     sources.ts      Registre des sources
     candidats/      Un fichier par candidat
+    factcheck.ts    Citations, verdicts et format de l'instantané
   lib/
     scoring/        Moteur de notation — pur, testé, sans dépendance à React
       matrice.ts      Matrice de décision et normalisations
@@ -94,6 +99,7 @@ src/
       affinite.ts     Affinité programmatique et boussole 2D
       sensibilite.ts  Analyse de sensibilité par Monte-Carlo
       index.ts        Orchestration du classement complet
+    factcheck/      Chargement, validation défensive et calcul de la véracité
     store.tsx       Préférences utilisateur, persistées en localStorage
     format.ts       Formatage et libellés
   components/
@@ -102,8 +108,12 @@ src/
     candidat/       Blocs propres aux fiches
     layout/         En-tête, pied de page, navigation
   pages/            Une page par route
+public/
+  donnees/
+    factcheck.json  Instantané des citations et vérifications, publié avec le site
 scripts/
-  validate-data.ts  Contrôle d'intégrité exécuté par `npm run lint:data`
+  validate-data.ts       Contrôle d'intégrité exécuté par `npm run lint:data`
+  collecter-citations.ts Collecte authentifiée des déclarations sur X
 ```
 
 Le moteur de notation ne dépend ni de React ni du DOM : il se teste comme une bibliothèque et
@@ -111,8 +121,13 @@ pourrait alimenter un autre client sans modification.
 
 ## Vie privée
 
-Aucun compte, aucun serveur, aucune mesure d'audience, aucun cookie. Les réponses et les
-pondérations vivent dans le `localStorage` du navigateur et n'en sortent jamais.
+Aucun compte, aucune mesure d'audience, aucun cookie. Les réponses et les pondérations vivent dans
+le `localStorage` du navigateur et n'en sortent jamais.
+
+Le site télécharge un fichier de vérifications au chargement — l'instantané publié avec lui, ou le
+point d'accès que l'exploitant a configuré. Aucun script de X n'est chargé et aucun message n'est
+incorporé : les citations sont affichées en texte brut depuis ce fichier, ce qui évite d'exposer le
+visiteur aux traceurs de la plateforme.
 
 ## Accessibilité et rendu
 

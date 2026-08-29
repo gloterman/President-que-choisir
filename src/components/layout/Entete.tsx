@@ -5,10 +5,11 @@ import { usePreferences, useTheme } from '@/lib/store'
 
 const LIENS = [
   { to: '/questionnaire', label: 'Questionnaire' },
-  { to: '/criteres', label: 'Mes critères' },
-  { to: '/classement', label: 'Mon classement' },
+  { to: '/criteres', label: 'Critères' },
+  { to: '/classement', label: 'Classement' },
   { to: '/comparateur', label: 'Comparateur' },
   { to: '/candidats', label: 'Candidats' },
+  { to: '/verifications', label: 'Vérifications' },
 ]
 
 const LIENS_SECONDAIRES = [

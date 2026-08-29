@@ -15,6 +15,7 @@ export const attal: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Plus jeune Premier ministre de la Ve République, en fonction de janvier à septembre 2024, après avoir été porte-parole du gouvernement puis ministre de l'Éducation nationale. Incarne la continuité de la ligne centrale : offre libérale sur l'économie et fermeté sur l'ordre public.",
+  compteX: 'GabrielAttal',
   liensOfficiels: [
     {
       label: 'Renaissance — site officiel du parti',

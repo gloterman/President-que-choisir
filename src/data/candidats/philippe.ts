@@ -15,6 +15,7 @@ export const philippe: Candidat = {
   statutCandidature: 'declare',
   presentation:
     "Premier ministre de 2017 à 2020, maire du Havre, il a annoncé publiquement sa candidature à la présidentielle de 2027. Défend une ligne libérale sur l'économie et les finances publiques, conservatrice sur l'ordre public, et une continuité européenne assumée.",
+  compteX: 'EPhilippe_LH',
   liensOfficiels: [
     {
       label: 'Horizons — site officiel du parti',

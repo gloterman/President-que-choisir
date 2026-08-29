@@ -161,6 +161,7 @@ const candidatTest = (id: string, positions: Record<string, number>): Candidat =
     naissance: '1970-01-01',
     fonctionActuelle: '—',
     statutCandidature: 'hypothetique',
+    compteX: null,
     liensOfficiels: [],
     presentation: '—',
     positions: positions as Record<string, Likert>,

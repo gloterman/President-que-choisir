@@ -324,6 +324,14 @@ export const sources: Source[] = [
     type: 'presse',
   },
   {
+    id: 'an-reseaux-sociaux',
+    titre: 'Liste des comptes des députés sur les réseaux sociaux',
+    editeur: 'Assemblée nationale',
+    url: 'https://www2.assemblee-nationale.fr/deputes/liste/reseaux-sociaux',
+    date: '2026-08-29',
+    type: 'officiel',
+  },
+  {
     id: 'europarl-deputes',
     titre: 'Annuaire des députés européens',
     editeur: 'Parlement européen',

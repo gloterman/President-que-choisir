@@ -15,6 +15,7 @@ export const glucksmann: Candidat = {
   statutCandidature: 'pressenti',
   presentation:
     "Essayiste devenu député européen en 2019, réélu en 2024 en tête de la liste sociale-démocrate. Défend une ligne social-démocrate et résolument pro-européenne, centrée sur la défense de l'État de droit, le soutien à l'Ukraine et la régulation des géants du numérique.",
+  compteX: 'rglucks1',
   liensOfficiels: [
     {
       label: 'Place publique — site officiel du mouvement',
