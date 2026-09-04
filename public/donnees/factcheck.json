@@ -1,8 +1,828 @@
 {
   "version": 2,
-  "genereLe": "",
-  "comptes": [],
-  "citations": [],
+  "genereLe": "2026-09-04T21:03:40.077Z",
+  "comptes": [
+    {
+      "candidatId": "melenchon",
+      "plateforme": "bluesky",
+      "compte": "jlmelenchon.bsky.social",
+      "messagesExamines": 50
+    }
+  ],
+  "citations": [
+    {
+      "id": "bluesky-3mupgkmaqa22h",
+      "candidatId": "melenchon",
+      "plateforme": "bluesky",
+      "compte": "jlmelenchon.bsky.social",
+      "postId": "3mupgkmaqa22h",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mupgkmaqa22h",
+      "texte": "Bardella signe un accord avec l'extrême droite anglaise. S'il devient Premier ministre, il acceptera l'expulsion vers la France des immigrés dont les Anglais ne veulent pas. Notre pays deviendrait le garde-barrière des Anglais ? Ne pas voter Le Pen en 2027 devient une question de dignité nationale.",
+      "affirmation": "Bardella signe un accord avec l'extrême droite anglaise. S'il devient Premier ministre, il acceptera l'expulsion vers la France des immigrés dont les Anglais ne veulent pas. Notre pays deviendrait le garde-barrière des Anglais ? Ne pas voter Le Pen en 2027 devient une question de dignité nationale.",
+      "datePublication": "2026-09-04T16:55:02.136Z",
+      "collecteLe": "2026-09-04T21:03:37.792Z"
+    },
+    {
+      "id": "bluesky-3mtqy2tcffs2q",
+      "candidatId": "melenchon",
+      "plateforme": "bluesky",
+      "compte": "jlmelenchon.bsky.social",
+      "postId": "3mtqy2tcffs2q",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mtqy2tcffs2q",
+      "texte": "Merci aux plus de 10 000 personnes présentes à notre grand meeting des #AMFIS2026. La victoire est à notre portée 🔥",
+      "affirmation": "Merci aux plus de 10 000 personnes présentes à notre grand meeting des #AMFIS2026. La victoire est à notre portée 🔥",
+      "datePublication": "2026-08-23T14:15:48.123Z",
+      "collecteLe": "2026-09-04T21:03:37.793Z"
+    },
+    {
+      "id": "bluesky-3mtqrruri3c24",
+      "candidatId": "melenchon",
+      "plateforme": "bluesky",
+      "compte": "jlmelenchon.bsky.social",
+      "postId": "3mtqrruri3c24",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mtqrruri3c24",
+      "texte": "Vous étiez plus de 10 000 à notre grand meeting des #AMFIS2026 et plus de 24 000 personnes présentes en ligne en permanence !\n\nMerci à toutes et tous ! Nous sommes la force, la victoire est à notre portée !",
+      "affirmation": "Vous étiez plus de 10 000 à notre grand meeting des #AMFIS2026 et plus de 24 000 personnes présentes en ligne en permanence !\n\nMerci à toutes et tous ! Nous sommes la force, la victoire est à notre portée !",
+      "datePublication": "2026-08-23T12:23:25.224Z",
+      "collecteLe": "2026-09-04T21:03:37.793Z"
+    },
+    {
+      "id": "bluesky-3mtqin2bel22c",
+      "candidatId": "melenchon",
+      "plateforme": "bluesky",
+      "compte": "jlmelenchon.bsky.social",
+      "postId": "3mtqin2bel22c",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mtqin2bel22c",
+      "texte": "🔴 HISTORIQUE !\n\nVous êtes plus de 10 000 à notre grand meeting des #AMFIS2026 à Valence !\n\nMaintenant, en avant vers la victoire !\n\n#AMFIS2026 #Melenchon2027",
+      "affirmation": "🔴 HISTORIQUE !\n\nVous êtes plus de 10 000 à notre grand meeting des #AMFIS2026 à Valence !\n\nMaintenant, en avant vers la victoire !\n\n#AMFIS2026 #Melenchon2027",
+      "datePublication": "2026-08-23T09:39:39.540Z",
+      "collecteLe": "2026-09-04T21:03:37.793Z"
+    },
+    {
+      "id": "bluesky-3mtjjlouyls25",
+      "candidatId": "melenchon",
+      "plateforme": "bluesky",
+      "compte": "jlmelenchon.bsky.social",
+      "postId": "3mtjjlouyls25",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mtjjlouyls25",
+      "texte": "C'est la reprise avec les parlementaires et maires insoumis aux #Amfis2026, qui s’annoncent déjà comme le plus grand événement politique de la rentrée ! Rendez-vous ce dimanche pour notre grand meeting à Valence !",
+      "affirmation": "C'est la reprise avec les parlementaires et maires insoumis aux #Amfis2026, qui s’annoncent déjà comme le plus grand événement politique de la rentrée ! Rendez-vous ce dimanche pour notre grand meeting à Valence !",
+      "datePublication": "2026-08-20T15:08:09.620Z",
+      "collecteLe": "2026-09-04T21:03:37.793Z"
+    },
+    {
+      "id": "bluesky-3mthgmh5zzs2j",
+      "candidatId": "melenchon",
+      "plateforme": "bluesky",
+      "compte": "jlmelenchon.bsky.social",
+      "postId": "3mthgmh5zzs2j",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mthgmh5zzs2j",
+      "texte": "🔴 ÉVÉNEMENT - Dans les coulisses de l’élection présidentielle.\n\nRetrouvez dès maintenant le premier épisode de notre documentaire exclusif « Le chemin de la victoire » sur la campagne présidentielle 2027 !\n\n👉 youtu.be/Xq8a165QzvQ",
+      "affirmation": "🔴 ÉVÉNEMENT - Dans les coulisses de l’élection présidentielle.\n\nRetrouvez dès maintenant le premier épisode de notre documentaire exclusif « Le chemin de la victoire » sur la campagne présidentielle 2027 !\n\n👉 youtu.be/Xq8a165QzvQ",
+      "datePublication": "2026-08-19T19:09:34.375Z",
+      "collecteLe": "2026-09-04T21:03:37.793Z"
+    }
+  ],
   "verifications": [],
-  "veille": []
+  "veille": [
+    {
+      "id": "veille-decodeurs-52552b70819cac44",
+      "titre": "Présidentielle 2027 : pour Jean-Luc Mélenchon, la transition écologique passe par une forte reprise en main de l’Etat",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/04/presidentielle-2027-pour-jean-luc-melenchon-la-transition-ecologique-passe-par-une-forte-reprise-en-main-de-l-etat_6765784_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-09-04T11:56:45.000Z",
+      "collecteLe": "2026-09-04T21:03:37.954Z",
+      "candidatsPressentis": [
+        "melenchon"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-3c770fb3bc928de8",
+      "titre": "Gabriel Attal arrange son bilan budgétaire de 2024 en ce début de campagne présidentielle",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/04/gabriel-attal-arrange-son-bilan-budgetaire-de-2024-en-ce-debut-de-campagne-presidentielle_6765760_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-09-04T09:30:00.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": [
+        "attal"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-0434489a1ddbb874",
+      "titre": "VRAI OU FAUX. Une entreprise doit-elle d&#xE9;bourser \"483&#xA0;euros\" pour augmenter de \"100&#xA0;euros net\" le salaire d'un employ&#xE9; pay&#xE9; au smic, comme l'affirme le PDG de Coop&#xE9;rative&#xA0;U&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-une-entreprise-doit-elle-debourser-483-euros-pour-augmenter-de-100-euros-net-le-salaire-d-un-employe-paye-au-smic-comme-l-affirme-le-pdg-de-cooperative-u_8173814.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-09-04T03:54:44.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-1b0c5a0a47c6d5d4",
+      "titre": "Que sait-on des sabotages ayant visé des installations électriques en Allemagne ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-des-sabotages-ayant-vise-des-installations-electriques-en-allemagne-20260903_AY7PCD42FBC6TH26WK7VDUKBGI/",
+      "editeur": "Libération",
+      "datePublication": "2026-09-03T18:28:03.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-df54a16fabcb1452",
+      "titre": "«Petite culotte de chou broutée par des lapins» : mais d’où vient l’expression sortie par Dominique de Villepin ?",
+      "url": "https://www.liberation.fr/checknews/petite-culotte-de-chou-broutee-par-des-lapins-mais-dou-vient-lexpression-sortie-par-dominique-de-villepin-20260903_IW4ZIGNGSJDNJKSSA4D7MOFB6E/",
+      "editeur": "Libération",
+      "datePublication": "2026-09-03T17:01:25.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": [
+        "villepin"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-1c01ffecf2ca3782",
+      "titre": "Présidentielle 2027 : Raphaël Glucksmann se pose en figure de la « révolution écologique » à gauche",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/03/presidentielle-2027-raphael-glucksmann-se-pose-en-figure-de-la-revolution-ecologique-a-gauche_6765180_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-09-03T15:33:56.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": [
+        "glucksmann"
+      ]
+    },
+    {
+      "id": "veille-checknews-ad90223cf041508e",
+      "titre": "Palestine : le secrétaire général des Nations unies a-t-il vraiment déclaré que Francesca Albanese était «hors de contrôle»  ?",
+      "url": "https://www.liberation.fr/checknews/palestine-le-secretaire-general-des-nations-unies-a-t-il-vraiment-declare-que-francesca-albanese-etait-hors-de-controle-20260902_U7POTRZTNFCSLJ7PDUCPK7YWW4/",
+      "editeur": "Libération",
+      "datePublication": "2026-09-02T15:14:41.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-60e2c904c5e387cb",
+      "titre": "Présidentielle 2027 : Bruno Retailleau, une approche très libérale du dérèglement climatique",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/02/presidentielle-2027-bruno-retailleau-defend-des-solutions-issues-du-progres-technologique-pour-lutter-contre-le-dereglement-climatique_6764452_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-09-02T14:00:08.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": [
+        "retailleau"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-9c5c86220aef3926",
+      "titre": "VRAI OU FAUX. La r&#xE9;forme du concours des enseignants a-t-elle permis de \"recruter quasiment &#xE0; plein\", comme l'affirme le ministre de l'Education nationale&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-la-reforme-du-concours-des-enseignants-a-t-elle-permis-de-recruter-quasiment-a-plein-comme-l-affirme-le-ministre-de-l-education-nationale_8171921.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-09-02T10:03:37.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-c842780ad6a9a79e",
+      "titre": "VRAI OU FAUX. Marine Tondelier a-t-elle raison de dire qu'une loi sur la transmission d'entreprises familiales est \"d&#xE9;tourn&#xE9;e\" pour \"servir d'optimisation fiscale\" ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-marine-tondelier-a-t-elle-raison-de-dire-qu-une-loi-sur-la-transmission-d-entreprises-familiales-est-detournee-pour-servir-d-optimisation-fiscale_8166221.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-09-02T03:56:28.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": [
+        "tondelier"
+      ]
+    },
+    {
+      "id": "veille-checknews-55be3b5e487e5297",
+      "titre": "Comment le site de campagne de Jean-Luc Mélenchon a-t-il été qualifié de «dangereux» sur X ?",
+      "url": "https://www.liberation.fr/checknews/comment-le-site-de-campagne-de-jean-luc-melenchon-a-t-il-ete-qualifie-de-dangereux-sur-x-20260901_Q2JGWCVNIBDNXKDICUMOBZGBCU/",
+      "editeur": "Libération",
+      "datePublication": "2026-09-01T17:46:58.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": [
+        "melenchon"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-cbcabde9ceb2b62a",
+      "titre": "Présidentielle 2027 : souverainisme et air conditionné, les deux piliers de Marine Le Pen et du RN pour lutter contre le dérèglement climatique",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/01/presidentielle-2027-souverainisme-et-air-conditionne-les-deux-piliers-de-marine-le-pen-et-du-rn-pour-lutter-contre-le-dereglement-climatique_6763489_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-09-01T14:00:19.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": [
+        "lepen"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-50aa3004d466acab",
+      "titre": "VRAI OU FAUX. \"Absolument pas cr&#xE9;dible juridiquement\"&#xA0;: le RN peut-il vraiment interdire le port du voile dans l'espace public&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-absolument-pas-credible-juridiquement-le-rn-peut-il-vraiment-interdire-le-port-du-voile-dans-l-espace-public_8170601.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-09-01T03:54:06.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-2167442879bceeeb",
+      "titre": "Retraite des femmes : les règles changent le 1ᵉʳ septembre, quelles conséquences pour les mères ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/31/retraite-des-femmes-les-regles-changent-le-1er-septembre-quels-impacts-pour-les-meres_6762517_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-31T13:10:17.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-9000a6bc2287e768",
+      "titre": "Ce qu’il faut retenir de l’actualité du week-end des 29 et 30 août",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/30/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-29-et-30-aout_6761426_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-30T16:30:08.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-a7d6759256317bf9",
+      "titre": "Canicules, incendies, sécheresse : comprendre l’été exceptionnel de la France en graphiques",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/30/canicules-incendies-secheresse-l-ete-exceptionnel-de-la-france-en-graphiques_6760743_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-30T04:17:52.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-25e814951e45ca14",
+      "titre": "Tremblement de terre, lac proglaciaire ou éboulement : quelle est la cause réelle de la coulée de boue mortelle au Népal ?",
+      "url": "https://www.liberation.fr/checknews/tremblement-de-terre-lac-proglaciaire-ou-eboulement-quelle-est-la-cause-reelle-de-la-coulee-de-boue-mortelle-au-nepal-20260828_U24L27BTN5G3LI372BUTPOFQ5I/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-29T06:33:01.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-dd95c6c521ba4480",
+      "titre": "Marseille : le voisin de Sébastien Delogu, soupçonné de vol de montre de luxe, est-il «ressorti libre» ?",
+      "url": "https://www.liberation.fr/checknews/marseille-le-voisin-de-sebastien-delogu-soupconne-de-vol-de-montre-de-luxe-est-il-ressorti-libre-20260828_WK3R4IDETVH33JXDKZRXJTKELI/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-28T17:18:48.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-3ce9525b7416de95",
+      "titre": "Vrai ou faux. Les arr&#xEA;ts de travail courts sont-ils prescrits en \"open bar\" comme l'affirme Edouard Philippe ?",
+      "url": "https://www.franceinfo.fr/sante/les-arrets-de-travail-courts-sont-ils-prescrits-en-open-bar-comme-l-affirme-edouard-philippe_8166740.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-08-28T15:51:48.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": [
+        "philippe"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-9a9858dec91e0aaa",
+      "titre": "Qu’est-ce que la psychose post-partum, au cœur du procès de Lindsay Clancy aux Etats-Unis ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/28/qu-est-ce-que-la-psychose-post-partum-au-c-ur-du-proces-de-lindsay-clancy-aux-etats-unis_6758998_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-28T11:35:04.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-712d4a8e73d02740",
+      "titre": "VRAI OU FAUX. Cumuler un mandat d'adjoint au maire et un emploi se fait-il vraiment \"partout\" &#xE0; cause \"d'indemnit&#xE9;s trop faibles\", comme l'affirme Eric Coquerel&#xA0;?",
+      "url": "https://www.franceinfo.fr/politique/vrai-ou-faux-cumuler-un-mandat-d-adjoint-au-maire-et-un-emploi-se-fait-il-vraiment-partout-a-cause-d-indemnites-trop-faibles-comme-l-affirme-eric-coquerel_8162489.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-08-28T03:57:50.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-aa942bff6b2d0ab9",
+      "titre": "Deauville : le retrait d’une photo de Gaza à un festival a été précédé d’une campagne d’un militant pro-israélien",
+      "url": "https://www.liberation.fr/checknews/deauville-le-retrait-dune-photo-de-gaza-a-un-festival-a-ete-precede-dune-campagne-dun-militant-pro-israelien-20260827_XWUE6P4PV5B6PCVAWVNRRXBPU4/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-27T13:25:15.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-e398109bc058c4a3",
+      "titre": "Inondations au Népal : du glacier jusqu’aux villages emportés par la boue, ce que montrent les images de la catastrophe",
+      "url": "https://www.liberation.fr/checknews/inondations-au-nepal-du-glacier-jusquaux-villages-emportes-par-la-boue-ce-que-montrent-les-images-de-la-catastrophe-20260827_U6PUXARV45EUTKVHLDZZWFI3T4/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-27T11:27:11.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-b09f31d7776cd790",
+      "titre": "« Objection ! », « On a un mandat », « Je veux un avocat »… Ces clichés issus des séries américaines qui n’existent pas dans la justice française",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/27/objection-on-a-un-mandat-je-veux-un-avocat-ces-cliches-issus-des-series-americaines-qui-n-existent-pas-dans-la-justice-francaise_6758245_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-27T08:35:23.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-ee4ceacb7456e932",
+      "titre": "Israël, Taiwan, Qatar : ces pays où les parlementaires français sont le plus invités, pour des séjours «tous frais payés»",
+      "url": "https://www.liberation.fr/checknews/israel-taiwan-qatar-dans-quels-pays-les-parlementaires-francais-sont-ils-le-plus-souvent-invites-tous-frais-payes-20260826_77FCUTJX5RFCVAJT73WAFTBNPY/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-26T15:40:02.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-ede7f997abd0e418",
+      "titre": "Rougeole aux Etats-Unis : où en est l’épidémie et pourquoi elle inquiète",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/26/rougeole-aux-etats-unis-ou-en-est-l-epidemie-et-pourquoi-elle-inquiete_6757358_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-26T09:55:18.000Z",
+      "collecteLe": "2026-09-04T21:03:37.955Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-1cb2b2ce4aaa60ca",
+      "titre": "VRAI OU FAUX. Budget 2027&#xA0;: une nouvelle loi sp&#xE9;ciale co&#xFB;terait-elle 15&#xA0;milliards d'euros suppl&#xE9;mentaires &#xE0; la France&#xA0;?",
+      "url": "https://www.franceinfo.fr/economie/vrai-ou-faux-budget-2027-une-nouvelle-loi-speciale-couterait-elle-15-milliards-d-euros-supplementaires-a-la-france_8159672.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-08-26T03:55:26.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-5f52b7079941226f",
+      "titre": "Gaza : comment les nécrologies de combattants publiées par le Hamas percutent le décompte des journalistes tués par l’armée israélienne",
+      "url": "https://www.liberation.fr/checknews/gaza-comment-les-necrologies-de-combattants-publiees-par-le-hamas-percutent-le-decompte-des-journalistes-tues-par-larmee-israelienne-20260825_M2RBBS4BCFBMBFTVXDUFBJVFHQ/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-25T13:53:14.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-d309fff2b7e9543c",
+      "titre": "Non, «Libération» n’a pas supprimé de commentaire de Rima Hassan sur Instagram",
+      "url": "https://www.liberation.fr/checknews/non-liberation-na-pas-supprime-de-commentaire-de-rima-hassan-sur-instagram-20260825_GERDURYNPJCBJB56D4THSTDCJU/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-25T08:53:28.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-83a85bf19e2c571e",
+      "titre": "«Prenez un café» avec un Français, «appelez la police» avec un Arabe : quand l’IA de Google reproduit des biais racistes",
+      "url": "https://www.liberation.fr/checknews/prenez-un-cafe-avec-un-francais-appelez-la-police-avec-un-arabe-quand-lia-de-google-reproduit-des-biais-racistes-20260824_NFD4WW6WRBHIHGP6ZAKUM6HFYE/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-24T14:51:50.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-effc2c044d60d874",
+      "titre": "Ce qu’il faut retenir de l’actualité du week-end des 22 et 23 août",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/23/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-22-et-23-aout_6754436_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-23T16:03:38.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-9409bca2c354243a",
+      "titre": "Que s’est-il passé cet été ? Les 30 événements à retenir de juin et juillet",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/23/vous-revenez-de-vacances-rattrapez-l-actualite-que-vous-avez-manquee-cet-ete-avec-le-recapator_6754234_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-23T13:14:40.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-1f5c9967ea4b63bb",
+      "titre": "Villa en Sicile : Edouard Philippe ciblé par une nouvelle campagne russe de désinformation",
+      "url": "https://www.liberation.fr/checknews/villa-en-sicile-detournement-de-fonds-publics-edouard-philippe-cible-par-une-nouvelle-campagne-russe-de-desinformation-20260821_AWMF4WZ7OFAZTFV7MUTGGORR34/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-21T17:10:51.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": [
+        "philippe"
+      ]
+    },
+    {
+      "id": "veille-checknews-b8fc483c44f5993d",
+      "titre": "Comment le gouvernement israélien a fabriqué un institut de recherche fictif pour influencer les IA génératives",
+      "url": "https://www.liberation.fr/checknews/comment-le-gouvernement-israelien-a-fabrique-un-institut-de-recherche-fictif-pour-influencer-les-ia-generatives-20260821_V6IBCTSWN5AIJBPBMYGVA6NQFU/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-21T14:19:43.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-dc7cc9aece188995",
+      "titre": "Nucléaire : visualisez l’impact des canicules sur la production des centrales françaises",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/20/nucleaire-visualisez-l-impact-des-canicules-sur-la-production-des-centrales-francaises_6751125_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-20T16:38:29.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-8168a5c03d9aa075",
+      "titre": "Fuites de données : à quel prix se vendent vos informations personnelles ?",
+      "url": "https://www.liberation.fr/checknews/fuites-de-donnees-a-quel-prix-se-vendent-vos-informations-personnelles-20260820_2W3KQEJYVNGSRNFPA4UFKQ5UXQ/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-20T15:36:25.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-eb40e57bdd0bbd72",
+      "titre": "Cyberharcèlement : pourquoi Lena Situations et ses amis influenceurs sont-ils accusés d’avoir lâché l’agente Gisèle Journo ?",
+      "url": "https://www.liberation.fr/checknews/cyberharcelement-pourquoi-lena-situations-et-ses-amis-influenceurs-sont-ils-accuses-davoir-lache-lagente-gisele-journo-20260820_ARUOPHO4HFHHLHMXQXMW55QJHA/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-20T07:08:09.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-9a5257710b0229f9",
+      "titre": "VRAI OU FAUX. Les prix des fruits et l&#xE9;gumes n'ont-ils vraiment pas augment&#xE9; malgr&#xE9; la s&#xE9;cheresse, comme l'affirme la ministre de l'Agriculture&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-les-prix-des-fruits-et-legumes-n-ont-ils-vraiment-pas-augmente-malgre-la-secheresse-comme-l-affirme-la-ministre-de-l-agriculture_8152010.html#xtor=RSS-3-%5Bgeneral%5D",
+      "editeur": "franceinfo",
+      "datePublication": "2026-08-20T03:57:56.000Z",
+      "collecteLe": "2026-09-04T21:03:39.325Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-56cfa5b158653eca",
+      "titre": "Fuite de données : après le fisc, le groupe ZeroBytes revendique une attaque visant des milliers d’élèves de l’Education nationale",
+      "url": "https://www.liberation.fr/checknews/fuite-de-donnees-apres-le-fisc-le-groupe-zerobytes-revendique-une-attaque-visant-des-milliers-deleves-de-leducation-nationale-20260818_NN6A4GDNBJBLPDOUNJ27X6PH5M/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-18T15:46:29.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-bf64d4350c25eee8",
+      "titre": "Quiz : saurez-vous remettre dans l’ordre ces grands procès qui ont marqué la France ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/18/quiz-saurez-vous-remettre-dans-l-ordre-ces-grands-proces-qui-ont-marque-la-france_6748835_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-18T08:00:05.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-1a5c860b88d8752a",
+      "titre": "Piratage du fisc : la France est-elle davantage touchée par les cyberattaques que les autres pays ?",
+      "url": "https://www.liberation.fr/checknews/piratage-du-fisc-la-france-est-elle-davantage-touchee-par-les-cyberattaques-que-les-autres-pays-20260817_JCQDWOQLX5CZRJ256G54DMS7TU/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-17T16:38:55.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-185b45b586eabf88",
+      "titre": "Ce qu’il faut retenir de l’actualité du week-end des 15 et 16 août",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/16/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-15-et-16-aout_6747683_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-16T17:17:33.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-5e5d8e5170c27f14",
+      "titre": "A Qusra, en Cisjordanie, deux familles palestiniennes sont toujours assiégées par des colons israéliens",
+      "url": "https://www.liberation.fr/checknews/a-qusra-en-cisjordanie-deux-familles-palestiniennes-sont-toujours-assiegees-par-des-colons-20260814_BKDAJK464RBHXDU46EWKCKRGHQ/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-14T16:12:41.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-5d4093eab7f44765",
+      "titre": "Jordan Bardella, l’écrivain qui valait un million",
+      "url": "https://www.liberation.fr/checknews/jordan-bardella-lecrivain-qui-valait-un-million-20260814_BOPMQNXNFJHIPBA423SGFASFNI/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-14T15:14:59.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": [
+        "bardella"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-9d3856e571441254",
+      "titre": "L’éducation de la société civile, une arme contre la désinformation qui sévit en Europe",
+      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/14/l-education-de-la-societe-civile-une-arme-contre-la-desinformation-qui-sevit-en-europe_6746271_3451060.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-14T15:00:16.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-a72da9e7c78902ca",
+      "titre": "Adieu « fake news », bonjour « FIMI » : le lexique de la désinformation fait peau neuve",
+      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/13/adieu-fake-news-bonjour-fimi-le-lexique-de-la-desinformation-fait-peau-neuve_6745813_3451060.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-13T15:00:02.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-59600b1a40d41c4f",
+      "titre": "Eclipse de 1999 : L’Etat avait-il distribué 30 millions de lunettes gratuites?",
+      "url": "https://www.liberation.fr/checknews/eclipse-de-1999-non-letat-navait-pas-distribue-30-millions-de-lunettes-gratuites-20260812_YHJFZMILUNGR7O4SJ2AJZGBZ4I/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-12T15:10:30.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-2c06fa3ca9ce07dc",
+      "titre": "Les lendemains difficiles du fact-checking après un âge d’or lors de la crise due au Covid-19",
+      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/12/les-lendemains-difficiles-du-fact-checking-apres-un-age-d-or-lors-de-la-crise-due-au-covid-19_6745075_3451060.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-12T15:00:04.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-d36295462397a700",
+      "titre": "Feux de forêt : la France brûle-t-elle davantage aujourd’hui qu’il y a cinquante ans ?",
+      "url": "https://www.liberation.fr/checknews/feux-de-foret-la-france-brule-t-elle-davantage-aujourdhui-quil-y-a-cinquante-ans-20260812_I5IPR7SPEJFFDL2SQWEFWJTUZM/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-12T12:35:56.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-decodeurs-9b8c259b94bb7cbf",
+      "titre": "Facebook et les fausses informations, dix ans d’hésitations et une volte-face de Zuckerberg",
+      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/11/facebook-et-les-fausses-informations-dix-ans-d-hesitations-et-une-volte-face-de-zuckerberg_6744010_3451060.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-08-11T15:00:08.000Z",
+      "collecteLe": "2026-09-04T21:03:37.956Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-791e27e424acadc2",
+      "titre": "Nucléaire : en raison de la canicule, l’été 2026 bat des records d’indisponibilité des réacteurs",
+      "url": "https://www.liberation.fr/checknews/nucleaire-en-raison-de-la-canicule-lete-2026-bat-des-records-dindisponibilite-des-reacteurs-20260808_LZ6D2PG5WFCNTJVCMLKLMN7SKE/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-08T16:31:54.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-7a2f3d38b2d729d8",
+      "titre": "Ceuta : sur les réseaux sociaux, une nouvelle mobilisation s’organise pour le 15 août, entre appels au départ et fausses informations",
+      "url": "https://www.liberation.fr/checknews/ceuta-sur-les-reseaux-sociaux-une-nouvelle-mobilisation-sorganise-pour-le-15-aout-entre-appels-au-depart-et-fausses-informations-20260806_5V4IHECG4ZHTLM2VLUQ2IQXRTU/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-06T17:36:39.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-80370abba4f4fb44",
+      "titre": "Gabriel Attal, conseiller municipal… à mi-temps",
+      "url": "https://www.liberation.fr/checknews/gabriel-attal-conseiller-municipal-a-mi-temps-20260806_7ANJD4D6FRDDHNDXOUAJ53RLIQ/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-06T13:08:50.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": [
+        "attal"
+      ]
+    },
+    {
+      "id": "veille-checknews-0e338616f3cfb452",
+      "titre": "Incendies en Gironde : qui est Benoît Bartherotte, l’intrigant «sauveur du Cap-Ferret» ?",
+      "url": "https://www.liberation.fr/checknews/incendies-en-gironde-qui-est-benoit-bartherotte-lintrigant-sauveur-du-cap-ferret-20260805_W7MRZM5R3NHODLBYLR337Q3HCQ/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-05T13:45:07.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-87b0d15f6692a73b",
+      "titre": "A Gaza, d’immenses tranchées creusées par Tsahal réduisent encore un peu plus l’espace laissé aux Palestiniens",
+      "url": "https://www.liberation.fr/checknews/a-gaza-dimmenses-tranchees-creusees-par-tsahal-reduisent-encore-un-peu-plus-lespace-laisse-aux-palestiniens-20260803_DJL3JKFEIFDMXN7K3PJMJNI53U/",
+      "editeur": "Libération",
+      "datePublication": "2026-08-03T16:36:48.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-0d35b11702f36e74",
+      "titre": "Incendies en Gironde : la commune du Porge a-t-elle été «sacrifiée» pour sauver les villas cossues du Cap Ferret ?",
+      "url": "https://www.liberation.fr/checknews/incendies-en-gironde-la-commune-du-porge-a-t-elle-ete-sacrifiee-pour-sauver-les-villas-cossues-du-cap-ferret-20260731_BRHGYJZT35HHXG5HXCGYTLPVBI/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-31T17:59:26.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-0a7e1c9b035a0fdf",
+      "titre": "Bally Bagayoko ment-il en affirmant que «chaque élève de 3e» de sa ville «recevra un vélo gratuit» à la rentrée ?",
+      "url": "https://www.liberation.fr/checknews/bally-bagayoko-ment-il-en-affirmant-que-chaque-eleve-de-3e-de-sa-ville-recevra-un-velo-gratuit-a-la-rentree-20260730_K77KWJJKAJEFRNQRJM3NTWRBHE/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-30T18:30:52.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-b3eb29c9e0f5dac5",
+      "titre": "Coupe du monde : la pétition réclamant l’exclusion de l’Argentine par la Fifa était fausse",
+      "url": "https://www.liberation.fr/checknews/coupe-du-monde-la-petition-reclamant-lexclusion-de-largentine-par-la-fifa-etait-fausse-20260729_6MOD6NSJ6RGERNOEJSTRD4HMYA/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-29T16:34:36.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-c5207016cb203a87",
+      "titre": "Que sait-on de l’Agrif, cette association d’extrême droite qui a fait reconnaître la notion de racisme anti-Blancs dans l’affaire de Crépol ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-de-lagrif-cette-association-dextreme-droite-qui-a-fait-reconnaitre-la-notion-de-racisme-anti-blancs-dans-laffaire-de-crepol-20260728_3ZHCTYFY3RDIBCYWX7FC6RXTMI/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-28T10:01:35.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-1b85b5d18813a4e4",
+      "titre": "Canadair : moins de deux tiers des appareils étaient opérationnels ces derniers jours pendant les grands incendies",
+      "url": "https://www.liberation.fr/checknews/canadair-moins-de-deux-tiers-des-appareils-etaient-operationnels-ces-derniers-jours-20260727_6ORD3FYYZVH63FK5DD56OIR3EM/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-27T15:37:41.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-22ae7ae26674bdc2",
+      "titre": "Lunettes connectées Meta : que faire quand on est filmé à son insu ?",
+      "url": "https://www.liberation.fr/checknews/lunettes-connectees-meta-que-faire-quand-on-est-filme-a-son-insu-20260727_53Z4HX25WZHOZHX7ZXQ3CJ4TUE/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-27T12:31:07.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-1169a3fcf229bce3",
+      "titre": "Origines, tarifs, communication… Les curieuses méthodes de Climloc, spécialisée dans la location express de climatiseurs mobiles",
+      "url": "https://www.liberation.fr/checknews/origines-tarifs-communication-les-curieuses-methodes-de-climloc-specialisee-dans-la-location-express-de-climatiseurs-mobiles-20260725_THUQH3BDE5ECPBAY3FHHW6T3O4/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-25T12:01:24.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-c952a561815c51a4",
+      "titre": "Nombre de moteurs, disponibilité des avions : les mauvais chiffres du ministère de l’Intérieur sur les Canadair",
+      "url": "https://www.liberation.fr/checknews/nombre-de-moteurs-disponibilite-des-avions-les-mauvais-chiffres-du-ministere-de-linterieur-sur-les-canadair-20260723_HCKLXLPTCNCNXP4Y7NRXXWB3LU/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-23T15:18:24.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-45ee7673fc14fb16",
+      "titre": "Un ministre est-il obligé de continuer à travailler si le président refuse sa démission ?",
+      "url": "https://www.liberation.fr/checknews/2018/10/02/un-ministre-est-il-oblige-de-continuer-a-travailler-si-le-president-refuse-sa-demission_1682585/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-22T14:41:38.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-bceb265a96272ccc",
+      "titre": "Non, l’Education nationale n’a pas décidé d’arrêter d’enseigner le russe en France",
+      "url": "https://www.liberation.fr/checknews/non-leducation-nationale-na-pas-decide-darreter-denseigner-le-russe-en-france-20260722_25UYJMA6DNC35L64WMGOS5X2PM/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-22T14:25:18.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-8d2a20c416377a39",
+      "titre": "L’interdiction des réseaux sociaux aux moins de 15 ans est-elle applicable ?",
+      "url": "https://www.liberation.fr/checknews/interdiction-des-reseaux-sociaux-au-moins-de-15-ans-sans-lue-un-texte-a-la-portee-limitee-et-minimaliste-20260722_5H37QTAINJBA3EJWS2B6LRYPGM/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-22T03:34:00.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-edbfe8b7cdd7e545",
+      "titre": "Netflix demande-t-il aux cinéastes de «répéter trois ou quatre fois» l’intrigue pour les spectateurs distraits, comme le dit Matt Damon ?",
+      "url": "https://www.liberation.fr/checknews/netflix-demande-t-il-aux-cineastes-de-repeter-trois-ou-quatre-fois-lintrigue-pour-les-spectateurs-distraits-comme-le-dit-matt-damon-20260719_WIFB5UHWDFHMBB5ZZ5SZ3DKPVA/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-19T10:14:02.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-f54ff4c6d0ab3870",
+      "titre": "Après la mort du sénateur américain Lindsey Graham, un déferlement de rumeurs contradictoires",
+      "url": "https://www.liberation.fr/checknews/apres-la-mort-du-senateur-americain-lindsey-graham-un-deferlement-de-rumeurs-contradictoires-20260718_VCPTGF65V5E3DLKFQFYBJJNQ5U/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-18T13:10:00.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-a1248974ebf7699d",
+      "titre": "Non, il n’est pas interdit de se maquiller dans les wagons de la RATP ou de la SNCF",
+      "url": "https://www.liberation.fr/checknews/non-il-nest-pas-interdit-de-se-maquiller-dans-les-wagons-de-la-ratp-ou-de-la-sncf-20260718_FSPAVT54PFCBDN2K23TS7CHK6A/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-18T09:26:00.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-e7c2dab5ef106c6e",
+      "titre": "Non, Mélenchon n’a pas proposé Matignon à Montebourg chez Ruquier en 2017",
+      "url": "https://www.liberation.fr/checknews/non-melenchon-na-pas-propose-matignon-a-montebourg-chez-ruquier-en-2017-20260717_N6CWSV6KGJHALNJOFETFQJDRZQ/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-17T14:19:49.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": [
+        "melenchon"
+      ]
+    },
+    {
+      "id": "veille-checknews-c8526062535ce9a3",
+      "titre": "Feux de forêt : les petits arrangements avec la vérité de Gabriel Attal, accusé d’avoir empêché l’achat de deux Canadair",
+      "url": "https://www.liberation.fr/checknews/feux-de-foret-les-petits-arrangements-avec-la-verite-de-gabriel-attal-accuse-davoir-empeche-lachat-de-deux-canadair-20260717_K2AXQWTJHZCPNAWPSJTLUR6GXQ/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-17T12:54:27.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": [
+        "attal"
+      ]
+    },
+    {
+      "id": "veille-checknews-c35badfe488127c2",
+      "titre": "Doctolib : pourquoi la plateforme veut utiliser vos données de santé pour un projet de recherche avec l’IA",
+      "url": "https://www.liberation.fr/checknews/doctolib-pourquoi-la-plateforme-veut-utiliser-vos-donnees-de-sante-pour-un-projet-de-recherche-avec-lia-20260716_TCGZ4NZTQNCCVCDKCUMTZMC2JY/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-16T15:00:00.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-369bda26a455808d",
+      "titre": "Que sait-on de ces images montrant un policier municipal tirer sur deux fugitifs après qu’ils ont lancé un feu d’artifice ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-de-ces-images-montrant-un-policier-municipal-tirer-sur-deux-fugitifs-apres-quils-ont-lance-un-feu-dartifice-20260716_HVUKKKQOTJEZXMIPERC5A5XQTI/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-16T12:59:05.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-f6d8e5c828979579",
+      "titre": "Coupe du monde 2026 : que sait-on des accusations qui visent la Fédération argentine de football ?",
+      "url": "https://www.liberation.fr/checknews/coupe-du-monde-2026-que-sait-on-des-accusations-qui-visent-la-federation-argentine-de-football-20260715_WPLZEDYXKBEM7BS4Q2JCAUKMH4/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-15T19:07:52.000Z",
+      "collecteLe": "2026-09-04T21:03:40.069Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-ac81b9f7a3ab5b12",
+      "titre": "Coupes budgétaires, retards industriels : le renouvellement des Canadair français, une promesse de Macron toujours non tenue",
+      "url": "https://www.liberation.fr/checknews/coupes-budgetaires-retards-industriels-le-renouvellement-des-canadair-francais-une-promesse-de-macron-toujours-non-tenue-20260715_4IBUFL7T5FHSJJPVXC4QPWWEN4/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-15T15:50:50.000Z",
+      "collecteLe": "2026-09-04T21:03:40.070Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-d93af958b8217323",
+      "titre": "«Chat Control» : comment le texte décrié de lutte contre la pédocriminalité, initialement rejeté par le Parlement européen, a-t-il finalement pu être adopté ?",
+      "url": "https://www.liberation.fr/checknews/chat-control-comment-le-texte-decrie-de-lutte-contre-la-pedocriminalite-initialement-rejete-par-le-parlement-europeen-a-t-il-finalement-pu-etre-adopte-20260715_4BBOGOUYVRHTLFTVUKN3QMVNAU/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-15T05:20:00.000Z",
+      "collecteLe": "2026-09-04T21:03:40.070Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-e4c4574562fc4139",
+      "titre": "Brut a-t-il diffusé l’image d’un enfant portant «le bandeau du Hamas» dans une vidéo sur le manque d’eau potable en Vendée ?",
+      "url": "https://www.liberation.fr/checknews/brut-a-t-il-diffuse-limage-dun-enfant-portant-le-bandeau-du-hamas-dans-une-video-sur-le-manque-deau-potable-en-vendee-20260713_XV2WICINIRAKXGIG3A76BPKJWE/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-13T16:10:24.000Z",
+      "collecteLe": "2026-09-04T21:03:40.070Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-checknews-23f13a855aef1b28",
+      "titre": "Que sait-on d’une fausse vidéo de menace du Hezbollah contre la France, apparue jeudi sur X ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-dune-fausse-video-de-menace-du-hezbollah-contre-la-france-apparue-jeudi-sur-x-20260711_COPZBWGSVJDPPBU2K3AOT4AAMU/",
+      "editeur": "Libération",
+      "datePublication": "2026-07-11T11:01:52.000Z",
+      "collecteLe": "2026-09-04T21:03:40.070Z",
+      "candidatsPressentis": []
+    },
+    {
+      "id": "veille-afp-factuel-f1cbee4141b99451",
+      "titre": "France",
+      "url": "https://factuel.afp.com/node/1",
+      "editeur": "Agence France-Presse",
+      "datePublication": "2023-06-07T14:54:28.000Z",
+      "collecteLe": "2026-09-04T21:03:39.184Z",
+      "candidatsPressentis": []
+    }
+  ]
 }
