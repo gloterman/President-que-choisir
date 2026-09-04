@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "genereLe": "2026-09-04T21:14:31.348Z",
+  "genereLe": "2026-09-04T21:34:36.813Z",
   "comptes": [
     {
       "candidatId": "melenchon",
@@ -12,7 +12,7 @@
       "candidatId": "roussel",
       "plateforme": "site-officiel",
       "compte": "https://www.pcf.fr/",
-      "erreur": "aucun flux trouvé (6 chemins essayés)"
+      "erreur": "aucun flux trouvé (aucun déclaré, 6 chemins essayés)"
     },
     {
       "candidatId": "tondelier",
@@ -30,19 +30,19 @@
       "candidatId": "attal",
       "plateforme": "site-officiel",
       "compte": "https://parti-renaissance.fr/",
-      "erreur": "aucun flux trouvé (6 chemins essayés)"
+      "erreur": "aucun flux trouvé (aucun déclaré, 6 chemins essayés)"
     },
     {
       "candidatId": "philippe",
       "plateforme": "site-officiel",
       "compte": "https://horizonsleparti.fr/",
-      "erreur": "aucun flux trouvé (6 chemins essayés)"
+      "erreur": "aucun flux trouvé (aucun déclaré, 6 chemins essayés)"
     },
     {
       "candidatId": "lisnard",
       "plateforme": "site-officiel",
       "compte": "https://www.unenouvelleenergie.fr/",
-      "erreur": "aucun flux trouvé (6 chemins essayés)"
+      "erreur": "aucun flux trouvé (aucun déclaré, 6 chemins essayés)"
     },
     {
       "candidatId": "retailleau",
@@ -54,19 +54,19 @@
       "candidatId": "lepen",
       "plateforme": "site-officiel",
       "compte": "https://rassemblementnational.fr/",
-      "erreur": "aucun flux trouvé (6 chemins essayés)"
+      "erreur": "aucun flux trouvé (aucun déclaré, 6 chemins essayés)"
     },
     {
       "candidatId": "bardella",
       "plateforme": "site-officiel",
       "compte": "https://rassemblementnational.fr/",
-      "erreur": "aucun flux trouvé (6 chemins essayés)"
+      "erreur": "aucun flux trouvé (aucun déclaré, 6 chemins essayés)"
     },
     {
       "candidatId": "zemmour",
       "plateforme": "site-officiel",
       "compte": "https://parti-reconquete.fr/",
-      "erreur": "aucun flux trouvé (6 chemins essayés)"
+      "erreur": "aucun flux trouvé (aucun déclaré, 6 chemins essayés)"
     },
     {
       "candidatId": "melenchon",
