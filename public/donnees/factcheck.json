@@ -1,7 +1,37 @@
 {
   "version": 2,
-  "genereLe": "2026-09-04T21:03:40.077Z",
+  "genereLe": "2026-09-04T21:07:01.190Z",
   "comptes": [
+    {
+      "candidatId": "roussel",
+      "plateforme": "assemblee",
+      "compte": "fabien-roussel",
+      "messagesExamines": 0
+    },
+    {
+      "candidatId": "ruffin",
+      "plateforme": "assemblee",
+      "compte": "francois-ruffin",
+      "messagesExamines": 0
+    },
+    {
+      "candidatId": "batho",
+      "plateforme": "assemblee",
+      "compte": "delphine-batho",
+      "messagesExamines": 0
+    },
+    {
+      "candidatId": "attal",
+      "plateforme": "assemblee",
+      "compte": "gabriel-attal",
+      "messagesExamines": 0
+    },
+    {
+      "candidatId": "lepen",
+      "plateforme": "assemblee",
+      "compte": "marine-le-pen",
+      "messagesExamines": 0
+    },
     {
       "candidatId": "melenchon",
       "plateforme": "bluesky",
