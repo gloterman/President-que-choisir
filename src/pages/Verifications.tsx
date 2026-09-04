@@ -14,6 +14,9 @@ import { clsx, formatDate } from '@/lib/format'
 
 type FiltreVerdict = Verdict | 'tous'
 
+/** Citations affichées d'un coup ; le reste vient à la demande. */
+const PAR_PAGE = 20
+
 function horodatage(date: Date): string {
   return date.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' })
 }
@@ -32,6 +35,26 @@ export function Verifications() {
   } = useFactCheck()
   const [candidatFiltre, setCandidatFiltre] = useState<string>('tous')
   const [verdictFiltre, setVerdictFiltre] = useState<FiltreVerdict>('tous')
+  /**
+   * Affichage progressif.
+   *
+   * L'instantané conserve jusqu'à 400 citations en attente. Les rendre toutes
+   * d'un coup ferait une page qu'on ne parcourt pas : on en montre une page à
+   * la fois, et le total reste affiché pour que personne ne croie la liste
+   * plus courte qu'elle n'est.
+   */
+  const [affichees, setAffichees] = useState(PAR_PAGE)
+
+  // Changer de filtre remet la liste à sa première page : rester à la
+  // trentième d'une sélection qu'on vient de restreindre n'a pas de sens.
+  const changerCandidat = (valeur: string) => {
+    setCandidatFiltre(valeur)
+    setAffichees(PAR_PAGE)
+  }
+  const changerVerdict = (valeur: FiltreVerdict) => {
+    setVerdictFiltre(valeur)
+    setAffichees(PAR_PAGE)
+  }
 
   const verificationParCitation = useMemo(
     () => new Map(instantane.verifications.map((v) => [v.citationId, v])),
@@ -183,7 +206,7 @@ export function Verifications() {
               </p>
               <select
                 value={candidatFiltre}
-                onChange={(e) => setCandidatFiltre(e.target.value)}
+                onChange={(e) => changerCandidat(e.target.value)}
                 className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-[0.82rem] text-ink"
                 aria-label="Filtrer par candidat"
               >
@@ -201,7 +224,7 @@ export function Verifications() {
               </p>
               <select
                 value={verdictFiltre}
-                onChange={(e) => setVerdictFiltre(e.target.value as FiltreVerdict)}
+                onChange={(e) => changerVerdict(e.target.value as FiltreVerdict)}
                 className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-[0.82rem] text-ink"
                 aria-label="Filtrer par verdict"
               >
@@ -216,7 +239,7 @@ export function Verifications() {
           </div>
 
           <ol className="space-y-4">
-            {lignes.map(({ citation, verification, candidat }) => {
+            {lignes.slice(0, affichees).map(({ citation, verification, candidat }) => {
               const verdict = verification?.verdict ?? 'en-attente'
               const meta = VERDICTS[verdict]
               return (
@@ -347,6 +370,17 @@ export function Verifications() {
               )
             })}
           </ol>
+
+          {lignes.length > affichees && (
+            <div className="mt-6 text-center">
+              <Bouton onClick={() => setAffichees((n) => n + PAR_PAGE)}>
+                Afficher {Math.min(PAR_PAGE, lignes.length - affichees)} citation(s) de plus
+              </Bouton>
+              <p className="mt-2 text-[0.8rem] text-muted">
+                {affichees} sur {lignes.length} affichées.
+              </p>
+            </div>
+          )}
 
           {lignes.length === 0 && (
             <p className="py-12 text-center text-[0.88rem] text-muted">
