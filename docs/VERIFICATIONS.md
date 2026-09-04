@@ -129,10 +129,20 @@ Le script :
 > conventionnelles — était fausse : interrogés directement, ils ne déclarent aucun flux. La plupart
 > des sites de partis français n'en publient pas.
 >
-> Le collecteur dit maintenant *pourquoi* un site ne rend rien : page d'accueil lue et sans
-> déclaration, page refusée, ou site injoignable. Un refus se corrige, une absence se documente, et
-> les confondre reviendrait à chercher une source de remplacement là où il suffisait de se
-> présenter autrement.
+> Le collecteur dit maintenant *pourquoi* un site ne rend rien, et la mesure a tranché : sur les
+> sept sites sans flux, **six répondent normalement et ne déclarent rien** (Renaissance, Horizons,
+> Une nouvelle énergie, Rassemblement national — compté pour Le Pen et Bardella — et Reconquête).
+> Le septième, `pcf.fr`, **répond 403 à notre collecteur** : ce n'est pas une absence de flux mais
+> un refus, et les chemins conventionnels n'y donnent rien non plus.
+>
+> Ce 403 est laissé tel quel. Le collecteur s'annonce sous son propre nom, et se faire passer pour
+> un navigateur pour contourner un refus serait obtenir par ruse ce que le site n'accorde pas.
+> L'absence est documentée plutôt que contournée.
+>
+> **Le plafond est donc atteint pour cette voie** : quatre flux sur onze sites, et l'essentiel de la
+> matière vient de deux d'entre eux (Les Républicains, 16 citations ; Mélenchon, 8). Élargir la
+> couverture demandera une source d'une autre nature — l'open data de l'Assemblée, décrit plus bas
+> — et non un réglage supplémentaire de la découverte.
 
 ## Rétention
 
