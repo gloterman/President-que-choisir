@@ -111,6 +111,7 @@ const actif = (id: string) => (sourcesDemandees ? sourcesDemandees.has(id) : id 
 const jetonX = process.env.X_BEARER_TOKEN ?? process.env.X_API_BEARER_TOKEN ?? ''
 
 const journal: { source: string; statut: 'ok' | 'ignorée' | 'échec'; detail: string }[] = []
+const departMs = Date.now()
 
 /**
  * Déplie la chaîne des causes.
@@ -181,9 +182,29 @@ async function recuperer(url: string, options: OptionsRecuperation = {}): Promis
   throw new Error(motif(derniere))
 }
 
+/**
+ * Abandonne une réponse dont on ne lira pas le corps.
+ *
+ * Un corps non consommé garde sa connexion ouverte : le processus ne peut plus
+ * se terminer et attend l'expiration de chaque socket. La collecte du
+ * 4 septembre a écrit son fichier à 21:14:31 et n'a rendu la main qu'à
+ * 21:17:28 — trois minutes passées à ne rien faire, une par sonde de chemin
+ * absent. Un 404 est le cas normal de la découverte : il doit être gratuit.
+ */
+async function abandonner(reponse: Response): Promise<void> {
+  try {
+    await reponse.body?.cancel()
+  } catch {
+    // Un corps déjà clos n'a rien à libérer.
+  }
+}
+
 async function json<T>(url: string, entetes?: Record<string, string>): Promise<T> {
   const reponse = await recuperer(url, { entetes })
-  if (!reponse.ok) throw new Error(`réponse ${reponse.status} sur ${url}`)
+  if (!reponse.ok) {
+    await abandonner(reponse)
+    throw new Error(`réponse ${reponse.status} sur ${url}`)
+  }
   return (await reponse.json()) as T
 }
 
@@ -222,7 +243,10 @@ async function lireSiFlux(url: string): Promise<ReturnType<typeof lireFlux> | nu
   try {
     // Sonde : ni reprise ni délai long. Un chemin absent est le cas normal.
     const reponse = await recuperer(url, { reprise: false, delaiMs: DELAI_SONDE_MS })
-    if (!reponse.ok) return null
+    if (!reponse.ok) {
+      await abandonner(reponse)
+      return null
+    }
     const articles = lireFlux(await reponse.text())
     // Un flux est reconnu au fait qu'il produit au moins un article : c'est
     // plus fiable que de se fier au type de contenu déclaré, que beaucoup de
@@ -267,7 +291,8 @@ function trouverFlux(racine: string): Promise<FluxTrouve | null> {
 async function decouvrirFlux(base: string): Promise<FluxTrouve | null> {
   try {
     const accueil = await recuperer(base, { reprise: false, delaiMs: DELAI_SONDE_MS })
-    if (accueil.ok) {
+    if (!accueil.ok) await abandonner(accueil)
+    else {
       for (const url of liensFluxDeclares(await accueil.text(), base).slice(0, FLUX_DECLARES_ESSAYES)) {
         const articles = await lireSiFlux(url)
         if (articles) return { url, articles, voie: 'déclaré' }
@@ -523,7 +548,10 @@ async function collecterVeille(existants: Map<string, VeillePublication>) {
   for (const source of SOURCES_VEILLE) {
     try {
       const reponse = await recuperer(source.url)
-      if (!reponse.ok) throw new Error(`réponse ${reponse.status}`)
+      if (!reponse.ok) {
+        await abandonner(reponse)
+        throw new Error(`réponse ${reponse.status}`)
+      }
       const articles = lireFlux(await reponse.text())
       let ajoutes = 0
       for (const article of articles) {
@@ -684,7 +712,11 @@ async function collecter() {
       (ecartees > 0
         ? `\n${ecartees} citation(s) en attente écartée(s) par la rétention ; aucune citation vérifiée n’est perdue.`
         : '') +
-      `\nÉcrit dans ${FICHIER}.\n`,
+      `\nÉcrit dans ${FICHIER}.` +
+      // L'écart entre cette ligne et la fin du pas d'intégration continue dit
+      // s'il reste des connexions non libérées : le journal doit permettre de
+      // le voir sans relire les horodatages du déclencheur.
+      `\nCollecte faite en ${Math.round((Date.now() - departMs) / 1000)} s.\n`,
   )
 
   if (abouties === 0) {
