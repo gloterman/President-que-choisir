@@ -27,6 +27,7 @@
  * Le script n'écrase jamais une vérification et ne supprime aucune citation.
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { setDefaultResultOrder } from 'node:dns'
 import { candidats } from '../src/data/candidats'
 import {
   VERSION_INSTANTANE,
@@ -42,6 +43,17 @@ import {
   SOURCE_BLUESKY,
 } from '../src/data/sources-citations'
 import { identifiantVeille, lireFlux, normaliserNom } from '../src/lib/factcheck/rss'
+
+/**
+ * Résolution IPv4 en premier.
+ *
+ * Les exécuteurs d'intégration continue n'ont généralement pas de route IPv6.
+ * Quand un hôte publie un enregistrement AAAA, Node tente cette adresse
+ * d'abord et la connexion reste suspendue jusqu'à expiration — le symptôme
+ * observé sur les deux API parlementaires : un délai de connexion dépassé sur
+ * le port 443, sans réponse HTTP, alors que le nom se résout correctement.
+ */
+setDefaultResultOrder('ipv4first')
 
 const FICHIER = 'public/donnees/factcheck.json'
 const DELAI_MS = 20000
@@ -78,12 +90,21 @@ const journal: { source: string; statut: 'ok' | 'ignorée' | 'échec'; detail: s
 function motif(erreur: unknown): string {
   const parties: string[] = []
   let courant: unknown = erreur
+  let codes = ''
   for (let profondeur = 0; courant instanceof Error && profondeur < 4; profondeur++) {
     const code = (courant as { code?: string }).code
+    if (code) codes += ` ${code}`
     parties.push(code ? `${courant.message} (${code})` : courant.message)
     courant = (courant as { cause?: unknown }).cause
   }
-  return parties.length > 0 ? parties.join(' ← ') : String(erreur)
+  const texte = parties.length > 0 ? parties.join(' ← ') : String(erreur)
+  // Un délai de connexion dépassé ne vient jamais du chemin d'API : le nom se
+  // résout, mais rien n'écoute ou le trajet est coupé. Le dire évite de partir
+  // corriger une adresse qui est peut-être juste.
+  if (codes.includes('UND_ERR_CONNECT_TIMEOUT') || codes.includes('ETIMEDOUT')) {
+    return `${texte} — la connexion n’aboutit pas ; le service est injoignable depuis cet exécuteur, ce n’est pas un chemin d’API erroné`
+  }
+  return texte
 }
 
 async function recuperer(url: string, entetes: Record<string, string> = {}): Promise<Response> {
