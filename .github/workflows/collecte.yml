@@ -14,6 +14,11 @@ permissions:
 jobs:
   collecter:
     runs-on: ubuntu-latest
+    # Une collecte saine tient en quelques minutes. Au-delà, quelque chose est
+    # suspendu : mieux vaut un échec visible qu'un travail qui court six heures
+    # sans rien produire — c'est arrivé, et le défaut de délai qui en était la
+    # cause n'a été vu que parce que l'exécution traînait.
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 

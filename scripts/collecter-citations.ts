@@ -51,6 +51,7 @@ import {
   lireFlux,
   normaliserNom,
 } from '../src/lib/factcheck/rss'
+import { DELAI_SONDE_MS, json, lire, motif } from '../src/lib/factcheck/reseau'
 
 /**
  * Résolution IPv4 en premier.
@@ -64,14 +65,6 @@ import {
 setDefaultResultOrder('ipv4first')
 
 const FICHIER = 'public/donnees/factcheck.json'
-const DELAI_MS = 20000
-/**
- * Délai d'une sonde de découverte.
- *
- * Court, parce qu'une adresse spéculative est le plus souvent absente : le
- * coût du sondage doit rester proportionné à ce qu'on espère y trouver.
- */
-const DELAI_SONDE_MS = 6000
 /** Au-delà, un site déclare des flux de catégorie sans intérêt pour nous. */
 const FLUX_DECLARES_ESSAYES = 3
 const MESSAGES_PAR_COMPTE = 50
@@ -114,101 +107,6 @@ const journal: { source: string; statut: 'ok' | 'ignorée' | 'échec'; detail: s
 const departMs = Date.now()
 
 /**
- * Déplie la chaîne des causes.
- *
- * `fetch` échoue avec le message générique « fetch failed » et range la cause
- * réelle — DNS, TLS, connexion refusée, expiration — dans `cause`. Sans ce
- * dépliage, un journal de collecte ne dit rien d'exploitable.
- */
-function motif(erreur: unknown): string {
-  const parties: string[] = []
-  let courant: unknown = erreur
-  let codes = ''
-  for (let profondeur = 0; courant instanceof Error && profondeur < 4; profondeur++) {
-    const code = (courant as { code?: string }).code
-    if (code) codes += ` ${code}`
-    parties.push(code ? `${courant.message} (${code})` : courant.message)
-    courant = (courant as { cause?: unknown }).cause
-  }
-  const texte = parties.length > 0 ? parties.join(' ← ') : String(erreur)
-  // Un délai de connexion dépassé ne vient jamais du chemin d'API : le nom se
-  // résout, mais rien n'écoute ou le trajet est coupé. Le dire évite de partir
-  // corriger une adresse qui est peut-être juste.
-  if (codes.includes('UND_ERR_CONNECT_TIMEOUT') || codes.includes('ETIMEDOUT')) {
-    return `${texte} — la connexion n’aboutit pas ; le service est injoignable depuis cet exécuteur, ce n’est pas un chemin d’API erroné`
-  }
-  return texte
-}
-
-/**
- * Options de récupération.
- *
- * La reprise et le délai long conviennent à une adresse dont on attend une
- * réponse. Ils sont ruineux pour une adresse spéculative : sonder six chemins
- * sur un hôte injoignable coûterait 2 minutes par site, et une demi-heure sur
- * l'ensemble. Le sondage les désactive donc.
- */
-interface OptionsRecuperation {
-  entetes?: Record<string, string>
-  reprise?: boolean
-  delaiMs?: number
-}
-
-async function recuperer(url: string, options: OptionsRecuperation = {}): Promise<Response> {
-  const { entetes = {}, reprise = true, delaiMs = DELAI_MS } = options
-  // Une seule reprise : un échec de connexion est souvent passager, mais
-  // insister davantage sur un service public gratuit serait discourtois.
-  let derniere: unknown
-  const essais = reprise ? 2 : 1
-  for (let essaiNumero = 0; essaiNumero < essais; essaiNumero++) {
-    const abandon = new AbortController()
-    const minuterie = setTimeout(() => abandon.abort(), delaiMs)
-    try {
-      return await fetch(url, {
-        signal: abandon.signal,
-        headers: {
-          'User-Agent': 'president-que-choisir/1.0 (+collecte citations)',
-          Accept: 'application/json, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.8',
-          ...entetes,
-        },
-      })
-    } catch (e) {
-      derniere = e
-      if (essaiNumero < essais - 1) await new Promise((suite) => setTimeout(suite, 1500))
-    } finally {
-      clearTimeout(minuterie)
-    }
-  }
-  throw new Error(motif(derniere))
-}
-
-/**
- * Abandonne une réponse dont on ne lira pas le corps.
- *
- * Un corps non consommé garde sa connexion ouverte : le processus ne peut plus
- * se terminer et attend l'expiration de chaque socket. La collecte du
- * 4 septembre a écrit son fichier à 21:14:31 et n'a rendu la main qu'à
- * 21:17:28 — trois minutes passées à ne rien faire, une par sonde de chemin
- * absent. Un 404 est le cas normal de la découverte : il doit être gratuit.
- */
-async function abandonner(reponse: Response): Promise<void> {
-  try {
-    await reponse.body?.cancel()
-  } catch {
-    // Un corps déjà clos n'a rien à libérer.
-  }
-}
-
-async function json<T>(url: string, entetes?: Record<string, string>): Promise<T> {
-  const reponse = await recuperer(url, { entetes })
-  if (!reponse.ok) {
-    await abandonner(reponse)
-    throw new Error(`réponse ${reponse.status} sur ${url}`)
-  }
-  return (await reponse.json()) as T
-}
-
-/**
  * Retient les déclarations qui contiennent une affirmation vérifiable.
  *
  * Le filtre penche volontairement vers l'inclusion : mieux vaut collecter une
@@ -242,12 +140,9 @@ interface FluxTrouve {
 async function lireSiFlux(url: string): Promise<ReturnType<typeof lireFlux> | null> {
   try {
     // Sonde : ni reprise ni délai long. Un chemin absent est le cas normal.
-    const reponse = await recuperer(url, { reprise: false, delaiMs: DELAI_SONDE_MS })
-    if (!reponse.ok) {
-      await abandonner(reponse)
-      return null
-    }
-    const articles = lireFlux(await reponse.text())
+    const reponse = await lire(url, { reprise: false, delaiMs: DELAI_SONDE_MS })
+    if (!reponse.ok) return null
+    const articles = lireFlux(reponse.texte)
     // Un flux est reconnu au fait qu'il produit au moins un article : c'est
     // plus fiable que de se fier au type de contenu déclaré, que beaucoup de
     // sites renseignent mal.
@@ -290,10 +185,9 @@ function trouverFlux(racine: string): Promise<FluxTrouve | null> {
  */
 async function decouvrirFlux(base: string): Promise<FluxTrouve | null> {
   try {
-    const accueil = await recuperer(base, { reprise: false, delaiMs: DELAI_SONDE_MS })
-    if (!accueil.ok) await abandonner(accueil)
-    else {
-      for (const url of liensFluxDeclares(await accueil.text(), base).slice(0, FLUX_DECLARES_ESSAYES)) {
+    const accueil = await lire(base, { reprise: false, delaiMs: DELAI_SONDE_MS })
+    if (accueil.ok) {
+      for (const url of liensFluxDeclares(accueil.texte, base).slice(0, FLUX_DECLARES_ESSAYES)) {
         const articles = await lireSiFlux(url)
         if (articles) return { url, articles, voie: 'déclaré' }
       }
@@ -547,12 +441,9 @@ async function collecterVeille(existants: Map<string, VeillePublication>) {
 
   for (const source of SOURCES_VEILLE) {
     try {
-      const reponse = await recuperer(source.url)
-      if (!reponse.ok) {
-        await abandonner(reponse)
-        throw new Error(`réponse ${reponse.status}`)
-      }
-      const articles = lireFlux(await reponse.text())
+      const reponse = await lire(source.url)
+      if (!reponse.ok) throw new Error(`réponse ${reponse.statut}`)
+      const articles = lireFlux(reponse.texte)
       let ajoutes = 0
       for (const article of articles) {
         const id = identifiantVeille(source.id, article.lien)

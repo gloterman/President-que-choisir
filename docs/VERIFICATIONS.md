@@ -106,6 +106,10 @@ Le script :
   collecter une citation qui se révélera invérifiable que d'écarter en amont, par une règle opaque,
   une déclaration qui méritait examen ;
 - **n'écrase jamais une vérification existante** et ne supprime aucune citation ;
+- **lit chaque adresse sous un délai qui couvre le corps**, pas seulement les en-têtes, et plafonne
+  ce qu'il ingère. Un serveur qui répond puis se tait suspendait la collecte sans limite ; la couche
+  réseau est isolée dans `src/lib/factcheck/reseau.ts` et ce cas est rejoué à chaque test contre un
+  serveur local ;
 - **refuse un nom de source inconnu** plutôt que de l'ignorer : un `--sources` périmé désactivait
   silencieusement le reste, et la collecte réussissait en n'ayant rien collecté ;
 - affiche un bilan par source, avec le motif exact de chaque échec — et, quand un flux répond sans

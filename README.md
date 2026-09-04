@@ -100,7 +100,7 @@ src/
       affinite.ts     Affinité programmatique et boussole 2D
       sensibilite.ts  Analyse de sensibilité par Monte-Carlo
       index.ts        Orchestration du classement complet
-    factcheck/      Chargement, validation défensive, lecture RSS, calcul de la véracité
+    factcheck/      Chargement, validation défensive, couche réseau, lecture RSS, véracité
     store.tsx       Préférences utilisateur, persistées en localStorage
     format.ts       Formatage et libellés
   components/
