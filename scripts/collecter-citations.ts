@@ -136,6 +136,9 @@ interface FluxTrouve {
   voie: 'déclaré' | 'convention'
 }
 
+/** Un flux, ou le motif circonstancié de son absence. */
+type Decouverte = { flux: FluxTrouve } | { flux: null; diagnostic: string }
+
 /** Lit une adresse candidate et n'y voit un flux que s'il produit un article. */
 async function lireSiFlux(url: string): Promise<ReturnType<typeof lireFlux> | null> {
   try {
@@ -160,9 +163,9 @@ async function lireSiFlux(url: string): Promise<ReturnType<typeof lireFlux> | nu
  * refaire reviendrait à doubler les requêtes sur un serveur qui nous héberge
  * gracieusement.
  */
-const fluxParSite = new Map<string, Promise<FluxTrouve | null>>()
+const fluxParSite = new Map<string, Promise<Decouverte>>()
 
-function trouverFlux(racine: string): Promise<FluxTrouve | null> {
+function trouverFlux(racine: string): Promise<Decouverte> {
   const cle = racine.replace(/\/$/, '')
   const connu = fluxParSite.get(cle)
   if (connu) return connu
@@ -183,24 +186,38 @@ function trouverFlux(racine: string): Promise<FluxTrouve | null> {
  * Les conventions restent en second : un site peut servir un flux sans le
  * déclarer.
  */
-async function decouvrirFlux(base: string): Promise<FluxTrouve | null> {
+async function decouvrirFlux(base: string): Promise<Decouverte> {
+  // « Aucun flux » recouvre deux situations qu'il ne faut pas confondre : un
+  // site qui n'en publie pas, et un site qui nous a refusé sa page. La
+  // première se documente, la seconde se corrige. Le journal doit les
+  // distinguer, faute de quoi on cherche une source à remplacer là où il
+  // suffisait de se présenter autrement.
+  let etatAccueil = ''
+  let declares = 0
   try {
     const accueil = await lire(base, { reprise: false, delaiMs: DELAI_SONDE_MS })
+    etatAccueil = accueil.ok ? 'accueil lu' : `accueil ${accueil.statut}`
     if (accueil.ok) {
-      for (const url of liensFluxDeclares(accueil.texte, base).slice(0, FLUX_DECLARES_ESSAYES)) {
+      const liens = liensFluxDeclares(accueil.texte, base)
+      declares = liens.length
+      for (const url of liens.slice(0, FLUX_DECLARES_ESSAYES)) {
         const articles = await lireSiFlux(url)
-        if (articles) return { url, articles, voie: 'déclaré' }
+        if (articles) return { flux: { url, articles, voie: 'déclaré' } }
       }
     }
-  } catch {
+  } catch (erreur) {
     // Une page d'accueil illisible ne condamne pas le site : on sonde quand même.
+    etatAccueil = `accueil injoignable (${motif(erreur)})`
   }
 
   for (const chemin of CHEMINS_FLUX_COURANTS) {
     const articles = await lireSiFlux(`${base}${chemin}`)
-    if (articles) return { url: `${base}${chemin}`, articles, voie: 'convention' }
+    if (articles) return { flux: { url: `${base}${chemin}`, articles, voie: 'convention' } }
   }
-  return null
+
+  const declaration =
+    declares === 0 ? 'aucun flux déclaré' : `${declares} flux déclaré(s), aucun exploitable`
+  return { flux: null, diagnostic: `${etatAccueil}, ${declaration}` }
 }
 
 async function collecterSitesOfficiels(ajouter: (c: Citation) => void, comptes: CompteSuivi[]) {
@@ -219,17 +236,20 @@ async function collecterSitesOfficiels(ajouter: (c: Citation) => void, comptes: 
     for (const site of sites) {
       sitesEssayes++
       const porteParole: PorteParole = site.type === 'candidat' ? 'candidat' : 'parti'
-      const flux = await trouverFlux(site.url)
-      if (!flux) {
+      const decouverte = await trouverFlux(site.url)
+      if (!decouverte.flux) {
         comptes.push({
           candidatId: candidat.id,
           plateforme: 'site-officiel',
           compte: site.url,
-          erreur: `aucun flux trouvé (aucun déclaré, ${CHEMINS_FLUX_COURANTS.length} chemins essayés)`,
+          erreur: `aucun flux : ${decouverte.diagnostic}`,
         })
-        console.log(`    – ${candidat.nom.padEnd(14)} ${site.url.padEnd(38)} aucun flux`)
+        console.log(
+          `    – ${candidat.nom.padEnd(14)} ${site.url.padEnd(38)} aucun flux — ${decouverte.diagnostic}`,
+        )
         continue
       }
+      const flux = decouverte.flux
 
       sitesTrouves++
       let retenues = 0

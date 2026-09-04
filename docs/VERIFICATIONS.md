@@ -20,7 +20,8 @@ français, et plutôt que d'inventer quinze adresses le collecteur les découvre
 
 1. **il demande au site.** Une page qui publie un flux l'annonce dans son en-tête par un
    `<link rel="alternate" type="application/rss+xml">`. C'est le mécanisme normalisé, et le seul
-   qui trouve une adresse ne suivant aucune convention ;
+   qui trouve une adresse ne suivant aucune convention — c'est par là qu'arrivent trois des quatre
+   flux effectivement lus ;
 2. **à défaut, il sonde les conventions** (`/feed/`, `/rss`, `/feed`, `/rss.xml`, `/atom.xml`,
    `/index.php/feed/`) — un site peut servir un flux sans le déclarer.
 
@@ -121,10 +122,17 @@ Le script :
 > Bluesky**. Les flux des sites officiels n'ont pas d'adresse fixe : ils sont découverts à chaque
 > exécution, et le collecteur indique pour chaque site la voie retenue ou l'absence de flux.
 >
-> Le sondage par conventions seules avait trouvé **4 flux sur 11 sites** : Mélenchon
-> (`melenchon2027.fr/feed/`), Les Écologistes, Place publique et Les Républicains. Sept sites
-> publient pourtant des actualités — signe que la liste de chemins était la mauvaise question à
-> poser en premier, d'où la lecture du flux déclaré.
+> **Ce que la mesure a donné.** Le sondage par conventions seules trouvait **4 flux sur 11 sites**.
+> La lecture du flux déclaré en trouve toujours 4, mais autrement : trois viennent désormais de la
+> déclaration du site (Mélenchon, Place publique, Les Républicains) et un seul d'une convention
+> (Les Écologistes). L'hypothèse de départ — que les sept autres publiaient à des adresses non
+> conventionnelles — était fausse : interrogés directement, ils ne déclarent aucun flux. La plupart
+> des sites de partis français n'en publient pas.
+>
+> Le collecteur dit maintenant *pourquoi* un site ne rend rien : page d'accueil lue et sans
+> déclaration, page refusée, ou site injoignable. Un refus se corrige, une absence se documente, et
+> les confondre reviendrait à chercher une source de remplacement là où il suffisait de se
+> présenter autrement.
 
 ## Rétention
 
