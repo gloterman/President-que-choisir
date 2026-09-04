@@ -31,7 +31,7 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: |
           if [ -n "$X_BEARER_TOKEN" ]; then
-            npm run collecte:citations -- --sources=nosdeputes,nossenateurs,bluesky,veille,x
+            npm run collecte:citations -- --sources=sites,bluesky,veille,x
           else
             npm run collecte:citations
           fi

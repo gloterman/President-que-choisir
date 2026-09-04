@@ -16,10 +16,19 @@ Toutes les sources activées par défaut sont **publiques, gratuites et sans cl�
 
 **Les flux des sites officiels sont le socle.** Ce sont des paroles publiées par les intéressés
 eux-mêmes, avec un lien vers l'original. Aucun annuaire ne recense les flux des sites politiques
-français : plutôt que d'inventer quinze adresses, le collecteur essaie les conventions les plus
-répandues (`/feed/`, `/rss`, `/feed`, `/rss.xml`, `/atom.xml`, `/index.php/feed/`) et retient la
-première qui renvoie un flux exploitable. La découverte remplace la configuration, et un site qui
-change de moteur reste couvert sans intervention.
+français, et plutôt que d'inventer quinze adresses le collecteur les découvre en deux temps :
+
+1. **il demande au site.** Une page qui publie un flux l'annonce dans son en-tête par un
+   `<link rel="alternate" type="application/rss+xml">`. C'est le mécanisme normalisé, et le seul
+   qui trouve une adresse ne suivant aucune convention ;
+2. **à défaut, il sonde les conventions** (`/feed/`, `/rss`, `/feed`, `/rss.xml`, `/atom.xml`,
+   `/index.php/feed/`) — un site peut servir un flux sans le déclarer.
+
+La première adresse qui renvoie un flux exploitable est retenue, et le journal dit par quelle voie.
+La découverte remplace la configuration : un site qui change de moteur reste couvert sans
+intervention. Les sondes n'ont ni reprise ni délai long — une adresse spéculative est le plus
+souvent absente, et le coût de la recherche doit rester proportionné. Un site partagé par deux
+candidats n'est sondé qu'une fois.
 
 **Qui parle est affiché.** Un communiqué de mouvement n'est pas la parole personnelle du candidat,
 même lorsqu'il en porte la ligne. Le site personnel passe donc avant celui du parti, et chaque
@@ -87,8 +96,8 @@ drapeau, tout est collecté **sauf** X.
 
 Le script :
 
-- découvre le flux de chaque site officiel **sans configuration**, en essayant les conventions
-  courantes et en retenant la première qui répond ;
+- découvre le flux de chaque site officiel **sans configuration**, en lisant d'abord le flux que la
+  page d'accueil déclare, puis à défaut en sondant les conventions courantes ;
 - n'interroge des comptes sociaux que ceux déclarés dans `comptesSociaux`, et **liste les candidats
   qui n'en ont pas** — un identifiant deviné ferait citer la mauvaise personne, et un compte de
   soutien tenu par une équipe ne serait pas la parole du candidat ;
@@ -97,12 +106,21 @@ Le script :
   collecter une citation qui se révélera invérifiable que d'écarter en amont, par une règle opaque,
   une déclaration qui méritait examen ;
 - **n'écrase jamais une vérification existante** et ne supprime aucune citation ;
-- affiche un bilan par source, avec le motif exact de chaque échec.
+- **refuse un nom de source inconnu** plutôt que de l'ignorer : un `--sources` périmé désactivait
+  silencieusement le reste, et la collecte réussissait en n'ayant rien collecté ;
+- affiche un bilan par source, avec le motif exact de chaque échec — et, quand un flux répond sans
+  qu'aucun article soit retenu, le décompte de ce qui a été écarté (trop court, ou sans chiffre) :
+  sans cela, un flux muet et un flux d'annonces d'événements se ressemblent dans le journal.
 
 > **État des adresses.** Les collectes réelles du 4 septembre 2026 ont confirmé les **quatre flux
 > de veille** (Les Décodeurs, AFP Factuel, Vrai ou Faux, CheckNews) et l'**API publique de
 > Bluesky**. Les flux des sites officiels n'ont pas d'adresse fixe : ils sont découverts à chaque
-> exécution, et le collecteur indique pour chaque site le chemin retenu ou l'absence de flux.
+> exécution, et le collecteur indique pour chaque site la voie retenue ou l'absence de flux.
+>
+> Le sondage par conventions seules avait trouvé **4 flux sur 11 sites** : Mélenchon
+> (`melenchon2027.fr/feed/`), Les Écologistes, Place publique et Les Républicains. Sept sites
+> publient pourtant des actualités — signe que la liste de chemins était la mauvaise question à
+> poser en premier, d'où la lecture du flux déclaré.
 
 ## Rétention
 

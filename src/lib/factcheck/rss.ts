@@ -131,3 +131,35 @@ export function normaliserNom(nom: string): string {
     .replace(/[^a-z0-9]+/g, ' ')
     .trim()
 }
+
+/**
+ * Flux déclarés par une page HTML.
+ *
+ * C'est le mécanisme normalisé de découverte : un site qui publie un flux
+ * l'annonce dans son en-tête par un `<link rel="alternate">`. Le lire d'abord
+ * évite de deviner des chemins, et trouve les flux que les conventions ne
+ * couvrent pas — un `/actualites/rss` ou une adresse chez un hébergeur tiers
+ * resteraient invisibles à toute liste écrite d'avance.
+ *
+ * Les adresses relatives sont résolues contre la page qui les déclare, et le
+ * https reste exigé : la découverte ne doit pas être un moyen de faire pointer
+ * la collecte ailleurs que sur le site consulté.
+ */
+export function liensFluxDeclares(html: string, base: string): string[] {
+  const trouves: string[] = []
+  for (const balise of html.matchAll(/<link\b[^>]*>/gi)) {
+    const attributs = balise[0]
+    if (!/\brel=["']?[^"'>]*\balternate\b/i.test(attributs)) continue
+    if (!/\btype=["']?application\/(?:rss|atom)\+xml/i.test(attributs)) continue
+    const href = attributs.match(/\bhref=["']([^"']+)["']/i)
+    if (!href) continue
+    try {
+      const absolue = new URL(decoder(href[1]), base)
+      if (absolue.protocol !== 'https:') continue
+      if (!trouves.includes(absolue.href)) trouves.push(absolue.href)
+    } catch {
+      // Une adresse illisible est ignorée : la découverte continue.
+    }
+  }
+  return trouves
+}

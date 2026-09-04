@@ -8,11 +8,12 @@
  * Toutes les sources activées par défaut sont publiques, gratuites et sans
  * clé. Elles sont de deux natures :
  *
- *  — l'open data parlementaire, qui donne des interventions verbatim,
- *    horodatées, rattachées à un débat identifié et publiées sous licence
- *    ouverte. C'est le socle : contrairement à un message sur un réseau
- *    social, une intervention en séance ne disparaît pas si son auteur
- *    l'efface ;
+ *  — les flux de syndication des sites officiels des candidats et de leurs
+ *    mouvements. C'est le socle : le texte y est publié par l'intéressé
+ *    lui-même, daté, et reste consultable à son adresse d'origine. Le chemin
+ *    du flux n'est pas configuré mais découvert, d'abord par la déclaration
+ *    `<link rel="alternate">` de la page d'accueil, puis à défaut par les
+ *    conventions les plus répandues ;
  *  — Bluesky, dont l'API de lecture est publique et ne demande ni compte ni
  *    paiement.
  *
@@ -43,7 +44,13 @@ import {
   SOURCE_BLUESKY,
   type PorteParole,
 } from '../src/data/sources-citations'
-import { condenseUrl, identifiantVeille, lireFlux, normaliserNom } from '../src/lib/factcheck/rss'
+import {
+  condenseUrl,
+  identifiantVeille,
+  liensFluxDeclares,
+  lireFlux,
+  normaliserNom,
+} from '../src/lib/factcheck/rss'
 
 /**
  * Résolution IPv4 en premier.
@@ -58,8 +65,19 @@ setDefaultResultOrder('ipv4first')
 
 const FICHIER = 'public/donnees/factcheck.json'
 const DELAI_MS = 20000
+/**
+ * Délai d'une sonde de découverte.
+ *
+ * Court, parce qu'une adresse spéculative est le plus souvent absente : le
+ * coût du sondage doit rester proportionné à ce qu'on espère y trouver.
+ */
+const DELAI_SONDE_MS = 6000
+/** Au-delà, un site déclare des flux de catégorie sans intérêt pour nous. */
+const FLUX_DECLARES_ESSAYES = 3
 const MESSAGES_PAR_COMPTE = 50
 const ARTICLES_PAR_SITE = 30
+/** En deçà, un texte est un intitulé, pas une déclaration à vérifier. */
+const LONGUEUR_MINIMALE = 80
 /**
  * Rétention.
  *
@@ -75,6 +93,19 @@ const args = process.argv.slice(2)
 const essai = args.includes('--essai')
 const filtre = args.find((a) => a.startsWith('--sources='))?.slice('--sources='.length)
 const sourcesDemandees = filtre ? new Set(filtre.split(',')) : null
+const SOURCES_CONNUES = ['sites', 'bluesky', 'veille', 'x'] as const
+// Un nom inconnu désactivait silencieusement tout le reste : la collecte
+// réussissait en n'ayant rien collecté. Le cas s'est produit — le déclencheur
+// nommait encore deux sources retirées — et n'a été vu qu'en lisant le journal.
+const inconnues = [...(sourcesDemandees ?? [])].filter(
+  (id) => !(SOURCES_CONNUES as readonly string[]).includes(id),
+)
+if (inconnues.length > 0) {
+  console.error(
+    `Source(s) inconnue(s) : ${inconnues.join(', ')}. Valeurs acceptées : ${SOURCES_CONNUES.join(', ')}.`,
+  )
+  process.exit(1)
+}
 const actif = (id: string) => (sourcesDemandees ? sourcesDemandees.has(id) : id !== 'x')
 
 const jetonX = process.env.X_BEARER_TOKEN ?? process.env.X_API_BEARER_TOKEN ?? ''
@@ -108,13 +139,29 @@ function motif(erreur: unknown): string {
   return texte
 }
 
-async function recuperer(url: string, entetes: Record<string, string> = {}): Promise<Response> {
+/**
+ * Options de récupération.
+ *
+ * La reprise et le délai long conviennent à une adresse dont on attend une
+ * réponse. Ils sont ruineux pour une adresse spéculative : sonder six chemins
+ * sur un hôte injoignable coûterait 2 minutes par site, et une demi-heure sur
+ * l'ensemble. Le sondage les désactive donc.
+ */
+interface OptionsRecuperation {
+  entetes?: Record<string, string>
+  reprise?: boolean
+  delaiMs?: number
+}
+
+async function recuperer(url: string, options: OptionsRecuperation = {}): Promise<Response> {
+  const { entetes = {}, reprise = true, delaiMs = DELAI_MS } = options
   // Une seule reprise : un échec de connexion est souvent passager, mais
   // insister davantage sur un service public gratuit serait discourtois.
   let derniere: unknown
-  for (let essaiNumero = 0; essaiNumero < 2; essaiNumero++) {
+  const essais = reprise ? 2 : 1
+  for (let essaiNumero = 0; essaiNumero < essais; essaiNumero++) {
     const abandon = new AbortController()
-    const minuterie = setTimeout(() => abandon.abort(), DELAI_MS)
+    const minuterie = setTimeout(() => abandon.abort(), delaiMs)
     try {
       return await fetch(url, {
         signal: abandon.signal,
@@ -126,7 +173,7 @@ async function recuperer(url: string, entetes: Record<string, string> = {}): Pro
       })
     } catch (e) {
       derniere = e
-      if (essaiNumero === 0) await new Promise((suite) => setTimeout(suite, 1500))
+      if (essaiNumero < essais - 1) await new Promise((suite) => setTimeout(suite, 1500))
     } finally {
       clearTimeout(minuterie)
     }
@@ -135,7 +182,7 @@ async function recuperer(url: string, entetes: Record<string, string> = {}): Pro
 }
 
 async function json<T>(url: string, entetes?: Record<string, string>): Promise<T> {
-  const reponse = await recuperer(url, entetes)
+  const reponse = await recuperer(url, { entetes })
   if (!reponse.ok) throw new Error(`réponse ${reponse.status} sur ${url}`)
   return (await reponse.json()) as T
 }
@@ -149,7 +196,7 @@ async function json<T>(url: string, entetes?: Record<string, string>): Promise<T
  */
 function contientUneAffirmationVerifiable(texte: string): boolean {
   const sansLiens = texte.replace(/https?:\/\/\S+/g, '').trim()
-  if (sansLiens.length < 80) return false
+  if (sansLiens.length < LONGUEUR_MINIMALE) return false
   const quantite = /\b(?:%|pour cent|milliards?|millions?|milliers?|euros?|points?)\b/i.test(texte)
   const chiffre = /\d/.test(texte)
   const comparatif =
@@ -163,27 +210,76 @@ function contientUneAffirmationVerifiable(texte: string): boolean {
 // Sites officiels des candidats et de leurs mouvements
 // ---------------------------------------------------------------------------
 
+interface FluxTrouve {
+  url: string
+  articles: ReturnType<typeof lireFlux>
+  /** Comment l'adresse a été obtenue, pour le dire dans le journal. */
+  voie: 'déclaré' | 'convention'
+}
+
+/** Lit une adresse candidate et n'y voit un flux que s'il produit un article. */
+async function lireSiFlux(url: string): Promise<ReturnType<typeof lireFlux> | null> {
+  try {
+    // Sonde : ni reprise ni délai long. Un chemin absent est le cas normal.
+    const reponse = await recuperer(url, { reprise: false, delaiMs: DELAI_SONDE_MS })
+    if (!reponse.ok) return null
+    const articles = lireFlux(await reponse.text())
+    // Un flux est reconnu au fait qu'il produit au moins un article : c'est
+    // plus fiable que de se fier au type de contenu déclaré, que beaucoup de
+    // sites renseignent mal.
+    return articles.length > 0 ? articles : null
+  } catch {
+    return null
+  }
+}
+
+/**
+ * Un site n'est sondé qu'une fois par exécution.
+ *
+ * Deux candidats peuvent partager un mouvement — c'est le cas de
+ * rassemblementnational.fr — et la découverte est la partie coûteuse : la
+ * refaire reviendrait à doubler les requêtes sur un serveur qui nous héberge
+ * gracieusement.
+ */
+const fluxParSite = new Map<string, Promise<FluxTrouve | null>>()
+
+function trouverFlux(racine: string): Promise<FluxTrouve | null> {
+  const cle = racine.replace(/\/$/, '')
+  const connu = fluxParSite.get(cle)
+  if (connu) return connu
+  const recherche = decouvrirFlux(cle)
+  fluxParSite.set(cle, recherche)
+  return recherche
+}
+
 /**
  * Découvre le flux de syndication d'un site.
  *
- * Les conventions sont essayées dans l'ordre et la première qui renvoie un flux
- * exploitable est retenue. Un flux est reconnu au fait qu'il produit au moins
- * un article : c'est plus fiable que de se fier au type de contenu déclaré, que
- * beaucoup de sites renseignent mal.
+ * On demande d'abord au site lui-même : la page d'accueil déclare ses flux par
+ * `<link rel="alternate">`, et c'est le seul moyen de trouver une adresse qui
+ * ne suit aucune convention. Sept sites sur onze n'ont rien rendu au sondage
+ * par chemins seuls, alors qu'ils publient des actualités — signe que la liste
+ * de chemins était la mauvaise question à poser en premier.
+ *
+ * Les conventions restent en second : un site peut servir un flux sans le
+ * déclarer.
  */
-async function trouverFlux(
-  racine: string,
-): Promise<{ url: string; articles: ReturnType<typeof lireFlux> } | null> {
-  for (const chemin of CHEMINS_FLUX_COURANTS) {
-    const url = `${racine.replace(/\/$/, '')}${chemin}`
-    try {
-      const reponse = await recuperer(url)
-      if (!reponse.ok) continue
-      const articles = lireFlux(await reponse.text())
-      if (articles.length > 0) return { url, articles }
-    } catch {
-      // Un chemin absent est le cas normal : on passe au suivant sans bruit.
+async function decouvrirFlux(base: string): Promise<FluxTrouve | null> {
+  try {
+    const accueil = await recuperer(base, { reprise: false, delaiMs: DELAI_SONDE_MS })
+    if (accueil.ok) {
+      for (const url of liensFluxDeclares(await accueil.text(), base).slice(0, FLUX_DECLARES_ESSAYES)) {
+        const articles = await lireSiFlux(url)
+        if (articles) return { url, articles, voie: 'déclaré' }
+      }
     }
+  } catch {
+    // Une page d'accueil illisible ne condamne pas le site : on sonde quand même.
+  }
+
+  for (const chemin of CHEMINS_FLUX_COURANTS) {
+    const articles = await lireSiFlux(`${base}${chemin}`)
+    if (articles) return { url: `${base}${chemin}`, articles, voie: 'convention' }
   }
   return null
 }
@@ -210,7 +306,7 @@ async function collecterSitesOfficiels(ajouter: (c: Citation) => void, comptes: 
           candidatId: candidat.id,
           plateforme: 'site-officiel',
           compte: site.url,
-          erreur: `aucun flux trouvé (${CHEMINS_FLUX_COURANTS.length} chemins essayés)`,
+          erreur: `aucun flux trouvé (aucun déclaré, ${CHEMINS_FLUX_COURANTS.length} chemins essayés)`,
         })
         console.log(`    – ${candidat.nom.padEnd(14)} ${site.url.padEnd(38)} aucun flux`)
         continue
@@ -218,9 +314,20 @@ async function collecterSitesOfficiels(ajouter: (c: Citation) => void, comptes: 
 
       sitesTrouves++
       let retenues = 0
+      let tropCourts = 0
+      let sansAffirmation = 0
       for (const article of flux.articles.slice(0, ARTICLES_PAR_SITE)) {
-        const texte = article.description || article.titre
-        if (!contientUneAffirmationVerifiable(texte)) continue
+        // Titre et corps sont examinés ensemble : le titre porte souvent le
+        // chiffre et le corps le contexte, et n'en lire qu'un revenait à
+        // écarter des déclarations sur la seule mise en page du flux.
+        const texte = article.description
+          ? `${article.titre} — ${article.description}`
+          : article.titre
+        if (!contientUneAffirmationVerifiable(texte)) {
+          if (texte.replace(/https?:\/\/\S+/g, '').trim().length < LONGUEUR_MINIMALE) tropCourts++
+          else sansAffirmation++
+          continue
+        }
         const cle = condenseUrl(article.lien)
         ajouter({
           id: `site-${cle}`,
@@ -244,8 +351,13 @@ async function collecterSitesOfficiels(ajouter: (c: Citation) => void, comptes: 
         compte: new URL(site.url).hostname,
         messagesExamines: flux.articles.length,
       })
+      // Quand rien n'est retenu, dire pourquoi : sans cela, un flux muet et un
+      // flux d'annonces d'événements se ressemblent dans le journal, et on ne
+      // sait pas s'il faut corriger le filtre ou changer de source.
+      const cause =
+        retenues > 0 ? '' : ` — ${tropCourts} trop court(s), ${sansAffirmation} sans chiffre`
       console.log(
-        `    · ${candidat.nom.padEnd(14)} ${flux.url.padEnd(38)} ${flux.articles.length} article(s), ${retenues} retenue(s)`,
+        `    · ${candidat.nom.padEnd(14)} ${flux.url.padEnd(38)} [${flux.voie}] ${flux.articles.length} article(s), ${retenues} retenue(s)${cause}`,
       )
       // Un seul flux par candidat : le premier trouvé fait foi, et interroger
       // aussi le parti doublonnerait la ligne d'un mouvement sur ses candidats.
@@ -486,7 +598,7 @@ async function collecter() {
   if (sansCompteSocial.length > 0) {
     console.log(
       `Sans compte social confirmé : ${sansCompteSocial.map((c) => c.nom).join(', ')}. ` +
-        'Ils restent couverts par les sources parlementaires s’ils ont un mandat.',
+        'Ils restent couverts par le flux de leur site officiel s’il en publie un.',
     )
   }
 
@@ -497,7 +609,7 @@ async function collecter() {
         c.liensOfficiels.some((l) => l.type === 'candidat' || l.type === 'parti'),
       ).length
       console.log(
-        `  · Sites officiels — ${avecSite} site(s) à sonder, ${CHEMINS_FLUX_COURANTS.length} chemins de flux essayés par site`,
+        `  · Sites officiels — ${avecSite} site(s) à sonder, flux déclaré d'abord, puis ${CHEMINS_FLUX_COURANTS.length} chemins conventionnels`,
       )
     }
     if (actif('bluesky')) {

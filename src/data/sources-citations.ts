@@ -32,13 +32,17 @@ export interface SourceVeille {
 }
 
 /**
- * Chemins de flux essayés sur un site officiel, dans cet ordre.
+ * Chemins de flux sondés sur un site officiel, dans cet ordre.
+ *
+ * Ce n'est que le second recours. On demande d'abord au site lui-même : une
+ * page qui publie un flux l'annonce par un `<link rel="alternate">`, seul
+ * moyen de trouver une adresse qui ne suit aucune convention. Ces chemins
+ * couvrent le cas du site qui sert un flux sans le déclarer.
  *
  * Aucun annuaire ne recense les flux des sites politiques français, et deviner
- * une adresse fixe par site reviendrait à en inventer quinze. On essaie donc
- * les conventions les plus répandues et on retient la première qui renvoie un
- * flux exploitable : la découverte remplace la configuration, et un site qui
- * change de moteur reste couvert sans intervention.
+ * une adresse fixe par site reviendrait à en inventer quinze : la découverte
+ * remplace la configuration, et un site qui change de moteur reste couvert
+ * sans intervention.
  */
 export const CHEMINS_FLUX_COURANTS = [
   '/feed/',

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { identifiantVeille, lireFlux, normaliserNom } from './rss'
+import { identifiantVeille, liensFluxDeclares, lireFlux, normaliserNom } from './rss'
 
 describe('lecture de flux', () => {
   it('lit un flux RSS classique', () => {
@@ -144,5 +144,59 @@ describe('normalisation des noms', () => {
 
   it('rapproche deux écritures du même nom', () => {
     expect(normaliserNom('LE PEN')).toBe(normaliserNom('Le Pen'))
+  })
+})
+
+describe('découverte des flux déclarés', () => {
+  const base = 'https://exemple-parti.fr'
+
+  it('lit le flux annoncé par la page d’accueil', () => {
+    const html = `<head><link rel="alternate" type="application/rss+xml"
+      title="Actualités" href="https://exemple-parti.fr/actualites/rss" /></head>`
+    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/actualites/rss'])
+  })
+
+  it('résout une adresse relative contre la page qui la déclare', () => {
+    const html = `<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml">`
+    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/blog/atom.xml'])
+  })
+
+  it('accepte les attributs dans un ordre quelconque et sans guillemets sur rel', () => {
+    const html = `<link href="/f.xml" type="application/rss+xml" rel=alternate>`
+    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/f.xml'])
+  })
+
+  it('ignore les liens qui ne sont pas des flux', () => {
+    const html = `
+      <link rel="stylesheet" href="/style.css">
+      <link rel="alternate" hreflang="en" href="/en/">
+      <link rel="canonical" href="https://exemple-parti.fr/">
+      <link rel="alternate" type="application/json" href="/wp-json/">`
+    expect(liensFluxDeclares(html, base)).toEqual([])
+  })
+
+  it('refuse une adresse en clair : la découverte ne doit pas déclasser le transport', () => {
+    const html = `<link rel="alternate" type="application/rss+xml" href="http://ailleurs.fr/rss">`
+    expect(liensFluxDeclares(html, base)).toEqual([])
+  })
+
+  it('déduplique et conserve l’ordre de déclaration', () => {
+    const html = `
+      <link rel="alternate" type="application/rss+xml" href="/feed/">
+      <link rel="alternate" type="application/rss+xml" href="/comments/feed/">
+      <link rel="alternate" type="application/rss+xml" href="/feed/">`
+    expect(liensFluxDeclares(html, base)).toEqual([
+      'https://exemple-parti.fr/feed/',
+      'https://exemple-parti.fr/comments/feed/',
+    ])
+  })
+
+  it('décode les entités de l’adresse déclarée', () => {
+    const html = `<link rel="alternate" type="application/rss+xml" href="/f?cat=1&amp;type=rss">`
+    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/f?cat=1&type=rss'])
+  })
+
+  it('ne rend rien sur une page sans en-tête exploitable', () => {
+    expect(liensFluxDeclares('<html><body>Bonjour</body></html>', base)).toEqual([])
   })
 })
