@@ -38,11 +38,12 @@ import {
   type VeillePublication,
 } from '../src/data/factcheck'
 import {
-  SOURCES_PARLEMENTAIRES,
+  CHEMINS_FLUX_COURANTS,
   SOURCES_VEILLE,
   SOURCE_BLUESKY,
+  type PorteParole,
 } from '../src/data/sources-citations'
-import { identifiantVeille, lireFlux, normaliserNom } from '../src/lib/factcheck/rss'
+import { condenseUrl, identifiantVeille, lireFlux, normaliserNom } from '../src/lib/factcheck/rss'
 
 /**
  * Résolution IPv4 en premier.
@@ -58,7 +59,7 @@ setDefaultResultOrder('ipv4first')
 const FICHIER = 'public/donnees/factcheck.json'
 const DELAI_MS = 20000
 const MESSAGES_PAR_COMPTE = 50
-const INTERVENTIONS_PAR_ELU = 40
+const ARTICLES_PAR_SITE = 30
 /**
  * Rétention.
  *
@@ -158,124 +159,104 @@ function contientUneAffirmationVerifiable(texte: string): boolean {
   return quantite || (chiffre && comparatif)
 }
 
-/** Lit une valeur imbriquée sans présumer de la forme exacte de la réponse. */
-function champ(objet: unknown, ...cles: string[]): string | undefined {
-  if (typeof objet !== 'object' || objet === null) return undefined
-  const source = objet as Record<string, unknown>
-  for (const cle of cles) {
-    const valeur = source[cle]
-    if (typeof valeur === 'string' && valeur.trim()) return valeur.trim()
-    if (typeof valeur === 'number') return String(valeur)
-  }
-  return undefined
-}
-
-/** Déballe les enveloppes du type `{ depute: {…} }` utilisées par ces API. */
-function deballer(element: unknown): Record<string, unknown> {
-  if (typeof element !== 'object' || element === null) return {}
-  const objet = element as Record<string, unknown>
-  const cles = Object.keys(objet)
-  if (cles.length === 1 && typeof objet[cles[0]] === 'object' && objet[cles[0]] !== null) {
-    return objet[cles[0]] as Record<string, unknown>
-  }
-  return objet
-}
-
-function listeDe(charge: unknown): unknown[] {
-  if (Array.isArray(charge)) return charge
-  if (typeof charge !== 'object' || charge === null) return []
-  for (const valeur of Object.values(charge as Record<string, unknown>)) {
-    if (Array.isArray(valeur)) return valeur
-  }
-  return []
-}
-
 // ---------------------------------------------------------------------------
-// Open data parlementaire
+// Sites officiels des candidats et de leurs mouvements
 // ---------------------------------------------------------------------------
 
-async function collecterParlementaire(
-  source: (typeof SOURCES_PARLEMENTAIRES)[number],
-  ajouter: (c: Citation) => void,
-  comptes: CompteSuivi[],
-) {
-  // La première racine qui répond est retenue pour tout le reste de la
-  // collecte : inutile de rejouer le basculement à chaque élu.
-  let racine = ''
-  let annuaire: Record<string, unknown>[] = []
-  const echecs: string[] = []
-  for (const candidate of source.racines) {
+/**
+ * Découvre le flux de syndication d'un site.
+ *
+ * Les conventions sont essayées dans l'ordre et la première qui renvoie un flux
+ * exploitable est retenue. Un flux est reconnu au fait qu'il produit au moins
+ * un article : c'est plus fiable que de se fier au type de contenu déclaré, que
+ * beaucoup de sites renseignent mal.
+ */
+async function trouverFlux(
+  racine: string,
+): Promise<{ url: string; articles: ReturnType<typeof lireFlux> } | null> {
+  for (const chemin of CHEMINS_FLUX_COURANTS) {
+    const url = `${racine.replace(/\/$/, '')}${chemin}`
     try {
-      const liste = listeDe(await json(`${candidate}${source.cheminAnnuaire}`)).map(deballer)
-      if (liste.length === 0) throw new Error('annuaire vide ou de forme inattendue')
-      racine = candidate
-      annuaire = liste
-      break
-    } catch (e) {
-      echecs.push(`${candidate} : ${motif(e)}`)
+      const reponse = await recuperer(url)
+      if (!reponse.ok) continue
+      const articles = lireFlux(await reponse.text())
+      if (articles.length > 0) return { url, articles }
+    } catch {
+      // Un chemin absent est le cas normal : on passe au suivant sans bruit.
     }
   }
-  if (!racine) throw new Error(echecs.join(' · '))
+  return null
+}
 
-  const parNom = new Map<string, Record<string, unknown>>()
-  for (const elu of annuaire) {
-    const nom = champ(elu, 'nom')
-    const slug = champ(elu, 'slug')
-    if (nom && slug) parNom.set(normaliserNom(nom), elu)
-  }
+async function collecterSitesOfficiels(ajouter: (c: Citation) => void, comptes: CompteSuivi[]) {
+  let sitesTrouves = 0
+  let sitesEssayes = 0
 
-  let trouves = 0
   for (const candidat of candidats) {
-    const cle = normaliserNom(`${candidat.prenom} ${candidat.nom}`)
-    const elu = parNom.get(cle)
-    if (!elu) continue
-    trouves++
-    const slug = champ(elu, 'slug')!
+    // Le site personnel passe avant celui du mouvement : quand les deux
+    // existent, la parole propre du candidat prime sur le communiqué de parti.
+    const sites = [
+      ...candidat.liensOfficiels.filter((l) => l.type === 'candidat'),
+      ...candidat.liensOfficiels.filter((l) => l.type === 'parti'),
+    ]
+    if (sites.length === 0) continue
 
-    try {
-      const brut = await json(`${racine}${source.cheminInterventions.replace('{slug}', slug)}`)
-      const interventions = listeDe(brut).map(deballer).slice(0, INTERVENTIONS_PAR_ELU)
-      let retenues = 0
-      for (const intervention of interventions) {
-        const texte = champ(intervention, 'intervention', 'texte', 'contenu')
-        const id = champ(intervention, 'id', 'intervention_id')
-        const date = champ(intervention, 'date', 'date_seance')
-        if (!texte || !id || !date) continue
-        if (!contientUneAffirmationVerifiable(texte)) continue
-        ajouter({
-          id: `${source.plateforme}-${id}`,
+    for (const site of sites) {
+      sitesEssayes++
+      const porteParole: PorteParole = site.type === 'candidat' ? 'candidat' : 'parti'
+      const flux = await trouverFlux(site.url)
+      if (!flux) {
+        comptes.push({
           candidatId: candidat.id,
-          plateforme: source.plateforme,
-          compte: slug,
-          postId: id,
-          url: `${racine}/${slug}/interventions`,
-          texte,
-          affirmation: texte,
-          datePublication: new Date(date).toISOString(),
+          plateforme: 'site-officiel',
+          compte: site.url,
+          erreur: `aucun flux trouvé (${CHEMINS_FLUX_COURANTS.length} chemins essayés)`,
+        })
+        console.log(`    – ${candidat.nom.padEnd(14)} ${site.url.padEnd(38)} aucun flux`)
+        continue
+      }
+
+      sitesTrouves++
+      let retenues = 0
+      for (const article of flux.articles.slice(0, ARTICLES_PAR_SITE)) {
+        const texte = article.description || article.titre
+        if (!contientUneAffirmationVerifiable(texte)) continue
+        const cle = condenseUrl(article.lien)
+        ajouter({
+          id: `site-${cle}`,
+          candidatId: candidat.id,
+          plateforme: 'site-officiel',
+          compte: new URL(site.url).hostname,
+          postId: cle,
+          url: article.lien,
+          texte: texte.slice(0, 3500),
+          affirmation: article.titre,
+          datePublication: article.date || new Date().toISOString(),
           collecteLe: new Date().toISOString(),
-          contexte: champ(intervention, 'seance', 'titre', 'sujet'),
+          contexte: article.date ? undefined : 'date de publication absente du flux',
+          porteParole,
         })
         retenues++
       }
       comptes.push({
         candidatId: candidat.id,
-        plateforme: source.plateforme,
-        compte: slug,
-        messagesExamines: interventions.length,
+        plateforme: 'site-officiel',
+        compte: new URL(site.url).hostname,
+        messagesExamines: flux.articles.length,
       })
       console.log(
-        `    · ${candidat.nom.padEnd(14)} ${slug.padEnd(28)} ${interventions.length} intervention(s), ${retenues} retenue(s)`,
+        `    · ${candidat.nom.padEnd(14)} ${flux.url.padEnd(38)} ${flux.articles.length} article(s), ${retenues} retenue(s)`,
       )
-    } catch (e) {
-      const message = motif(e)
-      comptes.push({ candidatId: candidat.id, plateforme: source.plateforme, compte: slug, erreur: message })
-      console.error(`    ✗ ${candidat.nom.padEnd(14)} ${slug} — ${message}`)
+      // Un seul flux par candidat : le premier trouvé fait foi, et interroger
+      // aussi le parti doublonnerait la ligne d'un mouvement sur ses candidats.
+      break
     }
   }
+
   journal.push({
-    source: source.nom,
-    statut: 'ok',
-    detail: `${trouves} candidat(s) retrouvé(s) sur ${candidats.length}, via ${racine}`,
+    source: 'Sites officiels',
+    statut: sitesTrouves > 0 ? 'ok' : 'échec',
+    detail: `${sitesTrouves} flux trouvé(s) sur ${sitesEssayes} site(s) essayé(s)`,
   })
 }
 
@@ -511,10 +492,13 @@ async function collecter() {
 
   if (essai) {
     console.log('\nEssai : sources qui seraient interrogées, sans aucun appel réseau.')
-    for (const source of SOURCES_PARLEMENTAIRES) {
-      if (actif(source.id)) {
-        console.log(`  · ${source.nom} — ${source.racines.join(' puis ')} (${source.licence})`)
-      }
+    if (actif('sites')) {
+      const avecSite = candidats.filter((c) =>
+        c.liensOfficiels.some((l) => l.type === 'candidat' || l.type === 'parti'),
+      ).length
+      console.log(
+        `  · Sites officiels — ${avecSite} site(s) à sonder, ${CHEMINS_FLUX_COURANTS.length} chemins de flux essayés par site`,
+      )
     }
     if (actif('bluesky')) {
       const n = candidats.filter((c) => c.comptesSociaux.some((s) => s.plateforme === 'bluesky')).length
@@ -528,19 +512,9 @@ async function collecter() {
     return
   }
 
-  for (const source of SOURCES_PARLEMENTAIRES) {
-    if (!actif(source.id)) continue
-    console.log(`\n  ${source.nom} — ${source.editeur}, licence ${source.licence}`)
-    try {
-      await collecterParlementaire(source, ajouter, comptes)
-    } catch (e) {
-      const message = motif(e)
-      journal.push({ source: source.nom, statut: 'échec', detail: message })
-      console.error(
-        `    ✗ ${message}` +
-          (source.urlConfirmee ? '' : ' — adresse non confirmée, à corriger dans src/data/sources-citations.ts'),
-      )
-    }
+  if (actif('sites')) {
+    console.log('\n  Sites officiels — flux de syndication, découverte automatique')
+    await collecterSitesOfficiels(ajouter, comptes)
   }
 
   if (actif('bluesky')) {

@@ -7,22 +7,41 @@ l'architecture est celle-là.
 
 Toutes les sources activées par défaut sont **publiques, gratuites et sans clé d'accès**.
 
-| Source | Nature | Éditeur | Licence |
+| Source | Nature | Découverte | Licence |
 |---|---|---|---|
-| **NosDéputés.fr** | Interventions en séance, verbatim | Regards Citoyens | ODbL |
-| **NosSénateurs.fr** | Interventions en séance, verbatim | Regards Citoyens | ODbL |
-| **Bluesky** | Messages publics, API de lecture ouverte | — | Propos de leurs auteurs, cités avec lien |
-| **Veille RSS** | Vérifications déjà publiées | Le Monde, AFP, franceinfo, Libération | Titre et lien seuls, avec attribution |
-| **X** *(optionnel, désactivé)* | Messages publics | — | Lecture authentifiée et facturée |
+| **Sites officiels** | Publications des candidats et de leurs mouvements | Flux de syndication, chemin trouvé automatiquement | Propos de leurs auteurs, cités avec lien |
+| **Bluesky** | Messages publics, API de lecture ouverte | Compte déclaré par fiche | Propos de leurs auteurs, cités avec lien |
+| **Veille RSS** | Vérifications déjà publiées | Flux fixes | Titre et lien seuls, avec attribution |
+| **X** *(optionnel, désactivé)* | Messages publics | Compte déclaré par fiche | Lecture authentifiée et facturée |
 
-**L'open data parlementaire est le socle.** Une intervention en séance est verbatim, horodatée,
-rattachée à un débat identifié, publiée sous licence ouverte — et elle ne disparaît pas si son
-auteur l'efface. C'est une bien meilleure matière première qu'un message de réseau social, et elle
-ne coûte rien.
+**Les flux des sites officiels sont le socle.** Ce sont des paroles publiées par les intéressés
+eux-mêmes, avec un lien vers l'original. Aucun annuaire ne recense les flux des sites politiques
+français : plutôt que d'inventer quinze adresses, le collecteur essaie les conventions les plus
+répandues (`/feed/`, `/rss`, `/feed`, `/rss.xml`, `/atom.xml`, `/index.php/feed/`) et retient la
+première qui renvoie un flux exploitable. La découverte remplace la configuration, et un site qui
+change de moteur reste couvert sans intervention.
+
+**Qui parle est affiché.** Un communiqué de mouvement n'est pas la parole personnelle du candidat,
+même lorsqu'il en porte la ligne. Le site personnel passe donc avant celui du parti, et chaque
+citation porte la mention `porteParole`, visible dans l'interface.
 
 Les réseaux sociaux complètent, mais seulement ceux dont la lecture est ouverte. Dans les faits, la
 plupart des responsables politiques français sont restés sur X : la couverture sociale est donc
 partielle, et le site le dit plutôt que de le masquer.
+
+### NosDéputés.fr et NosSénateurs.fr, retirés
+
+Ces deux sources ont d'abord été retenues : une intervention en séance est verbatim, horodatée,
+rattachée à un débat identifié et publiée sous licence ouverte, ce qui en fait la meilleure matière
+première imaginable. Elles ont été retirées le 4 septembre 2026 — **le service ne répond plus**,
+constaté depuis un exécuteur d'intégration continue puis depuis un poste personnel, avec un délai
+de connexion dépassé au port 443 sur les deux hôtes.
+
+L'open data officiel de l'Assemblée nationale publie bien les comptes rendus, mais sous forme
+d'archives volumineuses dont l'exploitation demande un adaptateur d'un tout autre ordre : téléchargement
+de plusieurs centaines de mégaoctets, décompression, analyse XML. Cet adaptateur n'a pas été écrit,
+faute de pouvoir l'exécuter depuis l'environnement de développement — l'écrire à l'aveugle
+reproduirait l'erreur qui a coûté deux collectes. C'est le prochain chantier identifié.
 
 **X n'est pas utilisé par défaut.** Son API exige un jeton et facture chaque lecture depuis
 février 2026 — environ 0,005 $ par message et 0,010 $ par compte, le palier gratuit étant fermé aux
@@ -63,13 +82,13 @@ npm run collecte:citations                       # sources gratuites, aucune cl�
 npm run collecte:citations -- --sources=bluesky  # une source en particulier
 ```
 
-Aucun jeton n'est nécessaire. `--sources=` accepte `nosdeputes`, `nossenateurs`, `bluesky`,
-`veille` et `x` ; sans ce drapeau, tout est collecté **sauf** X.
+Aucun jeton n'est nécessaire. `--sources=` accepte `sites`, `bluesky`, `veille` et `x` ; sans ce
+drapeau, tout est collecté **sauf** X.
 
 Le script :
 
-- retrouve les candidats dans l'annuaire parlementaire **par leur nom**, sans configuration : aucun
-  identifiant à renseigner à la main ;
+- découvre le flux de chaque site officiel **sans configuration**, en essayant les conventions
+  courantes et en retenant la première qui répond ;
 - n'interroge des comptes sociaux que ceux déclarés dans `comptesSociaux`, et **liste les candidats
   qui n'en ont pas** — un identifiant deviné ferait citer la mauvaise personne, et un compte de
   soutien tenu par une équipe ne serait pas la parole du candidat ;
@@ -80,11 +99,10 @@ Le script :
 - **n'écrase jamais une vérification existante** et ne supprime aucune citation ;
 - affiche un bilan par source, avec le motif exact de chaque échec.
 
-> **État des adresses.** La première collecte réelle, le 4 septembre 2026, a confirmé les **quatre
-> flux de veille** (Les Décodeurs, AFP Factuel, Vrai ou Faux, CheckNews) et l'**API publique de
-> Bluesky**. Les deux **API parlementaires** ont échoué au niveau de la connexion, avant toute
-> réponse HTTP : elles gardent `urlConfirmee: false` et le collecteur essaie désormais les deux
-> hôtes possibles, avec une reprise, en rapportant la cause exacte de chaque échec.
+> **État des adresses.** Les collectes réelles du 4 septembre 2026 ont confirmé les **quatre flux
+> de veille** (Les Décodeurs, AFP Factuel, Vrai ou Faux, CheckNews) et l'**API publique de
+> Bluesky**. Les flux des sites officiels n'ont pas d'adresse fixe : ils sont découverts à chaque
+> exécution, et le collecteur indique pour chaque site le chemin retenu ou l'absence de flux.
 
 ## Rétention
 

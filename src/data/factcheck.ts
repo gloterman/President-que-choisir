@@ -24,10 +24,8 @@ export const VERSION_INSTANTANE = 2
  * la plateforme expose une lecture publique sans authentification.
  */
 export type Plateforme =
-  /** Compte rendu de séance, Assemblée nationale (via NosDéputés.fr). */
-  | 'assemblee'
-  /** Compte rendu de séance, Sénat (via NosSénateurs.fr). */
-  | 'senat'
+  /** Publication du site officiel du candidat ou de son mouvement. */
+  | 'site-officiel'
   /** Réseau social à lecture publique et gratuite. */
   | 'bluesky'
   /** Réseau social à lecture authentifiée et facturée. Optionnel. */
@@ -37,19 +35,12 @@ export const PLATEFORMES: Record<
   Plateforme,
   { label: string; court: string; gratuite: boolean; explication: string }
 > = {
-  assemblee: {
-    label: 'Assemblée nationale',
-    court: 'Assemblée',
+  'site-officiel': {
+    label: 'Site officiel',
+    court: 'Site officiel',
     gratuite: true,
     explication:
-      'Intervention en séance publique, retranscrite au compte rendu. Source ouverte et gratuite, republiée par NosDéputés.fr sous licence ODbL.',
-  },
-  senat: {
-    label: 'Sénat',
-    court: 'Sénat',
-    gratuite: true,
-    explication:
-      'Intervention en séance publique, retranscrite au compte rendu. Source ouverte et gratuite, republiée par NosSénateurs.fr sous licence ODbL.',
+      'Publication du site du candidat ou de son mouvement, relevée par son flux de syndication. C’est une parole assumée et publiée par l’intéressé lui-même.',
   },
   bluesky: {
     label: 'Bluesky',
@@ -168,8 +159,15 @@ export interface Citation {
   themeId?: string
   /** ISO 8601. Date de la collecte. */
   collecteLe: string
-  /** Contexte de l'intervention : titre du débat, du dossier législatif. */
+  /** Contexte de la déclaration : titre du débat, de la publication. */
   contexte?: string
+  /**
+   * Qui parle exactement.
+   *
+   * Un communiqué de parti n'est pas la parole personnelle du candidat, même
+   * lorsqu'il porte sa ligne. La distinction est affichée plutôt que gommée.
+   */
+  porteParole?: 'candidat' | 'parti'
 }
 
 /**

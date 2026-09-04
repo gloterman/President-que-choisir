@@ -77,6 +77,33 @@ describe('lecture de flux', () => {
   })
 })
 
+describe('extraction de la description', () => {
+  it('retient le corps du billet et le débarrasse de son balisage', () => {
+    const articles = lireFlux(`
+      <rss><item>
+        <title>Communiqué</title>
+        <link>https://exemple.test/a</link>
+        <description><![CDATA[<p>Nous avons créé <strong>100 000</strong> emplois.</p><p>Suite.</p>]]></description>
+      </item></rss>`)
+    expect(articles[0].description).toBe('Nous avons créé 100 000 emplois. Suite.')
+  })
+
+  it('préfère le contenu complet à la description quand les deux existent', () => {
+    const articles = lireFlux(`
+      <rss><item>
+        <title>T</title><link>https://exemple.test/b</link>
+        <description>Chapô court.</description>
+        <content:encoded><![CDATA[Corps complet de la publication.]]></content:encoded>
+      </item></rss>`)
+    expect(articles[0].description).toBe('Corps complet de la publication.')
+  })
+
+  it('renvoie une description vide plutôt que d’échouer quand elle manque', () => {
+    const articles = lireFlux('<rss><item><title>T</title><link>https://exemple.test/c</link></item></rss>')
+    expect(articles[0].description).toBe('')
+  })
+})
+
 describe('identifiant de veille', () => {
   it('distingue deux articles d’un même site', () => {
     // Régression : une première version tronquait un encodage base64 de

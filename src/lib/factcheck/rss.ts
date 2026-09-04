@@ -14,6 +14,8 @@ export interface ArticleFlux {
   lien: string
   /** ISO 8601, ou chaîne vide si la date est absente ou illisible. */
   date: string
+  /** Chapô ou corps du billet, débarrassé de son balisage. Peut être vide. */
+  description: string
 }
 
 const CDATA = /^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/
@@ -48,6 +50,23 @@ function extraireLienAtom(bloc: string): string | null {
   return simple ? decoder(simple[1]) : null
 }
 
+/**
+ * Retire le balisage d'un contenu de flux.
+ *
+ * Les descriptions arrivent en HTML échappé. Le texte est ce qui nous
+ * intéresse — il sera affiché comme citation — et le balisage n'a rien à faire
+ * dans une déclaration attribuée à quelqu'un.
+ */
+function sansBalisage(brut: string | null): string {
+  if (!brut) return ''
+  return decoder(brut)
+    .replace(/<br\s*\/?>/gi, ' ')
+    .replace(/<\/(?:p|div|li|h[1-6])>/gi, ' ')
+    .replace(/<[^>]*>/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
 function normaliserDate(brut: string | null): string {
   if (!brut) return ''
   const instant = Date.parse(brut)
@@ -75,6 +94,12 @@ export function lireFlux(xml: string): ArticleFlux[] {
       date: normaliserDate(
         extraire(contenu, 'pubDate') ?? extraire(contenu, 'published') ?? extraire(contenu, 'updated'),
       ),
+      description: sansBalisage(
+        extraire(contenu, 'content:encoded') ??
+          extraire(contenu, 'description') ??
+          extraire(contenu, 'summary') ??
+          extraire(contenu, 'content'),
+      ),
     })
   }
   return articles
@@ -89,9 +114,12 @@ export function lireFlux(xml: string): ArticleFlux[] {
  * identifiant et quarante-neuf étaient silencieusement perdues. Une troncature
  * ne peut porter que sur un condensé, jamais sur la donnée elle-même.
  */
+export function condenseUrl(url: string): string {
+  return createHash('sha256').update(url).digest('hex').slice(0, 16)
+}
+
 export function identifiantVeille(sourceId: string, url: string): string {
-  const condense = createHash('sha256').update(url).digest('hex').slice(0, 16)
-  return `veille-${sourceId}-${condense}`
+  return `veille-${sourceId}-${condenseUrl(url)}`
 }
 
 /** Retire les diacritiques et la casse, pour comparer des noms propres. */

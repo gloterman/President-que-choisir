@@ -1,37 +1,25 @@
-import type { Plateforme } from './factcheck'
-
 /**
  * Registre des sources de collecte.
  *
- * Toutes celles activées par défaut sont **publiques, gratuites et sans clé**.
- * Chacune déclare sa licence de réutilisation, parce qu'un outil qui republie
- * des propos doit pouvoir dire à quel titre il le fait.
+ * Toutes sont **publiques, gratuites et sans clé**, et chacune déclare sa
+ * licence de réutilisation : un outil qui republie des propos doit pouvoir dire
+ * à quel titre il le fait.
  *
- * Le champ `urlConfirmee` dit si l'adresse a réellement répondu. Les quatre
- * flux de veille l'ont fait lors de la collecte du 4 septembre 2026 ; les deux
- * API parlementaires ont échoué au niveau de la connexion, avant même toute
- * réponse HTTP, et restent donc à confirmer. Le collecteur affiche le statut de
- * chaque source à l'exécution avec le motif exact de l'échec.
+ * Le champ `urlConfirmee` dit si l'adresse a réellement répondu lors d'une
+ * collecte. Les quatre flux de veille et l'API Bluesky l'ont fait le
+ * 4 septembre 2026.
+ *
+ * NosDéputés.fr et NosSénateurs.fr ont été retirés : le service est hors ligne,
+ * confirmé depuis deux réseaux distincts. Les interventions en séance restent
+ * la meilleure matière première imaginable — verbatim, horodatées, sous licence
+ * ouverte — mais l'open data officiel de l'Assemblée ne les publie qu'en
+ * archives volumineuses, dont l'exploitation demande un adaptateur d'un tout
+ * autre ordre. Écrire cet adaptateur sans pouvoir l'exécuter serait reproduire
+ * l'erreur qui a coûté deux collectes.
  */
 
-export interface SourceParlementaire {
-  id: string
-  plateforme: Extract<Plateforme, 'assemblee' | 'senat'>
-  nom: string
-  editeur: string
-  licence: string
-  /**
-   * Racines à essayer dans l'ordre. Plusieurs entrées permettent de survivre à
-   * un service qui répond sur un hôte et pas sur l'autre — cas courant quand un
-   * site public a changé de configuration sans redirection.
-   */
-  racines: string[]
-  /** Chemin listant les élus, utilisé pour résoudre un nom en identifiant. */
-  cheminAnnuaire: string
-  /** Chemin des interventions, `{slug}` étant remplacé par l'identifiant. */
-  cheminInterventions: string
-  urlConfirmee: boolean
-}
+/** Ce qui parle : la personne, ou le mouvement qu'elle dirige. */
+export type PorteParole = 'candidat' | 'parti'
 
 export interface SourceVeille {
   id: string
@@ -44,37 +32,22 @@ export interface SourceVeille {
 }
 
 /**
- * Open data parlementaire.
+ * Chemins de flux essayés sur un site officiel, dans cet ordre.
  *
- * C'est le socle : une intervention en séance est verbatim, horodatée,
- * rattachée à un débat identifié, et publiée sous licence ouverte. Contrairement
- * à un message sur un réseau social, elle ne disparaît pas si son auteur
- * l'efface.
+ * Aucun annuaire ne recense les flux des sites politiques français, et deviner
+ * une adresse fixe par site reviendrait à en inventer quinze. On essaie donc
+ * les conventions les plus répandues et on retient la première qui renvoie un
+ * flux exploitable : la découverte remplace la configuration, et un site qui
+ * change de moteur reste couvert sans intervention.
  */
-export const SOURCES_PARLEMENTAIRES: SourceParlementaire[] = [
-  {
-    id: 'nosdeputes',
-    plateforme: 'assemblee',
-    nom: 'NosDéputés.fr',
-    editeur: 'Regards Citoyens',
-    licence: 'ODbL',
-    racines: ['https://www.nosdeputes.fr', 'https://nosdeputes.fr'],
-    cheminAnnuaire: '/deputes/json',
-    cheminInterventions: '/{slug}/interventions/json',
-    urlConfirmee: false,
-  },
-  {
-    id: 'nossenateurs',
-    plateforme: 'senat',
-    nom: 'NosSénateurs.fr',
-    editeur: 'Regards Citoyens',
-    licence: 'ODbL',
-    racines: ['https://www.nossenateurs.fr', 'https://nossenateurs.fr'],
-    cheminAnnuaire: '/senateurs/json',
-    cheminInterventions: '/{slug}/interventions/json',
-    urlConfirmee: false,
-  },
-]
+export const CHEMINS_FLUX_COURANTS = [
+  '/feed/',
+  '/rss',
+  '/feed',
+  '/rss.xml',
+  '/atom.xml',
+  '/index.php/feed/',
+] as const
 
 /** API publique de Bluesky : lecture sans compte ni jeton. */
 export const SOURCE_BLUESKY = {

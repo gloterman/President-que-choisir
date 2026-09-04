@@ -13,18 +13,17 @@ import { bilanVeracite, notesVeraciteDynamiques, ECHANTILLON_MINIMAL } from './v
  */
 const FORME_IDENTIFIANT: Record<string, RegExp> = {
   x: /^\d+$/,
-  assemblee: /^\d+$/,
-  senat: /^\d+$/,
   bluesky: /^[2-7a-z]{13}$/,
+  'site-officiel': /^[0-9a-f]{16}$/,
 }
 
 const citation = (id: string, candidatId = 'melenchon') => ({
   id,
   candidatId,
-  plateforme: 'assemblee',
-  compte: 'compte',
+  plateforme: 'bluesky',
+  compte: 'compte.bsky.social',
   postId: id,
-  url: 'https://www.nosdeputes.fr/compte/interventions',
+  url: 'https://bsky.app/profile/compte.bsky.social/post/abc',
   texte: 'Un texte de test suffisamment long pour être exploitable.',
   affirmation: 'Un texte de test.',
   datePublication: '2026-08-01T10:00:00.000Z',
@@ -68,7 +67,7 @@ describe('validation de l’instantané', () => {
   it('écarte une URL de message qui n’est pas https', () => {
     const { instantane: valide, rejets } = validerInstantane(
       instantane({
-        citations: [{ ...citation('a'), url: 'http://www.nosdeputes.fr/compte/interventions' }],
+        citations: [{ ...citation('a'), url: 'http://bsky.app/profile/compte.bsky.social/post/abc' }],
       }),
     )
     expect(valide.citations).toHaveLength(0)
@@ -83,14 +82,55 @@ describe('validation de l’instantané', () => {
   })
 
   it('refuse une citation dont l’URL appartient à une autre plateforme que la sienne', () => {
-    // Une intervention parlementaire qui renverrait vers un réseau social
-    // ferait passer un message pour un compte rendu de séance.
+    // Un message de réseau social présenté comme une publication de site
+    // officiel lui emprunterait une autorité qu'il n'a pas.
     const { instantane: valide } = validerInstantane(
       instantane({
         citations: [
-          { ...citation('a'), plateforme: 'assemblee', url: 'https://x.com/compte/status/a' },
+          { ...citation('a'), plateforme: 'site-officiel', url: 'https://bsky.app/profile/x/post/a' },
         ],
       }),
+    )
+    expect(valide.citations).toHaveLength(0)
+  })
+
+  it('n’accepte une publication de site officiel que sur un domaine déclaré dans les fiches', () => {
+    // Sans cette contrainte, un instantané compromis pourrait faire passer
+    // n'importe quel site pour la parole officielle d'un candidat.
+    const inconnu = validerInstantane(
+      instantane({
+        citations: [
+          {
+            ...citation('a'),
+            plateforme: 'site-officiel',
+            postId: '0123456789abcdef',
+            url: 'https://site-inconnu.test/billet',
+          },
+        ],
+      }),
+    )
+    expect(inconnu.instantane.citations).toHaveLength(0)
+
+    const declare = validerInstantane(
+      instantane({
+        citations: [
+          {
+            ...citation('a'),
+            plateforme: 'site-officiel',
+            postId: '0123456789abcdef',
+            url: 'https://melenchon2027.fr/un-billet',
+            porteParole: 'candidat',
+          },
+        ],
+      }),
+    )
+    expect(declare.instantane.citations).toHaveLength(1)
+    expect(declare.instantane.citations[0].porteParole).toBe('candidat')
+  })
+
+  it('écarte un porte-parole qui n’est ni le candidat ni son mouvement', () => {
+    const { instantane: valide } = validerInstantane(
+      instantane({ citations: [{ ...citation('a'), porteParole: 'comité de soutien' }] }),
     )
     expect(valide.citations).toHaveLength(0)
   })

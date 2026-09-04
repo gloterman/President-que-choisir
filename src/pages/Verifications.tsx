@@ -5,7 +5,7 @@ import { Alerte, Badge, Bouton, Carte, Depliant, EnteteCarte } from '@/component
 import { Pastille } from '@/components/candidat/Pastille'
 import { candidats, candidatById } from '@/data/candidats'
 import { PLATEFORMES, VERDICTS, type Verdict } from '@/data/factcheck'
-import { SOURCES_PARLEMENTAIRES, SOURCES_VEILLE } from '@/data/sources-citations'
+import { SOURCES_VEILLE } from '@/data/sources-citations'
 import { sourceById } from '@/data/sources'
 import { themeById } from '@/data/referentiel'
 import { useFactCheck } from '@/lib/factcheck/store'
@@ -237,6 +237,15 @@ export function Verifications() {
                     <Badge ton="neutre" titre={PLATEFORMES[citation.plateforme].explication}>
                       {PLATEFORMES[citation.plateforme].court}
                     </Badge>
+                    {citation.porteParole === 'parti' && (
+                      <Badge
+                        ton="neutre"
+                        icone="§"
+                        titre="Publication du mouvement, et non parole personnelle du candidat."
+                      >
+                        Communiqué du mouvement
+                      </Badge>
+                    )}
                     <Badge ton={meta.ton} icone={meta.icone} titre={meta.explication}>
                       {meta.label}
                     </Badge>
@@ -254,8 +263,8 @@ export function Verifications() {
                       rel="noopener noreferrer nofollow"
                       className="text-[0.78rem] text-accent hover:underline"
                     >
-                      {citation.plateforme === 'assemblee' || citation.plateforme === 'senat'
-                        ? 'Voir le compte rendu de séance ↗'
+                      {citation.plateforme === 'site-officiel'
+                        ? 'Voir la publication d’origine ↗'
                         : 'Voir le message d’origine ↗'}
                     </a>
                     {citation.themeId && (
@@ -400,13 +409,15 @@ export function Verifications() {
           </p>
           <p>
             Les déclarations viennent de sources <strong className="font-medium text-ink">publiques,
-            gratuites et sans clé d’accès</strong>. Le socle est l’open data parlementaire :{' '}
-            {SOURCES_PARLEMENTAIRES.map((s) => `${s.nom} (${s.editeur}, licence ${s.licence})`).join(
-              ' et ',
-            )}
-            . Une intervention en séance est verbatim, horodatée, rattachée à un débat identifié, et
-            elle ne disparaît pas si son auteur l’efface. S’y ajoutent les réseaux sociaux dont la
-            lecture est ouverte, Bluesky en particulier.
+            gratuites et sans clé d’accès</strong> : les flux de syndication des sites officiels des
+            candidats et de leurs mouvements, et les réseaux sociaux dont la lecture est ouverte,
+            Bluesky en particulier. Ce sont des paroles publiées par les intéressés eux-mêmes, avec
+            un lien vers la publication d’origine.
+          </p>
+          <p>
+            Une distinction est faite et affichée : un communiqué de mouvement n’est pas la parole
+            personnelle du candidat, même lorsqu’il en porte la ligne. Chaque citation indique
+            laquelle des deux vous lisez.
           </p>
           <p>
             La collecte a lieu en amont plutôt que dans votre navigateur, pour deux raisons qui

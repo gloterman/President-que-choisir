@@ -1,3 +1,4 @@
+import { candidats } from '@/data/candidats'
 import {
   PLATEFORMES,
   VERDICTS,
@@ -65,16 +66,39 @@ function estUrlSure(v: unknown): v is string {
  * seule : sans cette contrainte, un instantané compromis pourrait faire pointer
  * « le message d'origine » vers n'importe quoi.
  */
-const HOTES_PAR_PLATEFORME: Record<Plateforme, string[]> = {
-  assemblee: ['nosdeputes.fr', 'www.nosdeputes.fr', 'assemblee-nationale.fr', 'www.assemblee-nationale.fr'],
-  senat: ['nossenateurs.fr', 'www.nossenateurs.fr', 'senat.fr', 'www.senat.fr'],
+const HOTES_PAR_PLATEFORME: Record<Exclude<Plateforme, 'site-officiel'>, string[]> = {
   bluesky: ['bsky.app', 'staging.bsky.app'],
   x: ['x.com', 'www.x.com', 'twitter.com', 'www.twitter.com'],
 }
 
+/**
+ * Domaines officiels déclarés dans les fiches.
+ *
+ * Chaque candidat ayant son propre domaine, la liste ne peut pas être écrite
+ * en dur — mais elle ne doit pas non plus être ouverte à tout vent. Elle est
+ * donc dérivée des liens officiels des fiches : une citation ne peut renvoyer
+ * qu'à un domaine que le site a lui-même déclaré comme officiel.
+ */
+const HOTES_OFFICIELS = new Set(
+  candidats.flatMap((candidat) =>
+    candidat.liensOfficiels
+      .filter((lien) => lien.type === 'candidat' || lien.type === 'parti')
+      .flatMap((lien) => {
+        try {
+          const hote = new URL(lien.url).hostname.toLowerCase()
+          // Le flux d'un site peut vivre sur le domaine avec ou sans « www ».
+          return hote.startsWith('www.') ? [hote, hote.slice(4)] : [hote, `www.${hote}`]
+        } catch {
+          return []
+        }
+      }),
+  ),
+)
+
 function estUrlDeMessage(v: unknown, plateforme: Plateforme): v is string {
   if (!estUrlSure(v)) return false
   const hote = new URL(v).hostname.toLowerCase()
+  if (plateforme === 'site-officiel') return HOTES_OFFICIELS.has(hote)
   return HOTES_PAR_PLATEFORME[plateforme].includes(hote)
 }
 
@@ -97,6 +121,9 @@ function validerCitation(brut: unknown): Citation | null {
   if (!estDateIso(c.collecteLe)) return null
   if (!estChaineFacultative(c.themeId)) return null
   if (!estChaineFacultative(c.contexte)) return null
+  if (c.porteParole !== undefined && c.porteParole !== 'candidat' && c.porteParole !== 'parti') {
+    return null
+  }
   return {
     id: c.id,
     candidatId: c.candidatId,
@@ -110,6 +137,7 @@ function validerCitation(brut: unknown): Citation | null {
     collecteLe: c.collecteLe,
     themeId: c.themeId as string | undefined,
     contexte: c.contexte as string | undefined,
+    porteParole: c.porteParole as 'candidat' | 'parti' | undefined,
   }
 }
 
