@@ -80,11 +80,22 @@ Le script :
 - **n'écrase jamais une vérification existante** et ne supprime aucune citation ;
 - affiche un bilan par source, avec le motif exact de chaque échec.
 
-> **Adresses à confirmer.** L'environnement de développement de ce dépôt n'a pas d'accès sortant
-> vers ces domaines : les chemins d'API et les adresses de flux ont été écrits d'après la
-> documentation publique mais **n'ont pas pu être appelés**. Ils portent `urlConfirmee: false` dans
-> `src/data/sources-citations.ts`, et le collecteur le rappelle à chaque échec. Corriger une adresse
-> fautive tient en une chaîne de caractères ; la première exécution réelle dira lesquelles.
+> **État des adresses.** La première collecte réelle, le 4 septembre 2026, a confirmé les **quatre
+> flux de veille** (Les Décodeurs, AFP Factuel, Vrai ou Faux, CheckNews) et l'**API publique de
+> Bluesky**. Les deux **API parlementaires** ont échoué au niveau de la connexion, avant toute
+> réponse HTTP : elles gardent `urlConfirmee: false` et le collecteur essaie désormais les deux
+> hôtes possibles, avec une reprise, en rapportant la cause exacte de chaque échec.
+
+## Rétention
+
+L'instantané est rechargé par chaque visiteur : il doit rester petit. À chaque collecte :
+
+- **une citation portant une vérification n'est jamais écartée** — ce serait perdre du travail
+  humain ;
+- les citations en attente sont ramenées aux 400 plus récentes ;
+- la veille est ramenée aux 300 entrées les plus récentes.
+
+Le nombre de citations écartées est affiché à chaque exécution.
 
 ## La veille des vérifications publiées
 

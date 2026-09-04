@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { lireFlux, normaliserNom } from './rss'
+import { identifiantVeille, lireFlux, normaliserNom } from './rss'
 
 describe('lecture de flux', () => {
   it('lit un flux RSS classique', () => {
@@ -74,6 +74,38 @@ describe('lecture de flux', () => {
   it('ne renvoie rien sur une charge qui n’est pas un flux', () => {
     expect(lireFlux('<html><body>bonjour</body></html>')).toEqual([])
     expect(lireFlux('')).toEqual([])
+  })
+})
+
+describe('identifiant de veille', () => {
+  it('distingue deux articles d’un même site', () => {
+    // Régression : une première version tronquait un encodage base64 de
+    // l'adresse. Les articles d'un même site partageant leur préfixe, les
+    // cinquante entrées d'un flux se réduisaient à un seul identifiant et
+    // quarante-neuf disparaissaient sans bruit.
+    const urls = [
+      'https://www.lemonde.fr/les-decodeurs/article/2026/09/01/aaa_1.html',
+      'https://www.lemonde.fr/les-decodeurs/article/2026/09/02/bbb_2.html',
+      'https://www.lemonde.fr/les-decodeurs/video/2026/09/03/ccc_3.html',
+    ]
+    const identifiants = urls.map((u) => identifiantVeille('decodeurs', u))
+    expect(new Set(identifiants).size).toBe(urls.length)
+  })
+
+  it('reste stable pour une même adresse', () => {
+    const url = 'https://factuel.afp.com/doc.12345'
+    expect(identifiantVeille('afp', url)).toBe(identifiantVeille('afp', url))
+  })
+
+  it('sépare deux sources qui publieraient la même adresse', () => {
+    const url = 'https://exemple.test/a'
+    expect(identifiantVeille('a', url)).not.toBe(identifiantVeille('b', url))
+  })
+
+  it('produit un identifiant court et lisible', () => {
+    expect(identifiantVeille('decodeurs', 'https://exemple.test/a')).toMatch(
+      /^veille-decodeurs-[0-9a-f]{16}$/,
+    )
   })
 })
 

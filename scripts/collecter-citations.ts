@@ -41,12 +41,22 @@ import {
   SOURCES_VEILLE,
   SOURCE_BLUESKY,
 } from '../src/data/sources-citations'
-import { lireFlux, normaliserNom } from '../src/lib/factcheck/rss'
+import { identifiantVeille, lireFlux, normaliserNom } from '../src/lib/factcheck/rss'
 
 const FICHIER = 'public/donnees/factcheck.json'
 const DELAI_MS = 20000
 const MESSAGES_PAR_COMPTE = 50
 const INTERVENTIONS_PAR_ELU = 40
+/**
+ * Rétention.
+ *
+ * L'instantané est rechargé par chaque visiteur : il doit rester petit. Une
+ * citation portant une vérification n'est jamais écartée — ce serait perdre du
+ * travail humain — mais les citations en attente et la veille sont ramenées aux
+ * plus récentes.
+ */
+const CITATIONS_EN_ATTENTE_CONSERVEES = 400
+const VEILLE_CONSERVEE = 300
 
 const args = process.argv.slice(2)
 const essai = args.includes('--essai')
@@ -58,17 +68,48 @@ const jetonX = process.env.X_BEARER_TOKEN ?? process.env.X_API_BEARER_TOKEN ?? '
 
 const journal: { source: string; statut: 'ok' | 'ignorée' | 'échec'; detail: string }[] = []
 
-async function recuperer(url: string, entetes: Record<string, string> = {}): Promise<Response> {
-  const abandon = new AbortController()
-  const minuterie = setTimeout(() => abandon.abort(), DELAI_MS)
-  try {
-    return await fetch(url, {
-      signal: abandon.signal,
-      headers: { 'User-Agent': 'president-que-choisir/1.0 (+collecte citations)', ...entetes },
-    })
-  } finally {
-    clearTimeout(minuterie)
+/**
+ * Déplie la chaîne des causes.
+ *
+ * `fetch` échoue avec le message générique « fetch failed » et range la cause
+ * réelle — DNS, TLS, connexion refusée, expiration — dans `cause`. Sans ce
+ * dépliage, un journal de collecte ne dit rien d'exploitable.
+ */
+function motif(erreur: unknown): string {
+  const parties: string[] = []
+  let courant: unknown = erreur
+  for (let profondeur = 0; courant instanceof Error && profondeur < 4; profondeur++) {
+    const code = (courant as { code?: string }).code
+    parties.push(code ? `${courant.message} (${code})` : courant.message)
+    courant = (courant as { cause?: unknown }).cause
   }
+  return parties.length > 0 ? parties.join(' ← ') : String(erreur)
+}
+
+async function recuperer(url: string, entetes: Record<string, string> = {}): Promise<Response> {
+  // Une seule reprise : un échec de connexion est souvent passager, mais
+  // insister davantage sur un service public gratuit serait discourtois.
+  let derniere: unknown
+  for (let essaiNumero = 0; essaiNumero < 2; essaiNumero++) {
+    const abandon = new AbortController()
+    const minuterie = setTimeout(() => abandon.abort(), DELAI_MS)
+    try {
+      return await fetch(url, {
+        signal: abandon.signal,
+        headers: {
+          'User-Agent': 'president-que-choisir/1.0 (+collecte citations)',
+          Accept: 'application/json, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.8',
+          ...entetes,
+        },
+      })
+    } catch (e) {
+      derniere = e
+      if (essaiNumero === 0) await new Promise((suite) => setTimeout(suite, 1500))
+    } finally {
+      clearTimeout(minuterie)
+    }
+  }
+  throw new Error(motif(derniere))
 }
 
 async function json<T>(url: string, entetes?: Record<string, string>): Promise<T> {
@@ -137,8 +178,23 @@ async function collecterParlementaire(
   ajouter: (c: Citation) => void,
   comptes: CompteSuivi[],
 ) {
-  const annuaire = listeDe(await json(`${source.racine}${source.cheminAnnuaire}`)).map(deballer)
-  if (annuaire.length === 0) throw new Error('annuaire vide ou de forme inattendue')
+  // La première racine qui répond est retenue pour tout le reste de la
+  // collecte : inutile de rejouer le basculement à chaque élu.
+  let racine = ''
+  let annuaire: Record<string, unknown>[] = []
+  const echecs: string[] = []
+  for (const candidate of source.racines) {
+    try {
+      const liste = listeDe(await json(`${candidate}${source.cheminAnnuaire}`)).map(deballer)
+      if (liste.length === 0) throw new Error('annuaire vide ou de forme inattendue')
+      racine = candidate
+      annuaire = liste
+      break
+    } catch (e) {
+      echecs.push(`${candidate} : ${motif(e)}`)
+    }
+  }
+  if (!racine) throw new Error(echecs.join(' · '))
 
   const parNom = new Map<string, Record<string, unknown>>()
   for (const elu of annuaire) {
@@ -156,9 +212,7 @@ async function collecterParlementaire(
     const slug = champ(elu, 'slug')!
 
     try {
-      const brut = await json(
-        `${source.racine}${source.cheminInterventions.replace('{slug}', slug)}`,
-      )
+      const brut = await json(`${racine}${source.cheminInterventions.replace('{slug}', slug)}`)
       const interventions = listeDe(brut).map(deballer).slice(0, INTERVENTIONS_PAR_ELU)
       let retenues = 0
       for (const intervention of interventions) {
@@ -173,7 +227,7 @@ async function collecterParlementaire(
           plateforme: source.plateforme,
           compte: slug,
           postId: id,
-          url: `${source.racine}/${slug}/interventions`,
+          url: `${racine}/${slug}/interventions`,
           texte,
           affirmation: texte,
           datePublication: new Date(date).toISOString(),
@@ -192,7 +246,7 @@ async function collecterParlementaire(
         `    · ${candidat.nom.padEnd(14)} ${slug.padEnd(28)} ${interventions.length} intervention(s), ${retenues} retenue(s)`,
       )
     } catch (e) {
-      const message = e instanceof Error ? e.message : String(e)
+      const message = motif(e)
       comptes.push({ candidatId: candidat.id, plateforme: source.plateforme, compte: slug, erreur: message })
       console.error(`    ✗ ${candidat.nom.padEnd(14)} ${slug} — ${message}`)
     }
@@ -200,7 +254,7 @@ async function collecterParlementaire(
   journal.push({
     source: source.nom,
     statut: 'ok',
-    detail: `${trouves} candidat(s) retrouvé(s) dans l’annuaire sur ${candidats.length}`,
+    detail: `${trouves} candidat(s) retrouvé(s) sur ${candidats.length}, via ${racine}`,
   })
 }
 
@@ -267,7 +321,7 @@ async function collecterBluesky(ajouter: (c: Citation) => void, comptes: CompteS
         `    · ${candidat.nom.padEnd(14)} ${identifiant.padEnd(28)} ${messages.length} message(s), ${retenues} retenue(s)`,
       )
     } catch (e) {
-      const message = e instanceof Error ? e.message : String(e)
+      const message = motif(e)
       comptes.push({ candidatId: candidat.id, plateforme: 'bluesky', compte: identifiant, erreur: message })
       console.error(`    ✗ ${candidat.nom.padEnd(14)} ${identifiant} — ${message}`)
     }
@@ -331,7 +385,7 @@ async function collecterX(ajouter: (c: Citation) => void, comptes: CompteSuivi[]
         messagesExamines: liste.length,
       })
     } catch (e) {
-      const message = e instanceof Error ? e.message : String(e)
+      const message = motif(e)
       comptes.push({ candidatId: candidat.id, plateforme: 'x', compte: identifiant, erreur: message })
     }
   }
@@ -359,7 +413,7 @@ async function collecterVeille(existants: Map<string, VeillePublication>) {
       const articles = lireFlux(await reponse.text())
       let ajoutes = 0
       for (const article of articles) {
-        const id = `veille-${source.id}-${Buffer.from(article.lien).toString('base64url').slice(0, 24)}`
+        const id = identifiantVeille(source.id, article.lien)
         if (existants.has(id)) continue
         const titreNormalise = normaliserNom(article.titre)
         const pressentis = nomsCandidats
@@ -383,7 +437,7 @@ async function collecterVeille(existants: Map<string, VeillePublication>) {
       })
       console.log(`    · ${source.nom.padEnd(18)} ${articles.length} article(s), ${ajoutes} nouveau(x)`)
     } catch (e) {
-      const message = e instanceof Error ? e.message : String(e)
+      const message = motif(e)
       journal.push({ source: `${source.nom} (${source.editeur})`, statut: 'échec', detail: message })
       console.error(
         `    ✗ ${source.nom.padEnd(18)} ${message}` +
@@ -437,7 +491,9 @@ async function collecter() {
   if (essai) {
     console.log('\nEssai : sources qui seraient interrogées, sans aucun appel réseau.')
     for (const source of SOURCES_PARLEMENTAIRES) {
-      if (actif(source.id)) console.log(`  · ${source.nom} — ${source.racine} (${source.licence})`)
+      if (actif(source.id)) {
+        console.log(`  · ${source.nom} — ${source.racines.join(' puis ')} (${source.licence})`)
+      }
     }
     if (actif('bluesky')) {
       const n = candidats.filter((c) => c.comptesSociaux.some((s) => s.plateforme === 'bluesky')).length
@@ -457,7 +513,7 @@ async function collecter() {
     try {
       await collecterParlementaire(source, ajouter, comptes)
     } catch (e) {
-      const message = e instanceof Error ? e.message : String(e)
+      const message = motif(e)
       journal.push({ source: source.nom, statut: 'échec', detail: message })
       console.error(
         `    ✗ ${message}` +
@@ -481,15 +537,25 @@ async function collecter() {
     await collecterVeille(veille)
   }
 
+  const verifiees = new Set(existant.verifications.map((v) => v.citationId))
+  const parDateDecroissante = [...citations.values()].sort((a, b) =>
+    b.datePublication.localeCompare(a.datePublication),
+  )
+  const conservees = [
+    ...parDateDecroissante.filter((c) => verifiees.has(c.id)),
+    ...parDateDecroissante.filter((c) => !verifiees.has(c.id)).slice(0, CITATIONS_EN_ATTENTE_CONSERVEES),
+  ].sort((a, b) => b.datePublication.localeCompare(a.datePublication))
+  const ecartees = parDateDecroissante.length - conservees.length
+
   const instantane: InstantaneFactCheck = {
     version: VERSION_INSTANTANE,
     genereLe: new Date().toISOString(),
     comptes,
-    citations: [...citations.values()].sort((a, b) =>
-      b.datePublication.localeCompare(a.datePublication),
-    ),
+    citations: conservees,
     verifications: existant.verifications,
-    veille: [...veille.values()].sort((a, b) => b.datePublication.localeCompare(a.datePublication)),
+    veille: [...veille.values()]
+      .sort((a, b) => b.datePublication.localeCompare(a.datePublication))
+      .slice(0, VEILLE_CONSERVEE),
   }
   writeFileSync(FICHIER, `${JSON.stringify(instantane, null, 2)}\n`)
 
@@ -502,13 +568,24 @@ async function collecter() {
   for (const citation of instantane.citations) {
     parPlateforme.set(citation.plateforme, (parPlateforme.get(citation.plateforme) ?? 0) + 1)
   }
+  const abouties = journal.filter((l) => l.statut === 'ok').length
   console.log(
     `\n${instantane.citations.length} citation(s), dont ${instantane.citations.length - avant} nouvelle(s) : ` +
       [...parPlateforme].map(([p, n]) => `${n} ${p}`).join(', ') +
       `\n${instantane.verifications.length} vérification(s) conservée(s).` +
       `\n${instantane.veille.length} publication(s) en veille.` +
+      (ecartees > 0
+        ? `\n${ecartees} citation(s) en attente écartée(s) par la rétention ; aucune citation vérifiée n’est perdue.`
+        : '') +
       `\nÉcrit dans ${FICHIER}.\n`,
   )
+
+  if (abouties === 0) {
+    throw new Error(
+      'aucune source n’a abouti. L’instantané précédent est conservé tel quel ; ' +
+        'voir le bilan ci-dessus pour le motif de chaque échec.',
+    )
+  }
 }
 
 collecter().catch((erreur) => {

@@ -5,6 +5,19 @@ import { candidats } from '@/data/candidats'
 import { validerInstantane, LIMITES } from './schema'
 import { bilanVeracite, notesVeraciteDynamiques, ECHANTILLON_MINIMAL } from './veracite'
 
+/**
+ * Forme des identifiants produits par chaque plateforme.
+ *
+ * X et les comptes rendus parlementaires numérotent ; Bluesky utilise un TID,
+ * treize caractères d'un alphabet base32 trié.
+ */
+const FORME_IDENTIFIANT: Record<string, RegExp> = {
+  x: /^\d+$/,
+  assemblee: /^\d+$/,
+  senat: /^\d+$/,
+  bluesky: /^[2-7a-z]{13}$/,
+}
+
 const citation = (id: string, candidatId = 'melenchon') => ({
   id,
   candidatId,
@@ -252,16 +265,37 @@ describe('instantané publié avec le site', () => {
     expect(rejets).toBe(0)
   })
 
-  it('ne contient aucune donnée de démonstration', () => {
-    // Une citation inventée attribuée à une personne réelle serait exactement
-    // ce que cet outil combat. Le garde-fou est ici plutôt que dans une
-    // consigne de relecture.
-    const contenu = JSON.stringify(publie).toLowerCase()
-    for (const interdit of ['démonstration', 'demonstration', 'lorem', 'exemple', 'placeholder']) {
-      expect(contenu, `« ${interdit} » trouvé dans l’instantané publié`).not.toContain(interdit)
-    }
+  it('n’accepte que des identifiants de message conformes à leur plateforme', () => {
+    // Un identifiant fabriqué ne prend pas la forme de ceux que produit la
+    // plateforme : c'est le signal le plus fiable pour repérer une citation
+    // inventée, plus sûr qu'un mot-clé dans le texte.
     for (const citation of publie.citations ?? []) {
-      expect(citation.postId).toMatch(/^\d+$/)
+      expect(FORME_IDENTIFIANT[citation.plateforme], `plateforme ${citation.plateforme}`).toBeDefined()
+      expect(citation.postId, `${citation.id} (${citation.plateforme})`).toMatch(
+        FORME_IDENTIFIANT[citation.plateforme],
+      )
+    }
+  })
+
+  it('ne contient aucune donnée de démonstration dans les champs que nous rédigeons', () => {
+    // Le contrôle porte sur ce que le site écrit lui-même — identifiants,
+    // constats, auteurs de vérification — et non sur le texte des citations.
+    // Un propos authentique peut contenir « par exemple » : chercher ce mot
+    // dans une citation ferait échouer la collecte sur une donnée valide.
+    const nôtres = [
+      ...(publie.citations ?? []).map((c: { id: string }) => c.id),
+      ...(publie.veille ?? []).map((v: { id: string; editeur: string }) => `${v.id} ${v.editeur}`),
+      ...(publie.verifications ?? []).map(
+        (v: { constat: string; explication: string; verifiePar: string }) =>
+          `${v.constat} ${v.explication} ${v.verifiePar}`,
+      ),
+    ]
+      .join(' ')
+      .toLowerCase()
+    for (const interdit of ['démonstration', 'demonstration', 'lorem', 'placeholder', 'demo']) {
+      expect(nôtres, `« ${interdit} » trouvé dans un champ rédigé par le site`).not.toContain(
+        interdit,
+      )
     }
   })
 })

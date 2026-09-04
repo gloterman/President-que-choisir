@@ -7,11 +7,11 @@ import type { Plateforme } from './factcheck'
  * Chacune déclare sa licence de réutilisation, parce qu'un outil qui republie
  * des propos doit pouvoir dire à quel titre il le fait.
  *
- * Le champ `urlConfirmee` est une honnêteté nécessaire : l'environnement de
- * développement de ce dépôt n'a pas d'accès sortant vers ces domaines, donc
- * certaines adresses n'ont pas pu être appelées. Le collecteur affiche le
- * statut de chaque source à l'exécution ; corriger une adresse fautive tient
- * en une chaîne de caractères.
+ * Le champ `urlConfirmee` dit si l'adresse a réellement répondu. Les quatre
+ * flux de veille l'ont fait lors de la collecte du 4 septembre 2026 ; les deux
+ * API parlementaires ont échoué au niveau de la connexion, avant même toute
+ * réponse HTTP, et restent donc à confirmer. Le collecteur affiche le statut de
+ * chaque source à l'exécution avec le motif exact de l'échec.
  */
 
 export interface SourceParlementaire {
@@ -20,8 +20,12 @@ export interface SourceParlementaire {
   nom: string
   editeur: string
   licence: string
-  /** Racine de l'API ouverte. */
-  racine: string
+  /**
+   * Racines à essayer dans l'ordre. Plusieurs entrées permettent de survivre à
+   * un service qui répond sur un hôte et pas sur l'autre — cas courant quand un
+   * site public a changé de configuration sans redirection.
+   */
+  racines: string[]
   /** Chemin listant les élus, utilisé pour résoudre un nom en identifiant. */
   cheminAnnuaire: string
   /** Chemin des interventions, `{slug}` étant remplacé par l'identifiant. */
@@ -54,7 +58,7 @@ export const SOURCES_PARLEMENTAIRES: SourceParlementaire[] = [
     nom: 'NosDéputés.fr',
     editeur: 'Regards Citoyens',
     licence: 'ODbL',
-    racine: 'https://www.nosdeputes.fr',
+    racines: ['https://www.nosdeputes.fr', 'https://nosdeputes.fr'],
     cheminAnnuaire: '/deputes/json',
     cheminInterventions: '/{slug}/interventions/json',
     urlConfirmee: false,
@@ -65,7 +69,7 @@ export const SOURCES_PARLEMENTAIRES: SourceParlementaire[] = [
     nom: 'NosSénateurs.fr',
     editeur: 'Regards Citoyens',
     licence: 'ODbL',
-    racine: 'https://www.nossenateurs.fr',
+    racines: ['https://www.nossenateurs.fr', 'https://nossenateurs.fr'],
     cheminAnnuaire: '/senateurs/json',
     cheminInterventions: '/{slug}/interventions/json',
     urlConfirmee: false,
@@ -97,7 +101,7 @@ export const SOURCES_VEILLE: SourceVeille[] = [
     editeur: 'Le Monde',
     url: 'https://www.lemonde.fr/les-decodeurs/rss_full.xml',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: false,
+    urlConfirmee: true,
   },
   {
     id: 'afp-factuel',
@@ -105,7 +109,7 @@ export const SOURCES_VEILLE: SourceVeille[] = [
     editeur: 'Agence France-Presse',
     url: 'https://factuel.afp.com/rss.xml',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: false,
+    urlConfirmee: true,
   },
   {
     id: 'vrai-ou-faux',
@@ -113,7 +117,7 @@ export const SOURCES_VEILLE: SourceVeille[] = [
     editeur: 'franceinfo',
     url: 'https://www.francetvinfo.fr/vrai-ou-fake.rss',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: false,
+    urlConfirmee: true,
   },
   {
     id: 'checknews',
@@ -121,6 +125,6 @@ export const SOURCES_VEILLE: SourceVeille[] = [
     editeur: 'Libération',
     url: 'https://www.liberation.fr/arc/outboundfeeds/rss-all/category/checknews/?outputType=xml',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: false,
+    urlConfirmee: true,
   },
 ]

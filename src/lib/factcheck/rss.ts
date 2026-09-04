@@ -1,3 +1,5 @@
+import { createHash } from 'node:crypto'
+
 /**
  * Lecture de flux RSS et Atom, sans dépendance.
  *
@@ -76,6 +78,20 @@ export function lireFlux(xml: string): ArticleFlux[] {
     })
   }
   return articles
+}
+
+/**
+ * Identifiant stable d'une entrée de veille.
+ *
+ * Le condensé porte sur l'URL **entière**. Une première version tronquait un
+ * encodage base64 de l'adresse : comme les articles d'un même site partagent
+ * leur préfixe, les cinquante entrées d'un flux se réduisaient à un seul
+ * identifiant et quarante-neuf étaient silencieusement perdues. Une troncature
+ * ne peut porter que sur un condensé, jamais sur la donnée elle-même.
+ */
+export function identifiantVeille(sourceId: string, url: string): string {
+  const condense = createHash('sha256').update(url).digest('hex').slice(0, 16)
+  return `veille-${sourceId}-${condense}`
 }
 
 /** Retire les diacritiques et la casse, pour comparer des noms propres. */
