@@ -1,38 +1,38 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const ruffin: Candidat = {
+export const ruffin: Candidate = {
   id: 'ruffin',
-  prenom: 'François',
-  nom: 'Ruffin',
-  initiales: 'FR',
-  parti: 'Debout ! (sans étiquette de parti national)',
-  partiCourt: 'Divers gauche',
-  famille: 'gauche',
-  couleurParti: '#d1495b',
-  naissance: '1975-10-18',
-  fonctionActuelle: 'Député de la Somme',
-  statutCandidature: 'pressenti',
-  presentation:
+  firstName: 'François',
+  lastName: 'Ruffin',
+  initials: 'FR',
+  party: 'Debout ! (sans étiquette de parti national)',
+  partyShort: 'Divers gauche',
+  family: 'gauche',
+  partyColor: '#d1495b',
+  birth: '1975-10-18',
+  currentRole: 'Député de la Somme',
+  candidacyStatus: 'pressenti',
+  summary:
     "Journaliste et documentariste devenu député de la Somme en 2017, d'abord au sein de La France insoumise puis en rupture avec elle à partir de 2024. Défend une ligne sociale centrée sur les classes populaires des territoires périphériques et une reconquête de l'électorat passé au vote RN.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'Francois_Ruffin' },
+  socialAccounts: [
+    { platform: 'x', handle: 'Francois_Ruffin' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     // Le mouvement « Debout ! » n'a pas de domaine officiel confirmé à la date de
     // revue : aucune URL n'est inventée pour combler le trou.
-    LIENS_INSTITUTIONNELS.assemblee,
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
+    INSTITUTIONAL_LINKS.assemblee,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
   ],
   positions: positions([-2, 2, 1, 2, 2, 2, 1, 1, -1, 0, 0, -1, 2, 1, -1, -1]),
-  positionsNotes: {
+  ratedPositions: {
     'flux-migratoires':
       "Position en retrait de celle de la gauche radicale : insiste sur les effets sociaux de la concurrence entre travailleurs plus que sur l'ouverture des frontières.",
   },
-  notes: [
-    note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
-    note(
+  ratings: [
+    rating('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    rating(
       'antecedents-judiciaires',
       100,
       'moyenne',
@@ -40,50 +40,50 @@ export const ruffin: Candidat = {
       ['legifrance', 'courdecassation'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       75,
       'moyenne',
       "Déclarations HATVP déposées au titre du mandat de député. Pratique publique de reversement d'une partie de l'indemnité parlementaire, documentée mais à recouper.",
       ['hatvp'],
     ),
-    note(
+    rating(
       'experience',
       22,
       'haute',
       "Aucun exécutif national ni local. Environ neuf ans de mandat parlementaire, soit près de 14 points, complétés par les points liés à la direction d'une entreprise de presse associative.",
       ['assemblee', 'vie-publique'],
     ),
-    note(
+    rating(
       'constance',
       70,
       'faible',
       "Ligne sociale stable depuis 2017. Une inflexion majeure documentée : la rupture assumée avec La France insoumise en 2024, argumentée publiquement — donc pénalisée au demi-tarif prévu par le barème.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'clarte-programme',
       48,
       'faible',
       "Positions abondantes et un corpus d'ouvrages, mais pas de programme présidentiel écrit, chiffré et daté à la date de revue.",
       ['programme-officiel'],
     ),
-    note('credibilite-budgetaire', 50, 'faible', "Aucune évaluation indépendante disponible faute de programme chiffré. Note neutre en attente.", ['ofce']),
-    note(
+    rating('credibilite-budgetaire', 50, 'faible', "Aucune évaluation indépendante disponible faute de programme chiffré. Note neutre en attente.", ['ofce']),
+    rating(
       'etat-de-droit',
       85,
       'faible',
       "Propositions institutionnelles orientées vers l'extension du référendum et le renforcement du Parlement. Aucune proposition affaiblissant un contre-pouvoir relevée.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       30,
       'moyenne',
       "Sans parti national structuré ni groupe parlementaire propre depuis la rupture de 2024 : base institutionnelle très étroite, malgré une notoriété nationale forte.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       68,
       'faible',
@@ -91,11 +91,11 @@ export const ruffin: Candidat = {
       ['hatvp'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'ruffin-m1',
       themeId: 'economie',
-      titre: 'Hausse des salaires et conditionnalité des aides',
+      title: 'Hausse des salaires et conditionnalité des aides',
       detail: "Revalorisation du SMIC, conférence salariale et conditionnement des aides publiques aux hausses de salaires effectives.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -103,7 +103,7 @@ export const ruffin: Candidat = {
     {
       id: 'ruffin-m2',
       themeId: 'social',
-      titre: 'Abrogation de la réforme des retraites de 2023',
+      title: 'Abrogation de la réforme des retraites de 2023',
       detail: "Retour à 62 ans puis négociation d'un départ anticipé pour les métiers pénibles.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -111,7 +111,7 @@ export const ruffin: Candidat = {
     {
       id: 'ruffin-m3',
       themeId: 'economie',
-      titre: 'Protectionnisme social et écologique aux frontières européennes',
+      title: 'Protectionnisme social et écologique aux frontières européennes',
       detail: "Taxation des importations ne respectant pas les normes sociales et environnementales européennes.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -119,49 +119,49 @@ export const ruffin: Candidat = {
     {
       id: 'ruffin-m4',
       themeId: 'institutions',
-      titre: 'Référendum d’initiative citoyenne',
+      title: 'Référendum d’initiative citoyenne',
       detail: "Abaissement des seuils de déclenchement du référendum et extension de son champ.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'ruffin-f1',
       date: '2016',
-      titre: 'César du meilleur film documentaire pour « Merci Patron ! »',
+      title: 'César du meilleur film documentaire pour « Merci Patron ! »',
       description: "Le film, tourné avant son entrée en politique, le fait connaître nationalement.",
-      categorie: 'prise-de-position',
-      portee: 'notable',
+      category: 'prise-de-position',
+      scope: 'notable',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'ruffin-f2',
       date: '2017-06',
-      titre: 'Élu député de la Somme',
+      title: 'Élu député de la Somme',
       description: "Élu dans la 1re circonscription de la Somme, réélu ensuite lors des scrutins suivants.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['assemblee'],
     },
     {
       id: 'ruffin-f3',
       date: '2024-07',
-      titre: 'Rupture avec La France insoumise',
+      title: 'Rupture avec La France insoumise',
       description: "Annonce publiquement son départ du mouvement après les législatives anticipées de 2024.",
-      categorie: 'prise-de-position',
-      portee: 'majeur',
+      category: 'prise-de-position',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [],
-  indicateurs: [
-    { id: 'ruffin-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'ruffin-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'ruffin-i2', label: 'Années de mandat parlementaire', valeur: 'Environ 9 ans', periode: '2017-2026', verification: 'a-verifier', sourceIds: ['assemblee'] },
+  legal: [],
+  indicators: [
+    { id: 'ruffin-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'ruffin-i1', label: 'Condamnations connues', value: 'Aucune', period: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'ruffin-i2', label: 'Années de mandat parlementaire', value: 'Environ 9 ans', period: '2017-2026', verification: 'a-verifier', sourceIds: ['assemblee'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

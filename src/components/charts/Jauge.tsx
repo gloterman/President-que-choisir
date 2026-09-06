@@ -9,37 +9,37 @@ import { clsx } from '@/lib/format'
  * en rouge ou en vert reviendrait à porter un jugement que le barème, lui, ne
  * porte pas.
  */
-export function Jauge({
-  valeur,
+export function Gauge({
+  value,
   label,
-  palier,
+  tier,
   compact = false,
-  attenuee = false,
+  softened = false,
 }: {
-  valeur: number
+  value: number
   label?: string
-  palier?: string
+  tier?: string
   compact?: boolean
   /** Rend la jauge grisée : note manquante, remplacée par la valeur neutre. */
-  attenuee?: boolean
+  softened?: boolean
 }) {
-  const largeur = Math.max(0, Math.min(100, valeur))
+  const width = Math.max(0, Math.min(100, value))
   return (
-    <div className={clsx(attenuee && 'opacity-60')}>
-      {(label || palier) && (
+    <div className={clsx(softened && 'opacity-60')}>
+      {(label || tier) && (
         <div className="flex items-baseline justify-between gap-3">
           {label && <span className="text-[0.82rem] font-medium text-ink">{label}</span>}
           <span className="tabular shrink-0 text-[0.8rem] font-semibold text-ink">
-            {Math.round(valeur)}
+            {Math.round(value)}
             <span className="text-[0.72rem] font-normal text-muted">/100</span>
           </span>
         </div>
       )}
       <div
         className={clsx('mt-1 overflow-hidden rounded-full', compact ? 'h-1.5' : 'h-2')}
-        style={{ background: attenuee ? 'var(--pqc-surface-3)' : 'var(--pqc-seq-100)' }}
+        style={{ background: softened ? 'var(--pqc-surface-3)' : 'var(--pqc-seq-100)' }}
         role="meter"
-        aria-valuenow={Math.round(valeur)}
+        aria-valuenow={Math.round(value)}
         aria-valuemin={0}
         aria-valuemax={100}
         aria-label={label ?? 'Note sur 100'}
@@ -47,12 +47,12 @@ export function Jauge({
         <div
           className="h-full rounded-full"
           style={{
-            width: `${largeur}%`,
-            background: attenuee ? 'var(--pqc-muted)' : 'var(--pqc-seq-400)',
+            width: `${width}%`,
+            background: softened ? 'var(--pqc-muted)' : 'var(--pqc-seq-400)',
           }}
         />
       </div>
-      {palier && <p className="mt-1 text-[0.72rem] leading-snug text-muted">{palier}</p>}
+      {tier && <p className="mt-1 text-[0.72rem] leading-snug text-muted">{tier}</p>}
     </div>
   )
 }

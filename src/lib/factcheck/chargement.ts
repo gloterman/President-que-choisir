@@ -1,5 +1,5 @@
-import { INSTANTANE_VIDE, type InstantaneFactCheck } from '@/data/factcheck'
-import { validerInstantane } from './schema'
+import { EMPTY_SNAPSHOT, type FactCheckSnapshot } from '@/data/factcheck'
+import { validateSnapshot } from './schema'
 
 /**
  * Chargement de l'instantané de vérifications.
@@ -16,68 +16,68 @@ import { validerInstantane } from './schema'
  * Le site reste donc fonctionnel sans aucun service : c'est le mode par défaut.
  */
 
-const CHEMIN_INSTANTANE = 'donnees/factcheck.json'
-const DELAI_MAX_MS = 8000
+const SNAPSHOT_PATH = 'donnees/factcheck.json'
+const MAX_TIMEOUT_MS = 8000
 
-export type OrigineInstantane = 'direct' | 'instantane'
+export type SnapshotOrigin = 'direct' | 'instantane'
 
-export interface ChargementReussi {
-  instantane: InstantaneFactCheck
-  origine: OrigineInstantane
+export interface LoadSuccess {
+  snapshot: FactCheckSnapshot
+  origin: SnapshotOrigin
   /** Entrées écartées par la validation. */
-  rejets: number
+  rejected: number
   /** Le point d'accès direct a échoué et l'instantané statique a pris le relais. */
-  replisurInstantane: boolean
+  fellBackToSnapshot: boolean
 }
 
-function urlInstantane(sansCache: boolean): string {
+function snapshotUrl(noCache: boolean): string {
   const base = import.meta.env.BASE_URL ?? '/'
-  const chemin = `${base}${base.endsWith('/') ? '' : '/'}${CHEMIN_INSTANTANE}`
-  return sansCache ? `${chemin}?t=${Date.now()}` : chemin
+  const path = `${base}${base.endsWith('/') ? '' : '/'}${SNAPSHOT_PATH}`
+  return noCache ? `${path}?t=${Date.now()}` : path
 }
 
-async function recuperer(url: string, sansCache: boolean): Promise<unknown> {
-  const abandon = new AbortController()
-  const minuterie = setTimeout(() => abandon.abort(), DELAI_MAX_MS)
+async function fetchWithRetry(url: string, noCache: boolean): Promise<unknown> {
+  const abort = new AbortController()
+  const timer = setTimeout(() => abort.abort(), MAX_TIMEOUT_MS)
   try {
-    const reponse = await fetch(url, {
-      signal: abandon.signal,
-      cache: sansCache ? 'no-store' : 'default',
+    const answer = await fetch(url, {
+      signal: abort.signal,
+      cache: noCache ? 'no-store' : 'default',
       headers: { Accept: 'application/json' },
     })
-    if (!reponse.ok) throw new Error(`Réponse ${reponse.status}.`)
-    return await reponse.json()
+    if (!answer.ok) throw new Error(`Réponse ${answer.status}.`)
+    return await answer.json()
   } finally {
-    clearTimeout(minuterie)
+    clearTimeout(timer)
   }
 }
 
-export async function chargerInstantane(
-  options: { sansCache?: boolean } = {},
-): Promise<ChargementReussi> {
-  const sansCache = options.sansCache ?? false
-  const pointAcces = import.meta.env.VITE_FACTCHECK_ENDPOINT as string | undefined
+export async function loadSnapshot(
+  options: { noCache?: boolean } = {},
+): Promise<LoadSuccess> {
+  const noCache = options.noCache ?? false
+  const endpoint = import.meta.env.VITE_FACTCHECK_ENDPOINT as string | undefined
 
-  if (pointAcces) {
+  if (endpoint) {
     try {
-      const brut = await recuperer(
-        sansCache ? `${pointAcces}${pointAcces.includes('?') ? '&' : '?'}t=${Date.now()}` : pointAcces,
-        sansCache,
+      const raw = await fetchWithRetry(
+        noCache ? `${endpoint}${endpoint.includes('?') ? '&' : '?'}t=${Date.now()}` : endpoint,
+        noCache,
       )
-      const { instantane, rejets } = validerInstantane(brut)
-      return { instantane, origine: 'direct', rejets, replisurInstantane: false }
+      const { snapshot, rejected } = validateSnapshot(raw)
+      return { snapshot, origin: 'direct', rejected, fellBackToSnapshot: false }
     } catch {
       // Le point d'accès est optionnel : son échec ne doit pas priver le
       // visiteur des vérifications déjà publiées.
-      const brut = await recuperer(urlInstantane(true), true)
-      const { instantane, rejets } = validerInstantane(brut)
-      return { instantane, origine: 'instantane', rejets, replisurInstantane: true }
+      const raw = await fetchWithRetry(snapshotUrl(true), true)
+      const { snapshot, rejected } = validateSnapshot(raw)
+      return { snapshot, origin: 'instantane', rejected, fellBackToSnapshot: true }
     }
   }
 
-  const brut = await recuperer(urlInstantane(sansCache), sansCache)
-  const { instantane, rejets } = validerInstantane(brut)
-  return { instantane, origine: 'instantane', rejets, replisurInstantane: false }
+  const raw = await fetchWithRetry(snapshotUrl(noCache), noCache)
+  const { snapshot, rejected } = validateSnapshot(raw)
+  return { snapshot, origin: 'instantane', rejected, fellBackToSnapshot: false }
 }
 
-export { INSTANTANE_VIDE }
+export { EMPTY_SNAPSHOT }

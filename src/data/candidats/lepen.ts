@@ -1,43 +1,43 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const lepen: Candidat = {
+export const lepen: Candidate = {
   id: 'lepen',
-  prenom: 'Marine',
-  nom: 'Le Pen',
-  initiales: 'MLP',
-  parti: 'Rassemblement national',
-  partiCourt: 'RN',
-  famille: 'droite-nationale',
-  couleurParti: '#1d3f6e',
-  naissance: '1968-08-05',
-  fonctionActuelle: 'Députée du Pas-de-Calais',
-  statutCandidature: 'declare',
-  presentation:
+  firstName: 'Marine',
+  lastName: 'Le Pen',
+  initials: 'MLP',
+  party: 'Rassemblement national',
+  partyShort: 'RN',
+  family: 'droite-nationale',
+  partyColor: '#1d3f6e',
+  birth: '1968-08-05',
+  currentRole: 'Députée du Pas-de-Calais',
+  candidacyStatus: 'declare',
+  summary:
     "Trois fois candidate à la présidentielle, qualifiée au second tour en 2017 et 2022 avec 41,45 % des suffrages exprimés. Condamnée en appel le 7 juillet 2026 pour détournement de fonds publics, mais avec une peine d'inéligibilité ramenée à quinze mois fermes déjà purgés : elle a annoncé sa candidature pour 2027 dans la foulée de cette décision, et s'est pourvue en cassation.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'MLP_officiel' },
+  socialAccounts: [
+    { platform: 'x', handle: 'MLP_officiel' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Rassemblement national — site officiel du parti',
       url: 'https://rassemblementnational.fr/',
       type: 'parti',
       usage: 'Programme et prises de position officielles du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.assemblee,
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
-    LIENS_INSTITUTIONNELS.cnccfp,
+    INSTITUTIONAL_LINKS.assemblee,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
+    INSTITUTIONAL_LINKS.cnccfp,
   ],
   positions: positions([0, 2, -1, 1, 2, 1, -1, -2, 2, 2, 2, 1, 2, -1, -2, -1]),
-  positionsNotes: {
+  ratedPositions: {
     'souverainete-europeenne':
       "Ne demande plus la sortie de l'euro ni de l'Union depuis 2017, mais revendique la primauté du droit national et une renégociation des traités.",
     redistribution: "Ligne sociale sur le pouvoir d'achat, associée à une préférence nationale dans l'accès aux prestations.",
   },
-  notes: [
-    note(
+  ratings: [
+    rating(
       'probite',
       65,
       'haute',
@@ -45,7 +45,7 @@ export const lepen: Candidat = {
       ['ca-paris-cp-20260707', 'franceinfo-lepen-appel', 'publicsenat-lepen-appel', 'legifrance'],
       'recoupe',
     ),
-    note(
+    rating(
       'antecedents-judiciaires',
       80,
       'haute',
@@ -53,56 +53,56 @@ export const lepen: Candidat = {
       ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       65,
       'faible',
       "Déclarations HATVP déposées au titre des mandats. Points retirés au titre de décisions défavorables rendues sur le financement de campagnes du mouvement, à recouper auprès de la CNCCFP avant publication.",
       ['hatvp', 'cnccfp'],
     ),
-    note(
+    rating(
       'experience',
       38,
       'haute',
       "Aucune fonction exécutive nationale ni locale. Plus de vingt ans de mandats parlementaires — Parlement européen puis Assemblée nationale — plafonnés à 20 points ; points de direction de grande organisation au titre de la présidence du mouvement pendant plus d'une décennie ; points d'expérience internationale au titre du mandat européen.",
       ['assemblee', 'vie-publique'],
     ),
-    note(
+    rating(
       'constance',
       64,
       'faible',
       "Plusieurs inflexions majeures documentées et assumées publiquement : abandon de la sortie de l'euro après 2017, évolution sur la retraite à 60 ans, révision de la position sur l'OTAN. Ligne migratoire et régalienne inchangée depuis 2011.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'clarte-programme',
       62,
       'faible',
       "Programmes présidentiels antérieurs écrits, publics et partiellement chiffrés. Aucun programme 2027 publié à la date de revue.",
       ['programme-officiel'],
     ),
-    note(
+    rating(
       'credibilite-budgetaire',
       42,
       'faible',
       "Les évaluations indépendantes des programmes de 2017 et 2022 relevaient un écart de financement significatif et des hypothèses de recettes jugées non étayées par plusieurs évaluateurs. Note à recalculer sur le programme 2027.",
       ['institut-montaigne', 'ofce', 'ifrap'],
     ),
-    note(
+    rating(
       'etat-de-droit',
       45,
       'faible',
       "Plusieurs propositions structurantes touchent aux contre-pouvoirs : révision constitutionnelle pour instaurer la priorité nationale, primauté du droit national sur les engagements européens, recours au référendum pour contourner la censure constitutionnelle. Le barème les compte comme des affaiblissements. Critère signalé comme contestable : la souveraineté populaire peut être invoquée en sens inverse.",
       ['vie-publique', 'legifrance'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       66,
       'moyenne',
       "Premier groupe d'opposition à l'Assemblée nationale et implantation locale en forte progression, mais alliances formalisées rares et réserve de voix historiquement limitée au second tour, même si l'écart s'est resserré.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       70,
       'faible',
@@ -110,11 +110,11 @@ export const lepen: Candidat = {
       ['hatvp', 'cnccfp'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'lepen-m1',
       themeId: 'immigration',
-      titre: 'Priorité nationale inscrite dans la Constitution',
+      title: 'Priorité nationale inscrite dans la Constitution',
       detail:
         "Révision constitutionnelle par référendum instaurant une préférence nationale pour l'accès à l'emploi, au logement social et aux prestations non contributives.",
       verification: 'estimation',
@@ -123,16 +123,16 @@ export const lepen: Candidat = {
     {
       id: 'lepen-m2',
       themeId: 'fiscalite',
-      titre: 'TVA réduite sur l’énergie et les carburants',
+      title: 'TVA réduite sur l’énergie et les carburants',
       detail: "Abaissement du taux de TVA sur les produits énergétiques, présenté comme une mesure de pouvoir d'achat.",
-      chiffrage: { montantMdEurosAn: 12, sens: 'depense', origine: 'Chiffrage repris des campagnes précédentes' },
+      costing: { billionEurosPerYear: 12, direction: 'depense', origin: 'Chiffrage repris des campagnes précédentes' },
       verification: 'a-verifier',
       sourceIds: ['programme-officiel'],
     },
     {
       id: 'lepen-m3',
       themeId: 'social',
-      titre: 'Abrogation de la réforme des retraites',
+      title: 'Abrogation de la réforme des retraites',
       detail: "Retour à 62 ans et départ anticipé pour les carrières longues.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -140,70 +140,70 @@ export const lepen: Candidat = {
     {
       id: 'lepen-m4',
       themeId: 'ecologie',
-      titre: 'Moratoire sur l’éolien et relance du nucléaire',
+      title: 'Moratoire sur l’éolien et relance du nucléaire',
       detail: "Arrêt des nouveaux projets éoliens, démantèlement progressif de certains parcs et programme de nouveaux réacteurs.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'lepen-f1',
       date: '2022-04-24',
-      titre: 'Second tour de la présidentielle',
+      title: 'Second tour de la présidentielle',
       description: "Obtient 41,45 % des suffrages exprimés, meilleur score de son camp à une élection présidentielle.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'lepen-f2',
       date: '2025-03-31',
-      titre: 'Condamnation en première instance et inéligibilité immédiate',
+      title: 'Condamnation en première instance et inéligibilité immédiate',
       description:
         "Le tribunal correctionnel de Paris la condamne à quatre ans d'emprisonnement dont deux ferme, 100 000 euros d'amende et cinq ans d'inéligibilité assortie de l'exécution provisoire, ce qui l'écarte alors de la présidentielle. Elle fait appel.",
-      categorie: 'judiciaire',
-      portee: 'majeur',
+      category: 'judiciaire',
+      scope: 'majeur',
       verification: 'recoupe',
       sourceIds: ['franceinfo-lepen-appel', 'touteleurope-lepen-appel'],
     },
     {
       id: 'lepen-f4',
       date: '2026-07-07',
-      titre: 'Condamnation confirmée en appel, mais éligibilité retrouvée',
+      title: 'Condamnation confirmée en appel, mais éligibilité retrouvée',
       description:
         "La cour d'appel de Paris confirme la culpabilité et réduit la peine : trois ans d'emprisonnement dont deux avec sursis, la part ferme aménagée sous bracelet électronique, et 45 mois d'inéligibilité dont 30 avec sursis. Les quinze mois fermes ayant été purgés au 30 juin 2026, elle peut se présenter en 2027. Elle annonce sa candidature et forme un pourvoi en cassation.",
-      categorie: 'judiciaire',
-      portee: 'majeur',
+      category: 'judiciaire',
+      scope: 'majeur',
       verification: 'recoupe',
       sourceIds: ['ca-paris-cp-20260707', 'rts-lepen-appel', 'touteleurope-lepen-appel'],
     },
     {
       id: 'lepen-f3',
       date: '2011',
-      titre: 'Présidence du mouvement et dédiabolisation (2011-2021)',
+      title: 'Présidence du mouvement et dédiabolisation (2011-2021)',
       description:
         "Dirige le Front national puis le Rassemblement national et conduit une stratégie de normalisation qui aboutit à une forte progression électorale.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [
+  legal: [
     {
       id: 'lepen-j1',
-      intitule: 'Assistants parlementaires européens du Rassemblement national',
-      resume:
+      label: 'Assistants parlementaires européens du Rassemblement national',
+      summary:
         "Affaire portant sur l'emploi présumé d'assistants rémunérés par le Parlement européen pour des tâches relevant du parti national, sur la période 2004-2016. Jugée en première instance le 31 mars 2025, puis en appel du 13 janvier au 12 février 2026, l'arrêt étant rendu le 7 juillet 2026. Douze prévenus ayant fait appel ont été déclarés coupables.",
-      statut: 'condamnation-appel-pourvoi',
-      qualification: 'Détournement de fonds publics',
-      juridiction: 'Cour d’appel de Paris, chambre des appels correctionnels',
-      dateDecision: '2026-07-07',
-      peine:
+      status: 'condamnation-appel-pourvoi',
+      charge: 'Détournement de fonds publics',
+      short: 'Cour d’appel de Paris, chambre des appels correctionnels',
+      decisionDate: '2026-07-07',
+      sentence:
         "Trois ans d'emprisonnement dont deux ans avec sursis, la part ferme d'un an étant aménagée sous bracelet électronique ; 100 000 euros d'amende ; 45 mois d'inéligibilité dont 30 mois avec sursis. En première instance, la peine était de quatre ans d'emprisonnement dont deux ans ferme, 100 000 euros d'amende et cinq ans d'inéligibilité avec exécution provisoire.",
-      recours:
+      appeal:
         "Pourvoi en cassation formé par les condamnés et par le Parlement européen : la condamnation n'est pas définitive. Conséquence électorale : les quinze mois d'inéligibilité ferme étaient purgés au 30 juin 2026, au titre de l'exécution provisoire ordonnée en première instance — Marine Le Pen est donc éligible pour la présidentielle des 18 avril et 2 mai 2027.",
       verification: 'recoupe',
       sourceIds: [
@@ -215,11 +215,11 @@ export const lepen: Candidat = {
       ],
     },
   ],
-  indicateurs: [
-    { id: 'lepen-i1', label: 'Score au second tour de la présidentielle', valeur: '41,45 %', periode: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
-    { id: 'lepen-i2', label: 'Condamnations définitives pour atteinte à la probité', valeur: 'Aucune', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
-    { id: 'lepen-i3', label: 'Condamnations non définitives', valeur: 'Une, confirmée en appel, pourvoi en cours', periode: '2025-2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
-    { id: 'lepen-i4', label: 'Inéligibilité en cours', valeur: 'Aucune — quinze mois fermes purgés au 30 juin 2026', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['rts-lepen-appel', 'touteleurope-lepen-appel'] },
+  indicators: [
+    { id: 'lepen-i1', label: 'Score au second tour de la présidentielle', value: '41,45 %', period: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+    { id: 'lepen-i2', label: 'Condamnations définitives pour atteinte à la probité', value: 'Aucune', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
+    { id: 'lepen-i3', label: 'Condamnations non définitives', value: 'Une, confirmée en appel, pourvoi en cours', period: '2025-2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
+    { id: 'lepen-i4', label: 'Inéligibilité en cours', value: 'Aucune — quinze mois fermes purgés au 30 juin 2026', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['rts-lepen-appel', 'touteleurope-lepen-appel'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

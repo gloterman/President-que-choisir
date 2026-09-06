@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { candidats } from '@/data/candidats'
-import { Alerte } from './ui/base'
+import { candidates } from '@/data/candidats'
+import { Notice } from './ui/base'
 
-const elements = candidats.flatMap((c) => [...c.mesures, ...c.faits, ...c.judiciaire, ...c.indicateurs])
-const verifies = elements.filter((e) => e.verification === 'verifie').length
-const recoupes = elements.filter((e) => e.verification === 'recoupe').length
+const elements = candidates.flatMap((c) => [...c.measures, ...c.facts, ...c.legal, ...c.indicators])
+const verified = elements.filter((e) => e.verification === 'verifie').length
+const crossChecked = elements.filter((e) => e.verification === 'recoupe').length
 
 /**
  * Bandeau affiché en tête des pages qui exposent des faits.
@@ -13,10 +13,10 @@ const recoupes = elements.filter((e) => e.verification === 'recoupe').length
  * données vérifiées n'est pas significative, le dire est la seule manière
  * honnête de présenter des notes portant sur des personnes réelles.
  */
-export function BandeauDonnees() {
+export function DataBanner() {
   return (
-    <Alerte
-      titre={`Jeu de données en cours de vérification — ${recoupes} élément(s) recoupés, ${verifies} lus sur source primaire, sur ${elements.length}`}
+    <Notice
+      title={`Jeu de données en cours de vérification — ${crossChecked} élément(s) recoupés, ${verified} lus sur source primaire, sur ${elements.length}`}
     >
       Les décisions de justice ont été recoupées sur plusieurs sources concordantes et leurs
       références primaires sont indiquées ; il reste à ouvrir ces documents un à un. Les positions
@@ -26,6 +26,6 @@ export function BandeauDonnees() {
         Voir l’état de vérification
       </Link>
       .
-    </Alerte>
+    </Notice>
   )
 }

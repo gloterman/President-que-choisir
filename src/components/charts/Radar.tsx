@@ -1,21 +1,21 @@
-import { Figure, couleurSerie, useInfobulle, type EntreeLegende, type Tableau } from './primitives'
+import { Figure, seriesColor, useTooltip, type LegendEntry, type Table } from './primitives'
 
-export interface SerieRadar {
+export interface RadarSeries {
   id: string
   label: string
   /** Une valeur 0–100 par axe, dans l'ordre de `axes`. */
-  valeurs: number[]
+  values: number[]
 }
 
-const TAILLE = 420
-const HAUTEUR = 380
+const SIZE = 420
+const HEIGHT = 380
 const CX = 210
 const CY = 182
 const R = 112
 
-const point = (angle: number, rayon: number) => ({
-  x: CX + Math.cos(angle) * rayon,
-  y: CY + Math.sin(angle) * rayon,
+const point = (angle: number, radius: number) => ({
+  x: CX + Math.cos(angle) * radius,
+  y: CY + Math.sin(angle) * radius,
 })
 
 /**
@@ -26,60 +26,60 @@ const point = (angle: number, rayon: number) => ({
  * s'arrêter à trois. Au-delà, on lit la vue tableau, exposée sous la figure.
  */
 export function Radar({
-  titre,
-  soustitre,
+  title,
+  subtitle,
   axes,
   series,
-  note,
+  rating,
 }: {
-  titre: string
-  soustitre?: string
+  title: string
+  subtitle?: string
   axes: string[]
-  series: SerieRadar[]
-  note?: string
+  series: RadarSeries[]
+  rating?: string
 }) {
-  const { setBulle, rendu } = useInfobulle()
+  const { setBulle, rendered } = useTooltip()
   const n = axes.length
   if (n < 3) return null
 
   // On démarre à midi et on tourne dans le sens horaire.
-  const angleDe = (i: number) => (i / n) * Math.PI * 2 - Math.PI / 2
-  const niveaux = [25, 50, 75, 100]
+  const angleOf = (i: number) => (i / n) * Math.PI * 2 - Math.PI / 2
+  const levels = [25, 50, 75, 100]
 
-  const legende: EntreeLegende[] = series.map((serie, i) => ({
-    label: serie.label,
-    couleur: couleurSerie(i),
-    forme: 'ligne',
+  const legend: LegendEntry[] = series.map((series, i) => ({
+    label: series.label,
+    color: seriesColor(i),
+    shape: 'ligne',
   }))
 
-  const tableau: Tableau = {
-    entetes: ['Critère', ...series.map((s) => s.label)],
-    lignes: axes.map((axe, i) => [axe, ...series.map((s) => Math.round(s.valeurs[i] ?? 0))]),
-    legende: titre,
+  const table: Table = {
+    headers: ['Critère', ...series.map((s) => s.label)],
+    rows: axes.map((axis, i) => [axis, ...series.map((s) => Math.round(s.values[i] ?? 0))]),
+    legend: title,
   }
 
   return (
     <Figure
-      titre={titre}
-      soustitre={soustitre}
-      legende={legende}
-      tableau={tableau}
-      note={note}
+      title={title}
+      subtitle={subtitle}
+      legend={legend}
+      table={table}
+      rating={rating}
     >
       <div className="relative">
         <svg
-          viewBox={`0 0 ${TAILLE} ${HAUTEUR}`}
+          viewBox={`0 0 ${SIZE} ${HEIGHT}`}
           className="h-auto w-full"
           role="img"
-          aria-label={`${titre}. ${series.map((s) => s.label).join(', ')}. Détail dans le tableau sous la figure.`}
+          aria-label={`${title}. ${series.map((s) => s.label).join(', ')}. Détail dans le tableau sous la figure.`}
         >
           {/* Grille : traits pleins, une marche au-dessus de la surface. */}
-          {niveaux.map((niveau) => (
+          {levels.map((level) => (
             <polygon
-              key={niveau}
+              key={level}
               points={axes
                 .map((_, i) => {
-                  const p = point(angleDe(i), (niveau / 100) * R)
+                  const p = point(angleOf(i), (level / 100) * R)
                   return `${p.x},${p.y}`
                 })
                 .join(' ')}
@@ -89,7 +89,7 @@ export function Radar({
             />
           ))}
           {axes.map((_, i) => {
-            const p = point(angleDe(i), R)
+            const p = point(angleOf(i), R)
             return (
               <line
                 key={i}
@@ -103,38 +103,38 @@ export function Radar({
             )
           })}
 
-          {series.map((serie, indexSerie) => {
-            const couleur = couleurSerie(indexSerie)
-            const sommets = axes.map((_, i) =>
-              point(angleDe(i), (Math.max(0, Math.min(100, serie.valeurs[i] ?? 0)) / 100) * R),
+          {series.map((series, seriesIndex) => {
+            const color = seriesColor(seriesIndex)
+            const vertices = axes.map((_, i) =>
+              point(angleOf(i), (Math.max(0, Math.min(100, series.values[i] ?? 0)) / 100) * R),
             )
             return (
-              <g key={serie.id}>
+              <g key={series.id}>
                 <polygon
-                  points={sommets.map((p) => `${p.x},${p.y}`).join(' ')}
-                  fill={couleur}
+                  points={vertices.map((p) => `${p.x},${p.y}`).join(' ')}
+                  fill={color}
                   fillOpacity={0.1}
-                  stroke={couleur}
+                  stroke={color}
                   strokeWidth={2}
                   strokeLinejoin="round"
                 />
-                {sommets.map((p, i) => (
+                {vertices.map((p, i) => (
                   <circle
                     key={i}
                     cx={p.x}
                     cy={p.y}
                     r={4}
-                    fill={couleur}
+                    fill={color}
                     stroke="var(--pqc-surface)"
                     strokeWidth={2}
                     onMouseEnter={() =>
                       setBulle({
-                        x: (p.x / TAILLE) * 100,
-                        y: (p.y / HAUTEUR) * 100,
-                        contenu: (
+                        x: (p.x / SIZE) * 100,
+                        y: (p.y / HEIGHT) * 100,
+                        content: (
                           <>
-                            <strong>{serie.label}</strong> — {axes[i]} :{' '}
-                            {Math.round(serie.valeurs[i] ?? 0)}/100
+                            <strong>{series.label}</strong> — {axes[i]} :{' '}
+                            {Math.round(series.values[i] ?? 0)}/100
                           </>
                         ),
                       })
@@ -147,27 +147,27 @@ export function Radar({
           })}
 
           {/* Libellés d'axes : encre de texte, jamais la couleur de série. */}
-          {axes.map((axe, i) => {
-            const angle = angleDe(i)
+          {axes.map((axis, i) => {
+            const angle = angleOf(i)
             const p = point(angle, R + 20)
             const cos = Math.cos(angle)
-            const ancrage = cos > 0.25 ? 'start' : cos < -0.25 ? 'end' : 'middle'
+            const anchor = cos > 0.25 ? 'start' : cos < -0.25 ? 'end' : 'middle'
             return (
               <text
-                key={axe}
+                key={axis}
                 x={p.x}
                 y={p.y}
-                textAnchor={ancrage}
+                textAnchor={anchor}
                 dominantBaseline="middle"
                 fontSize={11}
                 fill="var(--pqc-muted)"
               >
-                {axe}
+                {axis}
               </text>
             )
           })}
         </svg>
-        {rendu}
+        {rendered}
       </div>
     </Figure>
   )

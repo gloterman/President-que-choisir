@@ -1,9 +1,9 @@
-import { Figure, useInfobulle, type EntreeLegende, type Tableau } from './primitives'
+import { Figure, useTooltip, type LegendEntry, type Table } from './primitives'
 
-export interface PointCandidat {
+export interface CandidatePoint {
   id: string
   label: string
-  initiales: string
+  initials: string
   /** −1 à +1. */
   eco: number
   /** −1 à +1. */
@@ -11,8 +11,8 @@ export interface PointCandidat {
 }
 
 const T = 400
-const MARGE = 34
-const PLOT = T - MARGE * 2
+const MARGIN = 34
+const PLOT = T - MARGIN * 2
 
 /**
  * Boussole politique en deux dimensions.
@@ -23,53 +23,53 @@ const PLOT = T - MARGE * 2
  * l'autre — ce qui laisse la lecture possible quelle que soit la vision des
  * couleurs, y compris avec onze points sur la même surface.
  */
-export function Boussole({
-  titre,
-  soustitre,
-  candidats,
-  utilisateur,
-  note,
+export function Compass({
+  title,
+  subtitle,
+  candidates,
+  user,
+  rating,
 }: {
-  titre: string
-  soustitre?: string
-  candidats: PointCandidat[]
-  utilisateur?: { eco: number; soc: number } | null
-  note?: string
+  title: string
+  subtitle?: string
+  candidates: CandidatePoint[]
+  user?: { eco: number; soc: number } | null
+  rating?: string
 }) {
-  const { setBulle, rendu } = useInfobulle()
+  const { setBulle, rendered } = useTooltip()
 
-  const enX = (eco: number) => MARGE + ((eco + 1) / 2) * PLOT
+  const toX = (eco: number) => MARGIN + ((eco + 1) / 2) * PLOT
   // L'axe des ordonnées est inversé : le pôle conservateur est en haut.
-  const enY = (soc: number) => MARGE + ((1 - soc) / 2) * PLOT
+  const toY = (soc: number) => MARGIN + ((1 - soc) / 2) * PLOT
 
-  const legende: EntreeLegende[] = [
-    { label: 'Candidats', couleur: 'var(--pqc-series-1)', forme: 'point' },
-    ...(utilisateur
-      ? [{ label: 'Votre position', couleur: 'var(--pqc-series-2)', forme: 'point' as const }]
+  const legend: LegendEntry[] = [
+    { label: 'Candidats', color: 'var(--pqc-series-1)', shape: 'point' },
+    ...(user
+      ? [{ label: 'Votre position', color: 'var(--pqc-series-2)', shape: 'point' as const }]
       : []),
   ]
 
-  const tableau: Tableau = {
-    entetes: ['Candidat', 'Axe économique', 'Axe culturel'],
-    lignes: [
-      ...candidats.map((c) => [c.label, c.eco.toFixed(2), c.soc.toFixed(2)]),
-      ...(utilisateur ? [['Votre position', utilisateur.eco.toFixed(2), utilisateur.soc.toFixed(2)]] : []),
+  const table: Table = {
+    headers: ['Candidat', 'Axe économique', 'Axe culturel'],
+    rows: [
+      ...candidates.map((c) => [c.label, c.eco.toFixed(2), c.soc.toFixed(2)]),
+      ...(user ? [['Votre position', user.eco.toFixed(2), user.soc.toFixed(2)]] : []),
     ],
-    legende: 'Coordonnées sur la boussole, de −1 à +1.',
+    legend: 'Coordonnées sur la boussole, de −1 à +1.',
   }
 
   return (
-    <Figure titre={titre} soustitre={soustitre} legende={legende} tableau={tableau} note={note}>
+    <Figure title={title} subtitle={subtitle} legend={legend} table={table} rating={rating}>
       <div className="relative">
         <svg
           viewBox={`0 0 ${T} ${T}`}
           className="h-auto w-full"
           role="img"
-          aria-label={`${titre}. Coordonnées détaillées dans le tableau sous la figure.`}
+          aria-label={`${title}. Coordonnées détaillées dans le tableau sous la figure.`}
         >
           <rect
-            x={MARGE}
-            y={MARGE}
+            x={MARGIN}
+            y={MARGIN}
             width={PLOT}
             height={PLOT}
             fill="none"
@@ -79,18 +79,18 @@ export function Boussole({
           {[0.25, 0.5, 0.75].map((f) => (
             <g key={f}>
               <line
-                x1={MARGE + f * PLOT}
-                y1={MARGE}
-                x2={MARGE + f * PLOT}
-                y2={MARGE + PLOT}
+                x1={MARGIN + f * PLOT}
+                y1={MARGIN}
+                x2={MARGIN + f * PLOT}
+                y2={MARGIN + PLOT}
                 stroke="var(--pqc-grid)"
                 strokeWidth={1}
               />
               <line
-                x1={MARGE}
-                y1={MARGE + f * PLOT}
-                x2={MARGE + PLOT}
-                y2={MARGE + f * PLOT}
+                x1={MARGIN}
+                y1={MARGIN + f * PLOT}
+                x2={MARGIN + PLOT}
+                y2={MARGIN + f * PLOT}
                 stroke="var(--pqc-grid)"
                 strokeWidth={1}
               />
@@ -98,18 +98,18 @@ export function Boussole({
           ))}
           {/* Axes centraux, un ton plus marqué que la grille. */}
           <line
-            x1={MARGE + PLOT / 2}
-            y1={MARGE}
-            x2={MARGE + PLOT / 2}
-            y2={MARGE + PLOT}
+            x1={MARGIN + PLOT / 2}
+            y1={MARGIN}
+            x2={MARGIN + PLOT / 2}
+            y2={MARGIN + PLOT}
             stroke="var(--pqc-axis)"
             strokeWidth={1}
           />
           <line
-            x1={MARGE}
-            y1={MARGE + PLOT / 2}
-            x2={MARGE + PLOT}
-            y2={MARGE + PLOT / 2}
+            x1={MARGIN}
+            y1={MARGIN + PLOT / 2}
+            x2={MARGIN + PLOT}
+            y2={MARGIN + PLOT / 2}
             stroke="var(--pqc-axis)"
             strokeWidth={1}
           />
@@ -141,12 +141,12 @@ export function Boussole({
             Libéralisme économique
           </text>
 
-          {candidats.map((candidat) => {
-            const x = enX(candidat.eco)
-            const y = enY(candidat.soc)
-            const aGauche = x > MARGE + PLOT * 0.72
+          {candidates.map((candidate) => {
+            const x = toX(candidate.eco)
+            const y = toY(candidate.soc)
+            const leftAligned = x > MARGIN + PLOT * 0.72
             return (
-              <g key={candidat.id}>
+              <g key={candidate.id}>
                 <circle
                   cx={x}
                   cy={y}
@@ -158,39 +158,39 @@ export function Boussole({
                     setBulle({
                       x: (x / T) * 100,
                       y: (y / T) * 100,
-                      contenu: <strong>{candidat.label}</strong>,
+                      content: <strong>{candidate.label}</strong>,
                     })
                   }
                   onMouseLeave={() => setBulle(null)}
                 />
                 <text
-                  x={aGauche ? x - 9 : x + 9}
+                  x={leftAligned ? x - 9 : x + 9}
                   y={y}
-                  textAnchor={aGauche ? 'end' : 'start'}
+                  textAnchor={leftAligned ? 'end' : 'start'}
                   dominantBaseline="middle"
                   fontSize={10}
                   fontWeight={600}
                   fill="var(--pqc-ink-2)"
                 >
-                  {candidat.initiales}
+                  {candidate.initials}
                 </text>
               </g>
             )
           })}
 
-          {utilisateur && (
+          {user && (
             <g>
               <circle
-                cx={enX(utilisateur.eco)}
-                cy={enY(utilisateur.soc)}
+                cx={toX(user.eco)}
+                cy={toY(user.soc)}
                 r={8}
                 fill="var(--pqc-series-2)"
                 stroke="var(--pqc-surface)"
                 strokeWidth={2.5}
               />
               <text
-                x={enX(utilisateur.eco)}
-                y={enY(utilisateur.soc) - 15}
+                x={toX(user.eco)}
+                y={toY(user.soc) - 15}
                 textAnchor="middle"
                 fontSize={11}
                 fontWeight={700}
@@ -201,7 +201,7 @@ export function Boussole({
             </g>
           )}
         </svg>
-        {rendu}
+        {rendered}
       </div>
     </Figure>
   )

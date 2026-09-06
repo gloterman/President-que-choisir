@@ -101,6 +101,18 @@ La publication vise Scaleway (Object Storage + Edge Services, ~12 €/an, donné
 `.github/workflows/scaleway.yml`. Mise en place, stratégie de cache, coûts mesurés et options de
 migration : [`docs/HEBERGEMENT.md`](docs/HEBERGEMENT.md).
 
+## Langue du code
+
+**Les identifiants sont en anglais, le domaine reste en français.** Fonctions, variables, types et
+champs portent des noms anglais ; l'interface, les commentaires et les *valeurs* de données restent
+en français.
+
+La frontière n'est pas cosmétique. Les valeurs du domaine judiciaire —
+`condamnation-definitive`, `condamnation-appel-pourvoi`, `mise-en-examen`, `classement-sans-suite` —
+désignent des états précis du droit français qui n'ont pas d'équivalent anglais exact ; les traduire
+introduirait une approximation là où la précision est tout l'intérêt. Ces valeurs sont donc
+conservées telles quelles, dans le code comme dans les fichiers de données.
+
 ## Architecture
 
 ```

@@ -41,8 +41,8 @@ export type SourceType =
 
 export interface Source {
   id: string
-  titre: string
-  editeur: string
+  title: string
+  publisher: string
   url: string
   /** Date de publication ou de consultation, ISO `AAAA-MM-JJ`. */
   date: string
@@ -57,32 +57,32 @@ export type Importance = 0 | 1 | 2 | 3
 
 export interface Theme {
   id: string
-  nom: string
+  lastName: string
   /** Une phrase : ce que le thème recouvre. */
-  resume: string
+  summary: string
   /** Glyphe décoratif (aria-hidden côté rendu). */
-  icone: string
+  icon: string
 }
 
 /**
  * Un axe est un continuum entre deux pôles nommés. Les deux pôles sont rédigés
  * pour être également défendables : c'est la condition d'un questionnaire neutre.
  */
-export interface Axe {
+export interface Axis {
   id: string
-  nom: string
+  lastName: string
   themeId: string
   /** Libellé du pôle −2. */
-  poleNegatif: string
+  negativePole: string
   /** Libellé du pôle +2. */
-  polePositif: string
-  resume: string
+  positivePole: string
+  summary: string
   /**
    * Contribution de l'axe aux deux dimensions de la boussole 2D.
    * `eco` : axe économique gauche(−)/droite(+). `soc` : axe culturel
    * ouvert(−)/conservateur(+). 0 = l'axe ne pèse pas sur cette dimension.
    */
-  boussole: { eco: number; soc: number }
+  compass: { eco: number; soc: number }
 }
 
 /**
@@ -94,7 +94,7 @@ export interface Axe {
  * qui survivent au cycle médiatique, et permettent une version courte du
  * questionnaire.
  */
-export type NatureProposition =
+export type PropositionNature =
   /** Arbitrage de valeurs, formulé indépendamment de l'actualité. */
   | 'principe'
   /** Mesure concrète, telle qu'elle se discute aujourd'hui. */
@@ -102,69 +102,69 @@ export type NatureProposition =
 
 export interface Proposition {
   id: string
-  axeId: string
+  axisId: string
   themeId: string
-  nature: NatureProposition
+  nature: PropositionNature
   /**
    * Énoncé soumis à l'utilisateur. Les règles de rédaction sont listées en tête
    * de `referentiel.ts` et contrôlées automatiquement par `npm run lint:data`.
    */
-  texte: string
+  text: string
   /** +1 : « d'accord » pousse vers le pôle positif de l'axe. −1 : l'inverse. */
-  polarite: 1 | -1
+  polarity: 1 | -1
   /** Contexte factuel affiché sous la question, sans prise de position. */
-  contexte: string
+  context: string
 }
 
 // ---------------------------------------------------------------------------
 // Critères de notation
 // ---------------------------------------------------------------------------
 
-export type FamilleCritere = 'integrite' | 'competence' | 'programme' | 'action'
+export type CriterionFamily = 'integrite' | 'competence' | 'programme' | 'action'
 
 /** Un palier du barème : « à partir de `min` points, la note se lit ainsi ». */
-export interface PalierBareme {
+export interface ScaleTier {
   min: number
   label: string
 }
 
-export interface Critere {
+export interface Criterion {
   id: string
-  nom: string
+  lastName: string
   /** Nom abrégé, pour les axes de graphiques et les en-têtes de tableaux. */
-  nomCourt: string
-  famille: FamilleCritere
+  shortName: string
+  family: CriterionFamily
   /** Ce que le critère prétend mesurer, en une phrase. */
-  resume: string
+  summary: string
   /** La question à laquelle la note répond. */
   question: string
   /** Les indicateurs factuels qui alimentent la note. */
-  indicateurs: string[]
+  indicators: string[]
   /** Les règles de calcul, en français, telles qu'appliquées. */
-  bareme: string[]
-  paliers: PalierBareme[]
+  scale: string[]
+  tiers: ScaleTier[]
   /** Ce que la note ne dit pas. Affiché systématiquement à côté du score. */
-  limites: string
+  limits: string
   /** Poids par défaut, 0–5. */
-  poidsDefaut: number
+  defaultWeight: number
   /**
    * `true` quand le critère repose sur un jugement de valeur que des gens
    * raisonnables peuvent refuser. L'interface l'affiche et permet de le neutraliser.
    */
-  contestable: boolean
+  debatable: boolean
   /** Sens de lecture : une note haute est-elle toujours souhaitable ? */
-  sensLecture: string
+  readingDirection: string
 }
 
-export type Confiance = 'haute' | 'moyenne' | 'faible'
+export type Confidence = 'haute' | 'moyenne' | 'faible'
 
-export interface NoteCritere {
-  critereId: string
+export interface CriterionRating {
+  criterionId: string
   /** 0–100. */
-  note: number
-  confiance: Confiance
+  rating: number
+  confidence: Confidence
   /** Pourquoi cette note, en citant les faits retenus. */
-  justification: string
+  rationale: string
   sourceIds: string[]
   verification: Verification
 }
@@ -173,7 +173,7 @@ export interface NoteCritere {
 // Faits, judiciaire, programme
 // ---------------------------------------------------------------------------
 
-export type CategorieFait =
+export type FactCategory =
   | 'mandat'
   | 'reforme'
   | 'election'
@@ -181,14 +181,14 @@ export type CategorieFait =
   | 'controverse'
   | 'judiciaire'
 
-export interface Fait {
+export interface Fact {
   id: string
   /** ISO `AAAA` ou `AAAA-MM` ou `AAAA-MM-JJ`. */
   date: string
-  titre: string
+  title: string
   description: string
-  categorie: CategorieFait
-  portee: 'majeur' | 'notable'
+  category: FactCategory
+  scope: 'majeur' | 'notable'
   verification: Verification
   sourceIds: string[]
 }
@@ -198,7 +198,7 @@ export interface Fait {
  * une mise en examen n'est pas une condamnation, une condamnation frappée
  * d'appel n'est pas définitive. L'interface ne mélange jamais ces états.
  */
-export type StatutJudiciaire =
+export type LegalStatus =
   | 'condamnation-definitive'
   /** Condamné en appel, pourvoi en cassation pendant : les faits sont jugés deux fois. */
   | 'condamnation-appel-pourvoi'
@@ -211,37 +211,37 @@ export type StatutJudiciaire =
   | 'classement-sans-suite'
   | 'prescription'
 
-export interface AffaireJudiciaire {
+export interface LegalCase {
   id: string
-  intitule: string
-  resume: string
-  statut: StatutJudiciaire
+  label: string
+  summary: string
+  status: LegalStatus
   /** Qualification pénale telle que retenue par la juridiction. */
-  qualification?: string
-  juridiction?: string
+  charge?: string
+  short?: string
   /** ISO. Date de la dernière décision connue. */
-  dateDecision?: string
-  peine?: string
+  decisionDate?: string
+  sentence?: string
   /** Voies de recours en cours, le cas échéant. */
-  recours?: string
+  appeal?: string
   verification: Verification
   sourceIds: string[]
 }
 
-export interface Chiffrage {
+export interface Costing {
   /** Milliards d'euros par an. Positif = montant en jeu, le sens est porté par `sens`. */
-  montantMdEurosAn: number
-  sens: 'depense' | 'recette' | 'neutre'
+  billionEurosPerYear: number
+  direction: 'depense' | 'recette' | 'neutre'
   /** Qui a chiffré : le candidat, un institut indépendant… */
-  origine: string
+  origin: string
 }
 
-export interface Mesure {
+export interface Measure {
   id: string
   themeId: string
-  titre: string
+  title: string
   detail: string
-  chiffrage?: Chiffrage
+  costing?: Costing
   /** « dès 2027 », « sur le quinquennat »… */
   horizon?: string
   verification: Verification
@@ -251,13 +251,13 @@ export interface Mesure {
 /** Indicateur brut, affiché tel quel sur la fiche : c'est la matière des notes. */
 /** Lien vers une page officielle : celle du candidat, de son parti, ou d'une institution. */
 /** Compte officiel sur une plateforme à lecture publique. */
-export interface CompteSocial {
-  plateforme: 'x' | 'bluesky'
-  identifiant: string
+export interface SocialAccount {
+  platform: 'x' | 'bluesky'
+  handle: string
 }
 
 /** Lien vers une page officielle : celle du candidat, de son parti, ou d'une institution. */
-export interface LienOfficiel {
+export interface OfficialLink {
   label: string
   url: string
   type: 'candidat' | 'parti' | 'institution'
@@ -265,17 +265,17 @@ export interface LienOfficiel {
   usage?: string
 }
 
-export interface Indicateur {
+export interface Indicator {
   id: string
   label: string
-  valeur: string
+  value: string
   /** Période ou date de mesure. */
-  periode?: string
+  period?: string
   verification: Verification
   sourceIds: string[]
 }
 
-export type FamillePolitique =
+export type PoliticalFamily =
   | 'gauche-radicale'
   | 'gauche'
   | 'ecologie'
@@ -284,7 +284,7 @@ export type FamillePolitique =
   | 'droite-nationale'
   | 'divers'
 
-export type StatutCandidature =
+export type CandidacyStatus =
   /** A officiellement annoncé sa candidature. */
   | 'declare'
   /** Cité comme candidat probable par son camp, sans annonce. */
@@ -292,25 +292,25 @@ export type StatutCandidature =
   /** Hypothèse de travail, à confirmer. */
   | 'hypothetique'
 
-export interface Candidat {
+export interface Candidate {
   id: string
-  prenom: string
-  nom: string
-  initiales: string
-  parti: string
-  partiCourt: string
-  famille: FamillePolitique
+  firstName: string
+  lastName: string
+  initials: string
+  party: string
+  partyShort: string
+  family: PoliticalFamily
   /**
    * Couleur d'identification du parti. Utilisée uniquement comme pastille
    * d'identité dans l'interface — jamais comme encodage de série dans un
    * graphique, où la palette validée s'applique.
    */
-  couleurParti: string
-  naissance: string
-  fonctionActuelle: string
-  statutCandidature: StatutCandidature
-  presentation: string
-  siteProgramme?: string
+  partyColor: string
+  birth: string
+  currentRole: string
+  candidacyStatus: CandidacyStatus
+  summary: string
+  programSite?: string
   /**
    * Comptes sociaux officiels, sans arobase. Le collecteur n'interroge que ce
    * qui est déclaré ici et signale les absences : mieux vaut un trou assumé
@@ -319,50 +319,50 @@ export interface Candidat {
    * Un compte de soutien ou de campagne tenu par une équipe n'a pas sa place
    * ici : ses messages ne sont pas la parole du candidat.
    */
-  comptesSociaux: CompteSocial[]
+  socialAccounts: SocialAccount[]
   /**
    * Pages officielles : site du candidat ou de son parti d'une part, pages
    * institutionnelles d'autre part. C'est le point de départ de toute
    * vérification — la parole du candidat et le registre public.
    */
-  liensOfficiels: LienOfficiel[]
+  officialLinks: OfficialLink[]
   /** Position sur chaque axe, indexée par `Axe.id`. */
   positions: Record<string, Likert>
   /** Justification courte d'une position, indexée par `Axe.id`. */
-  positionsNotes?: Record<string, string>
-  notes: NoteCritere[]
-  mesures: Mesure[]
-  faits: Fait[]
-  judiciaire: AffaireJudiciaire[]
-  indicateurs: Indicateur[]
+  ratedPositions?: Record<string, string>
+  ratings: CriterionRating[]
+  measures: Measure[]
+  facts: Fact[]
+  legal: LegalCase[]
+  indicators: Indicator[]
   /** ISO. Date de dernière revue de la fiche. */
-  derniereMaj: string
+  lastUpdated: string
 }
 
 // ---------------------------------------------------------------------------
 // Préférences utilisateur
 // ---------------------------------------------------------------------------
 
-export interface ReponseUtilisateur {
-  valeur: Likert
+export interface UserAnswer {
+  value: Likert
   importance: Importance
 }
 
 /** Méthode d'agrégation multicritère retenue par l'utilisateur. */
-export type MethodeAgregation = 'somme-ponderee' | 'produit-pondere' | 'topsis' | 'copeland'
+export type AggregationMethod = 'somme-ponderee' | 'produit-pondere' | 'topsis' | 'copeland'
 
 export interface Preferences {
   /** Réponses au questionnaire, indexées par `Proposition.id`. */
-  reponses: Record<string, ReponseUtilisateur>
+  answers: Record<string, UserAnswer>
   /** Poids 0–5 par critère, indexés par `Critere.id`. */
-  poids: Record<string, number>
+  weight: Record<string, number>
   /** Seuils rédhibitoires : note minimale exigée, indexés par `Critere.id`. */
-  seuils: Record<string, number>
+  thresholds: Record<string, number>
   /** Part de l'affinité programmatique dans le score final, 0–1. */
-  partProgramme: number
-  methode: MethodeAgregation
+  programShare: number
+  method: AggregationMethod
   /** Candidats explicitement écartés par l'utilisateur. */
-  exclus: string[]
+  excluded: string[]
   /** Candidats épinglés pour la comparaison (3 maximum). */
-  comparaison: string[]
+  comparison: string[]
 }

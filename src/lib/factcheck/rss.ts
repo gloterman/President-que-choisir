@@ -9,9 +9,9 @@ import { createHash } from 'node:crypto'
  * sections CDATA imbriquées, dates dans trois formats.
  */
 
-export interface ArticleFlux {
-  titre: string
-  lien: string
+export interface FeedArticle {
+  title: string
+  link: string
   /** ISO 8601, ou chaîne vide si la date est absente ou illisible. */
   date: string
   /** Chapô ou corps du billet, débarrassé de son balisage. Peut être vide. */
@@ -20,10 +20,10 @@ export interface ArticleFlux {
 
 const CDATA = /^\s*<!\[CDATA\[([\s\S]*?)\]\]>\s*$/
 
-function decoder(brut: string): string {
-  const cdata = brut.match(CDATA)
-  const texte = cdata ? cdata[1] : brut
-  return texte
+function decode(raw: string): string {
+  const cdata = raw.match(CDATA)
+  const text = cdata ? cdata[1] : raw
+  return text
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
@@ -36,18 +36,18 @@ function decoder(brut: string): string {
     .trim()
 }
 
-function extraire(bloc: string, balise: string): string | null {
-  const motif = new RegExp(`<${balise}(?:\\s[^>]*)?>([\\s\\S]*?)</${balise}>`, 'i')
-  const trouve = bloc.match(motif)
-  return trouve ? decoder(trouve[1]) : null
+function extract(block: string, tag: string): string | null {
+  const reason = new RegExp(`<${tag}(?:\\s[^>]*)?>([\\s\\S]*?)</${tag}>`, 'i')
+  const found = block.match(reason)
+  return found ? decode(found[1]) : null
 }
 
 /** Atom place le lien dans un attribut plutôt que dans le contenu de la balise. */
-function extraireLienAtom(bloc: string): string | null {
-  const alternatif = bloc.match(/<link[^>]*\brel=["']alternate["'][^>]*\bhref=["']([^"']+)["']/i)
-  if (alternatif) return decoder(alternatif[1])
-  const simple = bloc.match(/<link[^>]*\bhref=["']([^"']+)["']/i)
-  return simple ? decoder(simple[1]) : null
+function extractAtomLink(block: string): string | null {
+  const alternate = block.match(/<link[^>]*\brel=["']alternate["'][^>]*\bhref=["']([^"']+)["']/i)
+  if (alternate) return decode(alternate[1])
+  const plain = block.match(/<link[^>]*\bhref=["']([^"']+)["']/i)
+  return plain ? decode(plain[1]) : null
 }
 
 /**
@@ -57,9 +57,9 @@ function extraireLienAtom(bloc: string): string | null {
  * intéresse — il sera affiché comme citation — et le balisage n'a rien à faire
  * dans une déclaration attribuée à quelqu'un.
  */
-function sansBalisage(brut: string | null): string {
-  if (!brut) return ''
-  return decoder(brut)
+function stripMarkup(raw: string | null): string {
+  if (!raw) return ''
+  return decode(raw)
     .replace(/<br\s*\/?>/gi, ' ')
     .replace(/<\/(?:p|div|li|h[1-6])>/gi, ' ')
     .replace(/<[^>]*>/g, '')
@@ -67,38 +67,38 @@ function sansBalisage(brut: string | null): string {
     .trim()
 }
 
-function normaliserDate(brut: string | null): string {
-  if (!brut) return ''
-  const instant = Date.parse(brut)
+function normalizeDate(raw: string | null): string {
+  if (!raw) return ''
+  const instant = Date.parse(raw)
   return Number.isNaN(instant) ? '' : new Date(instant).toISOString()
 }
 
-export function lireFlux(xml: string): ArticleFlux[] {
-  const blocs = [
+export function readFeed(xml: string): FeedArticle[] {
+  const blocks = [
     ...xml.matchAll(/<item(?:\s[^>]*)?>([\s\S]*?)<\/item>/gi),
     ...xml.matchAll(/<entry(?:\s[^>]*)?>([\s\S]*?)<\/entry>/gi),
   ]
 
-  const articles: ArticleFlux[] = []
-  for (const bloc of blocs) {
-    const contenu = bloc[1]
-    const titre = extraire(contenu, 'title')
-    const lien = extraire(contenu, 'link') || extraireLienAtom(contenu)
-    if (!titre || !lien) continue
+  const articles: FeedArticle[] = []
+  for (const block of blocks) {
+    const content = block[1]
+    const title = extract(content, 'title')
+    const link = extract(content, 'link') || extractAtomLink(content)
+    if (!title || !link) continue
     // Seul le https est retenu : un flux compromis ne doit pas pouvoir glisser
     // un lien qui s'exécuterait au clic.
-    if (!/^https:\/\//i.test(lien)) continue
+    if (!/^https:\/\//i.test(link)) continue
     articles.push({
-      titre,
-      lien,
-      date: normaliserDate(
-        extraire(contenu, 'pubDate') ?? extraire(contenu, 'published') ?? extraire(contenu, 'updated'),
+      title,
+      link,
+      date: normalizeDate(
+        extract(content, 'pubDate') ?? extract(content, 'published') ?? extract(content, 'updated'),
       ),
-      description: sansBalisage(
-        extraire(contenu, 'content:encoded') ??
-          extraire(contenu, 'description') ??
-          extraire(contenu, 'summary') ??
-          extraire(contenu, 'content'),
+      description: stripMarkup(
+        extract(content, 'content:encoded') ??
+          extract(content, 'description') ??
+          extract(content, 'summary') ??
+          extract(content, 'content'),
       ),
     })
   }
@@ -114,17 +114,17 @@ export function lireFlux(xml: string): ArticleFlux[] {
  * identifiant et quarante-neuf étaient silencieusement perdues. Une troncature
  * ne peut porter que sur un condensé, jamais sur la donnée elle-même.
  */
-export function condenseUrl(url: string): string {
+export function urlDigest(url: string): string {
   return createHash('sha256').update(url).digest('hex').slice(0, 16)
 }
 
-export function identifiantVeille(sourceId: string, url: string): string {
-  return `veille-${sourceId}-${condenseUrl(url)}`
+export function watchId(sourceId: string, url: string): string {
+  return `veille-${sourceId}-${urlDigest(url)}`
 }
 
 /** Retire les diacritiques et la casse, pour comparer des noms propres. */
-export function normaliserNom(nom: string): string {
-  return nom
+export function normalizeName(lastName: string): string {
+  return lastName
     .normalize('NFD')
     .replace(/[̀-ͯ]/g, '')
     .toLowerCase()
@@ -145,21 +145,21 @@ export function normaliserNom(nom: string): string {
  * https reste exigé : la découverte ne doit pas être un moyen de faire pointer
  * la collecte ailleurs que sur le site consulté.
  */
-export function liensFluxDeclares(html: string, base: string): string[] {
-  const trouves: string[] = []
-  for (const balise of html.matchAll(/<link\b[^>]*>/gi)) {
-    const attributs = balise[0]
-    if (!/\brel=["']?[^"'>]*\balternate\b/i.test(attributs)) continue
-    if (!/\btype=["']?application\/(?:rss|atom)\+xml/i.test(attributs)) continue
-    const href = attributs.match(/\bhref=["']([^"']+)["']/i)
+export function declaredFeedLinks(html: string, base: string): string[] {
+  const found: string[] = []
+  for (const tag of html.matchAll(/<link\b[^>]*>/gi)) {
+    const attributes = tag[0]
+    if (!/\brel=["']?[^"'>]*\balternate\b/i.test(attributes)) continue
+    if (!/\btype=["']?application\/(?:rss|atom)\+xml/i.test(attributes)) continue
+    const href = attributes.match(/\bhref=["']([^"']+)["']/i)
     if (!href) continue
     try {
-      const absolue = new URL(decoder(href[1]), base)
-      if (absolue.protocol !== 'https:') continue
-      if (!trouves.includes(absolue.href)) trouves.push(absolue.href)
+      const absolute = new URL(decode(href[1]), base)
+      if (absolute.protocol !== 'https:') continue
+      if (!found.includes(absolute.href)) found.push(absolute.href)
     } catch {
       // Une adresse illisible est ignorée : la découverte continue.
     }
   }
-  return trouves
+  return found
 }

@@ -1,103 +1,103 @@
 import { describe, expect, it } from 'vitest'
-import type { Candidat, Likert, Preferences, ReponseUtilisateur } from '@/data/types'
+import type { Candidate, Likert, Preferences, UserAnswer } from '@/data/types'
 import { propositions } from '@/data/referentiel'
-import { criteres } from '@/data/criteres'
-import { candidats } from '@/data/candidats'
+import { criteria } from '@/data/criteres'
+import { candidates } from '@/data/candidats'
 import {
-  boussoleUtilisateur,
-  calculerAffinite,
-  calculerClassement,
+  userCompass,
+  computeAffinity,
+  computeRanking,
   copeland,
   kendallTau,
-  normaliserMinMax,
-  normaliserPoids,
-  produitPondere,
-  sommePonderee,
+  normalizeMinMax,
+  normalizeWeights,
+  weightedProduct,
+  weightedSum,
   topsis,
-  rangsDepuisScores,
-  type Classement,
-  type MatriceDecision,
+  ranksFromScores,
+  type Ranking,
+  type DecisionMatrix,
 } from './index'
-import { analyserSensibilite } from './sensibilite'
+import { analyzeSensitivity } from './sensibilite'
 
-const matrice = (valeurs: number[][], poids: number[]): MatriceDecision => ({
-  alternatives: valeurs.map((_, i) => `a${i}`),
-  criteres: poids.map((_, j) => `c${j}`),
-  valeurs,
-  poids,
+const matrix = (values: number[][], weight: number[]): DecisionMatrix => ({
+  alternatives: values.map((_, i) => `a${i}`),
+  criteria: weight.map((_, j) => `c${j}`),
+  values,
+  weight,
 })
 
 describe('normalisation', () => {
   it('ramène les poids à une somme de 1', () => {
-    expect(normaliserPoids([1, 3]).reduce((a, b) => a + b, 0)).toBeCloseTo(1)
-    expect(normaliserPoids([2, 2])).toEqual([0.5, 0.5])
+    expect(normalizeWeights([1, 3]).reduce((a, b) => a + b, 0)).toBeCloseTo(1)
+    expect(normalizeWeights([2, 2])).toEqual([0.5, 0.5])
   })
 
   it('remplace un vecteur de poids nul par un vecteur uniforme', () => {
-    expect(normaliserPoids([0, 0, 0])).toEqual([1 / 3, 1 / 3, 1 / 3])
+    expect(normalizeWeights([0, 0, 0])).toEqual([1 / 3, 1 / 3, 1 / 3])
   })
 
   it('ignore les poids négatifs', () => {
-    expect(normaliserPoids([-5, 1, 1])).toEqual([0, 0.5, 0.5])
+    expect(normalizeWeights([-5, 1, 1])).toEqual([0, 0.5, 0.5])
   })
 
   it('neutralise une colonne constante au lieu de la mettre à 0 ou 1', () => {
-    const sortie = normaliserMinMax([
+    const output = normalizeMinMax([
       [50, 10],
       [50, 90],
     ])
-    expect(sortie[0][0]).toBe(0.5)
-    expect(sortie[1][0]).toBe(0.5)
-    expect(sortie[0][1]).toBe(0)
-    expect(sortie[1][1]).toBe(1)
+    expect(output[0][0]).toBe(0.5)
+    expect(output[1][0]).toBe(0.5)
+    expect(output[0][1]).toBe(0)
+    expect(output[1][1]).toBe(1)
   })
 })
 
 describe('somme pondérée', () => {
   it('respecte la pondération', () => {
-    const m = matrice(
+    const m = matrix(
       [
         [100, 0],
         [0, 100],
       ],
       [3, 1],
     )
-    const scores = sommePonderee(m)
+    const scores = weightedSum(m)
     expect(scores[0]).toBeCloseTo(0.75)
     expect(scores[1]).toBeCloseTo(0.25)
   })
 
   it('donne 1 à un candidat parfait sur tous les critères', () => {
-    expect(sommePonderee(matrice([[100, 100, 100]], [1, 1, 1]))[0]).toBeCloseTo(1)
+    expect(weightedSum(matrix([[100, 100, 100]], [1, 1, 1]))[0]).toBeCloseTo(1)
   })
 })
 
 describe('produit pondéré', () => {
   it('pénalise plus durement une note très basse que la somme pondérée', () => {
-    const m = matrice(
+    const m = matrix(
       [
         [100, 12],
         [54, 52],
       ],
       [1, 1],
     )
-    const somme = sommePonderee(m)
-    const produit = produitPondere(m)
+    const sum = weightedSum(m)
+    const product = weightedProduct(m)
     // La somme pondérée place le profil déséquilibré devant…
-    expect(somme[0]).toBeGreaterThan(somme[1])
+    expect(sum[0]).toBeGreaterThan(sum[1])
     // …le produit pondéré l'inverse : la faiblesse n'est plus compensée.
-    expect(produit[0]).toBeLessThan(produit[1])
+    expect(product[0]).toBeLessThan(product[1])
   })
 
   it('ne renvoie jamais exactement zéro grâce au plancher', () => {
-    expect(produitPondere(matrice([[0, 100]], [1, 1]))[0]).toBeGreaterThan(0)
+    expect(weightedProduct(matrix([[0, 100]], [1, 1]))[0]).toBeGreaterThan(0)
   })
 })
 
 describe('TOPSIS', () => {
   it('classe en tête le candidat qui domine sur tous les critères', () => {
     const scores = topsis(
-      matrice(
+      matrix(
         [
           [90, 90],
           [50, 50],
@@ -116,7 +116,7 @@ describe('TOPSIS', () => {
 describe('Copeland', () => {
   it('compte les duels gagnés, sans tenir compte de l’ampleur des écarts', () => {
     const scores = copeland(
-      matrice(
+      matrix(
         [
           [100, 100],
           [60, 60],
@@ -130,7 +130,7 @@ describe('Copeland', () => {
 
   it('traite comme indifférents deux candidats séparés par moins du seuil', () => {
     const scores = copeland(
-      matrice(
+      matrix(
         [
           [51, 51],
           [50, 50],
@@ -151,89 +151,89 @@ describe('tau de Kendall', () => {
 
 // ---------------------------------------------------------------------------
 
-const candidatTest = (id: string, positions: Record<string, number>): Candidat =>
+const testCandidate = (id: string, positions: Record<string, number>): Candidate =>
   ({
     id,
-    prenom: id,
-    nom: id.toUpperCase(),
-    initiales: id.slice(0, 2).toUpperCase(),
-    parti: 'Parti test',
-    partiCourt: 'PT',
-    famille: 'divers',
-    couleurParti: '#888888',
-    naissance: '1970-01-01',
-    fonctionActuelle: '—',
-    statutCandidature: 'hypothetique',
-    comptesSociaux: [],
-    liensOfficiels: [],
-    presentation: '—',
+    firstName: id,
+    lastName: id.toUpperCase(),
+    initials: id.slice(0, 2).toUpperCase(),
+    party: 'Parti test',
+    partyShort: 'PT',
+    family: 'divers',
+    partyColor: '#888888',
+    birth: '1970-01-01',
+    currentRole: '—',
+    candidacyStatus: 'hypothetique',
+    socialAccounts: [],
+    officialLinks: [],
+    summary: '—',
     positions: positions as Record<string, Likert>,
-    notes: criteres.map((c) => ({
-      critereId: c.id,
-      note: 50,
-      confiance: 'moyenne' as const,
-      justification: '—',
+    ratings: criteria.map((c) => ({
+      criterionId: c.id,
+      rating: 50,
+      confidence: 'moyenne' as const,
+      rationale: '—',
       sourceIds: [],
       verification: 'estimation' as const,
     })),
-    mesures: [],
-    faits: [],
-    judiciaire: [],
-    indicateurs: [],
-    derniereMaj: '2026-01-01',
-  }) satisfies Candidat
+    measures: [],
+    facts: [],
+    legal: [],
+    indicators: [],
+    lastUpdated: '2026-01-01',
+  }) satisfies Candidate
 
-const reponse = (valeur: number, importance: number): ReponseUtilisateur =>
-  ({ valeur, importance }) as ReponseUtilisateur
+const answer = (value: number, importance: number): UserAnswer =>
+  ({ value, importance }) as UserAnswer
 
 describe('affinité programmatique', () => {
-  const premiere = propositions[0]
+  const first = propositions[0]
 
   it('donne 100 % quand la position du candidat coïncide avec la réponse', () => {
-    const candidat = candidatTest('a', { [premiere.axeId]: 2 * premiere.polarite })
-    const affinite = calculerAffinite(candidat, { [premiere.id]: reponse(2, 3) })
-    expect(affinite.score).toBeCloseTo(100)
-    expect(affinite.accordsMajeurs).toHaveLength(1)
+    const candidate = testCandidate('a', { [first.axisId]: 2 * first.polarity })
+    const affinity = computeAffinity(candidate, { [first.id]: answer(2, 3) })
+    expect(affinity.score).toBeCloseTo(100)
+    expect(affinity.majorAgreements).toHaveLength(1)
   })
 
   it('donne 0 % en cas d’opposition frontale', () => {
-    const candidat = candidatTest('a', { [premiere.axeId]: -2 * premiere.polarite })
-    const affinite = calculerAffinite(candidat, { [premiere.id]: reponse(2, 3) })
-    expect(affinite.score).toBeCloseTo(0)
-    expect(affinite.desaccordsMajeurs).toHaveLength(1)
+    const candidate = testCandidate('a', { [first.axisId]: -2 * first.polarity })
+    const affinity = computeAffinity(candidate, { [first.id]: answer(2, 3) })
+    expect(affinity.score).toBeCloseTo(0)
+    expect(affinity.majorDisagreements).toHaveLength(1)
   })
 
   it('exclut du calcul les propositions marquées « peu importe »', () => {
-    const candidat = candidatTest('a', { [premiere.axeId]: -2 * premiere.polarite })
-    const affinite = calculerAffinite(candidat, { [premiere.id]: reponse(2, 0) })
-    expect(affinite.nbPrisesEnCompte).toBe(0)
-    expect(affinite.score).toBe(50)
+    const candidate = testCandidate('a', { [first.axisId]: -2 * first.polarity })
+    const affinity = computeAffinity(candidate, { [first.id]: answer(2, 0) })
+    expect(affinity.countedIn).toBe(0)
+    expect(affinity.score).toBe(50)
   })
 
   it('pondère par l’importance déclarée', () => {
     // Deux propositions portant sur des axes distincts, sinon la seconde
     // position écraserait la première dans le candidat de test.
     const p1 = propositions[0]
-    const p2 = propositions.find((p) => p.axeId !== p1.axeId)!
-    const candidat = candidatTest('a', {
-      [p1.axeId]: 2 * p1.polarite,
-      [p2.axeId]: -2 * p2.polarite,
+    const p2 = propositions.find((p) => p.axisId !== p1.axisId)!
+    const candidate = testCandidate('a', {
+      [p1.axisId]: 2 * p1.polarity,
+      [p2.axisId]: -2 * p2.polarity,
     })
-    const surPondere = calculerAffinite(candidat, {
-      [p1.id]: reponse(2, 3),
-      [p2.id]: reponse(2, 1),
+    const overWeighted = computeAffinity(candidate, {
+      [p1.id]: answer(2, 3),
+      [p2.id]: answer(2, 1),
     })
-    const equilibre = calculerAffinite(candidat, {
-      [p1.id]: reponse(2, 1),
-      [p2.id]: reponse(2, 1),
+    const balance = computeAffinity(candidate, {
+      [p1.id]: answer(2, 1),
+      [p2.id]: answer(2, 1),
     })
-    expect(surPondere.score).toBeGreaterThan(equilibre.score)
-    expect(equilibre.score).toBeCloseTo(50)
+    expect(overWeighted.score).toBeGreaterThan(balance.score)
+    expect(balance.score).toBeCloseTo(50)
   })
 
   it('place l’utilisateur sur la boussole seulement s’il a répondu', () => {
-    expect(boussoleUtilisateur({})).toBeNull()
-    const point = boussoleUtilisateur({ [premiere.id]: reponse(2, 3) })
+    expect(userCompass({})).toBeNull()
+    const point = userCompass({ [first.id]: answer(2, 3) })
     expect(point).not.toBeNull()
     expect(point!.eco).toBeGreaterThanOrEqual(-1)
     expect(point!.eco).toBeLessThanOrEqual(1)
@@ -242,7 +242,7 @@ describe('affinité programmatique', () => {
 
 describe('analyse de sensibilité', () => {
   it('est déterministe à réglages identiques', () => {
-    const m = matrice(
+    const m = matrix(
       [
         [80, 40],
         [45, 85],
@@ -250,14 +250,14 @@ describe('analyse de sensibilité', () => {
       ],
       [1, 1],
     )
-    const a = analyserSensibilite(m, 'somme-ponderee', { tirages: 200 })
-    const b = analyserSensibilite(m, 'somme-ponderee', { tirages: 200 })
-    expect(a.resultats).toEqual(b.resultats)
+    const a = analyzeSensitivity(m, 'somme-ponderee', { draws: 200 })
+    const b = analyzeSensitivity(m, 'somme-ponderee', { draws: 200 })
+    expect(a.results).toEqual(b.results)
   })
 
   it('juge robuste un vainqueur qui domine tous les critères', () => {
-    const analyse = analyserSensibilite(
-      matrice(
+    const analysis = analyzeSensitivity(
+      matrix(
         [
           [95, 95],
           [40, 45],
@@ -265,15 +265,15 @@ describe('analyse de sensibilité', () => {
         [1, 1],
       ),
       'somme-ponderee',
-      { tirages: 200 },
+      { draws: 200 },
     )
-    expect(analyse.stabiliteVainqueur).toBe(1)
-    expect(analyse.verdict).toBe('robuste')
+    expect(analysis.winnerStability).toBe(1)
+    expect(analysis.verdict).toBe('robuste')
   })
 
   it('juge fragile un classement où deux profils s’échangent la tête', () => {
-    const analyse = analyserSensibilite(
-      matrice(
+    const analysis = analyzeSensitivity(
+      matrix(
         [
           [90, 30],
           [30, 90],
@@ -281,15 +281,15 @@ describe('analyse de sensibilité', () => {
         [1, 1],
       ),
       'somme-ponderee',
-      { tirages: 400 },
+      { draws: 400 },
     )
-    expect(analyse.stabiliteVainqueur).toBeLessThan(0.7)
-    expect(analyse.verdict).not.toBe('robuste')
+    expect(analysis.winnerStability).toBeLessThan(0.7)
+    expect(analysis.verdict).not.toBe('robuste')
   })
 
   it('additionne les probabilités de tête à 1', () => {
-    const analyse = analyserSensibilite(
-      matrice(
+    const analysis = analyzeSensitivity(
+      matrix(
         [
           [70, 30],
           [30, 70],
@@ -298,148 +298,148 @@ describe('analyse de sensibilité', () => {
         [1, 1],
       ),
       'topsis',
-      { tirages: 300 },
+      { draws: 300 },
     )
-    const total = analyse.resultats.reduce((a, r) => a + r.probabiliteTete, 0)
+    const total = analysis.results.reduce((a, r) => a + r.topProbability, 0)
     expect(total).toBeCloseTo(1)
   })
 })
 
 describe('classement complet', () => {
-  const preferences = (partiel: Partial<Preferences> = {}): Preferences => ({
-    reponses: {},
-    poids: Object.fromEntries(criteres.map((c) => [c.id, 1])),
-    seuils: {},
-    partProgramme: 0.5,
-    methode: 'somme-ponderee',
-    exclus: [],
-    comparaison: [],
-    ...partiel,
+  const preferences = (partial: Partial<Preferences> = {}): Preferences => ({
+    answers: {},
+    weight: Object.fromEntries(criteria.map((c) => [c.id, 1])),
+    thresholds: {},
+    programShare: 0.5,
+    method: 'somme-ponderee',
+    excluded: [],
+    comparison: [],
+    ...partial,
   })
 
-  const alpha = candidatTest('alpha', {})
-  const beta = candidatTest('beta', {})
+  const alpha = testCandidate('alpha', {})
+  const beta = testCandidate('beta', {})
 
   it('classe et attribue des rangs contigus', () => {
-    const meilleur: Candidat = {
+    const best: Candidate = {
       ...alpha,
-      notes: alpha.notes.map((n) => ({ ...n, note: 90 })),
+      ratings: alpha.ratings.map((n) => ({ ...n, rating: 90 })),
     }
-    const classement = calculerClassement([beta, meilleur], preferences())
-    expect(classement.resultats.map((r) => r.rang)).toEqual([1, 2])
-    expect(classement.resultats[0].candidat.id).toBe('alpha')
+    const ranking = computeRanking([beta, best], preferences())
+    expect(ranking.results.map((r) => r.rank)).toEqual([1, 2])
+    expect(ranking.results[0].candidate.id).toBe('alpha')
   })
 
   it('écarte un candidat sous un seuil rédhibitoire, sans le supprimer', () => {
-    const fragile: Candidat = {
+    const weak: Candidate = {
       ...beta,
-      notes: beta.notes.map((n) => (n.critereId === 'probite' ? { ...n, note: 20 } : n)),
+      ratings: beta.ratings.map((n) => (n.criterionId === 'probite' ? { ...n, rating: 20 } : n)),
     }
-    const classement = calculerClassement([alpha, fragile], preferences({ seuils: { probite: 50 } }))
-    expect(classement.resultats).toHaveLength(1)
-    expect(classement.ecartes).toHaveLength(1)
-    expect(classement.ecartes[0].candidat.id).toBe('beta')
-    expect(classement.ecartes[0].motifs[0]).toMatchObject({ critereId: 'probite', seuil: 50 })
+    const ranking = computeRanking([alpha, weak], preferences({ thresholds: { probite: 50 } }))
+    expect(ranking.results).toHaveLength(1)
+    expect(ranking.dropped).toHaveLength(1)
+    expect(ranking.dropped[0].candidate.id).toBe('beta')
+    expect(ranking.dropped[0].reasons[0]).toMatchObject({ criterionId: 'probite', threshold: 50 })
   })
 
   it('retire du calcul les candidats exclus à la main', () => {
-    const classement = calculerClassement([alpha, beta], preferences({ exclus: ['beta'] }))
-    expect(classement.resultats).toHaveLength(1)
-    expect(classement.exclus.map((c) => c.id)).toEqual(['beta'])
+    const ranking = computeRanking([alpha, beta], preferences({ excluded: ['beta'] }))
+    expect(ranking.results).toHaveLength(1)
+    expect(ranking.excluded.map((c) => c.id)).toEqual(['beta'])
   })
 
   it('bascule sur 100 % de programme quand tous les poids sont à zéro', () => {
-    const classement = calculerClassement(
+    const ranking = computeRanking(
       [alpha, beta],
-      preferences({ poids: Object.fromEntries(criteres.map((c) => [c.id, 0])), partProgramme: 0.2 }),
+      preferences({ weight: Object.fromEntries(criteria.map((c) => [c.id, 0])), programShare: 0.2 }),
     )
-    expect(classement.partProgramme).toBe(1)
+    expect(ranking.programShare).toBe(1)
   })
 
   it('compte les notes manquantes remplacées par la valeur neutre', () => {
-    const sansNotes: Candidat = { ...beta, notes: [] }
-    const classement = calculerClassement([sansNotes], preferences())
-    expect(classement.notesManquantes).toBe(criteres.length)
+    const withoutRatings: Candidate = { ...beta, ratings: [] }
+    const ranking = computeRanking([withoutRatings], preferences())
+    expect(ranking.missingRatings).toBe(criteria.length)
   })
 
   it('répartit les poids entre critères et affinité selon partProgramme', () => {
-    const classement = calculerClassement([alpha, beta], preferences({ partProgramme: 0.7 }))
-    const affinite = classement.resultats[0].contributions.find(
-      (c) => c.critereId === '__affinite',
+    const ranking = computeRanking([alpha, beta], preferences({ programShare: 0.7 }))
+    const affinity = ranking.results[0].contributions.find(
+      (c) => c.criterionId === '__affinite',
     )
-    expect(affinite!.poidsNormalise).toBeCloseTo(0.7)
+    expect(affinity!.normalizedWeight).toBeCloseTo(0.7)
   })
 })
 
 // ---------------------------------------------------------------------------
 
 describe('égalités', () => {
-  const preferencesNeutres = (poids: number): Preferences => ({
-    reponses: {},
-    poids: Object.fromEntries(criteres.map((c) => [c.id, poids])),
-    seuils: {},
-    partProgramme: 0,
-    methode: 'somme-ponderee',
-    exclus: [],
-    comparaison: [],
+  const neutralPreferences = (weight: number): Preferences => ({
+    answers: {},
+    weight: Object.fromEntries(criteria.map((c) => [c.id, weight])),
+    thresholds: {},
+    programShare: 0,
+    method: 'somme-ponderee',
+    excluded: [],
+    comparison: [],
   })
 
   it('ne fait pas dépendre le rang de l’ordre du fichier de données', () => {
     // Le défaut qui a coûté sa crédibilité à Elyze en 2022 : à égalité, le
     // premier déclaré dans le code sortait premier.
-    const a = candidatTest('alice', {})
-    const b = candidatTest('bruno', {})
-    const rang = (c: Classement, id: string) =>
-      c.resultats.find((r) => r.candidat.id === id)!.rang
+    const a = testCandidate('alice', {})
+    const b = testCandidate('bruno', {})
+    const rank = (c: Ranking, id: string) =>
+      c.results.find((r) => r.candidate.id === id)!.rank
 
-    const ordreA = calculerClassement([a, b], preferencesNeutres(3))
-    const ordreB = calculerClassement([b, a], preferencesNeutres(3))
+    const orderA = computeRanking([a, b], neutralPreferences(3))
+    const orderB = computeRanking([b, a], neutralPreferences(3))
 
-    expect(rang(ordreA, 'alice')).toBe(rang(ordreB, 'alice'))
-    expect(rang(ordreA, 'bruno')).toBe(rang(ordreB, 'bruno'))
+    expect(rank(orderA, 'alice')).toBe(rank(orderB, 'alice'))
+    expect(rank(orderA, 'bruno')).toBe(rank(orderB, 'bruno'))
   })
 
   it('donne le même rang aux candidats à égalité', () => {
-    const classement = calculerClassement(
-      [candidatTest('a', {}), candidatTest('b', {}), candidatTest('c', {})],
-      preferencesNeutres(3),
+    const ranking = computeRanking(
+      [testCandidate('a', {}), testCandidate('b', {}), testCandidate('c', {})],
+      neutralPreferences(3),
     )
-    expect(classement.resultats.map((r) => r.rang)).toEqual([1, 1, 1])
+    expect(ranking.results.map((r) => r.rank)).toEqual([1, 1, 1])
   })
 
   it('reprend la numérotation après un groupe d’ex æquo', () => {
     // Rang « compétition » : deux premiers ex æquo, puis un troisième.
-    expect(rangsDepuisScores([10, 10, 5])).toEqual([1, 1, 3])
-    expect(rangsDepuisScores([10, 5, 5])).toEqual([1, 2, 2])
-    expect(rangsDepuisScores([10, 8, 5])).toEqual([1, 2, 3])
+    expect(ranksFromScores([10, 10, 5])).toEqual([1, 1, 3])
+    expect(ranksFromScores([10, 5, 5])).toEqual([1, 2, 2])
+    expect(ranksFromScores([10, 8, 5])).toEqual([1, 2, 3])
   })
 
   it('tient pour égaux deux scores que seul le bruit de calcul sépare', () => {
-    expect(rangsDepuisScores([0.1 + 0.2, 0.3])).toEqual([1, 1])
+    expect(ranksFromScores([0.1 + 0.2, 0.3])).toEqual([1, 1])
   })
 
   it('signale un classement indéterminé quand aucun critère n’est pondéré', () => {
-    const tous = calculerClassement(
-      [candidatTest('a', {}), candidatTest('b', {})],
-      preferencesNeutres(0),
+    const all = computeRanking(
+      [testCandidate('a', {}), testCandidate('b', {})],
+      neutralPreferences(0),
     )
-    expect(tous.classementIndetermine).toBe(true)
+    expect(all.rankingUndetermined).toBe(true)
   })
 
   it('ne signale rien sur le jeu de données réel, où les notes diffèrent', () => {
-    const reel = calculerClassement(candidats, preferencesNeutres(3))
-    expect(reel.classementIndetermine).toBe(false)
+    const real = computeRanking(candidates, neutralPreferences(3))
+    expect(real.rankingUndetermined).toBe(false)
     // Et le premier n'est alors pas premier par défaut : il devance vraiment.
-    expect(reel.resultats[0].scoreFinal).toBeGreaterThan(reel.resultats[1].scoreFinal)
+    expect(real.results[0].finalScore).toBeGreaterThan(real.results[1].finalScore)
   })
 
   it('n’ordonne plus par le spectre politique quand tout est à égalité', () => {
     // Avec tous les poids à zéro, chaque candidat vaut 50 : la liste ne doit
     // plus reproduire l'ordre du fichier, qui va de la gauche à la droite.
-    const plat = calculerClassement(candidats, preferencesNeutres(0))
-    expect(plat.classementIndetermine).toBe(true)
-    expect(new Set(plat.resultats.map((r) => r.rang))).toEqual(new Set([1]))
-    const noms = plat.resultats.map((r) => r.candidat.nom)
-    expect(noms).toEqual([...noms].sort((a, b) => a.localeCompare(b, 'fr')))
+    const flat = computeRanking(candidates, neutralPreferences(0))
+    expect(flat.rankingUndetermined).toBe(true)
+    expect(new Set(flat.results.map((r) => r.rank))).toEqual(new Set([1]))
+    const names = flat.results.map((r) => r.candidate.lastName)
+    expect(names).toEqual([...names].sort((a, b) => a.localeCompare(b, 'fr')))
   })
 })

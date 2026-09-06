@@ -1,20 +1,20 @@
 import { Badge } from '@/components/ui/base'
-import { CONFIANCE, VERIFICATION } from '@/lib/format'
-import type { Confiance, Verification } from '@/data/types'
+import { CONFIDENCE, VERIFICATION } from '@/lib/format'
+import type { Confidence, Verification } from '@/data/types'
 
-export function BadgeVerification({ verification }: { verification: Verification }) {
+export function VerificationBadge({ verification }: { verification: Verification }) {
   const meta = VERIFICATION[verification]
   return (
-    <Badge ton={meta.ton} icone={meta.icone} titre={meta.explication}>
+    <Badge tone={meta.tone} icon={meta.icon} title={meta.explanation}>
       {meta.label}
     </Badge>
   )
 }
 
-export function BadgeConfiance({ confiance }: { confiance: Confiance }) {
-  const meta = CONFIANCE[confiance]
+export function ConfidenceBadge({ confidence }: { confidence: Confidence }) {
+  const meta = CONFIDENCE[confidence]
   return (
-    <Badge ton="neutre" titre={meta.explication}>
+    <Badge tone="neutre" title={meta.explanation}>
       {meta.label}
     </Badge>
   )

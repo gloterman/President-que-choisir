@@ -8,8 +8,8 @@ import {
   useState,
   type ReactNode,
 } from 'react'
-import { INSTANTANE_VIDE, type InstantaneFactCheck } from '@/data/factcheck'
-import { chargerInstantane, type OrigineInstantane } from './chargement'
+import { EMPTY_SNAPSHOT, type FactCheckSnapshot } from '@/data/factcheck'
+import { loadSnapshot, type SnapshotOrigin } from './chargement'
 
 /**
  * État partagé des vérifications.
@@ -20,93 +20,93 @@ import { chargerInstantane, type OrigineInstantane } from './chargement'
  * navigation rejouerait le même téléchargement sans rien apporter.
  */
 
-export type EtatChargement = 'initial' | 'chargement' | 'pret' | 'erreur'
+export type LoadState = 'initial' | 'chargement' | 'pret' | 'erreur'
 
-interface ValeurFactCheck {
-  instantane: InstantaneFactCheck
-  etat: EtatChargement
-  erreur: string | null
-  origine: OrigineInstantane | null
-  rejets: number
-  replisurInstantane: boolean
+interface FactCheckValue {
+  snapshot: FactCheckSnapshot
+  state: LoadState
+  error: string | null
+  origin: SnapshotOrigin | null
+  rejected: number
+  fellBackToSnapshot: boolean
   /** Date de fin du dernier chargement réussi. */
-  chargeLe: Date | null
+  loadedAt: Date | null
   /** Relance un chargement en contournant le cache du navigateur. */
-  actualiser: () => void
+  refresh: () => void
   /** Un chargement est en cours alors que des données sont déjà affichées. */
-  actualisationEnCours: boolean
+  refreshInProgress: boolean
 }
 
-const Contexte = createContext<ValeurFactCheck | null>(null)
+const Context = createContext<FactCheckValue | null>(null)
 
-export function FournisseurFactCheck({ children }: { children: ReactNode }) {
-  const [instantane, setInstantane] = useState<InstantaneFactCheck>(INSTANTANE_VIDE)
-  const [etat, setEtat] = useState<EtatChargement>('initial')
-  const [erreur, setErreur] = useState<string | null>(null)
-  const [origine, setOrigine] = useState<OrigineInstantane | null>(null)
-  const [rejets, setRejets] = useState(0)
+export function FactCheckProvider({ children }: { children: ReactNode }) {
+  const [snapshot, setInstantane] = useState<FactCheckSnapshot>(EMPTY_SNAPSHOT)
+  const [state, setEtat] = useState<LoadState>('initial')
+  const [error, setErreur] = useState<string | null>(null)
+  const [origin, setOrigine] = useState<SnapshotOrigin | null>(null)
+  const [rejected, setRejets] = useState(0)
   const [repli, setRepli] = useState(false)
-  const [chargeLe, setChargeLe] = useState<Date | null>(null)
-  const [actualisationEnCours, setActualisationEnCours] = useState(false)
+  const [loadedAt, setChargeLe] = useState<Date | null>(null)
+  const [refreshInProgress, setActualisationEnCours] = useState(false)
 
   // Évite qu'une réponse lente écrase le résultat d'une actualisation plus
   // récente, et coupe la mise à jour d'état après démontage.
   const generation = useRef(0)
-  const monte = useRef(true)
+  const ascending = useRef(true)
   useEffect(() => {
-    monte.current = true
+    ascending.current = true
     return () => {
-      monte.current = false
+      ascending.current = false
     }
   }, [])
 
-  const charger = useCallback(async (sansCache: boolean) => {
-    const mienne = ++generation.current
-    if (sansCache) setActualisationEnCours(true)
+  const load = useCallback(async (noCache: boolean) => {
+    const mine = ++generation.current
+    if (noCache) setActualisationEnCours(true)
     else setEtat('chargement')
     try {
-      const resultat = await chargerInstantane({ sansCache })
-      if (!monte.current || mienne !== generation.current) return
-      setInstantane(resultat.instantane)
-      setOrigine(resultat.origine)
-      setRejets(resultat.rejets)
-      setRepli(resultat.replisurInstantane)
+      const result = await loadSnapshot({ noCache })
+      if (!ascending.current || mine !== generation.current) return
+      setInstantane(result.snapshot)
+      setOrigine(result.origin)
+      setRejets(result.rejected)
+      setRepli(result.fellBackToSnapshot)
       setChargeLe(new Date())
       setErreur(null)
       setEtat('pret')
     } catch (e) {
-      if (!monte.current || mienne !== generation.current) return
+      if (!ascending.current || mine !== generation.current) return
       setErreur(e instanceof Error ? e.message : 'Chargement impossible.')
       setEtat('erreur')
     } finally {
-      if (monte.current && mienne === generation.current) setActualisationEnCours(false)
+      if (ascending.current && mine === generation.current) setActualisationEnCours(false)
     }
   }, [])
 
   useEffect(() => {
-    void charger(false)
-  }, [charger])
+    void load(false)
+  }, [load])
 
-  const valeur = useMemo<ValeurFactCheck>(
+  const value = useMemo<FactCheckValue>(
     () => ({
-      instantane,
-      etat,
-      erreur,
-      origine,
-      rejets,
-      replisurInstantane: repli,
-      chargeLe,
-      actualiser: () => void charger(true),
-      actualisationEnCours,
+      snapshot,
+      state,
+      error,
+      origin,
+      rejected,
+      fellBackToSnapshot: repli,
+      loadedAt,
+      refresh: () => void load(true),
+      refreshInProgress,
     }),
-    [instantane, etat, erreur, origine, rejets, repli, chargeLe, charger, actualisationEnCours],
+    [snapshot, state, error, origin, rejected, repli, loadedAt, load, refreshInProgress],
   )
 
-  return <Contexte.Provider value={valeur}>{children}</Contexte.Provider>
+  return <Context.Provider value={value}>{children}</Context.Provider>
 }
 
-export function useFactCheck(): ValeurFactCheck {
-  const contexte = useContext(Contexte)
-  if (!contexte) throw new Error('useFactCheck doit être utilisé dans FournisseurFactCheck.')
-  return contexte
+export function useFactCheck(): FactCheckValue {
+  const context = useContext(Context)
+  if (!context) throw new Error('useFactCheck doit être utilisé dans FournisseurFactCheck.')
+  return context
 }

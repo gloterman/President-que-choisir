@@ -1,4 +1,4 @@
-import type { Ton } from '@/lib/format'
+import type { Tone } from '@/lib/format'
 
 /**
  * Modèle du volet vérification des déclarations.
@@ -14,7 +14,7 @@ import type { Ton } from '@/lib/format'
  * inséré en HTML brut.
  */
 
-export const VERSION_INSTANTANE = 2
+export const SNAPSHOT_VERSION = 3
 
 /**
  * Origine d'une citation.
@@ -23,7 +23,7 @@ export const VERSION_INSTANTANE = 2
  * verbatim, gratuites et réutilisables. Les réseaux sociaux complètent, quand
  * la plateforme expose une lecture publique sans authentification.
  */
-export type Plateforme =
+export type Platform =
   /** Publication du site officiel du candidat ou de son mouvement. */
   | 'site-officiel'
   /** Réseau social à lecture publique et gratuite. */
@@ -31,29 +31,29 @@ export type Plateforme =
   /** Réseau social à lecture authentifiée et facturée. Optionnel. */
   | 'x'
 
-export const PLATEFORMES: Record<
-  Plateforme,
-  { label: string; court: string; gratuite: boolean; explication: string }
+export const PLATFORMS: Record<
+  Platform,
+  { label: string; short: string; free: boolean; explanation: string }
 > = {
   'site-officiel': {
     label: 'Site officiel',
-    court: 'Site officiel',
-    gratuite: true,
-    explication:
+    short: 'Site officiel',
+    free: true,
+    explanation:
       'Publication du site du candidat ou de son mouvement, relevée par son flux de syndication. C’est une parole assumée et publiée par l’intéressé lui-même.',
   },
   bluesky: {
     label: 'Bluesky',
-    court: 'Bluesky',
-    gratuite: true,
-    explication:
+    short: 'Bluesky',
+    free: true,
+    explanation:
       'Message public, lu via l’API publique de Bluesky, qui ne demande ni compte ni paiement.',
   },
   x: {
     label: 'X',
-    court: 'X',
-    gratuite: false,
-    explication:
+    short: 'X',
+    free: false,
+    explanation:
       'Message public, lu via l’API de X, qui exige un jeton et facture chaque lecture. Source optionnelle, désactivée par défaut.',
   },
 }
@@ -76,98 +76,98 @@ export type Verdict =
 
 export const VERDICTS: Record<
   Verdict,
-  { label: string; ton: Ton; icone: string; explication: string; compteDansLaNote: boolean }
+  { label: string; tone: Tone; icon: string; explanation: string; countsInRating: boolean }
 > = {
   exact: {
     label: 'Exact',
-    ton: 'good',
-    icone: '✓',
-    explication: 'Conforme aux données disponibles.',
-    compteDansLaNote: true,
+    tone: 'good',
+    icon: '✓',
+    explanation: 'Conforme aux données disponibles.',
+    countsInRating: true,
   },
   'plutot-exact': {
     label: 'Plutôt exact',
-    ton: 'good',
-    icone: '✓',
-    explication: 'Exact pour l’essentiel ; l’approximation relevée ne change pas le sens.',
-    compteDansLaNote: true,
+    tone: 'good',
+    icon: '✓',
+    explanation: 'Exact pour l’essentiel ; l’approximation relevée ne change pas le sens.',
+    countsInRating: true,
   },
   trompeur: {
     label: 'Exact mais trompeur',
-    ton: 'warning',
-    icone: '!',
-    explication:
+    tone: 'warning',
+    icon: '!',
+    explanation:
       'Le chiffre est juste, mais sorti de son contexte ou comparé à ce qui n’est pas comparable.',
-    compteDansLaNote: true,
+    countsInRating: true,
   },
   'plutot-faux': {
     label: 'Plutôt faux',
-    ton: 'serious',
-    icone: '◆',
-    explication: 'Contredit pour l’essentiel par les données disponibles.',
-    compteDansLaNote: true,
+    tone: 'serious',
+    icon: '◆',
+    explanation: 'Contredit pour l’essentiel par les données disponibles.',
+    countsInRating: true,
   },
   faux: {
     label: 'Faux',
-    ton: 'critical',
-    icone: '■',
-    explication: 'Contredit par les données disponibles.',
-    compteDansLaNote: true,
+    tone: 'critical',
+    icon: '■',
+    explanation: 'Contredit par les données disponibles.',
+    countsInRating: true,
   },
   invérifiable: {
     label: 'Invérifiable',
-    ton: 'neutre',
-    icone: '?',
-    explication:
+    tone: 'neutre',
+    icon: '?',
+    explanation:
       'Aucune donnée publique ne permet de trancher. Ce n’est ni un reproche ni un blanc-seing : la déclaration sort simplement du champ de la vérification.',
-    compteDansLaNote: false,
+    countsInRating: false,
   },
   'en-attente': {
     label: 'En attente de vérification',
-    ton: 'neutre',
-    icone: '·',
-    explication:
+    tone: 'neutre',
+    icon: '·',
+    explanation:
       'Citation collectée, pas encore examinée. Elle est affichée pour que la sélection soit visible, pas pour porter un jugement.',
-    compteDansLaNote: false,
+    countsInRating: false,
   },
 }
 
 /** Une déclaration publique, telle qu'elle a été publiée. */
-export interface Citation {
+export interface Quote {
   id: string
-  candidatId: string
-  plateforme: Plateforme
+  candidateId: string
+  platform: Platform
   /**
    * Identifiant de l'auteur chez la source : compte social sans arobase, ou
    * identifiant du parlementaire dans le jeu de données.
    */
-  compte: string
+  account: string
   /** Identifiant du message ou de l'intervention chez la source. */
   postId: string
   /** Lien permanent vers le message d'origine. */
   url: string
   /** Texte intégral du message, tel que publié. */
-  texte: string
+  text: string
   /** ISO 8601. */
-  datePublication: string
+  publishedAt: string
   /**
    * Extrait exact sur lequel porte la vérification. Le reste du message est
    * conservé pour que personne ne puisse reprocher une citation tronquée.
    */
-  affirmation: string
+  claim: string
   /** Identifiant de thème du référentiel, quand il est identifiable. */
   themeId?: string
   /** ISO 8601. Date de la collecte. */
-  collecteLe: string
+  collectedAt: string
   /** Contexte de la déclaration : titre du débat, de la publication. */
-  contexte?: string
+  context?: string
   /**
    * Qui parle exactement.
    *
    * Un communiqué de parti n'est pas la parole personnelle du candidat, même
    * lorsqu'il porte sa ligne. La distinction est affichée plutôt que gommée.
    */
-  porteParole?: 'candidat' | 'parti'
+  speaker?: 'candidat' | 'parti'
 }
 
 /**
@@ -178,78 +178,78 @@ export interface Citation {
  * qu'un titre d'article ne dit pas de façon fiable qui a dit quoi ni ce qui a
  * été conclu.
  */
-export interface VeillePublication {
+export interface WatchPublication {
   id: string
-  titre: string
+  title: string
   url: string
-  editeur: string
+  publisher: string
   /** ISO 8601. */
-  datePublication: string
+  publishedAt: string
   /** ISO 8601. */
-  collecteLe: string
+  collectedAt: string
   /** Candidats dont le nom apparaît dans le titre, à confirmer à la main. */
-  candidatsPressentis: string[]
+  likelyCandidates: string[]
 }
 
-export interface LienVerification {
+export interface VerificationLink {
   label: string
   url: string
 }
 
 export interface Verification {
-  citationId: string
+  quoteId: string
   verdict: Verdict
   /** Ce que disent les données, en une phrase. */
-  constat: string
+  finding: string
   /** Le raisonnement, court, sans procès d'intention. */
-  explication: string
+  explanation: string
   /** Références au registre des sources du site. */
   sourceIds: string[]
   /** Sources propres à cette vérification. */
-  liens: LienVerification[]
+  links: VerificationLink[]
   /** Qui a vérifié : une rédaction, une institution, un contributeur identifié. */
-  verifiePar: string
+  verifiedBy: string
   /** ISO 8601. */
-  dateVerification: string
+  verificationDate: string
   /** Vérification déjà publiée ailleurs et reprise ici. */
-  reprise?: { editeur: string; url: string }
+  retry?: { publisher: string; url: string }
   /** L'auteur a publiquement rectifié après coup — bonus prévu au barème. */
-  rectificationPublique?: boolean
+  publicCorrection?: boolean
   /** L'affirmation avait déjà été démentie publiquement — malus prévu au barème. */
-  repriseApresDementi?: boolean
+  repeatedAfterDenial?: boolean
 }
 
 /** Compte suivi pour un candidat, et résultat de la dernière collecte. */
-export interface CompteSuivi {
-  candidatId: string
-  plateforme: Plateforme
-  compte: string
+export interface TrackedAccount {
+  candidateId: string
+  platform: Platform
+  account: string
   /** Nombre de messages examinés lors de la dernière collecte. */
-  messagesExamines?: number
+  messagesExamined?: number
   /** Message d'erreur si la collecte a échoué pour ce compte. */
-  erreur?: string
+  error?: string
 }
 
 /**
  * Fichier publié et chargé par le site. Il est versionné : un instantané dont
  * la version ne correspond pas est rejeté plutôt qu'interprété au petit bonheur.
  */
-export interface InstantaneFactCheck {
+export interface FactCheckSnapshot {
   version: number
   /** ISO 8601. Date de génération de l'instantané. */
-  genereLe: string
-  comptes: CompteSuivi[]
-  citations: Citation[]
+  generatedAt: string
+  accounts: TrackedAccount[]
+  quotes: Quote[]
   verifications: Verification[]
   /** Vérifications publiées ailleurs, en attente de rattachement. */
-  veille: VeillePublication[]
+  watch: WatchPublication[]
 }
 
-export const INSTANTANE_VIDE: InstantaneFactCheck = {
-  version: VERSION_INSTANTANE,
-  genereLe: '',
-  comptes: [],
-  citations: [],
+export const EMPTY_SNAPSHOT: FactCheckSnapshot = {
+  version: SNAPSHOT_VERSION,
+  generatedAt: '',
+  accounts: [],
+  quotes: [],
   verifications: [],
-  veille: [],
+  watch: [],
 }

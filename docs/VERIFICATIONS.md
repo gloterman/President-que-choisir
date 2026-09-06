@@ -99,7 +99,7 @@ Le script :
 
 - découvre le flux de chaque site officiel **sans configuration**, en lisant d'abord le flux que la
   page d'accueil déclare, puis à défaut en sondant les conventions courantes ;
-- n'interroge des comptes sociaux que ceux déclarés dans `comptesSociaux`, et **liste les candidats
+- n'interroge des comptes sociaux que ceux déclarés dans `socialAccounts`, et **liste les candidats
   qui n'en ont pas** — un identifiant deviné ferait citer la mauvaise personne, et un compte de
   soutien tenu par une équipe ne serait pas la parole du candidat ;
 - ne retient que les messages contenant une affirmation vérifiable (une quantité, ou un chiffre

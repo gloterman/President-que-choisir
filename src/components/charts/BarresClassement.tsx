@@ -1,17 +1,17 @@
-import { Figure, type Tableau } from './primitives'
+import { Figure, type Table } from './primitives'
 import { clsx } from '@/lib/format'
 
-export interface BarreDonnee {
+export interface DataBar {
   id: string
   label: string
   /** Valeur affichée, sur l'échelle 0–`max`. */
-  valeur: number
+  value: number
   /** Texte affiché au bout de la barre. À défaut, la valeur arrondie. */
-  valeurAffichee?: string
+  displayValue?: string
   /** Second niveau d'information, sous le libellé. */
   detail?: string
   /** Met la barre en avant (le résultat de l'utilisateur, par exemple). */
-  saillant?: boolean
+  salient?: boolean
 }
 
 /**
@@ -20,46 +20,46 @@ export interface BarreDonnee {
  * étiquetées au bout de chaque barre, hors de la barre, ce qui évite tout
  * risque de rognage.
  */
-export function BarresClassement({
-  titre,
-  soustitre,
-  donnees,
+export function RankingBars({
+  title,
+  subtitle,
+  data,
   max = 100,
-  unite = '',
-  note,
-  enteteValeur = 'Valeur',
-  onSelection,
+  unit = '',
+  rating,
+  valueHeader = 'Valeur',
+  onSelect,
 }: {
-  titre: string
-  soustitre?: string
-  donnees: BarreDonnee[]
+  title: string
+  subtitle?: string
+  data: DataBar[]
   max?: number
-  unite?: string
-  note?: string
-  enteteValeur?: string
-  onSelection?: (id: string) => void
+  unit?: string
+  rating?: string
+  valueHeader?: string
+  onSelect?: (id: string) => void
 }) {
-  const tableau: Tableau = {
-    entetes: ['Candidat', enteteValeur],
-    lignes: donnees.map((d) => [d.label, d.valeurAffichee ?? Math.round(d.valeur)]),
-    legende: titre,
+  const table: Table = {
+    headers: ['Candidat', valueHeader],
+    rows: data.map((d) => [d.label, d.displayValue ?? Math.round(d.value)]),
+    legend: title,
   }
 
   return (
-    <Figure titre={titre} soustitre={soustitre} note={note} tableau={tableau}>
+    <Figure title={title} subtitle={subtitle} rating={rating} table={table}>
       <ol className="space-y-2.5">
-        {donnees.map((donnee, index) => {
-          const largeur = Math.max(0, Math.min(100, (donnee.valeur / max) * 100))
-          const Contenu = onSelection ? 'button' : 'div'
+        {data.map((datum, index) => {
+          const width = Math.max(0, Math.min(100, (datum.value / max) * 100))
+          const Content = onSelect ? 'button' : 'div'
           return (
-            <li key={donnee.id}>
-              <Contenu
-                {...(onSelection
-                  ? { type: 'button' as const, onClick: () => onSelection(donnee.id) }
+            <li key={datum.id}>
+              <Content
+                {...(onSelect
+                  ? { type: 'button' as const, onClick: () => onSelect(datum.id) }
                   : {})}
                 className={clsx(
                   'block w-full text-left',
-                  onSelection && 'cursor-pointer rounded-lg focus-visible:outline-2',
+                  onSelect && 'cursor-pointer rounded-lg focus-visible:outline-2',
                 )}
               >
                 <div className="flex items-baseline justify-between gap-3">
@@ -68,12 +68,12 @@ export function BarresClassement({
                       {index + 1}
                     </span>
                     <span className="truncate text-[0.85rem] font-medium text-ink">
-                      {donnee.label}
+                      {datum.label}
                     </span>
                   </span>
                   <span className="tabular shrink-0 text-[0.82rem] font-semibold text-ink">
-                    {donnee.valeurAffichee ?? Math.round(donnee.valeur)}
-                    {unite}
+                    {datum.displayValue ?? Math.round(datum.value)}
+                    {unit}
                   </span>
                 </div>
                 <div className="mt-1 ml-7 flex items-center gap-2">
@@ -85,18 +85,18 @@ export function BarresClassement({
                     <div
                       className="h-full rounded-r-[4px]"
                       style={{
-                        width: `${largeur}%`,
-                        background: donnee.saillant
+                        width: `${width}%`,
+                        background: datum.salient
                           ? 'var(--pqc-series-2)'
                           : 'var(--pqc-series-1)',
                       }}
                     />
                   </div>
                 </div>
-                {donnee.detail && (
-                  <p className="mt-1 ml-7 text-[0.74rem] leading-snug text-muted">{donnee.detail}</p>
+                {datum.detail && (
+                  <p className="mt-1 ml-7 text-[0.74rem] leading-snug text-muted">{datum.detail}</p>
                 )}
-              </Contenu>
+              </Content>
             </li>
           )
         })}

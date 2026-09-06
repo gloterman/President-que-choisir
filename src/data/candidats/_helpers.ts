@@ -1,18 +1,18 @@
-import type { Confiance, Likert, NoteCritere, Verification } from '../types'
+import type { Confidence, Likert, CriterionRating, Verification } from '../types'
 
 /** Fabrique une note de critère. Par défaut la note est en attente de recoupement. */
-export const note = (
-  critereId: string,
-  valeur: number,
-  confiance: Confiance,
-  justification: string,
+export const rating = (
+  criterionId: string,
+  value: number,
+  confidence: Confidence,
+  rationale: string,
   sourceIds: string[] = [],
   verification: Verification = 'a-verifier',
-): NoteCritere => ({
-  critereId,
-  note: Math.round(Math.min(100, Math.max(0, valeur))),
-  confiance,
-  justification,
+): CriterionRating => ({
+  criterionId,
+  rating: Math.round(Math.min(100, Math.max(0, value))),
+  confidence,
+  rationale,
   sourceIds,
   verification,
 })
@@ -22,7 +22,7 @@ export const note = (
  * L'écriture positionnelle évite les fautes de frappe sur les identifiants
  * d'axes et rend les profils comparables d'un coup d'œil dans le code source.
  */
-export const ORDRE_AXES = [
+export const AXIS_ORDER = [
   'marche-travail',
   'interventionnisme',
   'pression-fiscale',
@@ -41,13 +41,13 @@ export const ORDRE_AXES = [
   'defense-alliances',
 ] as const
 
-export function positions(valeurs: readonly Likert[]): Record<string, Likert> {
-  if (valeurs.length !== ORDRE_AXES.length) {
+export function positions(values: readonly Likert[]): Record<string, Likert> {
+  if (values.length !== AXIS_ORDER.length) {
     throw new Error(
-      `Profil incomplet : ${valeurs.length} positions pour ${ORDRE_AXES.length} axes.`,
+      `Profil incomplet : ${values.length} positions pour ${AXIS_ORDER.length} axes.`,
     )
   }
-  return Object.fromEntries(ORDRE_AXES.map((axe, i) => [axe, valeurs[i]]))
+  return Object.fromEntries(AXIS_ORDER.map((axis, i) => [axis, values[i]]))
 }
 
 /**
@@ -58,7 +58,7 @@ export function positions(valeurs: readonly Likert[]): Record<string, Likert> {
  * site concerné, ce qui fait partie du travail de vérification décrit dans
  * `docs/DONNEES.md`. Mieux vaut un point d'entrée exact qu'une URL devinée.
  */
-export const LIENS_INSTITUTIONNELS = {
+export const INSTITUTIONAL_LINKS = {
   hatvp: {
     label: 'Déclarations de patrimoine et d’intérêts (HATVP)',
     url: 'https://www.hatvp.fr/consulter-les-declarations/',

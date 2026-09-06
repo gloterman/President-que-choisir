@@ -1,48 +1,48 @@
 import { Link } from 'react-router-dom'
-import { EnTetePage } from '@/components/layout/EnTetePage'
-import { Carte, Depliant, EnteteCarte } from '@/components/ui/base'
-import { criteres, criteresParFamille } from '@/data/criteres'
+import { PageHeader } from '@/components/layout/EnTetePage'
+import { Card, Disclosure, CardHeader } from '@/components/ui/base'
+import { criteria, criteriaByFamily } from '@/data/criteres'
 import { axes, propositions, themes } from '@/data/referentiel'
-import { candidats } from '@/data/candidats'
-import { METHODES } from '@/lib/scoring'
-import type { MethodeAgregation } from '@/data/types'
+import { candidates } from '@/data/candidats'
+import { METHODS } from '@/lib/scoring'
+import type { AggregationMethod } from '@/data/types'
 
-const LIMITES = [
+const LIMITS = [
   {
-    titre: 'Les positions sont des synthèses, pas des citations',
-    texte:
+    title: 'Les positions sont des synthèses, pas des citations',
+    text:
       "Placer un candidat sur un axe suppose de résumer une ligne politique en un chiffre entre −2 et +2. Ce résumé est un acte éditorial : deux personnes de bonne foi peuvent le faire différemment. Chaque position porte donc le statut « estimation » et, quand c'est utile, une note explicative.",
   },
   {
-    titre: 'Un barème transparent reste un barème arbitraire',
-    texte:
+    title: 'Un barème transparent reste un barème arbitraire',
+    text:
       "Retirer 45 points pour une condamnation définitive et 25 pour une condamnation frappée d'appel, c'est un choix. Il est écrit, donc discutable — mais il n'est pas neutre. Le seul remède honnête est de le publier, ce que fait chaque fiche de critère.",
   },
   {
-    titre: 'Ce qui n’est pas mesuré n’apparaît pas',
-    texte:
+    title: 'Ce qui n’est pas mesuré n’apparaît pas',
+    text:
       "Le charisme, la capacité à décider dans l'urgence, la qualité de l'entourage, la solidité psychologique : rien de tout cela n'est ici, faute d'indicateur défendable. L'outil éclaire une partie de la décision, pas la décision.",
   },
   {
-    titre: 'Les personnes les plus exposées sont les plus contrôlées',
-    texte:
+    title: 'Les personnes les plus exposées sont les plus contrôlées',
+    text:
       "Un candidat très médiatisé fait l'objet de plus d'enquêtes journalistiques, de plus de vérifications factuelles et de plus de signalements. Une base de données sur ce sujet reflète autant l'attention portée aux personnes que leurs actes.",
   },
   {
-    titre: 'Certains critères pénalisent structurellement des profils entiers',
-    texte:
+    title: 'Certains critères pénalisent structurellement des profils entiers',
+    text:
       "L'expérience désavantage les nouveaux venus ; la capacité à gouverner désavantage les petits partis ; l'assiduité n'a aucun sens pour qui n'a jamais eu de mandat. Ces effets sont signalés critère par critère, et chaque poids peut être mis à zéro.",
   },
 ]
 
-export function Methodologie() {
-  const methodes = Object.keys(METHODES) as MethodeAgregation[]
+export function Methodology() {
+  const methods = Object.keys(METHODS) as AggregationMethod[]
 
   return (
     <div>
-      <EnTetePage
-        titre="Méthodologie"
-        chapo={
+      <PageHeader
+        title="Méthodologie"
+        summary={
           <>
             Tout ce que l’outil calcule est décrit ici : les formules, les barèmes, les choix
             discutables et ce qui n’est pas mesuré. Un outil d’aide au vote qui garde sa méthode
@@ -52,10 +52,10 @@ export function Methodologie() {
       />
 
       <div className="space-y-6">
-        <Carte>
-          <EnteteCarte
-            titre="Deux familles d’information, jamais mélangées"
-            soustitre="C’est le choix structurant de tout l’outil."
+        <Card>
+          <CardHeader
+            title="Deux familles d’information, jamais mélangées"
+            subtitle="C’est le choix structurant de tout l’outil."
           />
           <div className="grid gap-5 p-4 sm:p-5 md:grid-cols-2">
             <div>
@@ -74,19 +74,19 @@ export function Methodologie() {
                 2. Les critères — ils produisent une note 0–100
               </h3>
               <p className="mt-2 text-[0.86rem] leading-relaxed text-ink-2">
-                {criteres.length} critères portant sur des faits vérifiables : situation judiciaire,
+                {criteria.length} critères portant sur des faits vérifiables : situation judiciaire,
                 obligations déclaratives, mandats exercés, précision du programme, base
                 parlementaire. Chacun déclare ses indicateurs, son barème, ses paliers et ses
                 limites.
               </p>
             </div>
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="Comment les questions sont rédigées"
-            soustitre="Une proposition mal formulée fabrique le résultat qu’elle prétend mesurer."
+        <Card>
+          <CardHeader
+            title="Comment les questions sont rédigées"
+            subtitle="Une proposition mal formulée fabrique le résultat qu’elle prétend mesurer."
           />
           <div className="space-y-4 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
             <p>
@@ -129,8 +129,8 @@ export function Methodologie() {
                   'Polarités mélangées dans chaque thème',
                   'Si tous les énoncés d’un thème vont dans le même sens, la tendance à approuver quoi qu’on demande se transforme en résultat politique.',
                 ],
-              ].map(([titre, texte], i) => (
-                <li key={titre} className="flex gap-3">
+              ].map(([title, text], i) => (
+                <li key={title} className="flex gap-3">
                   <span
                     aria-hidden="true"
                     className="mt-0.5 grid h-6 w-8 shrink-0 place-items-center rounded-md bg-surface-2 text-[0.72rem] font-bold text-ink-2"
@@ -138,7 +138,7 @@ export function Methodologie() {
                     R{i + 1}
                   </span>
                   <span>
-                    <strong className="font-semibold text-ink">{titre}.</strong> {texte}
+                    <strong className="font-semibold text-ink">{title}.</strong> {text}
                   </span>
                 </li>
               ))}
@@ -173,12 +173,12 @@ export function Methodologie() {
               contestable comme le reste : le texte de chaque proposition est dans le dépôt public.
             </p>
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="Comment l’affinité programmatique est calculée"
-            soustitre="La partie « boussole » de l’outil."
+        <Card>
+          <CardHeader
+            title="Comment l’affinité programmatique est calculée"
+            subtitle="La partie « boussole » de l’outil."
           />
           <div className="space-y-4 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
             <p>
@@ -216,12 +216,12 @@ export function Methodologie() {
               énergétique, par exemple — n’entrent dans aucune des deux dimensions.
             </p>
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="Les quatre méthodes d’agrégation"
-            soustitre="Elles ne classent pas toujours pareil, et c’est le point."
+        <Card>
+          <CardHeader
+            title="Les quatre méthodes d’agrégation"
+            subtitle="Elles ne classent pas toujours pareil, et c’est le point."
           />
           <div className="p-4 sm:p-5">
             <p className="mb-4 text-[0.86rem] leading-relaxed text-ink-2">
@@ -231,32 +231,32 @@ export function Methodologie() {
               de programme » signifie la même chose quelle que soit la méthode.
             </p>
             <ul className="space-y-4">
-              {methodes.map((id) => (
+              {methods.map((id) => (
                 <li key={id} className="rounded-xl bg-surface-2 p-4">
-                  <h3 className="text-[0.92rem] font-semibold text-ink">{METHODES[id].nom}</h3>
+                  <h3 className="text-[0.92rem] font-semibold text-ink">{METHODS[id].lastName}</h3>
                   <p className="mt-1.5 text-[0.84rem] leading-relaxed text-ink-2">
-                    {METHODES[id].resume}
+                    {METHODS[id].summary}
                   </p>
                   <dl className="mt-2.5 space-y-1 text-[0.8rem]">
                     <div className="flex gap-2">
                       <dt className="shrink-0 font-semibold text-ink-2">Quand l’utiliser :</dt>
-                      <dd className="text-ink-2">{METHODES[id].quandLUtiliser}</dd>
+                      <dd className="text-ink-2">{METHODS[id].whenToUse}</dd>
                     </div>
                     <div className="flex gap-2">
                       <dt className="shrink-0 font-semibold text-ink-2">Compensation :</dt>
-                      <dd className="text-ink-2">{METHODES[id].compensatoire}</dd>
+                      <dd className="text-ink-2">{METHODS[id].compensatory}</dd>
                     </div>
                   </dl>
                 </li>
               ))}
             </ul>
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="D’où vient la note « rapport aux faits »"
-            soustitre="Le seul critère dont la valeur change sans que les fiches soient modifiées."
+        <Card>
+          <CardHeader
+            title="D’où vient la note « rapport aux faits »"
+            subtitle="Le seul critère dont la valeur change sans que les fiches soient modifiées."
           />
           <div className="space-y-3 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
             <p>
@@ -299,12 +299,12 @@ export function Methodologie() {
               visible.
             </p>
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="L’analyse de sensibilité"
-            soustitre="La fonctionnalité la plus utile de l’outil, et la moins spectaculaire."
+        <Card>
+          <CardHeader
+            title="L’analyse de sensibilité"
+            subtitle="La fonctionnalité la plus utile de l’outil, et la moins spectaculaire."
           />
           <div className="space-y-3 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
             <p>
@@ -337,37 +337,37 @@ export function Methodologie() {
               Kendall entre les quatre classements produits par les quatre méthodes.
             </p>
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="Les barèmes, critère par critère"
-            soustitre="Les mêmes fiches que sur la page « Mes critères », rassemblées ici."
+        <Card>
+          <CardHeader
+            title="Les barèmes, critère par critère"
+            subtitle="Les mêmes fiches que sur la page « Mes critères », rassemblées ici."
           />
           <div className="divide-y divide-[color:var(--pqc-line)]">
-            {criteresParFamille.map((famille) => (
-              <section key={famille.id} className="p-4 sm:p-5">
-                <h3 className="text-[0.95rem] font-semibold text-ink">{famille.nom}</h3>
-                <p className="mt-0.5 text-[0.82rem] text-ink-2">{famille.resume}</p>
+            {criteriaByFamily.map((family) => (
+              <section key={family.id} className="p-4 sm:p-5">
+                <h3 className="text-[0.95rem] font-semibold text-ink">{family.lastName}</h3>
+                <p className="mt-0.5 text-[0.82rem] text-ink-2">{family.summary}</p>
                 <ul className="mt-3 space-y-2">
-                  {famille.criteres.map((critere) => (
-                    <li key={critere.id}>
-                      <Depliant
-                        resume={
+                  {family.criteria.map((criterion) => (
+                    <li key={criterion.id}>
+                      <Disclosure
+                        summary={
                           <>
-                            {critere.nom}
-                            {critere.contestable && (
+                            {criterion.lastName}
+                            {criterion.debatable && (
                               <span className="ml-1.5 text-muted">(contestable)</span>
                             )}
                           </>
                         }
                       >
-                        <p className="font-medium text-ink">{critere.question}</p>
+                        <p className="font-medium text-ink">{criterion.question}</p>
                         <p className="mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-muted">
                           Indicateurs
                         </p>
                         <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                          {critere.indicateurs.map((i) => (
+                          {criterion.indicators.map((i) => (
                             <li key={i}>{i}</li>
                           ))}
                         </ul>
@@ -375,43 +375,43 @@ export function Methodologie() {
                           Barème
                         </p>
                         <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                          {critere.bareme.map((b) => (
+                          {criterion.scale.map((b) => (
                             <li key={b}>{b}</li>
                           ))}
                         </ul>
                         <p className="mt-2 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-muted">
                           Limites
                         </p>
-                        <p className="mt-1">{critere.limites}</p>
-                        <p className="mt-2 italic text-muted">{critere.sensLecture}</p>
-                      </Depliant>
+                        <p className="mt-1">{criterion.limits}</p>
+                        <p className="mt-2 italic text-muted">{criterion.readingDirection}</p>
+                      </Disclosure>
                     </li>
                   ))}
                 </ul>
               </section>
             ))}
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="Ce que cet outil ne peut pas faire"
-            soustitre="Écrit ici plutôt que découvert plus tard."
+        <Card>
+          <CardHeader
+            title="Ce que cet outil ne peut pas faire"
+            subtitle="Écrit ici plutôt que découvert plus tard."
           />
           <ul className="divide-y divide-[color:var(--pqc-line)]">
-            {LIMITES.map((limite) => (
-              <li key={limite.titre} className="p-4 sm:p-5">
-                <h3 className="text-[0.92rem] font-semibold text-ink">{limite.titre}</h3>
-                <p className="mt-1.5 text-[0.85rem] leading-relaxed text-ink-2">{limite.texte}</p>
+            {LIMITS.map((limit) => (
+              <li key={limit.title} className="p-4 sm:p-5">
+                <h3 className="text-[0.92rem] font-semibold text-ink">{limit.title}</h3>
+                <p className="mt-1.5 text-[0.85rem] leading-relaxed text-ink-2">{limit.text}</p>
               </li>
             ))}
           </ul>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="Probité et antécédents judiciaires : deux critères, deux questions"
-            soustitre="La distinction la plus importante du référentiel, et la plus facile à mal lire."
+        <Card>
+          <CardHeader
+            title="Probité et antécédents judiciaires : deux critères, deux questions"
+            subtitle="La distinction la plus importante du référentiel, et la plus facile à mal lire."
           />
           <div className="space-y-4 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
             <p>
@@ -456,10 +456,10 @@ export function Methodologie() {
                     ['Mise en examen en cours', '−12'],
                     ['Enquête sans mise en examen', '0'],
                     ['Relaxe, non-lieu, classement sans suite', '0'],
-                  ].map(([etat, points]) => (
-                    <tr key={etat} className="border-b border-line last:border-0">
+                  ].map(([state, points]) => (
+                    <tr key={state} className="border-b border-line last:border-0">
                       <th scope="row" className="px-3 py-2 font-normal text-ink">
-                        {etat}
+                        {state}
                       </th>
                       <td className="tabular px-3 py-2 text-right font-medium text-ink">{points}</td>
                     </tr>
@@ -475,12 +475,12 @@ export function Methodologie() {
               prétend pas mesurer.
             </p>
           </div>
-        </Carte>
+        </Card>
 
-        <Carte>
-          <EnteteCarte
-            titre="État du jeu de données"
-            soustitre={`${candidats.length} candidats, ${criteres.length} critères, ${propositions.length} propositions.`}
+        <Card>
+          <CardHeader
+            title="État du jeu de données"
+            subtitle={`${candidates.length} candidats, ${criteria.length} critères, ${propositions.length} propositions.`}
           />
           <div className="space-y-3 p-4 text-[0.86rem] leading-relaxed text-ink-2 sm:p-5">
             <p>
@@ -506,7 +506,7 @@ export function Methodologie() {
               l’exactitude des faits, qui relève de la vérification humaine.
             </p>
           </div>
-        </Carte>
+        </Card>
       </div>
     </div>
   )

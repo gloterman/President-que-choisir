@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { candidats } from './candidats'
-import { criteres } from './criteres'
+import { candidates } from './candidats'
+import { criteria } from './criteres'
 import { axes, propositions, themes } from './referentiel'
 import { sourceById } from './sources'
 
@@ -14,85 +14,85 @@ import { sourceById } from './sources'
  * contradiction que l'on attrape ici.
  */
 
-const STATUTS_CONDAMNATION = [
+const CONVICTION_STATUSES = [
   'condamnation-definitive',
   'condamnation-appel-pourvoi',
   'condamnation-non-definitive',
 ] as const
 
-const noteDe = (candidatId: string, critereId: string) =>
-  candidats.find((c) => c.id === candidatId)?.notes.find((n) => n.critereId === critereId)
+const ratingOf = (candidateId: string, criterionId: string) =>
+  candidates.find((c) => c.id === candidateId)?.ratings.find((n) => n.criterionId === criterionId)
 
 describe('contrat de vérification', () => {
   it('exige au moins deux sources pour tout élément marqué « recoupé »', () => {
-    const manquants = candidats.flatMap((candidat) =>
-      [...candidat.judiciaire, ...candidat.faits, ...candidat.mesures, ...candidat.indicateurs]
+    const missing = candidates.flatMap((candidate) =>
+      [...candidate.legal, ...candidate.facts, ...candidate.measures, ...candidate.indicators]
         .filter((e) => e.verification === 'recoupe' && e.sourceIds.length < 2)
-        .map((e) => `${candidat.id}/${e.id}`),
+        .map((e) => `${candidate.id}/${e.id}`),
     )
     // « Recoupé » veut dire recoupé : une seule source ne suffit pas à le
     // revendiquer, l'élément doit alors rester « à vérifier ».
-    expect(manquants).toEqual([])
+    expect(missing).toEqual([])
   })
 
   it('n’autorise aucune source fantôme', () => {
-    const inconnues = candidats.flatMap((candidat) =>
+    const unknown = candidates.flatMap((candidate) =>
       [
-        ...candidat.judiciaire,
-        ...candidat.faits,
-        ...candidat.mesures,
-        ...candidat.indicateurs,
-        ...candidat.notes,
+        ...candidate.legal,
+        ...candidate.facts,
+        ...candidate.measures,
+        ...candidate.indicators,
+        ...candidate.ratings,
       ]
         .flatMap((e) => e.sourceIds)
         .filter((id) => !sourceById.has(id)),
     )
-    expect(inconnues).toEqual([])
+    expect(unknown).toEqual([])
   })
 
   it('impose une qualification pénale à toute condamnation', () => {
-    const sansQualification = candidats.flatMap((candidat) =>
-      candidat.judiciaire
-        .filter((a) => STATUTS_CONDAMNATION.includes(a.statut as never) && !a.qualification)
-        .map((a) => `${candidat.id}/${a.id}`),
+    const withoutCharge = candidates.flatMap((candidate) =>
+      candidate.legal
+        .filter((a) => CONVICTION_STATUSES.includes(a.status as never) && !a.charge)
+        .map((a) => `${candidate.id}/${a.id}`),
     )
-    expect(sansQualification).toEqual([])
+    expect(withoutCharge).toEqual([])
   })
 
   it('impose une date de décision à toute condamnation', () => {
-    const sansDate = candidats.flatMap((candidat) =>
-      candidat.judiciaire
-        .filter((a) => STATUTS_CONDAMNATION.includes(a.statut as never) && !a.dateDecision)
-        .map((a) => `${candidat.id}/${a.id}`),
+    const withoutDate = candidates.flatMap((candidate) =>
+      candidate.legal
+        .filter((a) => CONVICTION_STATUSES.includes(a.status as never) && !a.decisionDate)
+        .map((a) => `${candidate.id}/${a.id}`),
     )
-    expect(sansDate).toEqual([])
+    expect(withoutDate).toEqual([])
   })
 })
 
 describe('cohérence entre les affaires et les notes', () => {
   it('fait baisser les antécédents judiciaires dès qu’une condamnation existe', () => {
-    for (const candidat of candidats) {
-      const aUneCondamnation = candidat.judiciaire.some((a) =>
-        STATUTS_CONDAMNATION.includes(a.statut as never),
+    for (const candidate of candidates) {
+      const hasConviction = candidate.legal.some((a) =>
+        CONVICTION_STATUSES.includes(a.status as never),
       )
-      const note = noteDe(candidat.id, 'antecedents-judiciaires')
-      if (!aUneCondamnation || !note) continue
-      expect(note.note, `${candidat.id} : condamnation connue mais antécédents à 100`).toBeLessThan(
+      const rating = ratingOf(candidate.id, 'antecedents-judiciaires')
+      if (!hasConviction || !rating) continue
+      expect(rating.rating, `${candidate.id} : condamnation connue mais antécédents à 100`).toBeLessThan(
         100,
       )
     }
   })
 
   it('n’attribue jamais 100 en probité à qui est condamné pour atteinte à la probité', () => {
-    for (const candidat of candidats) {
-      const atteinteProbite = candidat.judiciaire.some(
+    for (const candidate of candidates) {
+      const integrityOffence = candidate.legal.some(
         (a) =>
-          STATUTS_CONDAMNATION.includes(a.statut as never) &&
-          /détournement|corruption|prise illégale|fraude fiscale/i.test(a.qualification ?? ''),
+          CONVICTION_STATUSES.includes(a.status as never) &&
+          /détournement|corruption|prise illégale|fraude fiscale/i.test(a.charge ?? ''),
       )
-      const note = noteDe(candidat.id, 'probite')
-      if (!atteinteProbite || !note) continue
-      expect(note.note, `${candidat.id} : probité maximale malgré une condamnation`).toBeLessThan(100)
+      const rating = ratingOf(candidate.id, 'probite')
+      if (!integrityOffence || !rating) continue
+      expect(rating.rating, `${candidate.id} : probité maximale malgré une condamnation`).toBeLessThan(100)
     }
   })
 
@@ -100,36 +100,36 @@ describe('cohérence entre les affaires et les notes', () => {
     // C'est le pendant du test précédent, et il est tout aussi important :
     // le barème de probité ne doit pas être détourné pour sanctionner
     // des faits qu'il ne prétend pas mesurer.
-    const zemmour = candidats.find((c) => c.id === 'zemmour')!
-    expect(zemmour.judiciaire.every((a) => !/détournement|corruption/i.test(a.qualification ?? ''))).toBe(
+    const zemmour = candidates.find((c) => c.id === 'zemmour')!
+    expect(zemmour.legal.every((a) => !/détournement|corruption/i.test(a.charge ?? ''))).toBe(
       true,
     )
-    expect(noteDe('zemmour', 'probite')?.note).toBe(100)
-    expect(noteDe('zemmour', 'antecedents-judiciaires')?.note).toBeLessThan(60)
+    expect(ratingOf('zemmour', 'probite')?.rating).toBe(100)
+    expect(ratingOf('zemmour', 'antecedents-judiciaires')?.rating).toBeLessThan(60)
   })
 
   it('ne retire aucun point pour une enquête sans mise en examen', () => {
-    const bardella = candidats.find((c) => c.id === 'bardella')!
-    expect(bardella.judiciaire.some((a) => a.statut === 'enquete')).toBe(true)
-    expect(bardella.judiciaire.some((a) => a.statut === 'mise-en-examen')).toBe(false)
-    expect(noteDe('bardella', 'probite')?.note).toBe(100)
+    const bardella = candidates.find((c) => c.id === 'bardella')!
+    expect(bardella.legal.some((a) => a.status === 'enquete')).toBe(true)
+    expect(bardella.legal.some((a) => a.status === 'mise-en-examen')).toBe(false)
+    expect(ratingOf('bardella', 'probite')?.rating).toBe(100)
   })
 })
 
 describe('liens officiels', () => {
   it('donne à chaque candidat au moins un point d’entrée institutionnel', () => {
-    for (const candidat of candidats) {
+    for (const candidate of candidates) {
       expect(
-        candidat.liensOfficiels.some((l) => l.type === 'institution'),
-        `${candidat.id} : aucun lien institutionnel`,
+        candidate.officialLinks.some((l) => l.type === 'institution'),
+        `${candidate.id} : aucun lien institutionnel`,
       ).toBe(true)
     }
   })
 
   it('n’accepte que des URL https', () => {
-    for (const candidat of candidats) {
-      for (const lien of candidat.liensOfficiels) {
-        expect(lien.url, `${candidat.id}/${lien.label}`).toMatch(/^https:\/\//)
+    for (const candidate of candidates) {
+      for (const link of candidate.officialLinks) {
+        expect(link.url, `${candidate.id}/${link.label}`).toMatch(/^https:\/\//)
       }
     }
   })
@@ -137,36 +137,36 @@ describe('liens officiels', () => {
 
 describe('référentiel des critères', () => {
   it('déclare pour chaque critère un barème, des paliers et des limites', () => {
-    for (const critere of criteres) {
-      expect(critere.bareme.length, critere.id).toBeGreaterThan(0)
-      expect(critere.paliers.length, critere.id).toBeGreaterThan(0)
-      expect(critere.limites.length, critere.id).toBeGreaterThan(80)
-      expect(critere.indicateurs.length, critere.id).toBeGreaterThan(0)
+    for (const criterion of criteria) {
+      expect(criterion.scale.length, criterion.id).toBeGreaterThan(0)
+      expect(criterion.tiers.length, criterion.id).toBeGreaterThan(0)
+      expect(criterion.limits.length, criterion.id).toBeGreaterThan(80)
+      expect(criterion.indicators.length, criterion.id).toBeGreaterThan(0)
     }
   })
 
   it('couvre toute l’échelle de notes par ses paliers', () => {
-    for (const critere of criteres) {
-      expect(Math.min(...critere.paliers.map((p) => p.min)), critere.id).toBe(0)
+    for (const criterion of criteria) {
+      expect(Math.min(...criterion.tiers.map((p) => p.min)), criterion.id).toBe(0)
     }
   })
 })
 
 describe('formulation du questionnaire', () => {
   it('ne répète aucun énoncé', () => {
-    const vus = new Map<string, string>()
+    const seen = new Map<string, string>()
     for (const proposition of propositions) {
-      const cle = proposition.texte.toLowerCase().replace(/\s+/g, ' ').trim()
-      expect(vus.get(cle), `doublon avec ${vus.get(cle)}`).toBeUndefined()
-      vus.set(cle, proposition.id)
+      const key = proposition.text.toLowerCase().replace(/\s+/g, ' ').trim()
+      expect(seen.get(key), `doublon avec ${seen.get(key)}`).toBeUndefined()
+      seen.set(key, proposition.id)
     }
   })
 
   it('pose au moins un arbitrage de principe par thème', () => {
     for (const theme of themes) {
-      const duTheme = propositions.filter((p) => p.themeId === theme.id)
+      const ofTheme = propositions.filter((p) => p.themeId === theme.id)
       expect(
-        duTheme.some((p) => p.nature === 'principe'),
+        ofTheme.some((p) => p.nature === 'principe'),
         `${theme.id} : uniquement des mesures d’actualité`,
       ).toBe(true)
     }
@@ -178,55 +178,55 @@ describe('formulation du questionnaire', () => {
     // alors que l'un de ses deux axes n'a aucun énoncé à contre-sens, et la
     // tendance à approuver quoi qu'on demande devient alors un résultat
     // politique sur cet axe précis.
-    for (const axe of axes) {
-      const duAxe = propositions.filter((p) => p.axeId === axe.id)
-      if (duAxe.length < 3) continue
-      const positives = duAxe.filter((p) => p.polarite === 1).length
-      const minoritaire = Math.min(positives, duAxe.length - positives)
-      expect(minoritaire / duAxe.length, `axe ${axe.id}`).toBeGreaterThanOrEqual(0.25)
+    for (const axis of axes) {
+      const ofAxis = propositions.filter((p) => p.axisId === axis.id)
+      if (ofAxis.length < 3) continue
+      const positive = ofAxis.filter((p) => p.polarity === 1).length
+      const minority = Math.min(positive, ofAxis.length - positive)
+      expect(minority / ofAxis.length, `axe ${axis.id}`).toBeGreaterThanOrEqual(0.25)
     }
   })
 
   it('mélange les polarités au sein de chaque thème', () => {
     for (const theme of themes) {
-      const duTheme = propositions.filter((p) => p.themeId === theme.id)
-      const positives = duTheme.filter((p) => p.polarite === 1).length
-      const minoritaire = Math.min(positives, duTheme.length - positives)
-      expect(minoritaire / duTheme.length, `thème ${theme.id}`).toBeGreaterThanOrEqual(0.25)
+      const ofTheme = propositions.filter((p) => p.themeId === theme.id)
+      const positive = ofTheme.filter((p) => p.polarity === 1).length
+      const minority = Math.min(positive, ofTheme.length - positive)
+      expect(minority / ofTheme.length, `thème ${theme.id}`).toBeGreaterThanOrEqual(0.25)
     }
   })
 
   it('ne penche pas globalement d’un côté', () => {
     // Le biais d'acquiescement joue aussi au niveau du questionnaire entier.
-    const positives = propositions.filter((p) => p.polarite === 1).length
-    const part = positives / propositions.length
-    expect(part).toBeGreaterThan(0.35)
-    expect(part).toBeLessThan(0.65)
+    const positive = propositions.filter((p) => p.polarity === 1).length
+    const share = positive / propositions.length
+    expect(share).toBeGreaterThan(0.35)
+    expect(share).toBeLessThan(0.65)
   })
 
   it('rattache chaque proposition à un axe du thème annoncé', () => {
     for (const proposition of propositions) {
-      const axe = axes.find((a) => a.id === proposition.axeId)
-      expect(axe, proposition.id).toBeDefined()
-      expect(axe!.themeId, proposition.id).toBe(proposition.themeId)
+      const axis = axes.find((a) => a.id === proposition.axisId)
+      expect(axis, proposition.id).toBeDefined()
+      expect(axis!.themeId, proposition.id).toBe(proposition.themeId)
     }
   })
 
   it('donne à chaque proposition un énoncé et un contexte exploitables', () => {
     for (const proposition of propositions) {
-      expect(proposition.texte, proposition.id).toMatch(/^[A-ZÀ-Ý«]/)
-      expect(proposition.texte, proposition.id).toMatch(/\.$/)
-      expect(proposition.texte.length, proposition.id).toBeLessThanOrEqual(190)
-      expect(proposition.contexte.length, proposition.id).toBeGreaterThan(40)
+      expect(proposition.text, proposition.id).toMatch(/^[A-ZÀ-Ý«]/)
+      expect(proposition.text, proposition.id).toMatch(/\.$/)
+      expect(proposition.text.length, proposition.id).toBeLessThanOrEqual(190)
+      expect(proposition.context.length, proposition.id).toBeGreaterThan(40)
       // Le contexte informe, il ne prescrit pas.
-      expect(proposition.contexte, proposition.id).not.toMatch(/\bil faut\b/i)
+      expect(proposition.context, proposition.id).not.toMatch(/\bil faut\b/i)
     }
   })
 
   it('couvre chaque axe par au moins deux propositions', () => {
-    for (const axe of axes) {
-      const nb = propositions.filter((p) => p.axeId === axe.id).length
-      expect(nb, `${axe.id} : ${nb} proposition(s)`).toBeGreaterThanOrEqual(2)
+    for (const axis of axes) {
+      const count = propositions.filter((p) => p.axisId === axis.id).length
+      expect(count, `${axis.id} : ${count} proposition(s)`).toBeGreaterThanOrEqual(2)
     }
   })
 })

@@ -1,40 +1,40 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const zemmour: Candidat = {
+export const zemmour: Candidate = {
   id: 'zemmour',
-  prenom: 'Éric',
-  nom: 'Zemmour',
-  initiales: 'EZ',
-  parti: 'Reconquête',
-  partiCourt: 'REC',
-  famille: 'droite-nationale',
-  couleurParti: '#5a3d8a',
-  naissance: '1958-08-31',
-  fonctionActuelle: 'Président de Reconquête',
-  statutCandidature: 'declare',
-  presentation:
+  firstName: 'Éric',
+  lastName: 'Zemmour',
+  initials: 'EZ',
+  party: 'Reconquête',
+  partyShort: 'REC',
+  family: 'droite-nationale',
+  partyColor: '#5a3d8a',
+  birth: '1958-08-31',
+  currentRole: 'Président de Reconquête',
+  candidacyStatus: 'declare',
+  summary:
     "Journaliste et essayiste entré en politique en 2021, candidat à la présidentielle de 2022 avec 7,07 % des suffrages exprimés. Défend une ligne identitaire assumée, articulée autour de l'arrêt de l'immigration, de la remigration et d'un libéralisme économique classique.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'ZemmourEric' },
+  socialAccounts: [
+    { platform: 'x', handle: 'ZemmourEric' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Reconquête — site officiel du parti',
       url: 'https://parti-reconquete.fr/',
       type: 'parti',
       usage: 'Programme et prises de position du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.viePublique,
-    LIENS_INSTITUTIONNELS.cnccfp,
+    INSTITUTIONAL_LINKS.viePublique,
+    INSTITUTIONAL_LINKS.cnccfp,
   ],
   positions: positions([2, 1, -2, -2, -1, -1, -2, -2, 2, 2, 2, 2, 0, -2, -2, 0]),
-  positionsNotes: {
+  ratedPositions: {
     decentralisation: "Défend un État centralisé fort et l'unité de la loi sur tout le territoire.",
     'pression-fiscale': "Programme économique libéral classique : baisse de la fiscalité sur la production et sur les successions.",
   },
-  notes: [
-    note(
+  ratings: [
+    rating(
       'probite',
       100,
       'haute',
@@ -42,7 +42,7 @@ export const zemmour: Candidat = {
       ['legifrance', 'franceinfo-zemmour-2019'],
       'recoupe',
     ),
-    note(
+    rating(
       'antecedents-judiciaires',
       40,
       'haute',
@@ -50,56 +50,56 @@ export const zemmour: Candidat = {
       ['franceinfo-zemmour-2019', 'franceinfo-zemmour-mineurs', 'sos-racisme-zemmour'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       50,
       'faible',
       "Aucune obligation déclarative HATVP faute de mandat électif. Comptes de campagne 2022 déposés. Chiffrage du programme partiellement publié en 2022.",
       ['cnccfp'],
     ),
-    note(
+    rating(
       'experience',
       10,
       'haute',
       "Aucune fonction exécutive, aucun mandat parlementaire, aucune direction d'organisation de plus de mille personnes avant la création de son parti. Points attribués au seul titre de la direction d'un mouvement national. Ce critère mesure les responsabilités publiques exercées : un parcours de journaliste, quelle qu'en soit la notoriété, n'en ouvre aucun.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'constance',
       82,
       'faible',
       "Corpus de positions publiques stable depuis les premiers essais, sans revirement documenté sur une position structurante depuis l'entrée en politique.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'clarte-programme',
       64,
       'faible',
       "Programme 2022 écrit, public et partiellement chiffré, avec un véhicule juridique explicite pour plusieurs mesures — dont un référendum constitutionnel. Aucun programme 2027 publié à la date de revue.",
       ['programme-officiel'],
     ),
-    note(
+    rating(
       'credibilite-budgetaire',
       44,
       'faible',
       "Les évaluations indépendantes du programme 2022 relevaient un écart de financement important, principalement porté par les baisses de prélèvements annoncées.",
       ['institut-montaigne', 'ifrap'],
     ),
-    note(
+    rating(
       'etat-de-droit',
       35,
       'faible',
       "Le barème retient plusieurs propositions affaiblissant explicitement des contre-pouvoirs : référendum destiné à surmonter le contrôle du Conseil constitutionnel, primauté du droit national sur les engagements internationaux, réduction du champ du contrôle juridictionnel en matière migratoire. Critère signalé comme contestable.",
       ['vie-publique', 'legifrance'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       22,
       'moyenne',
       "Aucun groupe parlementaire, implantation locale très faible, et scissions internes documentées depuis 2022. Réserve de voix limitée hors de son camp.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       36,
       'faible',
@@ -107,11 +107,11 @@ export const zemmour: Candidat = {
       ['hatvp'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'zemmour-m1',
       themeId: 'immigration',
-      titre: 'Arrêt de l’immigration et référendum constitutionnel',
+      title: 'Arrêt de l’immigration et référendum constitutionnel',
       detail: "Suspension de l'immigration légale, suppression du regroupement familial et du droit du sol, par voie référendaire.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -119,7 +119,7 @@ export const zemmour: Candidat = {
     {
       id: 'zemmour-m2',
       themeId: 'fiscalite',
-      titre: 'Baisse des impôts de production et des droits de succession',
+      title: 'Baisse des impôts de production et des droits de succession',
       detail: "Réduction de la fiscalité sur les entreprises et sur les transmissions patrimoniales.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -127,7 +127,7 @@ export const zemmour: Candidat = {
     {
       id: 'zemmour-m3',
       themeId: 'securite',
-      titre: 'Fermeté pénale et places de prison',
+      title: 'Fermeté pénale et places de prison',
       detail: "Peines planchers, suppression de l'atténuation de peine pour les mineurs de plus de seize ans, programme pénitentiaire.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -135,96 +135,96 @@ export const zemmour: Candidat = {
     {
       id: 'zemmour-m4',
       themeId: 'ecologie',
-      titre: 'Priorité au nucléaire, arrêt de l’éolien',
+      title: 'Priorité au nucléaire, arrêt de l’éolien',
       detail: "Relance nucléaire massive et arrêt des subventions à l'éolien.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'zemmour-f1',
       date: '2022-04-10',
-      titre: 'Premier tour de la présidentielle',
+      title: 'Premier tour de la présidentielle',
       description: "Obtient 7,07 % des suffrages exprimés pour sa première candidature.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'zemmour-f2',
       date: '2021-11-30',
-      titre: 'Entrée en politique',
+      title: 'Entrée en politique',
       description: "Annonce sa candidature après une longue carrière de journaliste et d'essayiste, et fonde Reconquête.",
-      categorie: 'prise-de-position',
-      portee: 'majeur',
+      category: 'prise-de-position',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'zemmour-f3',
       date: '2022',
-      titre: 'Scissions au sein de Reconquête (2022-2024)',
+      title: 'Scissions au sein de Reconquête (2022-2024)',
       description: "Plusieurs cadres et élus quittent le mouvement après les scrutins de 2022 puis de 2024.",
-      categorie: 'controverse',
-      portee: 'notable',
+      category: 'controverse',
+      scope: 'notable',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [
+  legal: [
     {
       id: 'zemmour-j1',
-      intitule: 'Propos tenus à la « Convention de la droite » du 28 septembre 2019',
-      resume:
+      label: 'Propos tenus à la « Convention de la droite » du 28 septembre 2019',
+      summary:
         "Procédure au long cours : condamnation par le tribunal judiciaire de Paris le 25 septembre 2020, relaxe prononcée par la cour d'appel de Paris le 8 septembre 2021, cassation de cette relaxe le 21 février 2023, puis nouvelle condamnation par la cour d'appel de Paris le 22 février 2024.",
-      statut: 'condamnation-definitive',
-      qualification:
+      status: 'condamnation-definitive',
+      charge:
         "Provocation publique à la haine ou à la violence et injure publique à raison de l'origine, de l'ethnie, de la nation, de la race ou de la religion. Ces chefs ne relèvent pas des atteintes à la probité.",
-      juridiction: 'Cour d’appel de Paris, pourvoi rejeté par la Cour de cassation',
-      dateDecision: '2025-09-16',
-      peine:
+      short: 'Cour d’appel de Paris, pourvoi rejeté par la Cour de cassation',
+      decisionDate: '2025-09-16',
+      sentence:
         "15 000 euros d'amende, et 1 000 euros de dommages et intérêts aux parties civiles.",
-      recours:
+      appeal:
         "Pourvoi rejeté par la Cour de cassation le 16 septembre 2025 : la condamnation est définitive.",
       verification: 'recoupe',
       sourceIds: ['franceinfo-zemmour-2019', 'sos-racisme-zemmour', 'courdecassation'],
     },
     {
       id: 'zemmour-j2',
-      intitule: 'Propos sur les mineurs isolés tenus en septembre 2020',
-      resume:
+      label: 'Propos sur les mineurs isolés tenus en septembre 2020',
+      summary:
         "Propos tenus à l'antenne alors qu'il était éditorialiste, jugés par la cour d'appel de Paris en septembre 2024 comme excédant les limites admissibles de la liberté d'expression en raison de leur violence et de leur généralité.",
-      statut: 'condamnation-definitive',
-      qualification:
+      status: 'condamnation-definitive',
+      charge:
         "Complicité d'injure publique et de provocation à la haine. Ces chefs ne relèvent pas des atteintes à la probité.",
-      juridiction: 'Cour d’appel de Paris, pourvoi rejeté par la Cour de cassation',
-      dateDecision: '2025-12-02',
-      peine: "100 jours-amende de 100 euros, soit 10 000 euros.",
-      recours: "Pourvoi rejeté par la Cour de cassation le 2 décembre 2025 : la condamnation est définitive.",
+      short: 'Cour d’appel de Paris, pourvoi rejeté par la Cour de cassation',
+      decisionDate: '2025-12-02',
+      sentence: "100 jours-amende de 100 euros, soit 10 000 euros.",
+      appeal: "Pourvoi rejeté par la Cour de cassation le 2 décembre 2025 : la condamnation est définitive.",
       verification: 'recoupe',
       sourceIds: ['franceinfo-zemmour-mineurs', 'courdecassation'],
     },
     {
       id: 'zemmour-j3',
-      intitule: 'Diffamation envers un avocat',
-      resume:
+      label: 'Diffamation envers un avocat',
+      summary:
         "Condamnation pour des propos tenus à l'encontre de l'avocat Patrick Klugman, à qui il reprochait de vouloir étouffer une affaire.",
-      statut: 'condamnation-definitive',
-      qualification: 'Diffamation publique. Ce chef ne relève pas des atteintes à la probité.',
-      juridiction: 'Cour d’appel, pourvoi rejeté par la Cour de cassation',
-      dateDecision: '2025-12-02',
-      peine: '1 000 euros d’amende.',
-      recours: 'Pourvoi rejeté le 2 décembre 2025 : la condamnation est définitive.',
+      status: 'condamnation-definitive',
+      charge: 'Diffamation publique. Ce chef ne relève pas des atteintes à la probité.',
+      short: 'Cour d’appel, pourvoi rejeté par la Cour de cassation',
+      decisionDate: '2025-12-02',
+      sentence: '1 000 euros d’amende.',
+      appeal: 'Pourvoi rejeté le 2 décembre 2025 : la condamnation est définitive.',
       verification: 'recoupe',
       sourceIds: ['franceinfo-zemmour-mineurs', 'courdecassation'],
     },
   ],
-  indicateurs: [
-    { id: 'zemmour-i1', label: 'Condamnations définitives pour atteinte à la probité', valeur: 'Aucune', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'zemmour-i3', label: 'Condamnations définitives, toutes infractions', valeur: 'Trois (propos publics, 2025)', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['franceinfo-zemmour-2019', 'franceinfo-zemmour-mineurs'] },
-    { id: 'zemmour-i2', label: 'Mandats électifs exercés', valeur: 'Aucun', periode: '2021-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+  indicators: [
+    { id: 'zemmour-i1', label: 'Condamnations définitives pour atteinte à la probité', value: 'Aucune', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'zemmour-i3', label: 'Condamnations définitives, toutes infractions', value: 'Trois (propos publics, 2025)', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['franceinfo-zemmour-2019', 'franceinfo-zemmour-mineurs'] },
+    { id: 'zemmour-i2', label: 'Mandats électifs exercés', value: 'Aucun', period: '2021-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

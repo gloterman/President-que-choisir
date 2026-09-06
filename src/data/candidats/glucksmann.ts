@@ -1,49 +1,49 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const glucksmann: Candidat = {
+export const glucksmann: Candidate = {
   id: 'glucksmann',
-  prenom: 'Raphaël',
-  nom: 'Glucksmann',
-  initiales: 'RG',
-  parti: 'Place publique',
-  partiCourt: 'PP',
-  famille: 'gauche',
-  couleurParti: '#e05a8a',
-  naissance: '1979-06-14',
-  fonctionActuelle: 'Député européen, cofondateur de Place publique',
-  statutCandidature: 'pressenti',
-  presentation:
+  firstName: 'Raphaël',
+  lastName: 'Glucksmann',
+  initials: 'RG',
+  party: 'Place publique',
+  partyShort: 'PP',
+  family: 'gauche',
+  partyColor: '#e05a8a',
+  birth: '1979-06-14',
+  currentRole: 'Député européen, cofondateur de Place publique',
+  candidacyStatus: 'pressenti',
+  summary:
     "Essayiste devenu député européen en 2019, réélu en 2024 en tête de la liste sociale-démocrate. Défend une ligne social-démocrate et résolument pro-européenne, centrée sur la défense de l'État de droit, le soutien à l'Ukraine et la régulation des géants du numérique.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'rglucks1' },
+  socialAccounts: [
+    { platform: 'x', handle: 'rglucks1' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Place publique — site officiel du mouvement',
       url: 'https://place-publique.eu/',
       type: 'parti',
       usage: 'Programme et prises de position officielles du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.europarl,
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
+    INSTITUTIONAL_LINKS.europarl,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
   ],
   positions: positions([0, 1, 1, 1, 0, 1, 2, 0, -1, 0, 0, -1, 1, 1, 2, 2]),
-  positionsNotes: {
+  ratedPositions: {
     'souverainete-europeenne':
       "Position la plus intégrationniste du panel : défense d'une souveraineté européenne assumée, y compris budgétaire et militaire.",
     retraites: "Ne demande pas l'abrogation complète de la réforme de 2023 mais sa révision par la négociation.",
   },
-  notes: [
-    note(
+  ratings: [
+    rating(
       'probite',
       100,
       'moyenne',
       "Aucune procédure connue pour atteinte à la probité à la date de revue.",
       ['legifrance', 'hatvp'],
     ),
-    note(
+    rating(
       'antecedents-judiciaires',
       100,
       'moyenne',
@@ -51,56 +51,56 @@ export const glucksmann: Candidat = {
       ['legifrance', 'courdecassation'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       70,
       'moyenne',
       "Déclarations déposées au titre du mandat européen. Financement de campagne publié dans le cadre des règles applicables aux européennes.",
       ['hatvp'],
     ),
-    note(
+    rating(
       'experience',
       26,
       'haute',
       "Aucune fonction exécutive nationale ou locale. Sept années de mandat européen, soit environ 10 points, complétées par les points d'expérience internationale — travail de commission sur les ingérences étrangères et conseil auprès d'un gouvernement étranger dans les années 2010.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'constance',
       80,
       'faible',
       "Ligne européenne et atlantique stable depuis les premiers essais publiés. Trajectoire partisane marquée par la création d'un mouvement puis des alliances successives avec le Parti socialiste, sans revirement programmatique documenté.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'clarte-programme',
       52,
       'faible',
       "Corpus de positions abondant et public, mais pas de programme présidentiel écrit, chiffré et daté à la date de revue.",
       ['programme-officiel'],
     ),
-    note(
+    rating(
       'credibilite-budgetaire',
       50,
       'faible',
       "Aucune évaluation indépendante disponible faute de programme chiffré. Note neutre en attente.",
       ['ofce'],
     ),
-    note(
+    rating(
       'etat-de-droit',
       92,
       'moyenne',
       "Activité parlementaire européenne largement consacrée à la défense de l'État de droit et à la lutte contre les ingérences. Aucune proposition affaiblissant un contre-pouvoir relevée ; plusieurs engagements de renforcement documentés.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       42,
       'moyenne',
       "Aucun groupe parlementaire national propre et implantation locale quasi nulle, mais capacité démontrée à agréger un électorat large lors du scrutin européen de 2024.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       52,
       'faible',
@@ -108,11 +108,11 @@ export const glucksmann: Candidat = {
       ['hatvp'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'glucksmann-m1',
       themeId: 'international',
-      titre: 'Effort européen de défense et soutien durable à l’Ukraine',
+      title: 'Effort européen de défense et soutien durable à l’Ukraine',
       detail:
         "Financement commun européen de l'industrie de défense, poursuite et amplification des livraisons à l'Ukraine, autonomie stratégique construite dans le cadre de l'Union.",
       verification: 'estimation',
@@ -121,7 +121,7 @@ export const glucksmann: Candidat = {
     {
       id: 'glucksmann-m2',
       themeId: 'economie',
-      titre: 'Conditionner les aides publiques aux entreprises',
+      title: 'Conditionner les aides publiques aux entreprises',
       detail:
         "Subordination des aides et allégements à des contreparties vérifiables en matière d'emploi, de climat et de localisation de la production.",
       verification: 'estimation',
@@ -130,7 +130,7 @@ export const glucksmann: Candidat = {
     {
       id: 'glucksmann-m3',
       themeId: 'ecologie',
-      titre: 'Pacte vert européen renforcé',
+      title: 'Pacte vert européen renforcé',
       detail:
         "Maintien des objectifs climatiques européens et mécanisme d'ajustement carbone aux frontières élargi.",
       verification: 'estimation',
@@ -139,65 +139,65 @@ export const glucksmann: Candidat = {
     {
       id: 'glucksmann-m4',
       themeId: 'institutions',
-      titre: 'Dose de proportionnelle et statut de l’élu',
+      title: 'Dose de proportionnelle et statut de l’élu',
       detail: "Introduction d'une part de proportionnelle aux législatives et refonte du statut de l'élu.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'glucksmann-f1',
       date: '2024-06-09',
-      titre: 'Tête de liste aux élections européennes',
+      title: 'Tête de liste aux élections européennes',
       description:
         "Conduit la liste Parti socialiste – Place publique, qui arrive en tête à gauche lors du scrutin européen de 2024.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'glucksmann-f2',
       date: '2022',
-      titre: 'Rapporteur sur les ingérences étrangères',
+      title: 'Rapporteur sur les ingérences étrangères',
       description:
         "Préside puis rapporte les travaux du Parlement européen sur les ingérences étrangères dans les processus démocratiques.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'glucksmann-f3',
       date: '2018-11',
-      titre: 'Cofondation de Place publique',
+      title: 'Cofondation de Place publique',
       description: "Crée un mouvement destiné à recomposer la gauche autour d'une ligne social-démocrate et européenne.",
-      categorie: 'mandat',
-      portee: 'notable',
+      category: 'mandat',
+      scope: 'notable',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [],
-  indicateurs: [
-    { id: 'glucksmann-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+  legal: [],
+  indicators: [
+    { id: 'glucksmann-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     {
       id: 'glucksmann-i1',
       label: 'Condamnations connues',
-      valeur: 'Aucune',
-      periode: 'À la date de revue',
+      value: 'Aucune',
+      period: 'À la date de revue',
       verification: 'a-verifier',
       sourceIds: ['legifrance'],
     },
     {
       id: 'glucksmann-i2',
       label: 'Mandats exécutifs exercés',
-      valeur: 'Aucun',
-      periode: '2019-2026',
+      value: 'Aucun',
+      period: '2019-2026',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { identifiantVeille, liensFluxDeclares, lireFlux, normaliserNom } from './rss'
+import { watchId, declaredFeedLinks, readFeed, normalizeName } from './rss'
 
 describe('lecture de flux', () => {
   it('lit un flux RSS classique', () => {
-    const articles = lireFlux(`
+    const articles = readFeed(`
       <rss><channel>
         <item>
           <title>Le chiffre de la dette est-il exact ?</title>
@@ -12,74 +12,74 @@ describe('lecture de flux', () => {
         </item>
       </channel></rss>`)
     expect(articles).toHaveLength(1)
-    expect(articles[0].titre).toBe('Le chiffre de la dette est-il exact ?')
-    expect(articles[0].lien).toBe('https://exemple.test/a')
+    expect(articles[0].title).toBe('Le chiffre de la dette est-il exact ?')
+    expect(articles[0].link).toBe('https://exemple.test/a')
     expect(articles[0].date.startsWith('2026-08-25')).toBe(true)
   })
 
   it('lit un flux Atom, dont le lien est un attribut', () => {
-    const articles = lireFlux(`
+    const articles = readFeed(`
       <feed><entry>
         <title>Un titre</title>
         <link rel="alternate" href="https://exemple.test/b"/>
         <updated>2026-08-24T10:00:00Z</updated>
       </entry></feed>`)
-    expect(articles[0].lien).toBe('https://exemple.test/b')
+    expect(articles[0].link).toBe('https://exemple.test/b')
     expect(articles[0].date).toBe('2026-08-24T10:00:00.000Z')
   })
 
   it('déballe les sections CDATA', () => {
-    const articles = lireFlux(`
+    const articles = readFeed(`
       <rss><item>
         <title><![CDATA[Titre & « citation »]]></title>
         <link><![CDATA[https://exemple.test/c]]></link>
       </item></rss>`)
-    expect(articles[0].titre).toBe('Titre & « citation »')
+    expect(articles[0].title).toBe('Titre & « citation »')
   })
 
   it('décode les entités sans réintroduire celles qu’il vient de résoudre', () => {
     // « &amp;lt; » doit donner « &lt; » et non « < » : l'esperluette se décode
     // en dernier, sinon le décodage se relance sur son propre résultat.
-    const articles = lireFlux(
+    const articles = readFeed(
       '<rss><item><title>a &amp;lt; b</title><link>https://exemple.test/d</link></item></rss>',
     )
-    expect(articles[0].titre).toBe('a &lt; b')
+    expect(articles[0].title).toBe('a &lt; b')
   })
 
   it('écarte un lien qui n’est pas en https', () => {
-    const articles = lireFlux(
+    const articles = readFeed(
       '<rss><item><title>T</title><link>javascript:alert(1)</link></item></rss>',
     )
     expect(articles).toHaveLength(0)
   })
 
   it('ignore une entrée sans titre ou sans lien plutôt que d’échouer', () => {
-    const articles = lireFlux(`
+    const articles = readFeed(`
       <rss>
         <item><link>https://exemple.test/e</link></item>
         <item><title>Sans lien</title></item>
         <item><title>Complet</title><link>https://exemple.test/f</link></item>
       </rss>`)
     expect(articles).toHaveLength(1)
-    expect(articles[0].titre).toBe('Complet')
+    expect(articles[0].title).toBe('Complet')
   })
 
   it('renvoie une date vide plutôt qu’une date inventée', () => {
-    const articles = lireFlux(
+    const articles = readFeed(
       '<rss><item><title>T</title><link>https://exemple.test/g</link><pubDate>hier</pubDate></item></rss>',
     )
     expect(articles[0].date).toBe('')
   })
 
   it('ne renvoie rien sur une charge qui n’est pas un flux', () => {
-    expect(lireFlux('<html><body>bonjour</body></html>')).toEqual([])
-    expect(lireFlux('')).toEqual([])
+    expect(readFeed('<html><body>bonjour</body></html>')).toEqual([])
+    expect(readFeed('')).toEqual([])
   })
 })
 
 describe('extraction de la description', () => {
   it('retient le corps du billet et le débarrasse de son balisage', () => {
-    const articles = lireFlux(`
+    const articles = readFeed(`
       <rss><item>
         <title>Communiqué</title>
         <link>https://exemple.test/a</link>
@@ -89,7 +89,7 @@ describe('extraction de la description', () => {
   })
 
   it('préfère le contenu complet à la description quand les deux existent', () => {
-    const articles = lireFlux(`
+    const articles = readFeed(`
       <rss><item>
         <title>T</title><link>https://exemple.test/b</link>
         <description>Chapô court.</description>
@@ -99,7 +99,7 @@ describe('extraction de la description', () => {
   })
 
   it('renvoie une description vide plutôt que d’échouer quand elle manque', () => {
-    const articles = lireFlux('<rss><item><title>T</title><link>https://exemple.test/c</link></item></rss>')
+    const articles = readFeed('<rss><item><title>T</title><link>https://exemple.test/c</link></item></rss>')
     expect(articles[0].description).toBe('')
   })
 })
@@ -115,22 +115,22 @@ describe('identifiant de veille', () => {
       'https://www.lemonde.fr/les-decodeurs/article/2026/09/02/bbb_2.html',
       'https://www.lemonde.fr/les-decodeurs/video/2026/09/03/ccc_3.html',
     ]
-    const identifiants = urls.map((u) => identifiantVeille('decodeurs', u))
-    expect(new Set(identifiants).size).toBe(urls.length)
+    const handles = urls.map((u) => watchId('decodeurs', u))
+    expect(new Set(handles).size).toBe(urls.length)
   })
 
   it('reste stable pour une même adresse', () => {
     const url = 'https://factuel.afp.com/doc.12345'
-    expect(identifiantVeille('afp', url)).toBe(identifiantVeille('afp', url))
+    expect(watchId('afp', url)).toBe(watchId('afp', url))
   })
 
   it('sépare deux sources qui publieraient la même adresse', () => {
     const url = 'https://exemple.test/a'
-    expect(identifiantVeille('a', url)).not.toBe(identifiantVeille('b', url))
+    expect(watchId('a', url)).not.toBe(watchId('b', url))
   })
 
   it('produit un identifiant court et lisible', () => {
-    expect(identifiantVeille('decodeurs', 'https://exemple.test/a')).toMatch(
+    expect(watchId('decodeurs', 'https://exemple.test/a')).toMatch(
       /^veille-decodeurs-[0-9a-f]{16}$/,
     )
   })
@@ -138,12 +138,12 @@ describe('identifiant de veille', () => {
 
 describe('normalisation des noms', () => {
   it('retire les diacritiques, la casse et la ponctuation', () => {
-    expect(normaliserNom('Jean-Luc Mélenchon')).toBe('jean luc melenchon')
-    expect(normaliserNom('Dominique de Villepin')).toBe('dominique de villepin')
+    expect(normalizeName('Jean-Luc Mélenchon')).toBe('jean luc melenchon')
+    expect(normalizeName('Dominique de Villepin')).toBe('dominique de villepin')
   })
 
   it('rapproche deux écritures du même nom', () => {
-    expect(normaliserNom('LE PEN')).toBe(normaliserNom('Le Pen'))
+    expect(normalizeName('LE PEN')).toBe(normalizeName('Le Pen'))
   })
 })
 
@@ -153,17 +153,17 @@ describe('découverte des flux déclarés', () => {
   it('lit le flux annoncé par la page d’accueil', () => {
     const html = `<head><link rel="alternate" type="application/rss+xml"
       title="Actualités" href="https://exemple-parti.fr/actualites/rss" /></head>`
-    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/actualites/rss'])
+    expect(declaredFeedLinks(html, base)).toEqual(['https://exemple-parti.fr/actualites/rss'])
   })
 
   it('résout une adresse relative contre la page qui la déclare', () => {
     const html = `<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml">`
-    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/blog/atom.xml'])
+    expect(declaredFeedLinks(html, base)).toEqual(['https://exemple-parti.fr/blog/atom.xml'])
   })
 
   it('accepte les attributs dans un ordre quelconque et sans guillemets sur rel', () => {
     const html = `<link href="/f.xml" type="application/rss+xml" rel=alternate>`
-    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/f.xml'])
+    expect(declaredFeedLinks(html, base)).toEqual(['https://exemple-parti.fr/f.xml'])
   })
 
   it('ignore les liens qui ne sont pas des flux', () => {
@@ -172,12 +172,12 @@ describe('découverte des flux déclarés', () => {
       <link rel="alternate" hreflang="en" href="/en/">
       <link rel="canonical" href="https://exemple-parti.fr/">
       <link rel="alternate" type="application/json" href="/wp-json/">`
-    expect(liensFluxDeclares(html, base)).toEqual([])
+    expect(declaredFeedLinks(html, base)).toEqual([])
   })
 
   it('refuse une adresse en clair : la découverte ne doit pas déclasser le transport', () => {
     const html = `<link rel="alternate" type="application/rss+xml" href="http://ailleurs.fr/rss">`
-    expect(liensFluxDeclares(html, base)).toEqual([])
+    expect(declaredFeedLinks(html, base)).toEqual([])
   })
 
   it('déduplique et conserve l’ordre de déclaration', () => {
@@ -185,7 +185,7 @@ describe('découverte des flux déclarés', () => {
       <link rel="alternate" type="application/rss+xml" href="/feed/">
       <link rel="alternate" type="application/rss+xml" href="/comments/feed/">
       <link rel="alternate" type="application/rss+xml" href="/feed/">`
-    expect(liensFluxDeclares(html, base)).toEqual([
+    expect(declaredFeedLinks(html, base)).toEqual([
       'https://exemple-parti.fr/feed/',
       'https://exemple-parti.fr/comments/feed/',
     ])
@@ -193,10 +193,10 @@ describe('découverte des flux déclarés', () => {
 
   it('décode les entités de l’adresse déclarée', () => {
     const html = `<link rel="alternate" type="application/rss+xml" href="/f?cat=1&amp;type=rss">`
-    expect(liensFluxDeclares(html, base)).toEqual(['https://exemple-parti.fr/f?cat=1&type=rss'])
+    expect(declaredFeedLinks(html, base)).toEqual(['https://exemple-parti.fr/f?cat=1&type=rss'])
   })
 
   it('ne rend rien sur une page sans en-tête exploitable', () => {
-    expect(liensFluxDeclares('<html><body>Bonjour</body></html>', base)).toEqual([])
+    expect(declaredFeedLinks('<html><body>Bonjour</body></html>', base)).toEqual([])
   })
 })

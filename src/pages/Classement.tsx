@@ -1,78 +1,78 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { EnTetePage } from '@/components/layout/EnTetePage'
-import { Alerte, Badge, Bouton, Carte, Depliant, EnteteCarte } from '@/components/ui/base'
-import { BarresClassement } from '@/components/charts/BarresClassement'
+import { PageHeader } from '@/components/layout/EnTetePage'
+import { Notice, Badge, Button, Card, Disclosure, CardHeader } from '@/components/ui/base'
+import { RankingBars } from '@/components/charts/BarresClassement'
 import { Radar } from '@/components/charts/Radar'
-import { Jauge } from '@/components/charts/Jauge'
-import { BandeauDonnees } from '@/components/BandeauDonnees'
-import { Pastille } from '@/components/candidat/Pastille'
-import { critereById } from '@/data/criteres'
+import { Gauge } from '@/components/charts/Jauge'
+import { DataBanner } from '@/components/BandeauDonnees'
+import { Chip } from '@/components/candidat/Pastille'
+import { criterionById } from '@/data/criteres'
 import { themeById } from '@/data/referentiel'
-import { COLONNE_AFFINITE, METHODES } from '@/lib/scoring'
-import { useClassement } from '@/hooks/useClassement'
+import { AFFINITY_COLUMN, METHODS } from '@/lib/scoring'
+import { useRanking } from '@/hooks/useClassement'
 import { usePreferences } from '@/lib/store'
-import { pourcent } from '@/lib/format'
-import type { MethodeAgregation } from '@/data/types'
+import { percent } from '@/lib/format'
+import type { AggregationMethod } from '@/data/types'
 
 const VERDICTS = {
   robuste: {
-    ton: 'good' as const,
-    icone: '✓',
-    titre: 'Classement robuste',
-    texte:
+    tone: 'good' as const,
+    icon: '✓',
+    title: 'Classement robuste',
+    text:
       "Le premier reste premier dans la grande majorité des variantes de pondération testées. Votre tête de classement ne tient pas à un réglage particulier.",
   },
   nuance: {
-    ton: 'warning' as const,
-    icone: '!',
-    titre: 'Classement à nuancer',
-    texte:
+    tone: 'warning' as const,
+    icon: '!',
+    title: 'Classement à nuancer',
+    text:
       "Le premier change dans une part notable des simulations. Les candidats de tête sont proches : traitez-les comme un groupe plutôt que comme un ordre.",
   },
   fragile: {
-    ton: 'serious' as const,
-    icone: '≈',
-    titre: 'Classement fragile',
-    texte:
+    tone: 'serious' as const,
+    icon: '≈',
+    title: 'Classement fragile',
+    text:
       "Une variation modeste de vos pondérations suffit à changer le vainqueur. Ce que ce classement établit, c’est un peloton de tête — pas un gagnant.",
   },
 }
 
-export function Classement() {
-  const classement = useClassement()
-  const { preferences, basculerExclu, nbReponses } = usePreferences()
-  const { resultats, sensibilite, ecartes, exclus } = classement
+export function Ranking() {
+  const ranking = useRanking()
+  const { preferences, toggleExcluded, answerCount } = usePreferences()
+  const { results, sensitivity, dropped, excluded } = ranking
 
-  const premier = resultats[0]
+  const first = results[0]
   // Rangs occupés par plus d'un candidat : ce sont eux qu'il faut annoter,
   // sans quoi deux « 1 » consécutifs passent pour un défaut d'affichage.
-  const exAequo = useMemo(() => {
-    const compte = new Map<number, number>()
-    for (const r of resultats) compte.set(r.rang, (compte.get(r.rang) ?? 0) + 1)
-    return new Set([...compte].filter(([, n]) => n > 1).map(([rang]) => rang))
-  }, [resultats])
-  const verdict = VERDICTS[sensibilite.verdict]
-  const methodes = Object.keys(METHODES) as MethodeAgregation[]
+  const tied = useMemo(() => {
+    const account = new Map<number, number>()
+    for (const r of results) account.set(r.rank, (account.get(r.rank) ?? 0) + 1)
+    return new Set([...account].filter(([, n]) => n > 1).map(([rank]) => rank))
+  }, [results])
+  const verdict = VERDICTS[sensitivity.verdict]
+  const methods = Object.keys(METHODS) as AggregationMethod[]
 
-  const criteresPonderes = premier
-    ? premier.contributions
-        .filter((c) => c.critereId !== COLONNE_AFFINITE && c.poidsNormalise > 0.01)
-        .map((c) => critereById.get(c.critereId)!)
+  const weightedCriteria = first
+    ? first.contributions
+        .filter((c) => c.criterionId !== AFFINITY_COLUMN && c.normalizedWeight > 0.01)
+        .map((c) => criterionById.get(c.criterionId)!)
         .filter(Boolean)
     : []
 
-  const trioTete = resultats.slice(0, 3)
+  const topThree = results.slice(0, 3)
 
   return (
     <div>
-      <EnTetePage
-        surtitre="Étape 3 sur 3"
-        titre="Votre classement"
-        chapo={
+      <PageHeader
+        eyebrow="Étape 3 sur 3"
+        title="Votre classement"
+        summary={
           <>
-            Construit à partir de vos {nbReponses} réponses et de vos pondérations, avec la méthode{' '}
-            « {METHODES[preferences.methode].nom} ». Il est recalculé en direct : revenez sur{' '}
+            Construit à partir de vos {answerCount} réponses et de vos pondérations, avec la méthode{' '}
+            « {METHODS[preferences.method].lastName} ». Il est recalculé en direct : revenez sur{' '}
             <Link to="/criteres" className="font-medium text-accent hover:underline">
               vos critères
             </Link>{' '}
@@ -80,29 +80,29 @@ export function Classement() {
           </>
         }
         actions={
-          <Bouton variante="secondaire" taille="petite" onClick={() => window.print()}>
+          <Button variant="secondaire" size="petite" onClick={() => window.print()}>
             Imprimer
-          </Bouton>
+          </Button>
         }
       />
 
       <div className="mb-6">
-        <BandeauDonnees />
+        <DataBanner />
       </div>
 
-      {resultats.length === 0 ? (
-        <Alerte titre="Aucun candidat ne franchit vos seuils" ton="serious" icone="≈">
+      {results.length === 0 ? (
+        <Notice title="Aucun candidat ne franchit vos seuils" tone="serious" icon="≈">
           Vos seuils rédhibitoires écartent tout le monde. C’est une information en soi, mais pour
           obtenir un classement il faut en abaisser au moins un sur la page{' '}
           <Link to="/criteres" className="font-medium text-accent hover:underline">
             Mes critères
           </Link>
           .
-        </Alerte>
+        </Notice>
       ) : (
         <div className="space-y-6">
-          {classement.classementIndetermine && (
-            <Alerte titre="Ce classement n’ordonne rien" ton="serious" icone="=">
+          {ranking.rankingUndetermined && (
+            <Notice title="Ce classement n’ordonne rien" tone="serious" icon="=">
               Tous les candidats obtiennent le même score : aucun critère n’est pondéré et le
               questionnaire ne départage pas non plus. Les candidats sont donc affichés{' '}
               <strong>ex æquo</strong>, par ordre alphabétique — cet ordre ne veut rien dire.{' '}
@@ -110,39 +110,39 @@ export function Classement() {
                 Donner du poids à au moins un critère
               </Link>{' '}
               ou répondre au questionnaire fera apparaître un ordre qui, lui, en aura un.
-            </Alerte>
+            </Notice>
           )}
 
-          {nbReponses === 0 && (
-            <Alerte titre="Le questionnaire n’a pas encore été rempli">
+          {answerCount === 0 && (
+            <Notice title="Le questionnaire n’a pas encore été rempli">
               L’affinité programmatique est neutralisée à 50 % pour tout le monde : le classement ne
               reflète donc que les critères de notation.{' '}
               <Link to="/questionnaire" className="font-medium text-accent hover:underline">
                 Répondre au questionnaire
               </Link>{' '}
               change généralement l’ordre du tout au tout.
-            </Alerte>
+            </Notice>
           )}
 
           {/* Tête de classement : un seul chiffre mis en avant, pas huit couleurs. */}
-          <Carte className="overflow-hidden">
+          <Card className="overflow-hidden">
             <div className="grid gap-6 p-5 sm:p-6 md:grid-cols-[1fr_auto] md:items-center">
               <div className="flex items-start gap-4">
-                <Pastille candidat={premier.candidat} taille="grande" />
+                <Chip candidate={first.candidate} size="grande" />
                 <div className="min-w-0">
                   <p className="text-[0.75rem] font-semibold uppercase tracking-[0.1em] text-accent">
                     En tête de votre classement
                   </p>
                   <h2 className="mt-1 text-[1.6rem] font-semibold leading-tight tracking-tight text-ink">
-                    {premier.candidat.prenom} {premier.candidat.nom}
+                    {first.candidate.firstName} {first.candidate.lastName}
                   </h2>
-                  <p className="mt-1 text-[0.85rem] text-ink-2">{premier.candidat.parti}</p>
+                  <p className="mt-1 text-[0.85rem] text-ink-2">{first.candidate.party}</p>
                   <div className="mt-3 flex flex-wrap gap-1.5">
-                    {premier.pointsForts.slice(0, 3).map((contribution) => (
-                      <Badge key={contribution.critereId} ton="neutre">
-                        {contribution.critereId === COLONNE_AFFINITE
+                    {first.strengths.slice(0, 3).map((contribution) => (
+                      <Badge key={contribution.criterionId} tone="neutre">
+                        {contribution.criterionId === AFFINITY_COLUMN
                           ? 'Accord programmatique'
-                          : (critereById.get(contribution.critereId)?.nomCourt ?? '')}
+                          : (criterionById.get(contribution.criterionId)?.shortName ?? '')}
                       </Badge>
                     ))}
                   </div>
@@ -151,84 +151,84 @@ export function Classement() {
               <div className="md:text-right">
                 <p className="text-[0.78rem] text-ink-2">Score pondéré</p>
                 <p className="text-[3.2rem] font-semibold leading-none tracking-tight text-ink">
-                  {Math.round(premier.scoreFinal)}
+                  {Math.round(first.finalScore)}
                 </p>
                 <p className="mt-1 text-[0.78rem] text-muted">
-                  sur 100 · en tête dans {pourcent(sensibilite.stabiliteVainqueur * 100)} des
+                  sur 100 · en tête dans {percent(sensitivity.winnerStability * 100)} des
                   simulations
                 </p>
               </div>
             </div>
-          </Carte>
+          </Card>
 
-          <Alerte titre={verdict.titre} ton={verdict.ton} icone={verdict.icone}>
-            {verdict.texte} Sur {sensibilite.tirages} tirages où vos pondérations sont légèrement
-            perturbées, {premier.candidat.nom} arrive en tête dans{' '}
-            {pourcent(sensibilite.stabiliteVainqueur * 100)} des cas.
-          </Alerte>
+          <Notice title={verdict.title} tone={verdict.tone} icon={verdict.icon}>
+            {verdict.text} Sur {sensitivity.draws} tirages où vos pondérations sont légèrement
+            perturbées, {first.candidate.lastName} arrive en tête dans{' '}
+            {percent(sensitivity.winnerStability * 100)} des cas.
+          </Notice>
 
           <div className="grid gap-6 lg:grid-cols-2">
-            <Carte className="p-5">
-              <BarresClassement
-                titre="Score final pondéré"
-                soustitre={`Méthode « ${METHODES[preferences.methode].nom} », affinité programmatique comptée pour ${Math.round(classement.partProgramme * 100)} %.`}
-                donnees={resultats.map((r) => ({
-                  id: r.candidat.id,
-                  label: `${r.candidat.prenom} ${r.candidat.nom}`,
-                  valeur: r.scoreFinal,
-                  detail: `${r.candidat.partiCourt} · affinité ${pourcent(r.affinite.score)}`,
+            <Card className="p-5">
+              <RankingBars
+                title="Score final pondéré"
+                subtitle={`Méthode « ${METHODS[preferences.method].lastName} », affinité programmatique comptée pour ${Math.round(ranking.programShare * 100)} %.`}
+                data={results.map((r) => ({
+                  id: r.candidate.id,
+                  label: `${r.candidate.firstName} ${r.candidate.lastName}`,
+                  value: r.finalScore,
+                  detail: `${r.candidate.partyShort} · affinité ${percent(r.affinity.score)}`,
                 }))}
-                enteteValeur="Score /100"
-                note="Une seule série, donc une seule couleur : la longueur de la barre porte déjà l’information."
+                valueHeader="Score /100"
+                rating="Une seule série, donc une seule couleur : la longueur de la barre porte déjà l’information."
               />
-            </Carte>
+            </Card>
 
-            <Carte className="p-5">
-              <BarresClassement
-                titre="Probabilité d’arriver en tête"
-                soustitre={`${sensibilite.tirages} tirages avec des pondérations légèrement perturbées autour des vôtres.`}
-                donnees={[...sensibilite.resultats]
-                  .sort((a, b) => b.probabiliteTete - a.probabiliteTete)
+            <Card className="p-5">
+              <RankingBars
+                title="Probabilité d’arriver en tête"
+                subtitle={`${sensitivity.draws} tirages avec des pondérations légèrement perturbées autour des vôtres.`}
+                data={[...sensitivity.results]
+                  .sort((a, b) => b.topProbability - a.topProbability)
                   .map((r) => {
-                    const candidat = resultats.find((x) => x.candidat.id === r.alternativeId)!.candidat
+                    const candidate = results.find((x) => x.candidate.id === r.alternativeId)!.candidate
                     return {
                       id: r.alternativeId,
-                      label: `${candidat.prenom} ${candidat.nom}`,
-                      valeur: r.probabiliteTete * 100,
-                      valeurAffichee: pourcent(r.probabiliteTete * 100),
-                      detail: `rang moyen ${r.rangMoyen.toFixed(1)} · de ${r.rangMin} à ${r.rangMax}`,
+                      label: `${candidate.firstName} ${candidate.lastName}`,
+                      value: r.topProbability * 100,
+                      displayValue: percent(r.topProbability * 100),
+                      detail: `rang moyen ${r.meanRank.toFixed(1)} · de ${r.minRank} à ${r.maxRank}`,
                     }
                   })}
-                unite=""
-                enteteValeur="Probabilité"
-                note="C’est l’indicateur le plus utile de la page : il dit si votre premier est vraiment premier, ou seulement premier ex æquo."
+                unit=""
+                valueHeader="Probabilité"
+                rating="C’est l’indicateur le plus utile de la page : il dit si votre premier est vraiment premier, ou seulement premier ex æquo."
               />
-            </Carte>
+            </Card>
           </div>
 
-          {trioTete.length >= 2 && criteresPonderes.length >= 3 && (
-            <Carte className="p-5">
+          {topThree.length >= 2 && weightedCriteria.length >= 3 && (
+            <Card className="p-5">
               <Radar
-                titre="Profil comparé des trois premiers"
-                soustitre="Notes sur les critères auxquels vous avez donné un poids non nul."
-                axes={criteresPonderes.map((c) => c.nomCourt)}
-                series={trioTete.map((r) => ({
-                  id: r.candidat.id,
-                  label: `${r.candidat.prenom} ${r.candidat.nom}`,
-                  valeurs: criteresPonderes.map(
-                    (critere) =>
-                      r.contributions.find((c) => c.critereId === critere.id)?.note ?? 50,
+                title="Profil comparé des trois premiers"
+                subtitle="Notes sur les critères auxquels vous avez donné un poids non nul."
+                axes={weightedCriteria.map((c) => c.shortName)}
+                series={topThree.map((r) => ({
+                  id: r.candidate.id,
+                  label: `${r.candidate.firstName} ${r.candidate.lastName}`,
+                  values: weightedCriteria.map(
+                    (criterion) =>
+                      r.contributions.find((c) => c.criterionId === criterion.id)?.rating ?? 50,
                   ),
                 }))}
-                note="Trois séries au maximum : au-delà, deux couleurs superposées deviennent indiscernables pour une partie des lecteurs. Le tableau sous la figure porte toutes les valeurs."
+                rating="Trois séries au maximum : au-delà, deux couleurs superposées deviennent indiscernables pour une partie des lecteurs. Le tableau sous la figure porte toutes les valeurs."
               />
-            </Carte>
+            </Card>
           )}
 
-          <Carte>
-            <EnteteCarte
-              titre="Le classement change-t-il selon la méthode ?"
-              soustitre="Rang obtenu avec chacune des quatre règles d’agrégation, sur les mêmes données et les mêmes poids."
+          <Card>
+            <CardHeader
+              title="Le classement change-t-il selon la méthode ?"
+              subtitle="Rang obtenu avec chacune des quatre règles d’agrégation, sur les mêmes données et les mêmes poids."
             />
             <div className="pqc-scroll-x">
               <table className="w-full border-collapse text-left text-[0.82rem]">
@@ -237,34 +237,34 @@ export function Classement() {
                     <th scope="col" className="px-4 py-2.5 font-semibold text-ink-2">
                       Candidat
                     </th>
-                    {methodes.map((methode) => (
+                    {methods.map((method) => (
                       <th
-                        key={methode}
+                        key={method}
                         scope="col"
                         className="px-3 py-2.5 text-center font-semibold text-ink-2 whitespace-nowrap"
-                        title={METHODES[methode].resume}
+                        title={METHODS[method].summary}
                       >
-                        {METHODES[methode].nom}
+                        {METHODS[method].lastName}
                       </th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
-                  {resultats.map((resultat) => (
-                    <tr key={resultat.candidat.id} className="border-b border-line last:border-0">
+                  {results.map((result) => (
+                    <tr key={result.candidate.id} className="border-b border-line last:border-0">
                       <th scope="row" className="px-4 py-2 font-medium text-ink whitespace-nowrap">
-                        {resultat.candidat.prenom} {resultat.candidat.nom}
+                        {result.candidate.firstName} {result.candidate.lastName}
                       </th>
-                      {methodes.map((methode) => {
-                        const rang = resultat.rangsParMethode[methode]
+                      {methods.map((method) => {
+                        const rank = result.ranksByMethod[method]
                         return (
-                          <td key={methode} className="tabular px-3 py-2 text-center text-ink-2">
+                          <td key={method} className="tabular px-3 py-2 text-center text-ink-2">
                             <span
                               className={
-                                rang === 1 ? 'font-semibold text-ink' : undefined
+                                rank === 1 ? 'font-semibold text-ink' : undefined
                               }
                             >
-                              {rang}
+                              {rank}
                             </span>
                           </td>
                         )
@@ -277,75 +277,75 @@ export function Classement() {
             <p className="border-t border-line px-4 py-3 text-[0.78rem] leading-relaxed text-ink-2">
               Concordance moyenne entre méthodes :{' '}
               <strong className="font-semibold text-ink">
-                {pourcent(((classement.concordanceMethodes + 1) / 2) * 100)}
+                {percent(((ranking.methodAgreement + 1) / 2) * 100)}
               </strong>
               . Une colonne qui s’écarte des autres n’est pas une erreur : elle indique un profil
               déséquilibré, que certaines méthodes pénalisent et d’autres non.
             </p>
-          </Carte>
+          </Card>
 
           <section aria-labelledby="detail">
             <h2 id="detail" className="mb-4 text-[1.35rem] font-semibold tracking-tight text-ink">
               D’où vient chaque score
             </h2>
             <ol className="space-y-3">
-              {resultats.map((resultat) => {
-                const contributions = [...resultat.contributions]
-                  .filter((c) => c.poidsNormalise > 0.005)
-                  .sort((a, b) => b.apport - a.apport)
+              {results.map((result) => {
+                const contributions = [...result.contributions]
+                  .filter((c) => c.normalizedWeight > 0.005)
+                  .sort((a, b) => b.contribution - a.contribution)
                 return (
-                  <Carte as="li" key={resultat.candidat.id} className="p-4 sm:p-5">
+                  <Card as="li" key={result.candidate.id} className="p-4 sm:p-5">
                     <div className="flex flex-wrap items-center gap-3">
                       <span
                         className="tabular text-[1.1rem] font-semibold text-muted"
                         // Un rang partagé est signalé : sans cela, deux « 1 » à
                         // la suite se lisent comme une erreur d'affichage.
-                        title={exAequo.has(resultat.rang) ? 'Ex æquo' : undefined}
+                        title={tied.has(result.rank) ? 'Ex æquo' : undefined}
                       >
-                        {resultat.rang}
-                        {exAequo.has(resultat.rang) && (
+                        {result.rank}
+                        {tied.has(result.rank) && (
                           <span className="ml-0.5 text-[0.7rem] font-normal">ex æq.</span>
                         )}
                       </span>
-                      <Pastille candidat={resultat.candidat} taille="petite" />
+                      <Chip candidate={result.candidate} size="petite" />
                       <div className="min-w-0 flex-1">
                         <h3 className="text-[0.95rem] font-semibold tracking-tight text-ink">
-                          <Link to={`/candidats/${resultat.candidat.id}`} className="hover:underline">
-                            {resultat.candidat.prenom} {resultat.candidat.nom}
+                          <Link to={`/candidats/${result.candidate.id}`} className="hover:underline">
+                            {result.candidate.firstName} {result.candidate.lastName}
                           </Link>
                         </h3>
-                        <p className="text-[0.78rem] text-ink-2">{resultat.candidat.partiCourt}</p>
+                        <p className="text-[0.78rem] text-ink-2">{result.candidate.partyShort}</p>
                       </div>
                       <div className="text-right">
                         <p className="tabular text-[1.3rem] font-semibold leading-none text-ink">
-                          {Math.round(resultat.scoreFinal)}
+                          {Math.round(result.finalScore)}
                         </p>
                         <p className="text-[0.72rem] text-muted">score /100</p>
                       </div>
-                      <Bouton
-                        variante="discret"
-                        taille="petite"
-                        onClick={() => basculerExclu(resultat.candidat.id)}
+                      <Button
+                        variant="discret"
+                        size="petite"
+                        onClick={() => toggleExcluded(result.candidate.id)}
                         title="Retirer ce candidat du classement"
                       >
                         Écarter
-                      </Bouton>
+                      </Button>
                     </div>
 
                     <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                      <Jauge
-                        valeur={resultat.affinite.score}
+                      <Gauge
+                        value={result.affinity.score}
                         label="Accord programmatique"
-                        palier={`${resultat.affinite.nbPrisesEnCompte} proposition(s) prise(s) en compte`}
+                        tier={`${result.affinity.countedIn} proposition(s) prise(s) en compte`}
                       />
-                      <Jauge
-                        valeur={resultat.scoreCriteres}
+                      <Gauge
+                        value={result.criteriaScore}
                         label="Note pondérée sur vos critères"
-                        palier={`${contributions.filter((c) => c.critereId !== COLONNE_AFFINITE).length} critère(s) actif(s)`}
+                        tier={`${contributions.filter((c) => c.criterionId !== AFFINITY_COLUMN).length} critère(s) actif(s)`}
                       />
                     </div>
 
-                    <Depliant resume="Décomposition du score, critère par critère" className="mt-4">
+                    <Disclosure summary="Décomposition du score, critère par critère" className="mt-4">
                       <div className="pqc-scroll-x">
                         <table className="w-full border-collapse text-left text-[0.8rem]">
                           <thead>
@@ -366,27 +366,27 @@ export function Classement() {
                           </thead>
                           <tbody>
                             {contributions.map((contribution) => {
-                              const critere = critereById.get(contribution.critereId)
+                              const criterion = criterionById.get(contribution.criterionId)
                               return (
-                                <tr key={contribution.critereId} className="border-b border-line last:border-0">
+                                <tr key={contribution.criterionId} className="border-b border-line last:border-0">
                                   <td className="py-1.5 pr-3 text-ink">
-                                    {contribution.critereId === COLONNE_AFFINITE
+                                    {contribution.criterionId === AFFINITY_COLUMN
                                       ? 'Accord programmatique'
-                                      : (critere?.nom ?? contribution.critereId)}
-                                    {contribution.manquante && (
+                                      : (criterion?.lastName ?? contribution.criterionId)}
+                                    {contribution.missing && (
                                       <span className="ml-1.5 text-[0.72rem] text-muted">
                                         (non documenté, valeur neutre)
                                       </span>
                                     )}
                                   </td>
                                   <td className="tabular py-1.5 px-2 text-right text-ink">
-                                    {Math.round(contribution.note)}
+                                    {Math.round(contribution.rating)}
                                   </td>
                                   <td className="tabular py-1.5 px-2 text-right text-ink-2">
-                                    {pourcent(contribution.poidsNormalise * 100)}
+                                    {percent(contribution.normalizedWeight * 100)}
                                   </td>
                                   <td className="tabular py-1.5 pl-2 text-right font-medium text-ink">
-                                    {contribution.apport.toFixed(1)}
+                                    {contribution.contribution.toFixed(1)}
                                   </td>
                                 </tr>
                               )
@@ -400,73 +400,73 @@ export function Classement() {
                         combinent ces mêmes notes autrement, ce tableau reste donc une lecture
                         indicative pour elles.
                       </p>
-                    </Depliant>
+                    </Disclosure>
 
-                    {resultat.affinite.desaccordsMajeurs.length > 0 && (
-                      <Depliant
-                        resume={`${resultat.affinite.desaccordsMajeurs.length} désaccord(s) sur des sujets que vous jugez importants`}
+                    {result.affinity.majorDisagreements.length > 0 && (
+                      <Disclosure
+                        summary={`${result.affinity.majorDisagreements.length} désaccord(s) sur des sujets que vous jugez importants`}
                         className="mt-3"
                       >
                         <ul className="list-disc space-y-1 pl-5">
-                          {resultat.affinite.desaccordsMajeurs.slice(0, 5).map((desaccord) => (
-                            <li key={desaccord.propositionId}>
-                              {themeById.get(desaccord.themeId)?.nom} — accord{' '}
-                              {pourcent(desaccord.accord * 100)}
+                          {result.affinity.majorDisagreements.slice(0, 5).map((disagreement) => (
+                            <li key={disagreement.propositionId}>
+                              {themeById.get(disagreement.themeId)?.lastName} — accord{' '}
+                              {percent(disagreement.agreement * 100)}
                             </li>
                           ))}
                         </ul>
-                      </Depliant>
+                      </Disclosure>
                     )}
-                  </Carte>
+                  </Card>
                 )
               })}
             </ol>
           </section>
 
-          {(ecartes.length > 0 || exclus.length > 0) && (
-            <Carte>
-              <EnteteCarte
-                titre="Candidats hors classement"
-                soustitre="Écartés par un seuil rédhibitoire, ou retirés par vous."
+          {(dropped.length > 0 || excluded.length > 0) && (
+            <Card>
+              <CardHeader
+                title="Candidats hors classement"
+                subtitle="Écartés par un seuil rédhibitoire, ou retirés par vous."
               />
               <ul className="divide-y divide-[color:var(--pqc-line)]">
-                {ecartes.map((ecarte) => (
-                  <li key={ecarte.candidat.id} className="flex flex-wrap items-center gap-3 p-4">
-                    <Pastille candidat={ecarte.candidat} taille="petite" />
+                {dropped.map((dropped) => (
+                  <li key={dropped.candidate.id} className="flex flex-wrap items-center gap-3 p-4">
+                    <Chip candidate={dropped.candidate} size="petite" />
                     <div className="min-w-0 flex-1">
                       <p className="text-[0.88rem] font-medium text-ink">
-                        {ecarte.candidat.prenom} {ecarte.candidat.nom}
+                        {dropped.candidate.firstName} {dropped.candidate.lastName}
                       </p>
                       <p className="mt-0.5 text-[0.78rem] leading-snug text-ink-2">
-                        {ecarte.motifs
+                        {dropped.reasons
                           .map(
-                            (motif) =>
-                              `${critereById.get(motif.critereId)?.nom ?? motif.critereId} : ${Math.round(motif.note)}/100, sous votre seuil de ${motif.seuil}`,
+                            (reason) =>
+                              `${criterionById.get(reason.criterionId)?.lastName ?? reason.criterionId} : ${Math.round(reason.rating)}/100, sous votre seuil de ${reason.threshold}`,
                           )
                           .join(' · ')}
                       </p>
                     </div>
-                    <Badge ton="serious" icone="✕">
+                    <Badge tone="serious" icon="✕">
                       Seuil non atteint
                     </Badge>
                   </li>
                 ))}
-                {exclus.map((candidat) => (
-                  <li key={candidat.id} className="flex flex-wrap items-center gap-3 p-4">
-                    <Pastille candidat={candidat} taille="petite" />
+                {excluded.map((candidate) => (
+                  <li key={candidate.id} className="flex flex-wrap items-center gap-3 p-4">
+                    <Chip candidate={candidate} size="petite" />
                     <div className="min-w-0 flex-1">
                       <p className="text-[0.88rem] font-medium text-ink">
-                        {candidat.prenom} {candidat.nom}
+                        {candidate.firstName} {candidate.lastName}
                       </p>
                       <p className="mt-0.5 text-[0.78rem] text-ink-2">Retiré manuellement.</p>
                     </div>
-                    <Bouton variante="secondaire" taille="petite" onClick={() => basculerExclu(candidat.id)}>
+                    <Button variant="secondaire" size="petite" onClick={() => toggleExcluded(candidate.id)}>
                       Réintégrer
-                    </Bouton>
+                    </Button>
                   </li>
                 ))}
               </ul>
-            </Carte>
+            </Card>
           )}
         </div>
       )}

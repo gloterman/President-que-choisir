@@ -8,59 +8,59 @@
  * évidemment rien de l'exactitude des faits — c'est le rôle de la procédure de
  * vérification décrite dans docs/DONNEES.md.
  */
-import { candidats } from '../src/data/candidats'
-import { criteres } from '../src/data/criteres'
+import { candidates } from '../src/data/candidats'
+import { criteria } from '../src/data/criteres'
 import { axes, propositions, themes } from '../src/data/referentiel'
 import { sources } from '../src/data/sources'
 
-const erreurs: string[] = []
-const avertissements: string[] = []
+const errors: string[] = []
+const warnings: string[] = []
 
-const idsAxes = new Set(axes.map((a) => a.id))
-const idsThemes = new Set(themes.map((t) => t.id))
-const idsCriteres = new Set(criteres.map((c) => c.id))
-const idsSources = new Set(sources.map((s) => s.id))
+const axisIds = new Set(axes.map((a) => a.id))
+const themeIds = new Set(themes.map((t) => t.id))
+const criterionIds = new Set(criteria.map((c) => c.id))
+const sourceIds = new Set(sources.map((s) => s.id))
 
 const ISO = /^\d{4}(-\d{2})?(-\d{2})?$/
 
-function uniques(label: string, ids: string[]) {
-  const vus = new Set<string>()
+function unique(label: string, ids: string[]) {
+  const seen = new Set<string>()
   for (const id of ids) {
-    if (vus.has(id)) erreurs.push(`${label} : identifiant dupliqué « ${id} »`)
-    vus.add(id)
+    if (seen.has(id)) errors.push(`${label} : identifiant dupliqué « ${id} »`)
+    seen.add(id)
   }
 }
 
-uniques('Thèmes', themes.map((t) => t.id))
-uniques('Axes', axes.map((a) => a.id))
-uniques('Propositions', propositions.map((p) => p.id))
-uniques('Critères', criteres.map((c) => c.id))
-uniques('Sources', sources.map((s) => s.id))
-uniques('Candidats', candidats.map((c) => c.id))
+unique('Thèmes', themes.map((t) => t.id))
+unique('Axes', axes.map((a) => a.id))
+unique('Propositions', propositions.map((p) => p.id))
+unique('Critères', criteria.map((c) => c.id))
+unique('Sources', sources.map((s) => s.id))
+unique('Candidats', candidates.map((c) => c.id))
 
-for (const axe of axes) {
-  if (!idsThemes.has(axe.themeId)) erreurs.push(`Axe « ${axe.id} » : thème inconnu « ${axe.themeId} »`)
+for (const axis of axes) {
+  if (!themeIds.has(axis.themeId)) errors.push(`Axe « ${axis.id} » : thème inconnu « ${axis.themeId} »`)
 }
 
 for (const proposition of propositions) {
-  if (!idsAxes.has(proposition.axeId)) {
-    erreurs.push(`Proposition « ${proposition.id} » : axe inconnu « ${proposition.axeId} »`)
+  if (!axisIds.has(proposition.axisId)) {
+    errors.push(`Proposition « ${proposition.id} » : axe inconnu « ${proposition.axisId} »`)
   }
-  if (!idsThemes.has(proposition.themeId)) {
-    erreurs.push(`Proposition « ${proposition.id} » : thème inconnu « ${proposition.themeId} »`)
+  if (!themeIds.has(proposition.themeId)) {
+    errors.push(`Proposition « ${proposition.id} » : thème inconnu « ${proposition.themeId} »`)
   }
-  const axe = axes.find((a) => a.id === proposition.axeId)
-  if (axe && axe.themeId !== proposition.themeId) {
-    erreurs.push(`Proposition « ${proposition.id} » : le thème ne correspond pas à celui de son axe.`)
+  const axis = axes.find((a) => a.id === proposition.axisId)
+  if (axis && axis.themeId !== proposition.themeId) {
+    errors.push(`Proposition « ${proposition.id} » : le thème ne correspond pas à celui de son axe.`)
   }
 }
 
 // Chaque axe doit porter au moins deux propositions, sinon la position de
 // l'utilisateur sur cet axe repose sur une seule réponse.
-for (const axe of axes) {
-  const nb = propositions.filter((p) => p.axeId === axe.id).length
-  if (nb === 0) erreurs.push(`Axe « ${axe.id} » : aucune proposition rattachée.`)
-  else if (nb < 2) avertissements.push(`Axe « ${axe.id} » : une seule proposition rattachée.`)
+for (const axis of axes) {
+  const count = propositions.filter((p) => p.axisId === axis.id).length
+  if (count === 0) errors.push(`Axe « ${axis.id} » : aucune proposition rattachée.`)
+  else if (count < 2) warnings.push(`Axe « ${axis.id} » : une seule proposition rattachée.`)
 }
 
 /**
@@ -74,36 +74,36 @@ for (const axe of axes) {
  * dix points selon la littérature — se transforme en résultat politique sur cet
  * axe précis.
  */
-function equilibrePolarites(
-  ensemble: typeof propositions,
-  etiquette: string,
-  seuilBloquant: number,
+function polarityBalance(
+  set: typeof propositions,
+  tag: string,
+  blockingThreshold: number,
 ) {
-  if (ensemble.length < 3) return
-  const positives = ensemble.filter((p) => p.polarite === 1).length
-  const minoritaire = Math.min(positives, ensemble.length - positives)
-  const part = minoritaire / ensemble.length
-  if (part < seuilBloquant) {
-    erreurs.push(
-      `${etiquette} : ${minoritaire} proposition(s) de polarité minoritaire sur ${ensemble.length} (R8). ` +
+  if (set.length < 3) return
+  const positive = set.filter((p) => p.polarity === 1).length
+  const minority = Math.min(positive, set.length - positive)
+  const share = minority / set.length
+  if (share < blockingThreshold) {
+    errors.push(
+      `${tag} : ${minority} proposition(s) de polarité minoritaire sur ${set.length} (R8). ` +
         'Inverser le sens d’un énoncé, ou en ajouter un rédigé depuis le pôle opposé.',
     )
-  } else if (part < 0.3) {
-    avertissements.push(
-      `${etiquette} : équilibre de polarité tout juste atteint, ${minoritaire} sur ${ensemble.length} (R8).`,
+  } else if (share < 0.3) {
+    warnings.push(
+      `${tag} : équilibre de polarité tout juste atteint, ${minority} sur ${set.length} (R8).`,
     )
   }
 }
 
-for (const axe of axes) {
-  equilibrePolarites(
-    propositions.filter((p) => p.axeId === axe.id),
-    `Axe « ${axe.id} »`,
+for (const axis of axes) {
+  polarityBalance(
+    propositions.filter((p) => p.axisId === axis.id),
+    `Axe « ${axis.id} »`,
     0.25,
   )
 }
 for (const theme of themes) {
-  equilibrePolarites(
+  polarityBalance(
     propositions.filter((p) => p.themeId === theme.id),
     `Thème « ${theme.id} »`,
     0.25,
@@ -119,12 +119,12 @@ for (const theme of themes) {
  * elles. L'écart est signalé, pas interdit : autoriser quelque chose s'énonce
  * légitimement au permissif.
  */
-for (const axe of axes) {
-  const duAxe = propositions.filter((p) => p.axeId === axe.id)
-  const permissifs = duAxe.filter((p) => /\b(?:doit|doivent)\s+pouvoir\b|\b(?:peut|peuvent)\b/.test(p.texte))
-  if (permissifs.length > 0 && permissifs.length < duAxe.length) {
-    avertissements.push(
-      `Axe « ${axe.id} » : ${permissifs.length} énoncé(s) au modal permissif sur ${duAxe.length}. ` +
+for (const axis of axes) {
+  const ofAxis = propositions.filter((p) => p.axisId === axis.id)
+  const permissive = ofAxis.filter((p) => /\b(?:doit|doivent)\s+pouvoir\b|\b(?:peut|peuvent)\b/.test(p.text))
+  if (permissive.length > 0 && permissive.length < ofAxis.length) {
+    warnings.push(
+      `Axe « ${axis.id} » : ${permissive.length} énoncé(s) au modal permissif sur ${ofAxis.length}. ` +
         'Un « doit pouvoir » s’approuve plus facilement qu’un « doit » ; vérifier que le mélange est justifié.',
     )
   }
@@ -132,84 +132,84 @@ for (const axe of axes) {
 
 for (const source of sources) {
   if (source.url && !/^https?:\/\//.test(source.url)) {
-    erreurs.push(`Source « ${source.id} » : URL invalide.`)
+    errors.push(`Source « ${source.id} » : URL invalide.`)
   }
-  if (!ISO.test(source.date)) erreurs.push(`Source « ${source.id} » : date « ${source.date} » mal formée.`)
+  if (!ISO.test(source.date)) errors.push(`Source « ${source.id} » : date « ${source.date} » mal formée.`)
 }
 
-for (const candidat of candidats) {
-  const prefixe = `Candidat « ${candidat.id} »`
+for (const candidate of candidates) {
+  const prefix = `Candidat « ${candidate.id} »`
 
-  for (const axe of axes) {
-    if (candidat.positions[axe.id] === undefined) {
-      erreurs.push(`${prefixe} : position manquante sur l'axe « ${axe.id} ».`)
+  for (const axis of axes) {
+    if (candidate.positions[axis.id] === undefined) {
+      errors.push(`${prefix} : position manquante sur l'axe « ${axis.id} ».`)
     }
   }
-  for (const axeId of Object.keys(candidat.positions)) {
-    if (!idsAxes.has(axeId)) erreurs.push(`${prefixe} : axe inconnu « ${axeId} » dans les positions.`)
+  for (const axisId of Object.keys(candidate.positions)) {
+    if (!axisIds.has(axisId)) errors.push(`${prefix} : axe inconnu « ${axisId} » dans les positions.`)
   }
-  for (const axeId of Object.keys(candidat.positionsNotes ?? {})) {
-    if (!idsAxes.has(axeId)) erreurs.push(`${prefixe} : axe inconnu « ${axeId} » dans les notes de position.`)
-  }
-
-  if (candidat.liensOfficiels.length === 0) {
-    avertissements.push(`${prefixe} : aucun lien officiel renseigné.`)
-  }
-  for (const lien of candidat.liensOfficiels) {
-    if (!/^https:\/\//.test(lien.url)) {
-      erreurs.push(`${prefixe} : lien officiel « ${lien.label} » — URL invalide ou non sécurisée.`)
-    }
-  }
-  if (!candidat.liensOfficiels.some((l) => l.type === 'institution')) {
-    avertissements.push(`${prefixe} : aucun lien institutionnel, la vérification n'a pas de point d'entrée public.`)
+  for (const axisId of Object.keys(candidate.ratedPositions ?? {})) {
+    if (!axisIds.has(axisId)) errors.push(`${prefix} : axe inconnu « ${axisId} » dans les notes de position.`)
   }
 
-  const notees = new Set<string>()
-  for (const note of candidat.notes) {
-    if (!idsCriteres.has(note.critereId)) {
-      erreurs.push(`${prefixe} : critère inconnu « ${note.critereId} ».`)
-    }
-    if (notees.has(note.critereId)) erreurs.push(`${prefixe} : critère noté deux fois « ${note.critereId} ».`)
-    notees.add(note.critereId)
-    if (note.note < 0 || note.note > 100) erreurs.push(`${prefixe} : note hors bornes sur « ${note.critereId} ».`)
-    if (!note.justification.trim()) erreurs.push(`${prefixe} : justification vide sur « ${note.critereId} ».`)
-    for (const sourceId of note.sourceIds) {
-      if (!idsSources.has(sourceId)) erreurs.push(`${prefixe} : source inconnue « ${sourceId} ».`)
+  if (candidate.officialLinks.length === 0) {
+    warnings.push(`${prefix} : aucun lien officiel renseigné.`)
+  }
+  for (const link of candidate.officialLinks) {
+    if (!/^https:\/\//.test(link.url)) {
+      errors.push(`${prefix} : lien officiel « ${link.label} » — URL invalide ou non sécurisée.`)
     }
   }
-  for (const critere of criteres) {
-    if (!notees.has(critere.id)) {
-      avertissements.push(`${prefixe} : critère « ${critere.id} » non documenté (note neutre appliquée).`)
+  if (!candidate.officialLinks.some((l) => l.type === 'institution')) {
+    warnings.push(`${prefix} : aucun lien institutionnel, la vérification n'a pas de point d'entrée public.`)
+  }
+
+  const rated = new Set<string>()
+  for (const rating of candidate.ratings) {
+    if (!criterionIds.has(rating.criterionId)) {
+      errors.push(`${prefix} : critère inconnu « ${rating.criterionId} ».`)
+    }
+    if (rated.has(rating.criterionId)) errors.push(`${prefix} : critère noté deux fois « ${rating.criterionId} ».`)
+    rated.add(rating.criterionId)
+    if (rating.rating < 0 || rating.rating > 100) errors.push(`${prefix} : note hors bornes sur « ${rating.criterionId} ».`)
+    if (!rating.rationale.trim()) errors.push(`${prefix} : justification vide sur « ${rating.criterionId} ».`)
+    for (const sourceId of rating.sourceIds) {
+      if (!sourceIds.has(sourceId)) errors.push(`${prefix} : source inconnue « ${sourceId} ».`)
+    }
+  }
+  for (const criterion of criteria) {
+    if (!rated.has(criterion.id)) {
+      warnings.push(`${prefix} : critère « ${criterion.id} » non documenté (note neutre appliquée).`)
     }
   }
 
-  const documents = [...candidat.mesures, ...candidat.faits, ...candidat.judiciaire, ...candidat.indicateurs]
+  const documents = [...candidate.measures, ...candidate.facts, ...candidate.legal, ...candidate.indicators]
   for (const doc of documents) {
     for (const sourceId of doc.sourceIds) {
-      if (!idsSources.has(sourceId)) {
-        erreurs.push(`${prefixe} : source inconnue « ${sourceId} » sur « ${doc.id} ».`)
+      if (!sourceIds.has(sourceId)) {
+        errors.push(`${prefix} : source inconnue « ${sourceId} » sur « ${doc.id} ».`)
       }
     }
     if (doc.sourceIds.length === 0) {
-      avertissements.push(`${prefixe} : aucune source sur « ${doc.id} ».`)
+      warnings.push(`${prefix} : aucune source sur « ${doc.id} ».`)
     }
   }
 
-  for (const mesure of candidat.mesures) {
-    if (!idsThemes.has(mesure.themeId)) erreurs.push(`${prefixe} : thème inconnu sur la mesure « ${mesure.id} ».`)
+  for (const measure of candidate.measures) {
+    if (!themeIds.has(measure.themeId)) errors.push(`${prefix} : thème inconnu sur la mesure « ${measure.id} ».`)
   }
-  for (const fait of candidat.faits) {
-    if (!ISO.test(fait.date)) erreurs.push(`${prefixe} : date « ${fait.date} » mal formée sur « ${fait.id} ».`)
+  for (const fact of candidate.facts) {
+    if (!ISO.test(fact.date)) errors.push(`${prefix} : date « ${fact.date} » mal formée sur « ${fact.id} ».`)
   }
-  for (const affaire of candidat.judiciaire) {
-    if (affaire.dateDecision && !ISO.test(affaire.dateDecision)) {
-      erreurs.push(`${prefixe} : date de décision mal formée sur « ${affaire.id} ».`)
+  for (const legalCase of candidate.legal) {
+    if (legalCase.decisionDate && !ISO.test(legalCase.decisionDate)) {
+      errors.push(`${prefix} : date de décision mal formée sur « ${legalCase.id} ».`)
     }
-    if (affaire.statut.startsWith('condamnation') && !affaire.qualification) {
-      erreurs.push(`${prefixe} : condamnation sans qualification pénale sur « ${affaire.id} ».`)
+    if (legalCase.status.startsWith('condamnation') && !legalCase.charge) {
+      errors.push(`${prefix} : condamnation sans qualification pénale sur « ${legalCase.id} ».`)
     }
   }
-  if (!ISO.test(candidat.derniereMaj)) erreurs.push(`${prefixe} : date de dernière mise à jour mal formée.`)
+  if (!ISO.test(candidate.lastUpdated)) errors.push(`${prefix} : date de dernière mise à jour mal formée.`)
 }
 
 
@@ -226,41 +226,41 @@ for (const candidat of candidats) {
  * fautes certaines. Toute exception doit être inscrite ci-dessous avec sa
  * raison — c'est ce qui distingue une dérogation assumée d'un oubli.
  */
-const REGLES: { code: string; libelle: string; motif: RegExp; natures?: string[] }[] = [
+const RULES: { code: string; label: string; reason: RegExp; natures?: string[] }[] = [
   {
     code: 'R1',
-    libelle: 'justification intégrée (« pour + infinitif »)',
-    motif: /\bpour\s+(?:[a-zà-öø-ÿ]{3,}(?:er|ir|re)|que)\b/i,
+    label: 'justification intégrée (« pour + infinitif »)',
+    reason: /\bpour\s+(?:[a-zà-öø-ÿ]{3,}(?:er|ir|re)|que)\b/i,
   },
   {
     code: 'R2',
-    libelle: 'superlatif ou adverbe d’appréciation',
-    motif:
+    label: 'superlatif ou adverbe d’appréciation',
+    reason:
       /\b(?:le meilleur|la meilleure|le pire|massivement|fortement|drastiquement|évidemment|scandaleu|indispensable|urgent|véritable|simplement)\w*/i,
   },
   {
     code: 'R3',
-    libelle: 'proposition double',
-    motif:
+    label: 'proposition double',
+    reason:
       /\b(?:doit|doivent|peut|peuvent)\s+(?:être\s+)?[a-zà-öø-ÿ]+(?:é|ée|és|ées|er|ir)\s+et\s+[a-zà-öø-ÿ]+(?:é|ée|és|ées|er|ir)\b/i,
   },
   {
     code: 'R4',
-    libelle: 'fausse alternative dans une mesure',
-    motif: /\bplut[oô]t qu/i,
+    label: 'fausse alternative dans une mesure',
+    reason: /\bplut[oô]t qu/i,
     natures: ['mesure'],
   },
-  { code: 'R5', libelle: '« il faut »', motif: /\bil faut\b/i },
+  { code: 'R5', label: '« il faut »', reason: /\bil faut\b/i },
   {
     code: 'R6',
-    libelle: 'vocabulaire militant repris tel quel',
-    motif:
+    label: 'vocabulaire militant repris tel quel',
+    reason:
       /\b(?:préférence nationale|assistanat|ultra-riches|grand remplacement|ensauvagement|wokisme|immigrationniste)\b/i,
   },
   {
     code: 'R7',
-    libelle: 'présupposé dans le verbe (« rétablir », « restaurer »)',
-    motif: /\b(?:rétabli|restaur)(?:r|e|es|s|é|ée|ées|és|er)?\b/i,
+    label: 'présupposé dans le verbe (« rétablir », « restaurer »)',
+    reason: /\b(?:rétabli|restaur)(?:r|e|es|s|é|ée|ées|és|er)?\b/i,
   },
 ]
 
@@ -269,53 +269,53 @@ const REGLES: { code: string; libelle: string; motif: RegExp; natures?: string[]
  * que la règle soit enfreinte. Une proposition absente de cette liste et qui
  * déclenche un motif fait échouer le contrôle.
  */
-const DEROGATIONS: Record<string, { regle: string; raison: string }[]> = {
+const EXEMPTIONS: Record<string, { rule: string; reason: string }[]> = {
   'p-int-3': [
     {
-      regle: 'R1',
-      raison:
+      rule: 'R1',
+      reason:
         '« pour financer des dépenses communes » décrit l’objet de l’emprunt, pas un bénéfice attendu : sans ce complément, la proposition ne dit pas de quoi on parle.',
     },
   ],
   'p-ecolo-2': [
     {
-      regle: 'R1',
-      raison:
+      rule: 'R1',
+      reason:
         '« Pour réduire les émissions » pose l’objectif commun aux deux branches de l’arbitrage ; il ne plaide pour aucune des deux.',
     },
   ],
   'p-soc-1': [
     {
-      regle: 'R1',
-      raison:
+      rule: 'R1',
+      reason:
         '« Pour équilibrer le système de retraite » pose l’objectif commun aux trois leviers mis en balance ; il ne plaide pour aucun d’entre eux.',
     },
   ],
   'p-soc-3': [
     {
-      regle: 'R1',
-      raison:
+      rule: 'R1',
+      reason:
         '« pour une retraite à taux plein » est le nom du dispositif visé, pas une justification.',
     },
   ],
 }
 
 for (const proposition of propositions) {
-  for (const regle of REGLES) {
-    if (regle.natures && !regle.natures.includes(proposition.nature)) continue
-    const trouve = proposition.texte.match(regle.motif)
-    if (!trouve) continue
-    const derogation = (DEROGATIONS[proposition.id] ?? []).find((d) => d.regle === regle.code)
-    if (derogation) continue
-    erreurs.push(
-      `Proposition « ${proposition.id} » : ${regle.code} — ${regle.libelle}. Extrait : « ${trouve[0]} ». ` +
+  for (const rule of RULES) {
+    if (rule.natures && !rule.natures.includes(proposition.nature)) continue
+    const found = proposition.text.match(rule.reason)
+    if (!found) continue
+    const exemption = (EXEMPTIONS[proposition.id] ?? []).find((d) => d.rule === rule.code)
+    if (exemption) continue
+    errors.push(
+      `Proposition « ${proposition.id} » : ${rule.code} — ${rule.label}. Extrait : « ${found[0]} ». ` +
         'Reformuler, ou inscrire une dérogation motivée dans scripts/validate-data.ts.',
     )
   }
 
-  if (proposition.texte.length > 190) {
-    avertissements.push(
-      `Proposition « ${proposition.id} » : énoncé de ${proposition.texte.length} caractères, difficile à trancher d’un seul regard.`,
+  if (proposition.text.length > 190) {
+    warnings.push(
+      `Proposition « ${proposition.id} » : énoncé de ${proposition.text.length} caractères, difficile à trancher d’un seul regard.`,
     )
   }
 }
@@ -323,46 +323,46 @@ for (const proposition of propositions) {
 // Chaque thème doit poser au moins un arbitrage de principe, sinon il ne mesure
 // que la position de l'utilisateur dans le débat du moment.
 for (const theme of themes) {
-  const duTheme = propositions.filter((p) => p.themeId === theme.id)
-  if (!duTheme.some((p) => p.nature === 'principe')) {
-    erreurs.push(`Thème « ${theme.id} » : aucune proposition de principe, uniquement des mesures d’actualité.`)
+  const ofTheme = propositions.filter((p) => p.themeId === theme.id)
+  if (!ofTheme.some((p) => p.nature === 'principe')) {
+    errors.push(`Thème « ${theme.id} » : aucune proposition de principe, uniquement des mesures d’actualité.`)
   }
 }
 
-const nbPrincipes = propositions.filter((p) => p.nature === 'principe').length
-if (nbPrincipes / propositions.length < 0.2) {
-  avertissements.push(
-    `Propositions de principe : ${nbPrincipes} sur ${propositions.length}, soit moins d’un cinquième du questionnaire.`,
+const principleCount = propositions.filter((p) => p.nature === 'principe').length
+if (principleCount / propositions.length < 0.2) {
+  warnings.push(
+    `Propositions de principe : ${principleCount} sur ${propositions.length}, soit moins d’un cinquième du questionnaire.`,
   )
 }
 
 // Bilan de vérification, affiché à chaque exécution : c'est l'indicateur de
 // maturité du jeu de données.
-const tousFaits = candidats.flatMap((c) => [...c.mesures, ...c.faits, ...c.judiciaire, ...c.indicateurs])
-const parStatut = tousFaits.reduce<Record<string, number>>((acc, f) => {
+const allFacts = candidates.flatMap((c) => [...c.measures, ...c.facts, ...c.legal, ...c.indicators])
+const byStatus = allFacts.reduce<Record<string, number>>((acc, f) => {
   acc[f.verification] = (acc[f.verification] ?? 0) + 1
   return acc
 }, {})
 
 console.log(
-  `\nCandidats : ${candidats.length} · Critères : ${criteres.length} · ` +
-    `Propositions : ${propositions.length} (${nbPrincipes} de principe, ${propositions.length - nbPrincipes} de mesure)`,
+  `\nCandidats : ${candidates.length} · Critères : ${criteria.length} · ` +
+    `Propositions : ${propositions.length} (${principleCount} de principe, ${propositions.length - principleCount} de mesure)`,
 )
 console.log(
-  `Éléments factuels : ${tousFaits.length} — vérifiés ${parStatut.verifie ?? 0}, ` +
-    `recoupés ${parStatut.recoupe ?? 0}, à vérifier ${parStatut['a-verifier'] ?? 0}, ` +
-    `estimations ${parStatut.estimation ?? 0}`,
+  `Éléments factuels : ${allFacts.length} — vérifiés ${byStatus.verifie ?? 0}, ` +
+    `recoupés ${byStatus.recoupe ?? 0}, à vérifier ${byStatus['a-verifier'] ?? 0}, ` +
+    `estimations ${byStatus.estimation ?? 0}`,
 )
 
-if (avertissements.length > 0) {
-  console.log(`\n${avertissements.length} avertissement(s) :`)
-  for (const a of avertissements.slice(0, 15)) console.log(`  · ${a}`)
-  if (avertissements.length > 15) console.log(`  · … et ${avertissements.length - 15} autres`)
+if (warnings.length > 0) {
+  console.log(`\n${warnings.length} avertissement(s) :`)
+  for (const a of warnings.slice(0, 15)) console.log(`  · ${a}`)
+  if (warnings.length > 15) console.log(`  · … et ${warnings.length - 15} autres`)
 }
 
-if (erreurs.length > 0) {
-  console.error(`\n${erreurs.length} erreur(s) bloquante(s) :`)
-  for (const e of erreurs) console.error(`  ✗ ${e}`)
+if (errors.length > 0) {
+  console.error(`\n${errors.length} erreur(s) bloquante(s) :`)
+  for (const e of errors) console.error(`  ✗ ${e}`)
   process.exit(1)
 }
 

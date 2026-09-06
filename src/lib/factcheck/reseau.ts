@@ -15,24 +15,24 @@
  * réelle — DNS, TLS, connexion refusée, expiration — dans `cause`. Sans ce
  * dépliage, un journal de collecte ne dit rien d'exploitable.
  */
-export function motif(erreur: unknown): string {
-  const parties: string[] = []
-  let courant: unknown = erreur
+export function reason(error: unknown): string {
+  const shares: string[] = []
+  let current: unknown = error
   let codes = ''
-  for (let profondeur = 0; courant instanceof Error && profondeur < 4; profondeur++) {
-    const code = (courant as { code?: string }).code
+  for (let depth = 0; current instanceof Error && depth < 4; depth++) {
+    const code = (current as { code?: string }).code
     if (code) codes += ` ${code}`
-    parties.push(code ? `${courant.message} (${code})` : courant.message)
-    courant = (courant as { cause?: unknown }).cause
+    shares.push(code ? `${current.message} (${code})` : current.message)
+    current = (current as { cause?: unknown }).cause
   }
-  const texte = parties.length > 0 ? parties.join(' ← ') : String(erreur)
+  const text = shares.length > 0 ? shares.join(' ← ') : String(error)
   // Un délai de connexion dépassé ne vient jamais du chemin d'API : le nom se
   // résout, mais rien n'écoute ou le trajet est coupé. Le dire évite de partir
   // corriger une adresse qui est peut-être juste.
   if (codes.includes('UND_ERR_CONNECT_TIMEOUT') || codes.includes('ETIMEDOUT')) {
-    return `${texte} — la connexion n’aboutit pas ; le service est injoignable depuis cet exécuteur, ce n’est pas un chemin d’API erroné`
+    return `${text} — la connexion n’aboutit pas ; le service est injoignable depuis cet exécuteur, ce n’est pas un chemin d’API erroné`
   }
-  return texte
+  return text
 }
 
 /**
@@ -44,28 +44,28 @@ export function motif(erreur: unknown): string {
  * l'ensemble. Le sondage les désactive donc.
  */
 /** Délai par défaut, pour une adresse dont on attend une réponse. */
-export const DELAI_MS = 20000
+export const TIMEOUT_MS = 20000
 /**
  * Délai d'une sonde de découverte.
  *
  * Court, parce qu'une adresse spéculative est le plus souvent absente : le
  * coût du sondage doit rester proportionné à ce qu'on espère y trouver.
  */
-export const DELAI_SONDE_MS = 6000
+export const PROBE_TIMEOUT_MS = 6000
 /** Plafond de lecture d'un corps : un flux légitime tient largement dedans. */
-export const CORPS_MAXIMAL = 4 * 1024 * 1024
+export const MAX_BODY = 4 * 1024 * 1024
 
-export interface OptionsRecuperation {
-  entetes?: Record<string, string>
-  reprise?: boolean
-  delaiMs?: number
+export interface FetchOptions {
+  headers?: Record<string, string>
+  retry?: boolean
+  timeoutMs?: number
 }
 
 /** Ce qu'une lecture rapporte : le statut, et le corps déjà lu en entier. */
-export interface Reponse {
+export interface Answer {
   ok: boolean
-  statut: number
-  texte: string
+  status: number
+  text: string
 }
 
 /**
@@ -82,65 +82,65 @@ export interface Reponse {
  * largement dedans, et rien n'oblige à ingérer ce qu'un serveur voudrait
  * envoyer sans fin.
  */
-export async function lire(url: string, options: OptionsRecuperation = {}): Promise<Reponse> {
-  const { entetes = {}, reprise = true, delaiMs = DELAI_MS } = options
+export async function read(url: string, options: FetchOptions = {}): Promise<Answer> {
+  const { headers = {}, retry = true, timeoutMs = TIMEOUT_MS } = options
   // Une seule reprise : un échec de connexion est souvent passager, mais
   // insister davantage sur un service public gratuit serait discourtois.
-  let derniere: unknown
-  const essais = reprise ? 2 : 1
-  for (let essaiNumero = 0; essaiNumero < essais; essaiNumero++) {
-    const abandon = new AbortController()
-    const minuterie = setTimeout(() => abandon.abort(), delaiMs)
+  let last: unknown
+  const attempts = retry ? 2 : 1
+  for (let attemptNumber = 0; attemptNumber < attempts; attemptNumber++) {
+    const abort = new AbortController()
+    const timer = setTimeout(() => abort.abort(), timeoutMs)
     try {
-      const reponse = await fetch(url, {
-        signal: abandon.signal,
+      const answer = await fetch(url, {
+        signal: abort.signal,
         headers: {
           'User-Agent': 'president-que-choisir/1.0 (+collecte citations)',
           Accept: 'application/json, application/xml;q=0.9, text/xml;q=0.9, */*;q=0.8',
-          ...entetes,
+          ...headers,
         },
       })
       // Un statut d'erreur n'a pas de corps qui nous intéresse, mais le laisser
       // non consommé retiendrait la connexion et empêcherait le processus de
       // se terminer.
-      if (!reponse.ok) {
-        await reponse.body?.cancel().catch(() => {})
-        return { ok: false, statut: reponse.status, texte: '' }
+      if (!answer.ok) {
+        await answer.body?.cancel().catch(() => {})
+        return { ok: false, status: answer.status, text: '' }
       }
-      return { ok: true, statut: reponse.status, texte: await corpsBorne(reponse) }
+      return { ok: true, status: answer.status, text: await boundedBody(answer) }
     } catch (e) {
-      derniere = e
-      if (essaiNumero < essais - 1) await new Promise((suite) => setTimeout(suite, 1500))
+      last = e
+      if (attemptNumber < attempts - 1) await new Promise((resolve) => setTimeout(resolve, 1500))
     } finally {
-      clearTimeout(minuterie)
+      clearTimeout(timer)
     }
   }
-  throw new Error(motif(derniere))
+  throw new Error(reason(last))
 }
 
 /** Lit le corps par morceaux et s'arrête au plafond. */
-async function corpsBorne(reponse: Response): Promise<string> {
-  if (!reponse.body) return ''
-  const decodeur = new TextDecoder('utf-8')
-  const lecteur = reponse.body.getReader()
-  let texte = ''
-  let octets = 0
+async function boundedBody(answer: Response): Promise<string> {
+  if (!answer.body) return ''
+  const decode = new TextDecoder('utf-8')
+  const reader = answer.body.getReader()
+  let text = ''
+  let bytes = 0
   try {
     for (;;) {
-      const { done, value } = await lecteur.read()
+      const { done, value } = await reader.read()
       if (done) break
-      octets += value.byteLength
-      texte += decodeur.decode(value, { stream: true })
-      if (octets >= CORPS_MAXIMAL) break
+      bytes += value.byteLength
+      text += decode.decode(value, { stream: true })
+      if (bytes >= MAX_BODY) break
     }
   } finally {
-    await lecteur.cancel().catch(() => {})
+    await reader.cancel().catch(() => {})
   }
-  return texte + decodeur.decode()
+  return text + decode.decode()
 }
 
-export async function json<T>(url: string, entetes?: Record<string, string>): Promise<T> {
-  const reponse = await lire(url, { entetes })
-  if (!reponse.ok) throw new Error(`réponse ${reponse.statut} sur ${url}`)
-  return JSON.parse(reponse.texte) as T
+export async function json<T>(url: string, headers?: Record<string, string>): Promise<T> {
+  const answer = await read(url, { headers })
+  if (!answer.ok) throw new Error(`réponse ${answer.status} sur ${url}`)
+  return JSON.parse(answer.text) as T
 }

@@ -1,43 +1,43 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const roussel: Candidat = {
+export const roussel: Candidate = {
   id: 'roussel',
-  prenom: 'Fabien',
-  nom: 'Roussel',
-  initiales: 'FRo',
-  parti: 'Parti communiste français',
-  partiCourt: 'PCF',
-  famille: 'gauche-radicale',
-  couleurParti: '#c0392b',
-  naissance: '1969-04-16',
-  fonctionActuelle: 'Secrétaire national du Parti communiste français',
-  statutCandidature: 'pressenti',
-  presentation:
+  firstName: 'Fabien',
+  lastName: 'Roussel',
+  initials: 'FRo',
+  party: 'Parti communiste français',
+  partyShort: 'PCF',
+  family: 'gauche-radicale',
+  partyColor: '#c0392b',
+  birth: '1969-04-16',
+  currentRole: 'Secrétaire national du Parti communiste français',
+  candidacyStatus: 'pressenti',
+  summary:
     "Secrétaire national du PCF depuis 2018 et candidat à la présidentielle de 2022 avec 2,28 % des suffrages exprimés. Défend une gauche du travail et de la production, favorable au nucléaire, à l'industrie et à une ligne régalienne plus ferme que le reste de la gauche radicale.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'Fabien_Roussel' },
+  socialAccounts: [
+    { platform: 'x', handle: 'Fabien_Roussel' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Parti communiste français — site officiel',
       url: 'https://www.pcf.fr/',
       type: 'parti',
       usage: 'Programme et prises de position officielles du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.assemblee,
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
-    LIENS_INSTITUTIONNELS.cnccfp,
+    INSTITUTIONAL_LINKS.assemblee,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
+    INSTITUTIONAL_LINKS.cnccfp,
   ],
   positions: positions([-2, 2, 2, 2, 2, 2, 1, -2, -1, 0, 1, 0, 2, 0, -1, -1]),
-  positionsNotes: {
+  ratedPositions: {
     'mix-energetique': "Défend le nucléaire public comme socle de la souveraineté énergétique, à rebours du reste de la gauche.",
     'fermete-penale': "Ligne sécuritaire plus ferme que celle de ses partenaires de gauche, notamment sur le trafic de stupéfiants.",
   },
-  notes: [
-    note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
-    note(
+  ratings: [
+    rating('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    rating(
       'antecedents-judiciaires',
       100,
       'moyenne',
@@ -45,26 +45,26 @@ export const roussel: Candidat = {
       ['legifrance', 'courdecassation'],
       'recoupe',
     ),
-    note('transparence', 72, 'moyenne', "Déclarations HATVP déposées au titre du mandat de député. Comptes de campagne 2022 déposés et publiés.", ['hatvp', 'cnccfp']),
-    note(
+    rating('transparence', 72, 'moyenne', "Déclarations HATVP déposées au titre du mandat de député. Comptes de campagne 2022 déposés et publiés.", ['hatvp', 'cnccfp']),
+    rating(
       'experience',
       24,
       'haute',
       "Aucune fonction exécutive nationale ; conseiller municipal puis départemental sans présidence d'exécutif ; environ sept ans de mandat de député, soit une dizaine de points ; points de direction d'organisation au titre du secrétariat national du parti.",
       ['assemblee', 'vie-publique'],
     ),
-    note('constance', 84, 'faible', "Ligne stable depuis la prise de fonctions en 2018, dans une seule famille politique. Aucun revirement structurant documenté.", ['vie-publique']),
-    note('clarte-programme', 60, 'faible', "Programme 2022 écrit, public et partiellement chiffré. Programme 2027 non publié à la date de revue.", ['programme-officiel']),
-    note('credibilite-budgetaire', 48, 'faible', "Le programme 2022 supposait des recettes nouvelles importantes, jugées incertaines par plusieurs évaluateurs. Note à refaire sur un programme 2027.", ['institut-montaigne', 'ofce']),
-    note('etat-de-droit', 88, 'faible', "Propositions institutionnelles orientées vers le renforcement du Parlement et du référendum. Aucune proposition affaiblissant un contre-pouvoir relevée.", ['vie-publique']),
-    note('capacite-rassemblement', 32, 'moyenne', "Groupe parlementaire réduit mais implantation municipale historique réelle. Score présidentiel faible en 2022, capacité d'alliance à gauche démontrée.", ['assemblee']),
-    note('engagement-national', 72, 'faible', "Plus de vingt-cinq ans d'engagement public et syndical continu. Aucun conflit d'intérêts relevé.", ['hatvp']),
+    rating('constance', 84, 'faible', "Ligne stable depuis la prise de fonctions en 2018, dans une seule famille politique. Aucun revirement structurant documenté.", ['vie-publique']),
+    rating('clarte-programme', 60, 'faible', "Programme 2022 écrit, public et partiellement chiffré. Programme 2027 non publié à la date de revue.", ['programme-officiel']),
+    rating('credibilite-budgetaire', 48, 'faible', "Le programme 2022 supposait des recettes nouvelles importantes, jugées incertaines par plusieurs évaluateurs. Note à refaire sur un programme 2027.", ['institut-montaigne', 'ofce']),
+    rating('etat-de-droit', 88, 'faible', "Propositions institutionnelles orientées vers le renforcement du Parlement et du référendum. Aucune proposition affaiblissant un contre-pouvoir relevée.", ['vie-publique']),
+    rating('capacite-rassemblement', 32, 'moyenne', "Groupe parlementaire réduit mais implantation municipale historique réelle. Score présidentiel faible en 2022, capacité d'alliance à gauche démontrée.", ['assemblee']),
+    rating('engagement-national', 72, 'faible', "Plus de vingt-cinq ans d'engagement public et syndical continu. Aucun conflit d'intérêts relevé.", ['hatvp']),
   ],
-  mesures: [
+  measures: [
     {
       id: 'roussel-m1',
       themeId: 'economie',
-      titre: 'Augmentation générale des salaires et SMIC à 1 800 euros bruts',
+      title: 'Augmentation générale des salaires et SMIC à 1 800 euros bruts',
       detail: "Conférence nationale sur les salaires, revalorisation du SMIC et échelle mobile des salaires.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -72,7 +72,7 @@ export const roussel: Candidat = {
     {
       id: 'roussel-m2',
       themeId: 'ecologie',
-      titre: 'Programme nucléaire public élargi',
+      title: 'Programme nucléaire public élargi',
       detail: "Construction de nouveaux réacteurs sous maîtrise publique et renationalisation complète de la filière électrique.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -80,7 +80,7 @@ export const roussel: Candidat = {
     {
       id: 'roussel-m3',
       themeId: 'social',
-      titre: 'Retraite à 60 ans et grand plan hôpital',
+      title: 'Retraite à 60 ans et grand plan hôpital',
       detail: "Retour à 60 ans, recrutement massif à l'hôpital public et suppression de la tarification à l'activité.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -88,49 +88,49 @@ export const roussel: Candidat = {
     {
       id: 'roussel-m4',
       themeId: 'securite',
-      titre: 'Renforcement de la police de proximité',
+      title: 'Renforcement de la police de proximité',
       detail: "Recrutement de policiers, police de proximité et moyens renforcés contre le trafic de stupéfiants.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'roussel-f1',
       date: '2022-04-10',
-      titre: 'Candidature autonome à la présidentielle',
+      title: 'Candidature autonome à la présidentielle',
       description: "Rompt avec le soutien du PCF au candidat de la gauche radicale et obtient 2,28 % des suffrages exprimés.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'roussel-f2',
       date: '2018-11',
-      titre: 'Élu secrétaire national du PCF',
+      title: 'Élu secrétaire national du PCF',
       description: "Prend la tête du parti et engage une ligne de reconquête de l'électorat populaire.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'roussel-f3',
       date: '2024-07',
-      titre: 'Défaite aux législatives dans le Nord',
+      title: 'Défaite aux législatives dans le Nord',
       description: "Perd son siège de député lors des législatives anticipées de 2024.",
-      categorie: 'election',
-      portee: 'notable',
+      category: 'election',
+      scope: 'notable',
       verification: 'a-verifier',
       sourceIds: ['assemblee'],
     },
   ],
-  judiciaire: [],
-  indicateurs: [
-    { id: 'roussel-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'roussel-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'roussel-i2', label: 'Score au premier tour de la présidentielle', valeur: '2,28 %', periode: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+  legal: [],
+  indicators: [
+    { id: 'roussel-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'roussel-i1', label: 'Condamnations connues', value: 'Aucune', period: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'roussel-i2', label: 'Score au premier tour de la présidentielle', value: '2,28 %', period: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

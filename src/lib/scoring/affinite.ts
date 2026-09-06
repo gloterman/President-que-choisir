@@ -1,5 +1,5 @@
-import { axes, axeById, propositions, themes } from '@/data/referentiel'
-import type { Candidat, Likert, ReponseUtilisateur } from '@/data/types'
+import { axes, axisById, propositions, themes } from '@/data/referentiel'
+import type { Candidate, Likert, UserAnswer } from '@/data/types'
 
 /**
  * Affinité programmatique — le volet « boussole » de l'application.
@@ -12,104 +12,104 @@ import type { Candidat, Likert, ReponseUtilisateur } from '@/data/types'
  * elle ne compte ni pour ni contre, au lieu de compter comme un accord neutre.
  */
 
-const ECART_MAX = 4 // de −2 à +2
+const MAX_SPREAD = 4 // de −2 à +2
 
-export interface AccordProposition {
+export interface PropositionAgreement {
   propositionId: string
   themeId: string
-  axeId: string
+  axisId: string
   /** Réponse de l'utilisateur, −2 à +2. */
-  utilisateur: Likert
+  user: Likert
   /** Position du candidat traduite dans le sens de la proposition, −2 à +2. */
-  candidat: number
+  candidate: number
   /** 0 = opposition frontale, 1 = accord parfait. */
-  accord: number
+  agreement: number
   importance: number
 }
 
-export interface AffiniteTheme {
+export interface ThemeAffinity {
   themeId: string
   /** 0–100, ou `null` si aucune proposition du thème n'a été notée comme importante. */
   score: number | null
   /** Somme des importances exprimées sur ce thème. */
-  poids: number
-  nbPropositions: number
+  weight: number
+  propositionCount: number
 }
 
-export interface Affinite {
-  candidatId: string
+export interface Affinity {
+  candidateId: string
   /** 0–100. Vaut 50 quand rien n'a été renseigné (neutre, pas favorable). */
   score: number
-  parTheme: AffiniteTheme[]
-  details: AccordProposition[]
+  byTheme: ThemeAffinity[]
+  details: PropositionAgreement[]
   /** Propositions jugées importantes sur lesquelles le désaccord est fort. */
-  desaccordsMajeurs: AccordProposition[]
+  majorDisagreements: PropositionAgreement[]
   /** Propositions jugées importantes sur lesquelles l'accord est net. */
-  accordsMajeurs: AccordProposition[]
+  majorAgreements: PropositionAgreement[]
   /** Nombre de propositions effectivement prises en compte. */
-  nbPrisesEnCompte: number
+  countedIn: number
 }
 
 /** Position du candidat exprimée dans le sens de la proposition. */
-function positionCandidat(candidat: Candidat, axeId: string, polarite: 1 | -1): number {
-  const brute = candidat.positions[axeId]
-  if (brute === undefined) return 0
-  return brute * polarite
+function candidatePosition(candidate: Candidate, axisId: string, polarity: 1 | -1): number {
+  const raw = candidate.positions[axisId]
+  if (raw === undefined) return 0
+  return raw * polarity
 }
 
-export function calculerAffinite(
-  candidat: Candidat,
-  reponses: Record<string, ReponseUtilisateur>,
-): Affinite {
-  const details: AccordProposition[] = []
-  let numerateur = 0
-  let denominateur = 0
+export function computeAffinity(
+  candidate: Candidate,
+  answers: Record<string, UserAnswer>,
+): Affinity {
+  const details: PropositionAgreement[] = []
+  let numerator = 0
+  let denominator = 0
 
   for (const proposition of propositions) {
-    const reponse = reponses[proposition.id]
-    if (!reponse || reponse.importance === 0) continue
+    const answer = answers[proposition.id]
+    if (!answer || answer.importance === 0) continue
 
-    const posCandidat = positionCandidat(candidat, proposition.axeId, proposition.polarite)
-    const accord = 1 - Math.abs(reponse.valeur - posCandidat) / ECART_MAX
+    const candidatePos = candidatePosition(candidate, proposition.axisId, proposition.polarity)
+    const agreement = 1 - Math.abs(answer.value - candidatePos) / MAX_SPREAD
 
     details.push({
       propositionId: proposition.id,
       themeId: proposition.themeId,
-      axeId: proposition.axeId,
-      utilisateur: reponse.valeur,
-      candidat: posCandidat,
-      accord,
-      importance: reponse.importance,
+      axisId: proposition.axisId,
+      user: answer.value,
+      candidate: candidatePos,
+      agreement,
+      importance: answer.importance,
     })
 
-    numerateur += accord * reponse.importance
-    denominateur += reponse.importance
+    numerator += agreement * answer.importance
+    denominator += answer.importance
   }
 
-  const parTheme: AffiniteTheme[] = themes.map((theme) => {
-    const duTheme = details.filter((d) => d.themeId === theme.id)
-    const poids = duTheme.reduce((acc, d) => acc + d.importance, 0)
+  const byTheme: ThemeAffinity[] = themes.map((theme) => {
+    const ofTheme = details.filter((d) => d.themeId === theme.id)
+    const weight = ofTheme.reduce((acc, d) => acc + d.importance, 0)
     const score =
-      poids > 0
-        ? (duTheme.reduce((acc, d) => acc + d.accord * d.importance, 0) / poids) * 100
+      weight > 0
+        ? (ofTheme.reduce((acc, d) => acc + d.agreement * d.importance, 0) / weight) * 100
         : null
-    return { themeId: theme.id, score, poids, nbPropositions: duTheme.length }
+    return { themeId: theme.id, score, weight, propositionCount: ofTheme.length }
   })
 
-  const importantes = details.filter((d) => d.importance >= 2)
+  const important = details.filter((d) => d.importance >= 2)
 
   return {
-    candidatId: candidat.id,
-    score: denominateur > 0 ? (numerateur / denominateur) * 100 : 50,
-    parTheme,
+    candidateId: candidate.id,
+    score: denominator > 0 ? (numerator / denominator) * 100 : 50,
+    byTheme,
     details,
-    desaccordsMajeurs: importantes
-      .filter((d) => d.accord <= 0.375)
-      .sort((a, b) => a.accord - b.accord || b.importance - a.importance),
-    accordsMajeurs: importantes
-      .filter((d) => d.accord >= 0.875)
-      .sort((a, b) => b.accord - a.accord || b.importance - a.importance),
-    nbPrisesEnCompte: details.length,
+    majorDisagreements: important
+      .filter((d) => d.agreement <= 0.375)
+      .sort((a, b) => a.agreement - b.agreement || b.importance - a.importance),
+    majorAgreements: important
+      .filter((d) => d.agreement >= 0.875)
+      .sort((a, b) => b.agreement - a.agreement || b.importance - a.importance),
+    countedIn: details.length,
   }
 }
 
@@ -117,29 +117,29 @@ export function calculerAffinite(
 // Boussole 2D
 // ---------------------------------------------------------------------------
 
-export interface PointBoussole {
+export interface CompassPoint {
   /** −1 (interventionnisme, redistribution) à +1 (marché, baisse des prélèvements). */
   eco: number
   /** −1 (ouverture culturelle, intégration européenne) à +1 (conservatisme, souverainisme). */
   soc: number
 }
 
-function projeter(positions: Record<string, number>): PointBoussole {
+function project(positions: Record<string, number>): CompassPoint {
   let ecoNum = 0
   let ecoDen = 0
   let socNum = 0
   let socDen = 0
 
-  for (const axe of axes) {
-    const position = positions[axe.id]
+  for (const axis of axes) {
+    const position = positions[axis.id]
     if (position === undefined) continue
-    if (axe.boussole.eco !== 0) {
-      ecoNum += position * axe.boussole.eco
-      ecoDen += Math.abs(axe.boussole.eco) * 2
+    if (axis.compass.eco !== 0) {
+      ecoNum += position * axis.compass.eco
+      ecoDen += Math.abs(axis.compass.eco) * 2
     }
-    if (axe.boussole.soc !== 0) {
-      socNum += position * axe.boussole.soc
-      socDen += Math.abs(axe.boussole.soc) * 2
+    if (axis.compass.soc !== 0) {
+      socNum += position * axis.compass.soc
+      socDen += Math.abs(axis.compass.soc) * 2
     }
   }
 
@@ -149,8 +149,8 @@ function projeter(positions: Record<string, number>): PointBoussole {
   }
 }
 
-export function boussoleCandidat(candidat: Candidat): PointBoussole {
-  return projeter(candidat.positions)
+export function candidateCompass(candidate: Candidate): CompassPoint {
+  return project(candidate.positions)
 }
 
 /**
@@ -159,36 +159,36 @@ export function boussoleCandidat(candidat: Candidat): PointBoussole {
  * conservées ici avec un poids minimal : elles renseignent tout de même une
  * position, elles ne devaient simplement pas peser sur l'affinité.
  */
-export function positionsUtilisateur(
-  reponses: Record<string, ReponseUtilisateur>,
+export function userPositions(
+  answers: Record<string, UserAnswer>,
 ): Record<string, number> {
-  const cumul: Record<string, { somme: number; poids: number }> = {}
+  const cumulative: Record<string, { sum: number; weight: number }> = {}
 
   for (const proposition of propositions) {
-    const reponse = reponses[proposition.id]
-    if (!reponse) continue
-    const cible = (cumul[proposition.axeId] ??= { somme: 0, poids: 0 })
-    const poids = reponse.importance + 1
-    cible.somme += reponse.valeur * proposition.polarite * poids
-    cible.poids += poids
+    const answer = answers[proposition.id]
+    if (!answer) continue
+    const target = (cumulative[proposition.axisId] ??= { sum: 0, weight: 0 })
+    const weight = answer.importance + 1
+    target.sum += answer.value * proposition.polarity * weight
+    target.weight += weight
   }
 
   const positions: Record<string, number> = {}
-  for (const [axeId, { somme, poids }] of Object.entries(cumul)) {
-    if (poids > 0 && axeById.has(axeId)) positions[axeId] = somme / poids
+  for (const [axisId, { sum, weight }] of Object.entries(cumulative)) {
+    if (weight > 0 && axisById.has(axisId)) positions[axisId] = sum / weight
   }
   return positions
 }
 
-export function boussoleUtilisateur(
-  reponses: Record<string, ReponseUtilisateur>,
-): PointBoussole | null {
-  const positions = positionsUtilisateur(reponses)
+export function userCompass(
+  answers: Record<string, UserAnswer>,
+): CompassPoint | null {
+  const positions = userPositions(answers)
   if (Object.keys(positions).length === 0) return null
-  return projeter(positions)
+  return project(positions)
 }
 
 /** Nombre de propositions auxquelles l'utilisateur a répondu. */
-export function nbReponses(reponses: Record<string, ReponseUtilisateur>): number {
-  return propositions.filter((p) => reponses[p.id] !== undefined).length
+export function answerCount(answers: Record<string, UserAnswer>): number {
+  return propositions.filter((p) => answers[p.id] !== undefined).length
 }

@@ -1,42 +1,42 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const retailleau: Candidat = {
+export const retailleau: Candidate = {
   id: 'retailleau',
-  prenom: 'Bruno',
-  nom: 'Retailleau',
-  initiales: 'BR',
-  parti: 'Les Républicains',
-  partiCourt: 'LR',
-  famille: 'droite',
-  couleurParti: '#2c5aa0',
-  naissance: '1960-11-20',
-  fonctionActuelle: 'Président des Républicains, sénateur de la Vendée',
-  statutCandidature: 'pressenti',
-  presentation:
+  firstName: 'Bruno',
+  lastName: 'Retailleau',
+  initials: 'BR',
+  party: 'Les Républicains',
+  partyShort: 'LR',
+  family: 'droite',
+  partyColor: '#2c5aa0',
+  birth: '1960-11-20',
+  currentRole: 'Président des Républicains, sénateur de la Vendée',
+  candidacyStatus: 'pressenti',
+  summary:
     "Longtemps président du conseil régional des Pays de la Loire puis du groupe LR au Sénat, ministre de l'Intérieur à partir de septembre 2024, il prend la tête des Républicains en 2025. Défend une ligne de fermeté régalienne et migratoire assumée, associée à une orthodoxie budgétaire.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'BrunoRetailleau' },
+  socialAccounts: [
+    { platform: 'x', handle: 'BrunoRetailleau' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Les Républicains — site officiel du parti',
       url: 'https://republicains.fr/',
       type: 'parti',
       usage: 'Programme et prises de position officielles du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.senat,
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
+    INSTITUTIONAL_LINKS.senat,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
   ],
   positions: positions([2, 0, -2, -2, -2, -1, -1, -2, 2, 2, 2, 2, 0, 1, -1, 1]),
-  positionsNotes: {
+  ratedPositions: {
     'souverainete-europeenne':
       "Défend la primauté du droit national sur le droit européen en matière migratoire, sans remettre en cause l'appartenance à l'Union.",
   },
-  notes: [
-    note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
-    note(
+  ratings: [
+    rating('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    rating(
       'antecedents-judiciaires',
       100,
       'moyenne',
@@ -44,50 +44,50 @@ export const retailleau: Candidat = {
       ['legifrance', 'courdecassation'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       80,
       'moyenne',
       "Déclarations HATVP déposées au titre du mandat de sénateur, de la présidence de région puis des fonctions ministérielles.",
       ['hatvp'],
     ),
-    note(
+    rating(
       'experience',
       62,
       'haute',
       "Fonctions ministérielles au ministère de l'Intérieur ; environ dix ans à la tête de l'exécutif régional des Pays de la Loire, soit 25 points ; plus de vingt-cinq ans de mandat parlementaire, plafonnés à 20 points ; points de direction de grande organisation au titre de la présidence de région.",
       ['senat', 'journal-officiel'],
     ),
-    note(
+    rating(
       'constance',
       86,
       'moyenne',
       "Ligne conservatrice et souverainiste stable sur trois décennies, sans revirement documenté sur une position structurante. Trajectoire partisane continue depuis le mouvement de Philippe de Villiers jusqu'aux Républicains.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'clarte-programme',
       54,
       'faible',
       "Corpus de positions dense et cohérent, mais pas de programme présidentiel écrit, chiffré et daté à la date de revue.",
       ['programme-officiel'],
     ),
-    note('credibilite-budgetaire', 55, 'faible', "Trajectoire de réduction du déficit explicitement assumée ; chiffrage détaillé non encore soumis à évaluation indépendante.", ['ifrap', 'cour-des-comptes']),
-    note(
+    rating('credibilite-budgetaire', 55, 'faible', "Trajectoire de réduction du déficit explicitement assumée ; chiffrage détaillé non encore soumis à évaluation indépendante.", ['ifrap', 'cour-des-comptes']),
+    rating(
       'etat-de-droit',
       58,
       'faible',
       "Plusieurs propositions touchent à l'équilibre des pouvoirs : primauté revendiquée du droit national sur les engagements européens en matière migratoire, révision constitutionnelle envisagée pour surmonter des censures. Le barème les compte comme un affaiblissement de contre-pouvoirs. D'autres lectures sont possibles : critère signalé comme contestable.",
       ['vie-publique', 'legifrance'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       52,
       'moyenne',
       "Implantation locale et sénatoriale forte, mais groupe réduit à l'Assemblée nationale et concurrence directe du Rassemblement national sur une partie de l'électorat.",
       ['senat', 'assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       78,
       'faible',
@@ -95,11 +95,11 @@ export const retailleau: Candidat = {
       ['hatvp'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'retailleau-m1',
       themeId: 'immigration',
-      titre: 'Référendum sur l’immigration et quotas',
+      title: 'Référendum sur l’immigration et quotas',
       detail: "Consultation des Français par référendum sur des règles migratoires plus restrictives, quotas et restriction du regroupement familial.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -107,7 +107,7 @@ export const retailleau: Candidat = {
     {
       id: 'retailleau-m2',
       themeId: 'securite',
-      titre: 'Rétablissement des peines planchers',
+      title: 'Rétablissement des peines planchers',
       detail: "Peines minimales pour les récidivistes et construction de nouvelles places de prison.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -115,7 +115,7 @@ export const retailleau: Candidat = {
     {
       id: 'retailleau-m3',
       themeId: 'fiscalite',
-      titre: 'Réduction du nombre d’agents publics',
+      title: 'Réduction du nombre d’agents publics',
       detail: "Non-remplacement d'une partie des départs à la retraite dans la fonction publique d'État.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -123,49 +123,49 @@ export const retailleau: Candidat = {
     {
       id: 'retailleau-m4',
       themeId: 'social',
-      titre: 'Poursuite du recul de l’âge de départ',
+      title: 'Poursuite du recul de l’âge de départ',
       detail: "Allongement de la durée d'activité au-delà de la réforme de 2023 pour équilibrer le système.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'retailleau-f1',
       date: '2024-09-21',
-      titre: 'Nommé ministre de l’Intérieur',
+      title: 'Nommé ministre de l’Intérieur',
       description: "Entre au gouvernement Barnier, où il conduit une ligne de fermeté migratoire et sécuritaire.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['journal-officiel'],
     },
     {
       id: 'retailleau-f2',
       date: '2025-05',
-      titre: 'Élu président des Républicains',
+      title: 'Élu président des Républicains',
       description: "Prend la tête du parti à l'issue d'un vote des adhérents.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'retailleau-f3',
       date: '2010',
-      titre: 'Président du conseil régional des Pays de la Loire (2010-2015)',
+      title: 'Président du conseil régional des Pays de la Loire (2010-2015)',
       description: "Dirige l'exécutif régional, expérience qu'il met en avant sur la gestion budgétaire.",
-      categorie: 'mandat',
-      portee: 'notable',
+      category: 'mandat',
+      scope: 'notable',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [],
-  indicateurs: [
-    { id: 'retailleau-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'retailleau-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'retailleau-i2', label: 'Années de mandat parlementaire', valeur: 'Plus de 25 ans', periode: '1994-2026', verification: 'a-verifier', sourceIds: ['senat'] },
+  legal: [],
+  indicators: [
+    { id: 'retailleau-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'retailleau-i1', label: 'Condamnations connues', value: 'Aucune', period: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'retailleau-i2', label: 'Années de mandat parlementaire', value: 'Plus de 25 ans', period: '1994-2026', verification: 'a-verifier', sourceIds: ['senat'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

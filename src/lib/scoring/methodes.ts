@@ -1,6 +1,6 @@
-import type { MatriceDecision } from './matrice'
-import { normaliserAbsolu, normaliserPoids, normaliserVectoriel } from './matrice'
-import type { MethodeAgregation } from '@/data/types'
+import type { DecisionMatrix } from './matrice'
+import { normalizeAbsolute, normalizeWeights, normalizeVector } from './matrice'
+import type { AggregationMethod } from '@/data/types'
 
 /**
  * Les quatre familles d'agrégation multicritère proposées.
@@ -20,10 +20,10 @@ import type { MethodeAgregation } from '@/data/types'
  * points, proportionnellement à son poids ». Entièrement compensatoire — une
  * excellence sur un critère peut effacer une faiblesse sur un autre.
  */
-export function sommePonderee(m: MatriceDecision): number[] {
-  const poids = normaliserPoids(m.poids)
-  const notes = normaliserAbsolu(m.valeurs)
-  return notes.map((ligne) => ligne.reduce((acc, v, j) => acc + v * poids[j], 0))
+export function weightedSum(m: DecisionMatrix): number[] {
+  const weight = normalizeWeights(m.weight)
+  const ratings = normalizeAbsolute(m.values)
+  return ratings.map((row) => row.reduce((acc, v, j) => acc + v * weight[j], 0))
 }
 
 /**
@@ -38,12 +38,12 @@ export function sommePonderee(m: MatriceDecision): number[] {
  * Les valeurs nulles sont ramenées à un plancher, sinon un seul zéro annule
  * mécaniquement le score entier.
  */
-export function produitPondere(m: MatriceDecision, plancher = 0.02): number[] {
-  const poids = normaliserPoids(m.poids)
-  const notes = normaliserAbsolu(m.valeurs)
-  return notes.map((ligne) =>
+export function weightedProduct(m: DecisionMatrix, floor = 0.02): number[] {
+  const weight = normalizeWeights(m.weight)
+  const ratings = normalizeAbsolute(m.values)
+  return ratings.map((row) =>
     Math.exp(
-      ligne.reduce((acc, v, j) => acc + poids[j] * Math.log(Math.max(plancher, v)), 0),
+      row.reduce((acc, v, j) => acc + weight[j] * Math.log(Math.max(floor, v)), 0),
     ),
   )
 }
@@ -57,28 +57,28 @@ export function produitPondere(m: MatriceDecision, plancher = 0.02): number[] {
  * l'idéal. Sensible au contexte : ajouter ou retirer un candidat peut modifier
  * le classement des autres.
  */
-export function topsis(m: MatriceDecision): number[] {
+export function topsis(m: DecisionMatrix): number[] {
   if (m.alternatives.length === 0) return []
   if (m.alternatives.length === 1) return [1]
-  const poids = normaliserPoids(m.poids)
-  const normalisee = normaliserVectoriel(m.valeurs)
-  const ponderee = normalisee.map((ligne) => ligne.map((v, j) => v * poids[j]))
+  const weight = normalizeWeights(m.weight)
+  const normalized = normalizeVector(m.values)
+  const weighted = normalized.map((row) => row.map((v, j) => v * weight[j]))
 
-  const nbCriteres = ponderee[0].length
+  const criteriaCount = weighted[0].length
   const ideal: number[] = []
   const antiIdeal: number[] = []
-  for (let j = 0; j < nbCriteres; j++) {
-    const colonne = ponderee.map((l) => l[j])
-    ideal.push(Math.max(...colonne))
-    antiIdeal.push(Math.min(...colonne))
+  for (let j = 0; j < criteriaCount; j++) {
+    const column = weighted.map((l) => l[j])
+    ideal.push(Math.max(...column))
+    antiIdeal.push(Math.min(...column))
   }
 
-  return ponderee.map((ligne) => {
+  return weighted.map((row) => {
     let dPlus = 0
     let dMoins = 0
-    for (let j = 0; j < nbCriteres; j++) {
-      dPlus += (ligne[j] - ideal[j]) ** 2
-      dMoins += (ligne[j] - antiIdeal[j]) ** 2
+    for (let j = 0; j < criteriaCount; j++) {
+      dPlus += (row[j] - ideal[j]) ** 2
+      dMoins += (row[j] - antiIdeal[j]) ** 2
     }
     dPlus = Math.sqrt(dPlus)
     dMoins = Math.sqrt(dMoins)
@@ -96,42 +96,42 @@ export function topsis(m: MatriceDecision): number[] {
  * critère, l'ordre entre deux candidats, pas l'ampleur de l'écart. Cela rend la
  * méthode robuste aux notes mal calibrées.
  */
-export function copeland(m: MatriceDecision, indifference = 2): number[] {
+export function copeland(m: DecisionMatrix, indifference = 2): number[] {
   const n = m.alternatives.length
   if (n === 0) return []
   if (n === 1) return [1]
-  const poids = normaliserPoids(m.poids)
-  const bilans = new Array<number>(n).fill(0)
+  const weight = normalizeWeights(m.weight)
+  const reports = new Array<number>(n).fill(0)
 
   for (let a = 0; a < n; a++) {
     for (let b = a + 1; b < n; b++) {
-      let pourA = 0
-      let pourB = 0
-      for (let j = 0; j < m.criteres.length; j++) {
-        const ecart = m.valeurs[a][j] - m.valeurs[b][j]
+      let forA = 0
+      let forB = 0
+      for (let j = 0; j < m.criteria.length; j++) {
+        const spread = m.values[a][j] - m.values[b][j]
         // En deçà du seuil d'indifférence, l'écart de note n'est pas
         // considéré comme significatif : le critère ne départage pas.
-        if (ecart > indifference) pourA += poids[j]
-        else if (ecart < -indifference) pourB += poids[j]
+        if (spread > indifference) forA += weight[j]
+        else if (spread < -indifference) forB += weight[j]
       }
-      if (pourA > pourB) bilans[a] += 1
-      else if (pourB > pourA) bilans[b] += 1
+      if (forA > forB) reports[a] += 1
+      else if (forB > forA) reports[b] += 1
       else {
-        bilans[a] += 0.5
-        bilans[b] += 0.5
+        reports[a] += 0.5
+        reports[b] += 0.5
       }
     }
   }
   // Bilan sur [0, 1] : nombre de duels gagnés rapporté au nombre de duels joués.
-  return bilans.map((v) => v / (n - 1))
+  return reports.map((v) => v / (n - 1))
 }
 
-export function agreger(m: MatriceDecision, methode: MethodeAgregation): number[] {
-  switch (methode) {
+export function aggregate(m: DecisionMatrix, method: AggregationMethod): number[] {
+  switch (method) {
     case 'somme-ponderee':
-      return sommePonderee(m)
+      return weightedSum(m)
     case 'produit-pondere':
-      return produitPondere(m)
+      return weightedProduct(m)
     case 'topsis':
       return topsis(m)
     case 'copeland':
@@ -139,37 +139,37 @@ export function agreger(m: MatriceDecision, methode: MethodeAgregation): number[
   }
 }
 
-export const METHODES: Record<
-  MethodeAgregation,
-  { nom: string; resume: string; quandLUtiliser: string; compensatoire: string }
+export const METHODS: Record<
+  AggregationMethod,
+  { lastName: string; summary: string; whenToUse: string; compensatory: string }
 > = {
   'somme-ponderee': {
-    nom: 'Somme pondérée',
-    resume:
+    lastName: 'Somme pondérée',
+    summary:
       'Chaque critère rapporte des points au prorata de son poids. La méthode la plus simple à relire et à contester.',
-    quandLUtiliser: 'Par défaut, et à chaque fois que vous voulez comprendre exactement d’où vient un écart.',
-    compensatoire: 'Totalement compensatoire : un point fort peut effacer un point faible.',
+    whenToUse: 'Par défaut, et à chaque fois que vous voulez comprendre exactement d’où vient un écart.',
+    compensatory: 'Totalement compensatoire : un point fort peut effacer un point faible.',
   },
   'produit-pondere': {
-    nom: 'Produit pondéré',
-    resume:
+    lastName: 'Produit pondéré',
+    summary:
       'Moyenne géométrique des notes. Une note très basse pèse lourd et n’est pas rattrapée par le reste.',
-    quandLUtiliser:
+    whenToUse:
       'Quand un critère est presque rédhibitoire pour vous — la probité, par exemple — sans que vous vouliez éliminer d’office.',
-    compensatoire: 'Faiblement compensatoire : les faiblesses ne se compensent pas.',
+    compensatory: 'Faiblement compensatoire : les faiblesses ne se compensent pas.',
   },
   topsis: {
-    nom: 'TOPSIS',
-    resume:
+    lastName: 'TOPSIS',
+    summary:
       'Mesure la distance au candidat idéal et au candidat le moins bon, tous deux reconstitués à partir du champ réel.',
-    quandLUtiliser: 'Pour raisonner en termes relatifs : « qui se rapproche le plus du meilleur possible ici ? »',
-    compensatoire: 'Compensatoire, mais dépendante du champ : retirer un candidat peut modifier le classement.',
+    whenToUse: 'Pour raisonner en termes relatifs : « qui se rapproche le plus du meilleur possible ici ? »',
+    compensatory: 'Compensatoire, mais dépendante du champ : retirer un candidat peut modifier le classement.',
   },
   copeland: {
-    nom: 'Duels (Condorcet)',
-    resume:
+    lastName: 'Duels (Condorcet)',
+    summary:
       'Compare les candidats deux à deux et compte les duels gagnés. Seul l’ordre compte, pas l’ampleur des écarts.',
-    quandLUtiliser: 'Quand vous vous méfiez de la précision des notes mais faites confiance à leur ordre.',
-    compensatoire: 'Insensible à l’échelle des notes : robuste aux notes mal calibrées.',
+    whenToUse: 'Quand vous vous méfiez de la précision des notes mais faites confiance à leur ordre.',
+    compensatory: 'Insensible à l’échelle des notes : robuste aux notes mal calibrées.',
   },
 }

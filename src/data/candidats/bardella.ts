@@ -1,40 +1,40 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const bardella: Candidat = {
+export const bardella: Candidate = {
   id: 'bardella',
-  prenom: 'Jordan',
-  nom: 'Bardella',
-  initiales: 'JB',
-  parti: 'Rassemblement national',
-  partiCourt: 'RN',
-  famille: 'droite-nationale',
-  couleurParti: '#1d3f6e',
-  naissance: '1995-09-13',
-  fonctionActuelle: 'Président du Rassemblement national, député européen',
-  statutCandidature: 'pressenti',
-  presentation:
+  firstName: 'Jordan',
+  lastName: 'Bardella',
+  initials: 'JB',
+  party: 'Rassemblement national',
+  partyShort: 'RN',
+  family: 'droite-nationale',
+  partyColor: '#1d3f6e',
+  birth: '1995-09-13',
+  currentRole: 'Président du Rassemblement national, député européen',
+  candidacyStatus: 'pressenti',
+  summary:
     "Président du Rassemblement national depuis 2022, tête de liste victorieuse aux européennes de 2024 et candidat désigné du camp national aux législatives anticipées qui ont suivi. Profil de campagne construit sur le pouvoir d'achat, la sécurité et l'immigration.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'J_Bardella' },
+  socialAccounts: [
+    { platform: 'x', handle: 'J_Bardella' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Rassemblement national — site officiel du parti',
       url: 'https://rassemblementnational.fr/',
       type: 'parti',
       usage: 'Programme et prises de position officielles du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.europarl,
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
+    INSTITUTIONAL_LINKS.europarl,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
   ],
   positions: positions([0, 2, -1, 0, 1, 1, -2, -2, 2, 2, 2, 2, 1, -1, -2, -1]),
-  positionsNotes: {
+  ratedPositions: {
     'ambition-climat': "Opposition frontale au pacte vert européen, présenté comme une charge pour les ménages et les agriculteurs.",
   },
-  notes: [
-    note(
+  ratings: [
+    rating(
       'probite',
       100,
       'moyenne',
@@ -42,7 +42,7 @@ export const bardella: Candidat = {
       ['franceinfo-bardella-parquet-europeen', 'legifrance'],
       'recoupe',
     ),
-    note(
+    rating(
       'antecedents-judiciaires',
       100,
       'moyenne',
@@ -50,44 +50,44 @@ export const bardella: Candidat = {
       ['franceinfo-bardella-parquet-europeen'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       55,
       'faible',
       "Déclarations déposées au titre du mandat européen. Aucun chiffrage de programme présidentiel publié à la date de revue.",
       ['hatvp'],
     ),
-    note(
+    rating(
       'experience',
       18,
       'haute',
       "Aucune fonction exécutive nationale ni locale, aucun mandat parlementaire national. Environ huit ans de mandat européen, soit 12 points, complétés par les points de direction d'organisation au titre de la présidence du parti. Profil le moins expérimenté du panel au sens de ce barème.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'constance',
       72,
       'faible',
       "Carrière politique effectuée dans une seule famille. Inflexions suivant celles du mouvement, notamment sur l'euro et l'OTAN, sans position personnelle antérieure divergente documentée.",
       ['vie-publique'],
     ),
-    note('clarte-programme', 45, 'faible', "Pas de programme présidentiel écrit, chiffré et daté à la date de revue.", ['programme-officiel']),
-    note('credibilite-budgetaire', 45, 'faible', "Le programme législatif de 2024 avait fait l'objet de chiffrages contestés par plusieurs évaluateurs indépendants. Note à refaire sur un programme 2027.", ['institut-montaigne', 'ofce', 'ifrap']),
-    note(
+    rating('clarte-programme', 45, 'faible', "Pas de programme présidentiel écrit, chiffré et daté à la date de revue.", ['programme-officiel']),
+    rating('credibilite-budgetaire', 45, 'faible', "Le programme législatif de 2024 avait fait l'objet de chiffrages contestés par plusieurs évaluateurs indépendants. Note à refaire sur un programme 2027.", ['institut-montaigne', 'ofce', 'ifrap']),
+    rating(
       'etat-de-droit',
       48,
       'faible',
       "Ligne institutionnelle alignée sur celle du mouvement : priorité nationale par voie constitutionnelle et primauté du droit national. Barème appliqué de la même manière que pour les autres candidats du même camp. Critère signalé comme contestable.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       68,
       'moyenne',
       "Premier groupe d'opposition à l'Assemblée nationale, dynamique électorale forte et implantation locale en progression, mais peu d'alliances formalisées et aucune expérience de négociation gouvernementale.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       40,
       'faible',
@@ -95,11 +95,11 @@ export const bardella: Candidat = {
       ['hatvp'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'bardella-m1',
       themeId: 'fiscalite',
-      titre: 'Baisse de la TVA sur l’énergie et exonération pour les jeunes actifs',
+      title: 'Baisse de la TVA sur l’énergie et exonération pour les jeunes actifs',
       detail: "Réduction du taux de TVA sur les produits énergétiques et exonération d'impôt sur le revenu pour les moins de trente ans.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -107,7 +107,7 @@ export const bardella: Candidat = {
     {
       id: 'bardella-m2',
       themeId: 'immigration',
-      titre: 'Restriction du regroupement familial et du droit du sol',
+      title: 'Restriction du regroupement familial et du droit du sol',
       detail: "Durcissement des conditions d'entrée et de séjour, conditionnement de l'acquisition de la nationalité.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -115,7 +115,7 @@ export const bardella: Candidat = {
     {
       id: 'bardella-m3',
       themeId: 'ecologie',
-      titre: 'Abrogation des principales obligations du pacte vert',
+      title: 'Abrogation des principales obligations du pacte vert',
       detail: "Remise en cause des normes européennes sur les véhicules thermiques et les obligations de rénovation.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -123,73 +123,73 @@ export const bardella: Candidat = {
     {
       id: 'bardella-m4',
       themeId: 'securite',
-      titre: 'Peines planchers et places de prison supplémentaires',
+      title: 'Peines planchers et places de prison supplémentaires',
       detail: "Automaticité renforcée des peines pour les récidivistes et programme immobilier pénitentiaire.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'bardella-f1',
       date: '2024-06-09',
-      titre: 'Victoire aux élections européennes',
+      title: 'Victoire aux élections européennes',
       description: "Conduit la liste arrivée nettement en tête du scrutin européen de 2024, déclenchant la dissolution de l'Assemblée nationale.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'bardella-f2',
       date: '2024-07-07',
-      titre: 'Échec au second tour des législatives anticipées',
+      title: 'Échec au second tour des législatives anticipées',
       description: "Malgré un premier tour en tête, son camp n'obtient pas la majorité absolue à l'issue du second tour.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['assemblee'],
     },
     {
       id: 'bardella-f4',
       date: '2026',
-      titre: 'Enquête du Parquet européen',
+      title: 'Enquête du Parquet européen',
       description:
         "Le Parquet européen ouvre une enquête sur des soupçons de fraude autour de formations aux médias liées à la campagne de 2022. Aucune mise en examen à ce stade.",
-      categorie: 'judiciaire',
-      portee: 'notable',
+      category: 'judiciaire',
+      scope: 'notable',
       verification: 'recoupe',
       sourceIds: ['franceinfo-bardella-parquet-europeen', 'anticor-bardella'],
     },
     {
       id: 'bardella-f3',
       date: '2022-11',
-      titre: 'Élu président du Rassemblement national',
+      title: 'Élu président du Rassemblement national',
       description: "Succède à Marine Le Pen à la tête du mouvement.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [
+  legal: [
     {
       id: 'bardella-j1',
-      intitule: 'Enquête du Parquet européen sur des formations aux médias',
-      resume:
+      label: 'Enquête du Parquet européen sur des formations aux médias',
+      summary:
         "Le Parquet européen enquête sur des soupçons de fraude portant sur des formations aux médias dont Jordan Bardella aurait notamment bénéficié lors de la campagne présidentielle de 2022. Le Rassemblement national dénonce une instrumentalisation politique.",
-      statut: 'enquete',
-      juridiction: 'Parquet européen',
-      recours:
+      status: 'enquete',
+      short: 'Parquet européen',
+      appeal:
         "Aucune mise en examen à la date de revue. Une enquête n'établit ni faute ni culpabilité : la présomption d'innocence s'applique pleinement.",
       verification: 'recoupe',
       sourceIds: ['franceinfo-bardella-parquet-europeen', 'anticor-bardella'],
     },
   ],
-  indicateurs: [
-    { id: 'bardella-i1', label: 'Condamnations personnelles connues', valeur: 'Aucune', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'bardella-i3', label: 'Procédures en cours', valeur: 'Une enquête du Parquet européen, sans mise en examen', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['franceinfo-bardella-parquet-europeen', 'anticor-bardella'] },
-    { id: 'bardella-i2', label: 'Mandats exécutifs exercés', valeur: 'Aucun', periode: '2019-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+  indicators: [
+    { id: 'bardella-i1', label: 'Condamnations personnelles connues', value: 'Aucune', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'bardella-i3', label: 'Procédures en cours', value: 'Une enquête du Parquet européen, sans mise en examen', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['franceinfo-bardella-parquet-europeen', 'anticor-bardella'] },
+    { id: 'bardella-i2', label: 'Mandats exécutifs exercés', value: 'Aucun', period: '2019-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

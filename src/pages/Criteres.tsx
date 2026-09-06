@@ -1,30 +1,30 @@
 import { Link } from 'react-router-dom'
-import { EnTetePage } from '@/components/layout/EnTetePage'
-import { Alerte, Badge, Bouton, Carte, Depliant, EnteteCarte } from '@/components/ui/base'
-import { Curseur, GroupeSegmente } from '@/components/ui/controles'
-import { Jauge } from '@/components/charts/Jauge'
-import { criteresParFamille } from '@/data/criteres'
-import { METHODES } from '@/lib/scoring'
-import { useClassement } from '@/hooks/useClassement'
+import { PageHeader } from '@/components/layout/EnTetePage'
+import { Notice, Badge, Button, Card, Disclosure, CardHeader } from '@/components/ui/base'
+import { Slider, SegmentedGroup } from '@/components/ui/controles'
+import { Gauge } from '@/components/charts/Jauge'
+import { criteriaByFamily } from '@/data/criteres'
+import { METHODS } from '@/lib/scoring'
+import { useRanking } from '@/hooks/useClassement'
 import { usePreferences } from '@/lib/store'
-import { pourcent } from '@/lib/format'
-import type { MethodeAgregation } from '@/data/types'
+import { percent } from '@/lib/format'
+import type { AggregationMethod } from '@/data/types'
 
-const LIBELLES_POIDS = ['Ignoré', 'Marginal', 'Faible', 'Moyen', 'Fort', 'Décisif']
+const WEIGHT_LABELS = ['Ignoré', 'Marginal', 'Faible', 'Moyen', 'Fort', 'Décisif']
 
-export function Criteres() {
-  const { preferences, definirPoids, definirSeuil, definirPartProgramme, definirMethode, reinitialiserPoids } =
+export function Criteria() {
+  const { preferences, setWeight, setThreshold, setProgramShare, setMethod, resetWeights } =
     usePreferences()
-  const classement = useClassement()
+  const ranking = useRanking()
 
-  const partCriteres = Math.round((1 - preferences.partProgramme) * 100)
+  const criteriaShare = Math.round((1 - preferences.programShare) * 100)
 
   return (
     <div>
-      <EnTetePage
-        surtitre="Étape 2 sur 3"
-        titre="Qu’attendez-vous d’un président ?"
-        chapo={
+      <PageHeader
+        eyebrow="Étape 2 sur 3"
+        title="Qu’attendez-vous d’un président ?"
+        summary={
           <>
             Chacun applique déjà des critères — un casier vierge, de l’expérience, un programme
             chiffré, une capacité à gouverner. Ici, vous les écrivez et vous leur donnez un poids.
@@ -32,101 +32,101 @@ export function Criteres() {
           </>
         }
         actions={
-          <Bouton variante="discret" taille="petite" onClick={reinitialiserPoids}>
+          <Button variant="discret" size="petite" onClick={resetWeights}>
             Rétablir les poids par défaut
-          </Bouton>
+          </Button>
         }
       />
 
       <div className="grid gap-6 lg:grid-cols-[1fr_20rem]">
         <div className="space-y-6">
-          <Carte>
-            <EnteteCarte
-              titre="Programme ou personne ?"
-              soustitre="Ce que vous regardez en premier : ce qu’un candidat propose, ou ce qu’il est et ce qu’il a fait."
+          <Card>
+            <CardHeader
+              title="Programme ou personne ?"
+              subtitle="Ce que vous regardez en premier : ce qu’un candidat propose, ou ce qu’il est et ce qu’il a fait."
             />
             <div className="p-4 sm:p-5">
-              <Curseur
+              <Slider
                 id="part-programme"
                 label="Poids de l’accord programmatique dans le score final"
-                valeur={Math.round(preferences.partProgramme * 100)}
+                value={Math.round(preferences.programShare * 100)}
                 min={0}
                 max={100}
-                pas={5}
-                valeurAffichee={`${Math.round(preferences.partProgramme * 100)} % programme · ${partCriteres} % critères`}
-                onChange={(v) => definirPartProgramme(v / 100)}
-                aide="À 100 %, seul compte l’accord avec vos réponses au questionnaire. À 0 %, seuls comptent les critères ci-dessous."
+                step={5}
+                displayValue={`${Math.round(preferences.programShare * 100)} % programme · ${criteriaShare} % critères`}
+                onChange={(v) => setProgramShare(v / 100)}
+                help="À 100 %, seul compte l’accord avec vos réponses au questionnaire. À 0 %, seuls comptent les critères ci-dessous."
               />
-              {classement.partProgramme === 1 && preferences.partProgramme < 1 && (
+              {ranking.programShare === 1 && preferences.programShare < 1 && (
                 <div className="mt-4">
-                  <Alerte titre="Tous les critères sont à zéro" ton="neutre" icone="·">
+                  <Notice title="Tous les critères sont à zéro" tone="neutre" icon="·">
                     Le score repose donc entièrement sur l’affinité programmatique, quel que soit le
                     réglage de ce curseur.
-                  </Alerte>
+                  </Notice>
                 </div>
               )}
             </div>
-          </Carte>
+          </Card>
 
-          <Carte>
-            <EnteteCarte
-              titre="Méthode d’agrégation"
-              soustitre="Comment les notes des différents critères se combinent en un score unique."
+          <Card>
+            <CardHeader
+              title="Méthode d’agrégation"
+              subtitle="Comment les notes des différents critères se combinent en un score unique."
             />
             <div className="p-4 sm:p-5">
-              <GroupeSegmente
-                nom="methode"
-                legende="Méthode d’agrégation multicritère"
-                colonnes="grid-cols-2 sm:grid-cols-4"
-                options={(Object.keys(METHODES) as MethodeAgregation[]).map((id) => ({
-                  valeur: id,
-                  label: METHODES[id].nom,
-                  titre: METHODES[id].resume,
+              <SegmentedGroup
+                lastName="methode"
+                legend="Méthode d’agrégation multicritère"
+                columns="grid-cols-2 sm:grid-cols-4"
+                options={(Object.keys(METHODS) as AggregationMethod[]).map((id) => ({
+                  value: id,
+                  label: METHODS[id].lastName,
+                  title: METHODS[id].summary,
                 }))}
-                valeur={preferences.methode}
-                onChange={definirMethode}
+                value={preferences.method}
+                onChange={setMethod}
               />
               <div className="mt-4 rounded-xl bg-surface-2 p-4">
                 <p className="text-[0.85rem] leading-relaxed text-ink">
-                  {METHODES[preferences.methode].resume}
+                  {METHODS[preferences.method].summary}
                 </p>
                 <dl className="mt-3 space-y-1.5 text-[0.8rem]">
                   <div className="flex gap-2">
                     <dt className="shrink-0 font-semibold text-ink-2">Quand l’utiliser :</dt>
-                    <dd className="text-ink-2">{METHODES[preferences.methode].quandLUtiliser}</dd>
+                    <dd className="text-ink-2">{METHODS[preferences.method].whenToUse}</dd>
                   </div>
                   <div className="flex gap-2">
                     <dt className="shrink-0 font-semibold text-ink-2">Compensation :</dt>
-                    <dd className="text-ink-2">{METHODES[preferences.methode].compensatoire}</dd>
+                    <dd className="text-ink-2">{METHODS[preferences.method].compensatory}</dd>
                   </div>
                 </dl>
               </div>
             </div>
-          </Carte>
+          </Card>
 
-          {criteresParFamille.map((famille) => (
-            <Carte key={famille.id}>
-              <EnteteCarte titre={famille.nom} soustitre={famille.resume} />
+          {criteriaByFamily.map((family) => (
+            <Card key={family.id}>
+              <CardHeader title={family.lastName} subtitle={family.summary} />
               <ul className="divide-y divide-[color:var(--pqc-line)]">
-                {famille.criteres.map((critere) => {
-                  const poids = preferences.poids[critere.id] ?? 0
-                  const seuil = preferences.seuils[critere.id] ?? 0
+                {family.criteria.map((criterion) => {
+                  const weight = preferences.weight[criterion.id] ?? 0
+                  const threshold = preferences.thresholds[criterion.id] ?? 0
                   return (
-                    <li key={critere.id} className="p-4 sm:p-5">
+                    <li key={criterion.id} className="p-4 sm:p-5">
                       <div className="flex flex-wrap items-start justify-between gap-2">
                         <div className="min-w-0">
                           <h3 className="text-[0.95rem] font-semibold tracking-tight text-ink">
-                            {critere.nom}
+                            {criterion.lastName}
                           </h3>
                           <p className="mt-0.5 text-[0.82rem] leading-snug text-ink-2">
-                            {critere.resume}
+                            {criterion.summary}
                           </p>
                         </div>
-                        {critere.contestable && (
+                        {criterion.debatable && (
                           <Badge
-                            ton="serious"
-                            icone="≈"
-                            titre="Ce critère repose sur un jugement de valeur que l’on peut refuser."
+                            tone="serious"
+                            icon="≈"
+                            title="Ce critère repose sur un jugement de valeur que l’on peut refuser."
                           >
                             Contestable
                           </Badge>
@@ -134,39 +134,39 @@ export function Criteres() {
                       </div>
 
                       <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                        <Curseur
-                          id={`poids-${critere.id}`}
+                        <Slider
+                          id={`poids-${criterion.id}`}
                           label="Poids"
-                          valeur={poids}
-                          valeurAffichee={LIBELLES_POIDS[poids] ?? String(poids)}
-                          onChange={(v) => definirPoids(critere.id, v)}
+                          value={weight}
+                          displayValue={WEIGHT_LABELS[weight] ?? String(weight)}
+                          onChange={(v) => setWeight(criterion.id, v)}
                         />
-                        <Curseur
-                          id={`seuil-${critere.id}`}
+                        <Slider
+                          id={`seuil-${criterion.id}`}
                           label="Seuil rédhibitoire"
-                          valeur={seuil}
+                          value={threshold}
                           min={0}
                           max={90}
-                          pas={5}
-                          valeurAffichee={seuil === 0 ? 'aucun' : `écarte sous ${seuil}/100`}
-                          onChange={(v) => definirSeuil(critere.id, v)}
-                          aide={
-                            seuil > 0
+                          step={5}
+                          displayValue={threshold === 0 ? 'aucun' : `écarte sous ${threshold}/100`}
+                          onChange={(v) => setThreshold(criterion.id, v)}
+                          help={
+                            threshold > 0
                               ? 'Les candidats sous ce seuil sortent du classement, quels que soient leurs autres résultats.'
                               : undefined
                           }
                         />
                       </div>
 
-                      <Depliant resume="Barème, indicateurs et limites" className="mt-4">
-                        <p className="font-medium text-ink">{critere.question}</p>
+                      <Disclosure summary="Barème, indicateurs et limites" className="mt-4">
+                        <p className="font-medium text-ink">{criterion.question}</p>
 
                         <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-muted">
                           Indicateurs utilisés
                         </p>
                         <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                          {critere.indicateurs.map((indicateur) => (
-                            <li key={indicateur}>{indicateur}</li>
+                          {criterion.indicators.map((indicator) => (
+                            <li key={indicator}>{indicator}</li>
                           ))}
                         </ul>
 
@@ -174,67 +174,67 @@ export function Criteres() {
                           Barème appliqué
                         </p>
                         <ul className="mt-1 list-disc space-y-0.5 pl-5">
-                          {critere.bareme.map((regle) => (
-                            <li key={regle}>{regle}</li>
+                          {criterion.scale.map((rule) => (
+                            <li key={rule}>{rule}</li>
                           ))}
                         </ul>
 
                         <p className="mt-3 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-muted">
                           Ce que la note ne dit pas
                         </p>
-                        <p className="mt-1">{critere.limites}</p>
-                        <p className="mt-2 italic text-muted">{critere.sensLecture}</p>
-                      </Depliant>
+                        <p className="mt-1">{criterion.limits}</p>
+                        <p className="mt-2 italic text-muted">{criterion.readingDirection}</p>
+                      </Disclosure>
                     </li>
                   )
                 })}
               </ul>
-            </Carte>
+            </Card>
           ))}
         </div>
 
         {/* Aperçu vivant : le classement se recalcule à chaque mouvement de curseur. */}
         <aside className="lg:sticky lg:top-20 lg:self-start">
-          <Carte>
-            <EnteteCarte
-              titre="Aperçu en direct"
-              soustitre="Recalculé à chaque réglage."
-              niveau={2}
+          <Card>
+            <CardHeader
+              title="Aperçu en direct"
+              subtitle="Recalculé à chaque réglage."
+              level={2}
             />
             <div className="p-4">
-              {classement.resultats.length === 0 ? (
+              {ranking.results.length === 0 ? (
                 <p className="text-[0.82rem] text-ink-2">
                   Vos seuils écartent tous les candidats. Abaissez-en un pour voir un classement.
                 </p>
               ) : (
                 <ol className="space-y-3">
-                  {classement.resultats.slice(0, 5).map((resultat) => (
-                    <li key={resultat.candidat.id}>
+                  {ranking.results.slice(0, 5).map((result) => (
+                    <li key={result.candidate.id}>
                       <div className="flex items-baseline justify-between gap-2">
                         <span className="truncate text-[0.85rem] font-medium text-ink">
-                          <span className="tabular mr-1.5 text-muted">{resultat.rang}.</span>
-                          {resultat.candidat.nom}
+                          <span className="tabular mr-1.5 text-muted">{result.rank}.</span>
+                          {result.candidate.lastName}
                         </span>
                         <span className="tabular shrink-0 text-[0.8rem] font-semibold text-ink">
-                          {Math.round(resultat.scoreFinal)}
+                          {Math.round(result.finalScore)}
                         </span>
                       </div>
-                      <Jauge valeur={resultat.scoreFinal} compact />
+                      <Gauge value={result.finalScore} compact />
                     </li>
                   ))}
                 </ol>
               )}
 
-              {classement.ecartes.length > 0 && (
+              {ranking.dropped.length > 0 && (
                 <p className="mt-4 border-t border-line pt-3 text-[0.75rem] leading-snug text-muted">
-                  {classement.ecartes.length} candidat(s) écarté(s) par vos seuils rédhibitoires.
+                  {ranking.dropped.length} candidat(s) écarté(s) par vos seuils rédhibitoires.
                 </p>
               )}
 
               <p className="mt-4 border-t border-line pt-3 text-[0.75rem] leading-snug text-muted">
                 Concordance entre les quatre méthodes :{' '}
                 <strong className="font-semibold text-ink-2">
-                  {pourcent(((classement.concordanceMethodes + 1) / 2) * 100)}
+                  {percent(((ranking.methodAgreement + 1) / 2) * 100)}
                 </strong>
                 . Plus elle est haute, moins le choix de la méthode change le résultat.
               </p>
@@ -246,7 +246,7 @@ export function Criteres() {
                 Voir le classement détaillé →
               </Link>
             </div>
-          </Carte>
+          </Card>
         </aside>
       </div>
     </div>

@@ -1,42 +1,42 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const philippe: Candidat = {
+export const philippe: Candidate = {
   id: 'philippe',
-  prenom: 'Édouard',
-  nom: 'Philippe',
-  initiales: 'EP',
-  parti: 'Horizons',
-  partiCourt: 'HOR',
-  famille: 'centre',
-  couleurParti: '#1f6fb2',
-  naissance: '1970-11-28',
-  fonctionActuelle: 'Maire du Havre, président d’Horizons',
-  statutCandidature: 'declare',
-  presentation:
+  firstName: 'Édouard',
+  lastName: 'Philippe',
+  initials: 'EP',
+  party: 'Horizons',
+  partyShort: 'HOR',
+  family: 'centre',
+  partyColor: '#1f6fb2',
+  birth: '1970-11-28',
+  currentRole: 'Maire du Havre, président d’Horizons',
+  candidacyStatus: 'declare',
+  summary:
     "Premier ministre de 2017 à 2020, maire du Havre, il a annoncé publiquement sa candidature à la présidentielle de 2027. Défend une ligne libérale sur l'économie et les finances publiques, conservatrice sur l'ordre public, et une continuité européenne assumée.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'EPhilippe_LH' },
+  socialAccounts: [
+    { platform: 'x', handle: 'EPhilippe_LH' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Horizons — site officiel du parti',
       url: 'https://horizonsleparti.fr/',
       type: 'parti',
       usage: 'Programme et prises de position officielles du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
-    LIENS_INSTITUTIONNELS.legifrance,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
+    INSTITUTIONAL_LINKS.legifrance,
   ],
   positions: positions([2, -1, -2, -2, -2, -2, 1, -2, 1, 1, 1, 1, -1, 1, 1, 2]),
-  positionsNotes: {
+  ratedPositions: {
     'pression-fiscale': "Défend une réduction de la dépense publique comme préalable à toute baisse d'impôts.",
     retraites: "S'est prononcé pour un âge de départ supérieur à 64 ans à terme.",
   },
-  notes: [
-    note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
-    note(
+  ratings: [
+    rating('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    rating(
       'antecedents-judiciaires',
       100,
       'moyenne',
@@ -44,50 +44,50 @@ export const philippe: Candidat = {
       ['legifrance', 'courdecassation'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       80,
       'moyenne',
       "Déclarations HATVP déposées au titre des fonctions de Premier ministre puis de maire, soumises au contrôle renforcé applicable aux membres du gouvernement.",
       ['hatvp'],
     ),
-    note(
+    rating(
       'experience',
       60,
       'haute',
       "Trois années à Matignon, soit 12 points ; plus de dix ans à la tête de l'exécutif havrais, plafonnés à 25 points ; cinq années de mandat parlementaire, soit 7,5 points ; points d'expérience internationale et de direction de grande organisation, dont un passage par la direction des affaires publiques d'un groupe du secteur nucléaire.",
       ['journal-officiel', 'vie-publique'],
     ),
-    note(
+    rating(
       'constance',
       72,
       'faible',
       "Trajectoire allant du gaullisme social à la droite libérale puis au macronisme, avec un changement de famille politique en 2017. Ligne budgétaire et régalienne stable depuis.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'clarte-programme',
       58,
       'faible',
       "Candidature déclarée et corpus d'ouvrages programmatiques publiés, mais programme chiffré et daté encore incomplet à la date de revue.",
       ['programme-officiel'],
     ),
-    note('credibilite-budgetaire', 55, 'faible', "Orientation de réduction du déficit explicitement assumée, mais absence de chiffrage détaillé évalué par des tiers à la date de revue.", ['ofce', 'ifrap', 'cour-des-comptes']),
-    note(
+    rating('credibilite-budgetaire', 55, 'faible', "Orientation de réduction du déficit explicitement assumée, mais absence de chiffrage détaillé évalué par des tiers à la date de revue.", ['ofce', 'ifrap', 'cour-des-comptes']),
+    rating(
       'etat-de-droit',
       78,
       'faible',
       "Aucune proposition affaiblissant explicitement un contre-pouvoir relevée. L'usage du 49.3 pendant son passage à Matignon, notamment sur les retraites en 2020, est pris en compte au titre de l'équilibre avec le Parlement.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       70,
       'moyenne',
       "Réserve de voix large au second tour selon les enquêtes successives, parti doté d'un groupe parlementaire et implantation locale réelle. Précédent de négociation parlementaire aboutie à Matignon.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       64,
       'faible',
@@ -95,11 +95,11 @@ export const philippe: Candidat = {
       ['hatvp', 'hatvp-repertoire'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'philippe-m1',
       themeId: 'fiscalite',
-      titre: 'Réduction de la dépense publique et retour sous 3 % de déficit',
+      title: 'Réduction de la dépense publique et retour sous 3 % de déficit',
       detail: "Trajectoire de désendettement fondée sur la réduction du périmètre de l'État et la revue des dépenses sociales.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -107,7 +107,7 @@ export const philippe: Candidat = {
     {
       id: 'philippe-m2',
       themeId: 'social',
-      titre: 'Nouveau recul de l’âge de départ à la retraite',
+      title: 'Nouveau recul de l’âge de départ à la retraite',
       detail: "Poursuite de l'allongement de la durée d'activité au-delà de l'âge fixé par la réforme de 2023.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -115,7 +115,7 @@ export const philippe: Candidat = {
     {
       id: 'philippe-m3',
       themeId: 'ecologie',
-      titre: 'Relance nucléaire et sobriété industrielle',
+      title: 'Relance nucléaire et sobriété industrielle',
       detail: "Programme de nouveaux réacteurs comme socle de la décarbonation, complété par les renouvelables.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -123,49 +123,49 @@ export const philippe: Candidat = {
     {
       id: 'philippe-m4',
       themeId: 'institutions',
-      titre: 'Réforme du millefeuille territorial',
+      title: 'Réforme du millefeuille territorial',
       detail: "Clarification des compétences entre collectivités et renforcement du bloc communal.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'philippe-f1',
       date: '2017-05-15',
-      titre: 'Nommé Premier ministre',
+      title: 'Nommé Premier ministre',
       description: "Dirige le gouvernement jusqu'en juillet 2020. Son mandat est marqué par la réforme de la SNCF, la crise des Gilets jaunes et le début de la pandémie.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['journal-officiel'],
     },
     {
       id: 'philippe-f2',
       date: '2021-10',
-      titre: 'Fondation d’Horizons',
+      title: 'Fondation d’Horizons',
       description: "Crée son propre parti, positionné à la droite du camp présidentiel.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
     {
       id: 'philippe-f3',
       date: '2024-09',
-      titre: 'Candidature déclarée pour 2027',
+      title: 'Candidature déclarée pour 2027',
       description: "Annonce publiquement son intention de se présenter à l'élection présidentielle de 2027.",
-      categorie: 'prise-de-position',
-      portee: 'majeur',
+      category: 'prise-de-position',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['vie-publique'],
     },
   ],
-  judiciaire: [],
-  indicateurs: [
-    { id: 'philippe-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'philippe-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'philippe-i2', label: 'Années à la tête d’un exécutif', valeur: 'Environ 13 ans', periode: '2010-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+  legal: [],
+  indicators: [
+    { id: 'philippe-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'philippe-i1', label: 'Condamnations connues', value: 'Aucune', period: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'philippe-i2', label: 'Années à la tête d’un exécutif', value: 'Environ 13 ans', period: '2010-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

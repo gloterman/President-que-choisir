@@ -1,8 +1,8 @@
-import type { MatriceDecision } from './matrice'
-import { normaliserPoids } from './matrice'
-import { agreger } from './methodes'
-import { creerRng, dirichlet } from './aleatoire'
-import type { MethodeAgregation } from '@/data/types'
+import type { DecisionMatrix } from './matrice'
+import { normalizeWeights } from './matrice'
+import { aggregate } from './methodes'
+import { createRng, dirichlet } from './aleatoire'
+import type { AggregationMethod } from '@/data/types'
 
 /**
  * Analyse de sensibilité.
@@ -15,99 +15,99 @@ import type { MethodeAgregation } from '@/data/types'
  * indiscernables au vu des données disponibles.
  */
 
-export interface ResultatSensibilite {
+export interface SensitivityResult {
   alternativeId: string
   /** Probabilité d'arriver en tête sur l'ensemble des tirages, 0–1. */
-  probabiliteTete: number
+  topProbability: number
   /** Rang moyen (1 = premier). */
-  rangMoyen: number
+  meanRank: number
   /** Meilleur et pire rang atteints. */
-  rangMin: number
-  rangMax: number
+  minRank: number
+  maxRank: number
 }
 
-export interface AnalyseSensibilite {
-  resultats: ResultatSensibilite[]
+export interface SensitivityAnalysis {
+  results: SensitivityResult[]
   /** Probabilité que le vainqueur du classement affiché reste vainqueur. */
-  stabiliteVainqueur: number
-  tirages: number
+  winnerStability: number
+  draws: number
   /**
    * Lecture prête à afficher de la stabilité du classement.
    */
   verdict: 'robuste' | 'nuance' | 'fragile'
 }
 
-export function analyserSensibilite(
-  matrice: MatriceDecision,
-  methode: MethodeAgregation,
-  options: { tirages?: number; concentration?: number; graine?: number } = {},
-): AnalyseSensibilite {
-  const { tirages = 1000, concentration = 40, graine = 20270422 } = options
-  const n = matrice.alternatives.length
+export function analyzeSensitivity(
+  matrix: DecisionMatrix,
+  method: AggregationMethod,
+  options: { draws?: number; concentration?: number; seed?: number } = {},
+): SensitivityAnalysis {
+  const { draws = 1000, concentration = 40, seed = 20270422 } = options
+  const n = matrix.alternatives.length
 
   if (n === 0) {
-    return { resultats: [], stabiliteVainqueur: 0, tirages: 0, verdict: 'fragile' }
+    return { results: [], winnerStability: 0, draws: 0, verdict: 'fragile' }
   }
   if (n === 1) {
     return {
-      resultats: [
+      results: [
         {
-          alternativeId: matrice.alternatives[0],
-          probabiliteTete: 1,
-          rangMoyen: 1,
-          rangMin: 1,
-          rangMax: 1,
+          alternativeId: matrix.alternatives[0],
+          topProbability: 1,
+          meanRank: 1,
+          minRank: 1,
+          maxRank: 1,
         },
       ],
-      stabiliteVainqueur: 1,
-      tirages: 0,
+      winnerStability: 1,
+      draws: 0,
       verdict: 'robuste',
     }
   }
 
-  const rng = creerRng(graine)
-  const poidsBase = normaliserPoids(matrice.poids)
+  const rng = createRng(seed)
+  const baseWeight = normalizeWeights(matrix.weight)
 
-  const victoires = new Array<number>(n).fill(0)
-  const sommeRangs = new Array<number>(n).fill(0)
-  const rangMin = new Array<number>(n).fill(n)
-  const rangMax = new Array<number>(n).fill(1)
+  const wins = new Array<number>(n).fill(0)
+  const rankSum = new Array<number>(n).fill(0)
+  const minRank = new Array<number>(n).fill(n)
+  const maxRank = new Array<number>(n).fill(1)
 
-  for (let t = 0; t < tirages; t++) {
-    const poids = dirichlet(rng, poidsBase, concentration)
-    const scores = agreger({ ...matrice, poids }, methode)
-    const ordre = scores
+  for (let t = 0; t < draws; t++) {
+    const weight = dirichlet(rng, baseWeight, concentration)
+    const scores = aggregate({ ...matrix, weight }, method)
+    const order = scores
       .map((score, i) => ({ i, score }))
       .sort((a, b) => b.score - a.score)
 
-    ordre.forEach(({ i }, position) => {
-      const rang = position + 1
-      sommeRangs[i] += rang
-      if (rang < rangMin[i]) rangMin[i] = rang
-      if (rang > rangMax[i]) rangMax[i] = rang
+    order.forEach(({ i }, position) => {
+      const rank = position + 1
+      rankSum[i] += rank
+      if (rank < minRank[i]) minRank[i] = rank
+      if (rank > maxRank[i]) maxRank[i] = rank
     })
-    victoires[ordre[0].i] += 1
+    wins[order[0].i] += 1
   }
 
-  const resultats: ResultatSensibilite[] = matrice.alternatives.map((id, i) => ({
+  const results: SensitivityResult[] = matrix.alternatives.map((id, i) => ({
     alternativeId: id,
-    probabiliteTete: victoires[i] / tirages,
-    rangMoyen: sommeRangs[i] / tirages,
-    rangMin: rangMin[i],
-    rangMax: rangMax[i],
+    topProbability: wins[i] / draws,
+    meanRank: rankSum[i] / draws,
+    minRank: minRank[i],
+    maxRank: maxRank[i],
   }))
 
-  const scoresReference = agreger(matrice, methode)
-  const indexVainqueur = scoresReference.reduce(
-    (best, score, i) => (score > scoresReference[best] ? i : best),
+  const referenceScores = aggregate(matrix, method)
+  const winnerIndex = referenceScores.reduce(
+    (best, score, i) => (score > referenceScores[best] ? i : best),
     0,
   )
-  const stabilite = victoires[indexVainqueur] / tirages
+  const stability = wins[winnerIndex] / draws
 
   return {
-    resultats,
-    stabiliteVainqueur: stabilite,
-    tirages,
-    verdict: stabilite >= 0.7 ? 'robuste' : stabilite >= 0.45 ? 'nuance' : 'fragile',
+    results,
+    winnerStability: stability,
+    draws,
+    verdict: stability >= 0.7 ? 'robuste' : stability >= 0.45 ? 'nuance' : 'fragile',
   }
 }

@@ -19,16 +19,16 @@
  */
 
 /** Ce qui parle : la personne, ou le mouvement qu'elle dirige. */
-export type PorteParole = 'candidat' | 'parti'
+export type Speaker = 'candidat' | 'parti'
 
-export interface SourceVeille {
+export interface WatchSource {
   id: string
-  nom: string
-  editeur: string
+  lastName: string
+  publisher: string
   url: string
   /** Réutilisation limitée au titre et au lien, jamais au texte de l'article. */
   licence: string
-  urlConfirmee: boolean
+  urlConfirmed: boolean
 }
 
 /**
@@ -44,7 +44,7 @@ export interface SourceVeille {
  * remplace la configuration, et un site qui change de moteur reste couvert
  * sans intervention.
  */
-export const CHEMINS_FLUX_COURANTS = [
+export const COMMON_FEED_PATHS = [
   '/feed/',
   '/rss',
   '/feed',
@@ -54,13 +54,13 @@ export const CHEMINS_FLUX_COURANTS = [
 ] as const
 
 /** API publique de Bluesky : lecture sans compte ni jeton. */
-export const SOURCE_BLUESKY = {
+export const BLUESKY_SOURCE = {
   id: 'bluesky',
-  nom: 'Bluesky',
-  racine: 'https://public.api.bsky.app',
+  lastName: 'Bluesky',
+  root: 'https://public.api.bsky.app',
   cheminFil: '/xrpc/app.bsky.feed.getAuthorFeed',
   licence: 'Messages publics de leurs auteurs, cités avec lien vers l’original.',
-  urlConfirmee: true,
+  urlConfirmed: true,
 } as const
 
 /**
@@ -71,37 +71,37 @@ export const SOURCE_BLUESKY = {
  * Ils servent de pistes pour le travail humain de vérification, et seuls le
  * titre et le lien sont repris — jamais le texte de l'article.
  */
-export const SOURCES_VEILLE: SourceVeille[] = [
+export const WATCH_SOURCES: WatchSource[] = [
   {
     id: 'decodeurs',
-    nom: 'Les Décodeurs',
-    editeur: 'Le Monde',
+    lastName: 'Les Décodeurs',
+    publisher: 'Le Monde',
     url: 'https://www.lemonde.fr/les-decodeurs/rss_full.xml',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: true,
+    urlConfirmed: true,
   },
   {
     id: 'afp-factuel',
-    nom: 'AFP Factuel',
-    editeur: 'Agence France-Presse',
+    lastName: 'AFP Factuel',
+    publisher: 'Agence France-Presse',
     url: 'https://factuel.afp.com/rss.xml',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: true,
+    urlConfirmed: true,
   },
   {
     id: 'vrai-ou-faux',
-    nom: 'Vrai ou Faux',
-    editeur: 'franceinfo',
+    lastName: 'Vrai ou Faux',
+    publisher: 'franceinfo',
     url: 'https://www.francetvinfo.fr/vrai-ou-fake.rss',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: true,
+    urlConfirmed: true,
   },
   {
     id: 'checknews',
-    nom: 'CheckNews',
-    editeur: 'Libération',
+    lastName: 'CheckNews',
+    publisher: 'Libération',
     url: 'https://www.liberation.fr/arc/outboundfeeds/rss-all/category/checknews/?outputType=xml',
     licence: 'Titre et lien uniquement, avec attribution.',
-    urlConfirmee: true,
+    urlConfirmed: true,
   },
 ]

@@ -1,47 +1,47 @@
 import { Link } from 'react-router-dom'
-import { Carte, Badge } from '@/components/ui/base'
-import { BandeauDonnees } from '@/components/BandeauDonnees'
-import { candidats } from '@/data/candidats'
-import { criteres } from '@/data/criteres'
+import { Card, Badge } from '@/components/ui/base'
+import { DataBanner } from '@/components/BandeauDonnees'
+import { candidates } from '@/data/candidats'
+import { criteria } from '@/data/criteres'
 import { propositions, themes } from '@/data/referentiel'
-import { METHODES } from '@/lib/scoring'
+import { METHODS } from '@/lib/scoring'
 import { usePreferences } from '@/lib/store'
 
-const nbPrincipes = propositions.filter((p) => p.nature === 'principe').length
+const principleCount = propositions.filter((p) => p.nature === 'principe').length
 
-const ETAPES = [
+const STEPS = [
   {
     numero: 1,
-    titre: 'Vous vous situez',
-    texte: `${propositions.length} propositions réparties en ${themes.length} thèmes, dont ${nbPrincipes} arbitrages de principe qui ne dépendent pas de l’actualité. Pour chacune, vous dites si vous êtes d’accord et surtout à quel point le sujet compte pour vous. Un sujet marqué « peu importe » sort entièrement du calcul.`,
-    lien: '/questionnaire',
+    title: 'Vous vous situez',
+    text: `${propositions.length} propositions réparties en ${themes.length} thèmes, dont ${principleCount} arbitrages de principe qui ne dépendent pas de l’actualité. Pour chacune, vous dites si vous êtes d’accord et surtout à quel point le sujet compte pour vous. Un sujet marqué « peu importe » sort entièrement du calcul.`,
+    link: '/questionnaire',
     libelleLien: 'Commencer le questionnaire',
   },
   {
     numero: 2,
-    titre: 'Vous fixez vos exigences',
-    texte: `${criteres.length} critères d’évaluation — probité, antécédents judiciaires, clarté du programme, expérience, respect des institutions… Vous décidez du poids de chacun, et vous pouvez poser des seuils rédhibitoires qui écartent d’office un candidat.`,
-    lien: '/criteres',
+    title: 'Vous fixez vos exigences',
+    text: `${criteria.length} critères d’évaluation — probité, antécédents judiciaires, clarté du programme, expérience, respect des institutions… Vous décidez du poids de chacun, et vous pouvez poser des seuils rédhibitoires qui écartent d’office un candidat.`,
+    link: '/criteres',
     libelleLien: 'Régler mes critères',
   },
   {
     numero: 3,
-    titre: 'Vous obtenez un classement, et sa fragilité',
-    texte:
+    title: 'Vous obtenez un classement, et sa fragilité',
+    text:
       "Quatre méthodes d’agrégation différentes, mille simulations sur vos pondérations, et le décompte honnête de ce qui sépare vraiment les premiers. Un classement qui bascule au moindre réglage, l’outil vous le dit.",
-    lien: '/classement',
+    link: '/classement',
     libelleLien: 'Voir mon classement',
   },
 ]
 
-export function Accueil() {
-  const { progression, nbReponses, nbPropositions } = usePreferences()
-  const commence = nbReponses > 0
+export function Home() {
+  const { progress, answerCount, propositionCount } = usePreferences()
+  const startsWith = answerCount > 0
 
   return (
     <div>
       <section className="py-6 sm:py-10">
-        <Badge ton="accent">Élection présidentielle française · avril 2027</Badge>
+        <Badge tone="accent">Élection présidentielle française · avril 2027</Badge>
         <h1 className="mt-4 max-w-3xl text-[2.1rem] font-semibold leading-[1.1] tracking-tight text-ink sm:text-[3rem]">
           Un outil qui ne vous dit pas pour qui voter.
         </h1>
@@ -54,10 +54,10 @@ export function Accueil() {
 
         <div className="mt-7 flex flex-wrap items-center gap-3">
           <Link
-            to={commence ? '/questionnaire' : '/questionnaire'}
+            to={startsWith ? '/questionnaire' : '/questionnaire'}
             className="inline-flex items-center gap-2 rounded-xl bg-accent px-5 py-2.5 text-[0.9rem] font-semibold text-[var(--pqc-accent-ink)] hover:opacity-90"
           >
-            {commence ? 'Reprendre le questionnaire' : 'Commencer'} →
+            {startsWith ? 'Reprendre le questionnaire' : 'Commencer'} →
           </Link>
           <Link
             to="/methodologie"
@@ -65,16 +65,16 @@ export function Accueil() {
           >
             Comment les notes sont calculées
           </Link>
-          {commence && (
+          {startsWith && (
             <span className="text-[0.8rem] text-muted">
-              {nbReponses} / {nbPropositions} réponses · {Math.round(progression * 100)} %
+              {answerCount} / {propositionCount} réponses · {Math.round(progress * 100)} %
             </span>
           )}
         </div>
       </section>
 
       <div className="my-8">
-        <BandeauDonnees />
+        <DataBanner />
       </div>
 
       <section aria-labelledby="chiffres" className="mb-12">
@@ -83,17 +83,17 @@ export function Accueil() {
         </h2>
         <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
           {[
-            { valeur: candidats.length, label: 'candidats documentés' },
-            { valeur: propositions.length, label: 'propositions du questionnaire' },
-            { valeur: criteres.length, label: 'critères d’évaluation' },
-            { valeur: Object.keys(METHODES).length, label: 'méthodes d’agrégation' },
-          ].map((chiffre) => (
-            <Carte key={chiffre.label} className="p-4">
-              <dt className="text-[0.75rem] leading-snug text-ink-2">{chiffre.label}</dt>
+            { value: candidates.length, label: 'candidats documentés' },
+            { value: propositions.length, label: 'propositions du questionnaire' },
+            { value: criteria.length, label: 'critères d’évaluation' },
+            { value: Object.keys(METHODS).length, label: 'méthodes d’agrégation' },
+          ].map((digit) => (
+            <Card key={digit.label} className="p-4">
+              <dt className="text-[0.75rem] leading-snug text-ink-2">{digit.label}</dt>
               <dd className="mt-1 text-[1.9rem] font-semibold leading-none tracking-tight text-ink">
-                {chiffre.valeur}
+                {digit.value}
               </dd>
-            </Carte>
+            </Card>
           ))}
         </dl>
       </section>
@@ -108,25 +108,25 @@ export function Accueil() {
           critères qui le font gagner.
         </p>
         <ol className="mt-6 grid gap-4 md:grid-cols-3">
-          {ETAPES.map((etape) => (
-            <Carte as="li" key={etape.numero} className="flex flex-col p-5">
+          {STEPS.map((step) => (
+            <Card as="li" key={step.numero} className="flex flex-col p-5">
               <span
                 aria-hidden="true"
                 className="grid h-8 w-8 place-items-center rounded-lg bg-accent-soft text-[0.9rem] font-bold text-ink"
               >
-                {etape.numero}
+                {step.numero}
               </span>
               <h3 className="mt-3.5 text-[1rem] font-semibold tracking-tight text-ink">
-                {etape.titre}
+                {step.title}
               </h3>
-              <p className="mt-2 flex-1 text-[0.85rem] leading-relaxed text-ink-2">{etape.texte}</p>
+              <p className="mt-2 flex-1 text-[0.85rem] leading-relaxed text-ink-2">{step.text}</p>
               <Link
-                to={etape.lien}
+                to={step.link}
                 className="mt-4 text-[0.83rem] font-medium text-accent hover:underline"
               >
-                {etape.libelleLien} →
+                {step.libelleLien} →
               </Link>
-            </Carte>
+            </Card>
           ))}
         </ol>
       </section>
@@ -137,13 +137,13 @@ export function Accueil() {
         </h2>
         <ul className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {themes.map((theme) => (
-            <Carte as="li" key={theme.id} className="p-4">
+            <Card as="li" key={theme.id} className="p-4">
               <span aria-hidden="true" className="text-[1.1rem] text-accent">
-                {theme.icone}
+                {theme.icon}
               </span>
-              <h3 className="mt-1.5 text-[0.9rem] font-semibold text-ink">{theme.nom}</h3>
-              <p className="mt-1 text-[0.78rem] leading-relaxed text-ink-2">{theme.resume}</p>
-            </Carte>
+              <h3 className="mt-1.5 text-[0.9rem] font-semibold text-ink">{theme.lastName}</h3>
+              <p className="mt-1 text-[0.78rem] leading-relaxed text-ink-2">{theme.summary}</p>
+            </Card>
           ))}
         </ul>
       </section>
@@ -155,27 +155,27 @@ export function Accueil() {
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           {[
             {
-              titre: 'Noter des opinions',
-              texte:
+              title: 'Noter des opinions',
+              text:
                 "Aucune position programmatique n’est notée. Vouloir la retraite à 60 ans ou à 65 ans ne rapporte ni ne coûte de points : c’est votre propre position qui sert de référence, pas la nôtre.",
             },
             {
-              titre: 'Cacher son barème',
-              texte:
+              title: 'Cacher son barème',
+              text:
                 "Chaque note affiche la règle qui l’a produite, les indicateurs utilisés, le niveau de confiance et ce que la note ne dit pas. Les critères discutables sont signalés comme tels et peuvent être mis à zéro.",
             },
             {
-              titre: 'Faire passer une procédure pour une condamnation',
-              texte:
+              title: 'Faire passer une procédure pour une condamnation',
+              text:
                 "Enquête, mise en examen, condamnation frappée d’appel et condamnation définitive sont quatre états distincts, affichés distinctement, avec un rappel systématique de la présomption d’innocence.",
             },
-          ].map((principe) => (
-            <Carte key={principe.titre} className="p-5">
+          ].map((principle) => (
+            <Card key={principle.title} className="p-5">
               <h3 className="text-[0.95rem] font-semibold tracking-tight text-ink">
-                {principe.titre}
+                {principle.title}
               </h3>
-              <p className="mt-2 text-[0.85rem] leading-relaxed text-ink-2">{principe.texte}</p>
-            </Carte>
+              <p className="mt-2 text-[0.85rem] leading-relaxed text-ink-2">{principle.text}</p>
+            </Card>
           ))}
         </div>
       </section>

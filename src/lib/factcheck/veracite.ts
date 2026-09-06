@@ -1,5 +1,5 @@
-import { VERDICTS, type InstantaneFactCheck, type Verdict } from '@/data/factcheck'
-import type { Confiance, NoteCritere } from '@/data/types'
+import { VERDICTS, type FactCheckSnapshot, type Verdict } from '@/data/factcheck'
+import type { Confidence, CriterionRating } from '@/data/types'
 
 /**
  * Calcul de la note « Rapport aux faits » à partir des vérifications publiées.
@@ -15,66 +15,66 @@ import type { Confiance, NoteCritere } from '@/data/types'
  *   Confiance = faible en dessous de dix vérifications
  */
 
-const ECHANTILLON_MINIMAL = 10
-const ECHANTILLON_CONFORTABLE = 20
+const MINIMUM_SAMPLE = 10
+const COMFORTABLE_SAMPLE = 20
 
-export interface BilanVeracite {
-  candidatId: string
+export interface AccuracyReport {
+  candidateId: string
   /** Vérifications retenues dans le calcul. */
-  effectif: number
+  effective: number
   /** Détail par verdict, y compris ceux qui ne comptent pas dans la note. */
-  parVerdict: Record<Verdict, number>
+  byVerdict: Record<Verdict, number>
   /** Nombre de citations collectées mais pas encore examinées. */
-  enAttente: number
-  note: number
-  confiance: Confiance
-  rectifications: number
-  reprisesApresDementi: number
+  pending: number
+  rating: number
+  confidence: Confidence
+  corrections: number
+  repeatsAfterDenial: number
 }
 
-export function bilanVeracite(
-  instantane: InstantaneFactCheck,
-  candidatId: string,
-): BilanVeracite | null {
-  const citations = new Map(
-    instantane.citations.filter((c) => c.candidatId === candidatId).map((c) => [c.id, c]),
+export function accuracyReport(
+  snapshot: FactCheckSnapshot,
+  candidateId: string,
+): AccuracyReport | null {
+  const quotes = new Map(
+    snapshot.quotes.filter((c) => c.candidateId === candidateId).map((c) => [c.id, c]),
   )
-  if (citations.size === 0) return null
+  if (quotes.size === 0) return null
 
-  const verifications = instantane.verifications.filter((v) => citations.has(v.citationId))
+  const verifications = snapshot.verifications.filter((v) => quotes.has(v.quoteId))
 
-  const parVerdict = Object.fromEntries(
+  const byVerdict = Object.fromEntries(
     (Object.keys(VERDICTS) as Verdict[]).map((v) => [v, 0]),
   ) as Record<Verdict, number>
-  for (const verification of verifications) parVerdict[verification.verdict]++
+  for (const verification of verifications) byVerdict[verification.verdict]++
 
-  const enAttente = citations.size - verifications.length + parVerdict['en-attente']
+  const pending = quotes.size - verifications.length + byVerdict['en-attente']
 
-  const comptees = verifications.filter((v) => VERDICTS[v.verdict].compteDansLaNote)
-  if (comptees.length === 0) return null
+  const counted = verifications.filter((v) => VERDICTS[v.verdict].countsInRating)
+  if (counted.length === 0) return null
 
-  const exactes = comptees.filter(
+  const accurate = counted.filter(
     (v) => v.verdict === 'exact' || v.verdict === 'plutot-exact',
   ).length
-  const rectifications = verifications.filter((v) => v.rectificationPublique).length
-  const reprises = verifications.filter((v) => v.repriseApresDementi).length
+  const corrections = verifications.filter((v) => v.publicCorrection).length
+  const retries = verifications.filter((v) => v.repeatedAfterDenial).length
 
-  const brute = (exactes / comptees.length) * 100 + (rectifications > 0 ? 5 : 0) - reprises * 10
+  const raw = (accurate / counted.length) * 100 + (corrections > 0 ? 5 : 0) - retries * 10
 
   return {
-    candidatId,
-    effectif: comptees.length,
-    parVerdict,
-    enAttente,
-    note: Math.round(Math.min(100, Math.max(0, brute))),
-    confiance:
-      comptees.length >= ECHANTILLON_CONFORTABLE
+    candidateId,
+    effective: counted.length,
+    byVerdict,
+    pending,
+    rating: Math.round(Math.min(100, Math.max(0, raw))),
+    confidence:
+      counted.length >= COMFORTABLE_SAMPLE
         ? 'haute'
-        : comptees.length >= ECHANTILLON_MINIMAL
+        : counted.length >= MINIMUM_SAMPLE
           ? 'moyenne'
           : 'faible',
-    rectifications,
-    reprisesApresDementi: reprises,
+    corrections,
+    repeatsAfterDenial: retries,
   }
 }
 
@@ -86,34 +86,34 @@ export function bilanVeracite(
  * valeur neutre. Publier une note sur trois vérifications serait plus
  * trompeur que de n'en publier aucune.
  */
-export function notesVeraciteDynamiques(
-  instantane: InstantaneFactCheck,
-  candidatIds: string[],
-): Record<string, NoteCritere[]> {
-  const sortie: Record<string, NoteCritere[]> = {}
-  for (const candidatId of candidatIds) {
-    const bilan = bilanVeracite(instantane, candidatId)
-    if (!bilan || bilan.effectif < ECHANTILLON_MINIMAL) continue
-    sortie[candidatId] = [
+export function dynamicAccuracyRatings(
+  snapshot: FactCheckSnapshot,
+  candidateIds: string[],
+): Record<string, CriterionRating[]> {
+  const output: Record<string, CriterionRating[]> = {}
+  for (const candidateId of candidateIds) {
+    const report = accuracyReport(snapshot, candidateId)
+    if (!report || report.effective < MINIMUM_SAMPLE) continue
+    output[candidateId] = [
       {
-        critereId: 'veracite',
-        note: bilan.note,
-        confiance: bilan.confiance,
-        justification:
-          `Calculé sur ${bilan.effectif} vérification(s) publiée(s) : ` +
-          `${bilan.parVerdict.exact + bilan.parVerdict['plutot-exact']} exacte(s) ou plutôt exacte(s), ` +
-          `${bilan.parVerdict.trompeur} trompeuse(s), ` +
-          `${bilan.parVerdict['plutot-faux'] + bilan.parVerdict.faux} fausse(s) ou plutôt fausse(s).` +
-          (bilan.rectifications > 0 ? ' Bonus de rectification publique appliqué.' : '') +
-          (bilan.reprisesApresDementi > 0
-            ? ` Malus pour ${bilan.reprisesApresDementi} reprise(s) d’une affirmation déjà démentie.`
+        criterionId: 'veracite',
+        rating: report.rating,
+        confidence: report.confidence,
+        rationale:
+          `Calculé sur ${report.effective} vérification(s) publiée(s) : ` +
+          `${report.byVerdict.exact + report.byVerdict['plutot-exact']} exacte(s) ou plutôt exacte(s), ` +
+          `${report.byVerdict.trompeur} trompeuse(s), ` +
+          `${report.byVerdict['plutot-faux'] + report.byVerdict.faux} fausse(s) ou plutôt fausse(s).` +
+          (report.corrections > 0 ? ' Bonus de rectification publique appliqué.' : '') +
+          (report.repeatsAfterDenial > 0
+            ? ` Malus pour ${report.repeatsAfterDenial} reprise(s) d’une affirmation déjà démentie.`
             : ''),
         sourceIds: [],
         verification: 'recoupe',
       },
     ]
   }
-  return sortie
+  return output
 }
 
-export { ECHANTILLON_MINIMAL }
+export { MINIMUM_SAMPLE }

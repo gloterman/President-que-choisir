@@ -1,42 +1,42 @@
-import type { Candidat } from '../types'
-import { LIENS_INSTITUTIONNELS, note, positions } from './_helpers'
+import type { Candidate } from '../types'
+import { INSTITUTIONAL_LINKS, rating, positions } from './_helpers'
 
-export const attal: Candidat = {
+export const attal: Candidate = {
   id: 'attal',
-  prenom: 'Gabriel',
-  nom: 'Attal',
-  initiales: 'GA',
-  parti: 'Renaissance',
-  partiCourt: 'RE',
-  famille: 'centre',
-  couleurParti: '#f5a623',
-  naissance: '1989-03-16',
-  fonctionActuelle: 'Député des Hauts-de-Seine, président du parti Renaissance',
-  statutCandidature: 'pressenti',
-  presentation:
+  firstName: 'Gabriel',
+  lastName: 'Attal',
+  initials: 'GA',
+  party: 'Renaissance',
+  partyShort: 'RE',
+  family: 'centre',
+  partyColor: '#f5a623',
+  birth: '1989-03-16',
+  currentRole: 'Député des Hauts-de-Seine, président du parti Renaissance',
+  candidacyStatus: 'pressenti',
+  summary:
     "Plus jeune Premier ministre de la Ve République, en fonction de janvier à septembre 2024, après avoir été porte-parole du gouvernement puis ministre de l'Éducation nationale. Incarne la continuité de la ligne centrale : offre libérale sur l'économie et fermeté sur l'ordre public.",
-  comptesSociaux: [
-    { plateforme: 'x', identifiant: 'GabrielAttal' },
+  socialAccounts: [
+    { platform: 'x', handle: 'GabrielAttal' },
   ],
-  liensOfficiels: [
+  officialLinks: [
     {
       label: 'Renaissance — site officiel du parti',
       url: 'https://parti-renaissance.fr/',
       type: 'parti',
       usage: 'Programme et prises de position officielles du mouvement.',
     },
-    LIENS_INSTITUTIONNELS.assemblee,
-    LIENS_INSTITUTIONNELS.hatvp,
-    LIENS_INSTITUTIONNELS.viePublique,
+    INSTITUTIONAL_LINKS.assemblee,
+    INSTITUTIONAL_LINKS.hatvp,
+    INSTITUTIONAL_LINKS.viePublique,
   ],
   positions: positions([2, 0, -1, -1, -2, -1, 1, -2, 1, 1, 1, 1, -1, 0, 2, 2]),
-  positionsNotes: {
+  ratedPositions: {
     retraites: "Défend la réforme de 2023 portant l'âge légal à 64 ans, adoptée sous son camp.",
     'integration-identite': "A porté l'expérimentation de l'uniforme scolaire et l'interdiction de l'abaya à l'école.",
   },
-  notes: [
-    note('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
-    note(
+  ratings: [
+    rating('probite', 100, 'moyenne', "Aucune procédure connue pour atteinte à la probité à la date de revue.", ['legifrance', 'hatvp']),
+    rating(
       'antecedents-judiciaires',
       100,
       'moyenne',
@@ -44,50 +44,50 @@ export const attal: Candidat = {
       ['legifrance', 'courdecassation'],
       'recoupe',
     ),
-    note(
+    rating(
       'transparence',
       80,
       'moyenne',
       "Déclarations HATVP déposées au titre des fonctions ministérielles et du mandat parlementaire, soumises au contrôle renforcé applicable aux membres du gouvernement.",
       ['hatvp'],
     ),
-    note(
+    rating(
       'experience',
       34,
       'haute',
       "Environ six années de fonctions gouvernementales, dont huit mois à Matignon, soit 24 points ; aucun exécutif local ; environ trois années de mandat parlementaire, soit 4,5 points ; points d'expérience internationale au titre des conseils européens et de la direction d'administrations centrales.",
       ['journal-officiel', 'vie-publique'],
     ),
-    note(
+    rating(
       'constance',
       66,
       'faible',
       "Trajectoire partisane marquée par un passage du Parti socialiste au macronisme en 2016, changement assumé publiquement. Plusieurs inflexions documentées sur l'immigration et l'ordre public entre 2017 et 2024.",
       ['vie-publique'],
     ),
-    note(
+    rating(
       'clarte-programme',
       50,
       'faible',
       "Bilan gouvernemental documenté, mais pas de programme présidentiel écrit, chiffré et daté à la date de revue.",
       ['programme-officiel'],
     ),
-    note('credibilite-budgetaire', 50, 'faible', "Aucune évaluation indépendante disponible faute de programme chiffré. Note neutre en attente.", ['ofce', 'cour-des-comptes']),
-    note(
+    rating('credibilite-budgetaire', 50, 'faible', "Aucune évaluation indépendante disponible faute de programme chiffré. Note neutre en attente.", ['ofce', 'cour-des-comptes']),
+    rating(
       'etat-de-droit',
       80,
       'faible',
       "Aucune proposition affaiblissant explicitement un contre-pouvoir relevée. En sens inverse, l'usage répété du 49.3 par les gouvernements auxquels il a appartenu est un élément que ce critère prend en compte au titre de l'équilibre avec le Parlement.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'capacite-rassemblement',
       62,
       'moyenne',
       "Groupe parlementaire significatif, réseau d'élus locaux réel quoique récent, et expérience directe de la négociation de textes dans une assemblée sans majorité absolue.",
       ['assemblee'],
     ),
-    note(
+    rating(
       'engagement-national',
       48,
       'faible',
@@ -95,11 +95,11 @@ export const attal: Candidat = {
       ['hatvp', 'vie-publique'],
     ),
   ],
-  mesures: [
+  measures: [
     {
       id: 'attal-m1',
       themeId: 'economie',
-      titre: 'Poursuite de la baisse des impôts de production',
+      title: 'Poursuite de la baisse des impôts de production',
       detail: "Allégement de la fiscalité pesant sur les entreprises industrielles, présenté comme un levier de réindustrialisation.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -107,7 +107,7 @@ export const attal: Candidat = {
     {
       id: 'attal-m2',
       themeId: 'social',
-      titre: 'Maintien de l’âge légal à 64 ans',
+      title: 'Maintien de l’âge légal à 64 ans',
       detail: "Défense de la réforme de 2023, assortie d'aménagements sur les carrières longues et la pénibilité.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -115,7 +115,7 @@ export const attal: Candidat = {
     {
       id: 'attal-m3',
       themeId: 'securite',
-      titre: 'Réponse pénale renforcée pour les mineurs',
+      title: 'Réponse pénale renforcée pour les mineurs',
       detail: "Comparution immédiate étendue, responsabilisation financière des parents et encadrement renforcé des mineurs multirécidivistes.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
@@ -123,49 +123,49 @@ export const attal: Candidat = {
     {
       id: 'attal-m4',
       themeId: 'international',
-      titre: 'Souveraineté européenne en matière de défense et d’industrie',
+      title: 'Souveraineté européenne en matière de défense et d’industrie',
       detail: "Préférence européenne dans les achats de défense et financements communs pour les technologies critiques.",
       verification: 'estimation',
       sourceIds: ['programme-officiel'],
     },
   ],
-  faits: [
+  facts: [
     {
       id: 'attal-f1',
       date: '2024-01-09',
-      titre: 'Nommé Premier ministre',
+      title: 'Nommé Premier ministre',
       description: "Devient à 34 ans le plus jeune chef de gouvernement de la Ve République. Quitte Matignon en septembre 2024 après la dissolution.",
-      categorie: 'mandat',
-      portee: 'majeur',
+      category: 'mandat',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['journal-officiel'],
     },
     {
       id: 'attal-f2',
       date: '2023-08',
-      titre: 'Interdiction de l’abaya à l’école',
+      title: 'Interdiction de l’abaya à l’école',
       description: "Comme ministre de l'Éducation nationale, interdit le port de l'abaya dans les établissements scolaires publics.",
-      categorie: 'reforme',
-      portee: 'majeur',
+      category: 'reforme',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['legifrance', 'vie-publique'],
     },
     {
       id: 'attal-f3',
       date: '2024-06',
-      titre: 'Campagne des législatives anticipées',
+      title: 'Campagne des législatives anticipées',
       description: "Conduit la campagne du camp présidentiel après la dissolution, qui aboutit à une Assemblée sans majorité.",
-      categorie: 'election',
-      portee: 'majeur',
+      category: 'election',
+      scope: 'majeur',
       verification: 'a-verifier',
       sourceIds: ['assemblee'],
     },
   ],
-  judiciaire: [],
-  indicateurs: [
-    { id: 'attal-i0', label: 'Recherche d’antécédents judiciaires', valeur: 'Effectuée, aucun élément trouvé', periode: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'attal-i1', label: 'Condamnations connues', valeur: 'Aucune', periode: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'attal-i2', label: 'Durée passée à Matignon', valeur: 'Environ 8 mois', periode: '2024', verification: 'a-verifier', sourceIds: ['journal-officiel'] },
+  legal: [],
+  indicators: [
+    { id: 'attal-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
+    { id: 'attal-i1', label: 'Condamnations connues', value: 'Aucune', period: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
+    { id: 'attal-i2', label: 'Durée passée à Matignon', value: 'Environ 8 mois', period: '2024', verification: 'a-verifier', sourceIds: ['journal-officiel'] },
   ],
-  derniereMaj: '2026-08-20',
+  lastUpdated: '2026-08-20',
 }

@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { candidats } from '@/data/candidats'
-import { calculerClassement, type Classement } from '@/lib/scoring'
-import { notesVeraciteDynamiques } from '@/lib/factcheck/veracite'
+import { candidates } from '@/data/candidats'
+import { computeRanking, type Ranking } from '@/lib/scoring'
+import { dynamicAccuracyRatings } from '@/lib/factcheck/veracite'
 import { useFactCheck } from '@/lib/factcheck/store'
 import { usePreferences } from '@/lib/store'
 
@@ -14,21 +14,21 @@ import { usePreferences } from '@/lib/store'
  * permet de le refaire de façon synchrone à chaque déplacement de curseur
  * plutôt que de gérer un état dérivé.
  */
-export function useClassement(): Classement {
+export function useRanking(): Ranking {
   const { preferences } = usePreferences()
-  const { instantane } = useFactCheck()
+  const { snapshot } = useFactCheck()
 
-  const notesDynamiques = useMemo(
+  const dynamicRatings = useMemo(
     () =>
-      notesVeraciteDynamiques(
-        instantane,
-        candidats.map((c) => c.id),
+      dynamicAccuracyRatings(
+        snapshot,
+        candidates.map((c) => c.id),
       ),
-    [instantane],
+    [snapshot],
   )
 
   return useMemo(
-    () => calculerClassement(candidats, preferences, notesDynamiques),
-    [preferences, notesDynamiques],
+    () => computeRanking(candidates, preferences, dynamicRatings),
+    [preferences, dynamicRatings],
   )
 }

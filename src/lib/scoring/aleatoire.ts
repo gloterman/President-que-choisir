@@ -5,11 +5,11 @@
  * mêmes réglages doivent produire exactement les mêmes probabilités, sinon
  * l'utilisateur voit des chiffres bouger sans avoir rien changé.
  */
-export function creerRng(graine = 0x9e3779b9): () => number {
-  let etat = graine >>> 0
+export function createRng(seed = 0x9e3779b9): () => number {
+  let state = seed >>> 0
   return () => {
-    etat = (etat + 0x6d2b79f5) >>> 0
-    let t = etat
+    state = (state + 0x6d2b79f5) >>> 0
+    let t = state
     t = Math.imul(t ^ (t >>> 15), t | 1)
     t ^= t + Math.imul(t ^ (t >>> 7), t | 61)
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296
@@ -17,7 +17,7 @@ export function creerRng(graine = 0x9e3779b9): () => number {
 }
 
 /** Loi normale centrée réduite, par la transformation de Box-Muller. */
-export function normale(rng: () => number): number {
+export function normal(rng: () => number): number {
   let u = 0
   let v = 0
   while (u === 0) u = rng()
@@ -26,15 +26,15 @@ export function normale(rng: () => number): number {
 }
 
 /** Loi Gamma(forme, 1), algorithme de Marsaglia-Tsang. */
-export function gamma(rng: () => number, forme: number): number {
-  if (forme < 1) {
+export function gamma(rng: () => number, shape: number): number {
+  if (shape < 1) {
     // Transformation de Johnk pour les formes inférieures à 1.
-    return gamma(rng, forme + 1) * Math.pow(rng(), 1 / forme)
+    return gamma(rng, shape + 1) * Math.pow(rng(), 1 / shape)
   }
-  const d = forme - 1 / 3
+  const d = shape - 1 / 3
   const c = 1 / Math.sqrt(9 * d)
   for (;;) {
-    const x = normale(rng)
+    const x = normal(rng)
     const v = (1 + c * x) ** 3
     if (v <= 0) continue
     const u = rng()
@@ -52,12 +52,12 @@ export function gamma(rng: () => number, forme: number): number {
  */
 export function dirichlet(
   rng: () => number,
-  poids: number[],
+  weight: number[],
   concentration: number,
 ): number[] {
-  const somme = poids.reduce((a, b) => a + b, 0)
-  if (somme <= 0) return poids.map(() => 1 / Math.max(1, poids.length))
-  const tirages = poids.map((p) => gamma(rng, Math.max(0.05, (p / somme) * concentration)))
-  const total = tirages.reduce((a, b) => a + b, 0)
-  return total > 0 ? tirages.map((t) => t / total) : poids.map((p) => p / somme)
+  const sum = weight.reduce((a, b) => a + b, 0)
+  if (sum <= 0) return weight.map(() => 1 / Math.max(1, weight.length))
+  const draws = weight.map((p) => gamma(rng, Math.max(0.05, (p / sum) * concentration)))
+  const total = draws.reduce((a, b) => a + b, 0)
+  return total > 0 ? draws.map((t) => t / total) : weight.map((p) => p / sum)
 }

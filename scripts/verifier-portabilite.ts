@@ -14,32 +14,32 @@ import { join } from 'node:path'
 
 const DIST = 'dist'
 
-function fichiers(dossier: string): string[] {
-  return readdirSync(dossier).flatMap((entree) => {
-    const chemin = join(dossier, entree)
-    return statSync(chemin).isDirectory() ? fichiers(chemin) : [chemin]
+function files(directory: string): string[] {
+  return readdirSync(directory).flatMap((entry) => {
+    const path = join(directory, entry)
+    return statSync(path).isDirectory() ? files(path) : [path]
   })
 }
 
-const problemes: string[] = []
+const issues: string[] = []
 
 const index = readFileSync(join(DIST, 'index.html'), 'utf8')
 // Les data-URI sont exclues : elles ne désignent aucun emplacement.
-for (const [, attribut, valeur] of index.matchAll(/\b(src|href)="(\/[^"]*)"/g)) {
-  problemes.push(`index.html : ${attribut}="${valeur}" est un chemin absolu`)
+for (const [, attribut, value] of index.matchAll(/\b(src|href)="(\/[^"]*)"/g)) {
+  issues.push(`index.html : ${attribut}="${value}" est un chemin absolu`)
 }
 
 // Le chargement de l'instantané passe par BASE_URL ; s'il est absolu, le
 // fichier de données sera cherché à la racine du domaine.
-for (const chemin of fichiers(DIST).filter((f) => f.endsWith('.js'))) {
-  const source = readFileSync(chemin, 'utf8')
+for (const path of files(DIST).filter((f) => f.endsWith('.js'))) {
+  const source = readFileSync(path, 'utf8')
   if (/["']\/donnees\/factcheck\.json["']/.test(source)) {
-    problemes.push(`${chemin} : l'instantané est référencé par un chemin absolu`)
+    issues.push(`${path} : l'instantané est référencé par un chemin absolu`)
   }
 }
 
-if (problemes.length > 0) {
-  console.error('Archive non portable :\n  ' + problemes.join('\n  '))
+if (issues.length > 0) {
+  console.error('Archive non portable :\n  ' + issues.join('\n  '))
   console.error(
     '\nLe site ne fonctionnerait qu’à l’adresse prévue à la compilation.' +
       '\nVérifier `base` dans vite.config.ts (défaut : "./") et la variable BASE_PATH.',
@@ -47,4 +47,4 @@ if (problemes.length > 0) {
   process.exit(1)
 }
 
-console.log(`Archive portable : ${fichiers(DIST).length} fichier(s), aucun chemin absolu.`)
+console.log(`Archive portable : ${files(DIST).length} fichier(s), aucun chemin absolu.`)

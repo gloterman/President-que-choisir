@@ -1,60 +1,60 @@
 import { useMemo, useState } from 'react'
-import { EnTetePage } from '@/components/layout/EnTetePage'
-import { Bouton, Carte } from '@/components/ui/base'
-import { GroupeSegmente } from '@/components/ui/controles'
-import { Boussole } from '@/components/charts/Boussole'
-import { BandeauDonnees } from '@/components/BandeauDonnees'
-import { CarteCandidat } from '@/components/candidat/CarteCandidat'
-import { candidats, FAMILLES } from '@/data/candidats'
-import { boussoleCandidat, boussoleUtilisateur, calculerAffinite } from '@/lib/scoring'
-import { MAX_COMPARAISON, usePreferences } from '@/lib/store'
-import type { FamillePolitique } from '@/data/types'
+import { PageHeader } from '@/components/layout/EnTetePage'
+import { Button, Card } from '@/components/ui/base'
+import { SegmentedGroup } from '@/components/ui/controles'
+import { Compass } from '@/components/charts/Boussole'
+import { DataBanner } from '@/components/BandeauDonnees'
+import { CandidateCard } from '@/components/candidat/CarteCandidat'
+import { candidates, FAMILIES } from '@/data/candidats'
+import { candidateCompass, userCompass, computeAffinity } from '@/lib/scoring'
+import { MAX_COMPARISON, usePreferences } from '@/lib/store'
+import type { PoliticalFamily } from '@/data/types'
 
-type Tri = 'affinite' | 'spectre' | 'alphabetique'
+type Sort = 'affinite' | 'spectre' | 'alphabetique'
 
-export function Candidats() {
-  const { preferences, basculerComparaison, nbReponses } = usePreferences()
-  const [tri, setTri] = useState<Tri>(nbReponses > 0 ? 'affinite' : 'spectre')
-  const [famille, setFamille] = useState<FamillePolitique | 'toutes'>('toutes')
+export function Candidates() {
+  const { preferences, toggleComparison, answerCount } = usePreferences()
+  const [tri, setTri] = useState<Sort>(answerCount > 0 ? 'affinite' : 'spectre')
+  const [family, setFamille] = useState<PoliticalFamily | 'toutes'>('toutes')
 
-  const affinites = useMemo(
-    () => new Map(candidats.map((c) => [c.id, calculerAffinite(c, preferences.reponses).score])),
-    [preferences.reponses],
+  const affinities = useMemo(
+    () => new Map(candidates.map((c) => [c.id, computeAffinity(c, preferences.answers).score])),
+    [preferences.answers],
   )
 
-  const pointUtilisateur = useMemo(
-    () => boussoleUtilisateur(preferences.reponses),
-    [preferences.reponses],
+  const userPoint = useMemo(
+    () => userCompass(preferences.answers),
+    [preferences.answers],
   )
 
-  const liste = useMemo(() => {
-    const filtres = candidats.filter((c) => famille === 'toutes' || c.famille === famille)
-    const copie = [...filtres]
+  const list = useMemo(() => {
+    const filters = candidates.filter((c) => family === 'toutes' || c.family === family)
+    const copy = [...filters]
     if (tri === 'affinite') {
-      copie.sort((a, b) => (affinites.get(b.id) ?? 0) - (affinites.get(a.id) ?? 0))
+      copy.sort((a, b) => (affinities.get(b.id) ?? 0) - (affinities.get(a.id) ?? 0))
     } else if (tri === 'alphabetique') {
-      copie.sort((a, b) => a.nom.localeCompare(b.nom, 'fr'))
+      copy.sort((a, b) => a.lastName.localeCompare(b.lastName, 'fr'))
     } else {
-      copie.sort((a, b) => FAMILLES[a.famille].ordre - FAMILLES[b.famille].ordre)
+      copy.sort((a, b) => FAMILIES[a.family].order - FAMILIES[b.family].order)
     }
-    return copie
-  }, [famille, tri, affinites])
+    return copy
+  }, [family, tri, affinities])
 
-  const famillesPresentes = useMemo(
+  const presentFamilies = useMemo(
     () =>
-      (Object.keys(FAMILLES) as FamillePolitique[])
-        .filter((f) => candidats.some((c) => c.famille === f))
-        .sort((a, b) => FAMILLES[a].ordre - FAMILLES[b].ordre),
+      (Object.keys(FAMILIES) as PoliticalFamily[])
+        .filter((f) => candidates.some((c) => c.family === f))
+        .sort((a, b) => FAMILIES[a].order - FAMILIES[b].order),
     [],
   )
 
   return (
     <div>
-      <EnTetePage
-        titre="Les candidats"
-        chapo={
+      <PageHeader
+        title="Les candidats"
+        summary={
           <>
-            {candidats.length} personnalités déclarées, pressenties ou envisagées pour avril 2027.
+            {candidates.length} personnalités déclarées, pressenties ou envisagées pour avril 2027.
             Chaque fiche présente le parcours, les mesures, les faits marquants et, le cas échéant,
             la situation judiciaire — avec, à chaque fois, le statut de vérification de la donnée.
           </>
@@ -62,47 +62,47 @@ export function Candidats() {
       />
 
       <div className="mb-6">
-        <BandeauDonnees />
+        <DataBanner />
       </div>
 
-      <Carte className="mb-6 p-4 sm:p-5">
-        <Boussole
-          titre="Où se situent les candidats"
-          soustitre={
-            pointUtilisateur
+      <Card className="mb-6 p-4 sm:p-5">
+        <Compass
+          title="Où se situent les candidats"
+          subtitle={
+            userPoint
               ? 'Votre position est calculée à partir de vos réponses au questionnaire.'
               : 'Répondez au questionnaire pour voir votre propre position apparaître sur la carte.'
           }
-          candidats={candidats.map((candidat) => {
-            const point = boussoleCandidat(candidat)
+          candidates={candidates.map((candidate) => {
+            const point = candidateCompass(candidate)
             return {
-              id: candidat.id,
-              label: `${candidat.prenom} ${candidat.nom}`,
-              initiales: candidat.initiales,
+              id: candidate.id,
+              label: `${candidate.firstName} ${candidate.lastName}`,
+              initials: candidate.initials,
               eco: point.eco,
               soc: point.soc,
             }
           })}
-          utilisateur={pointUtilisateur}
-          note="Chaque point est étiqueté par ses initiales : l’identité ne repose jamais sur la couleur seule. Les deux dimensions sont des combinaisons pondérées des seize axes, décrites dans la méthodologie."
+          user={userPoint}
+          rating="Chaque point est étiqueté par ses initiales : l’identité ne repose jamais sur la couleur seule. Les deux dimensions sont des combinaisons pondérées des seize axes, décrites dans la méthodologie."
         />
-      </Carte>
+      </Card>
 
       <div className="mb-6 grid gap-4 sm:grid-cols-2">
         <div>
           <p className="mb-1.5 text-[0.72rem] font-semibold uppercase tracking-[0.06em] text-muted">
             Trier par
           </p>
-          <GroupeSegmente
-            nom="tri"
-            legende="Trier les candidats"
-            taille="petite"
+          <SegmentedGroup
+            lastName="tri"
+            legend="Trier les candidats"
+            size="petite"
             options={[
-              { valeur: 'affinite' as Tri, label: 'Affinité' },
-              { valeur: 'spectre' as Tri, label: 'Spectre politique' },
-              { valeur: 'alphabetique' as Tri, label: 'Nom' },
+              { value: 'affinite' as Sort, label: 'Affinité' },
+              { value: 'spectre' as Sort, label: 'Spectre politique' },
+              { value: 'alphabetique' as Sort, label: 'Nom' },
             ]}
-            valeur={tri}
+            value={tri}
             onChange={setTri}
           />
         </div>
@@ -111,15 +111,15 @@ export function Candidats() {
             Famille politique
           </p>
           <select
-            value={famille}
-            onChange={(e) => setFamille(e.target.value as FamillePolitique | 'toutes')}
+            value={family}
+            onChange={(e) => setFamille(e.target.value as PoliticalFamily | 'toutes')}
             className="w-full rounded-lg border border-line bg-surface px-3 py-2 text-[0.82rem] text-ink"
             aria-label="Filtrer par famille politique"
           >
             <option value="toutes">Toutes les familles</option>
-            {famillesPresentes.map((f) => (
+            {presentFamilies.map((f) => (
               <option key={f} value={f}>
-                {FAMILLES[f].nom}
+                {FAMILIES[f].lastName}
               </option>
             ))}
           </select>
@@ -127,22 +127,22 @@ export function Candidats() {
       </div>
 
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {liste.map((candidat) => {
-          const enComparaison = preferences.comparaison.includes(candidat.id)
+        {list.map((candidate) => {
+          const inComparison = preferences.comparison.includes(candidate.id)
           return (
-            <li key={candidat.id} className="contents">
-              <CarteCandidat
-                candidat={candidat}
-                affinite={nbReponses > 0 ? affinites.get(candidat.id) : undefined}
+            <li key={candidate.id} className="contents">
+              <CandidateCard
+                candidate={candidate}
+                affinity={answerCount > 0 ? affinities.get(candidate.id) : undefined}
                 actions={
-                  <Bouton
-                    variante={enComparaison ? 'primaire' : 'secondaire'}
-                    taille="petite"
-                    onClick={() => basculerComparaison(candidat.id)}
-                    title={`Comparateur — ${MAX_COMPARAISON} candidats au maximum`}
+                  <Button
+                    variant={inComparison ? 'primaire' : 'secondaire'}
+                    size="petite"
+                    onClick={() => toggleComparison(candidate.id)}
+                    title={`Comparateur — ${MAX_COMPARISON} candidats au maximum`}
                   >
-                    {enComparaison ? 'Dans le comparateur' : 'Comparer'}
-                  </Bouton>
+                    {inComparison ? 'Dans le comparateur' : 'Comparer'}
+                  </Button>
                 }
               />
             </li>
@@ -150,7 +150,7 @@ export function Candidats() {
         })}
       </ul>
 
-      {liste.length === 0 && (
+      {list.length === 0 && (
         <p className="py-12 text-center text-[0.88rem] text-muted">
           Aucun candidat dans cette famille politique.
         </p>

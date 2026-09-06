@@ -1,10 +1,10 @@
-import type { Candidat, MethodeAgregation, NoteCritere, Preferences } from '@/data/types'
-import { criteres } from '@/data/criteres'
-import type { MatriceDecision } from './matrice'
-import { normaliserPoids } from './matrice'
-import { agreger, METHODES } from './methodes'
-import { analyserSensibilite, type AnalyseSensibilite } from './sensibilite'
-import { calculerAffinite, type Affinite } from './affinite'
+import type { Candidate, AggregationMethod, CriterionRating, Preferences } from '@/data/types'
+import { criteria } from '@/data/criteres'
+import type { DecisionMatrix } from './matrice'
+import { normalizeWeights } from './matrice'
+import { aggregate, METHODS } from './methodes'
+import { analyzeSensitivity, type SensitivityAnalysis } from './sensibilite'
+import { computeAffinity, type Affinity } from './affinite'
 
 export * from './matrice'
 export * from './methodes'
@@ -12,67 +12,67 @@ export * from './affinite'
 export * from './sensibilite'
 
 /** Identifiant de la pseudo-colonne « affinité programmatique ». */
-export const COLONNE_AFFINITE = '__affinite'
+export const AFFINITY_COLUMN = '__affinite'
 
 /** Note retenue quand un critère n'est pas documenté pour un candidat. */
-export const NOTE_NEUTRE = 50
+export const NEUTRAL_RATING = 50
 
-export interface ContributionCritere {
-  critereId: string
-  note: number
+export interface CriterionContribution {
+  criterionId: string
+  rating: number
   /** Poids ramené à une somme de 1 sur l'ensemble des colonnes. */
-  poidsNormalise: number
+  normalizedWeight: number
   /** Points apportés au score final, sur 100. */
-  apport: number
+  contribution: number
   /** `true` quand la note est un défaut faute de donnée. */
-  manquante: boolean
+  missing: boolean
 }
 
-export interface ResultatCandidat {
-  candidat: Candidat
-  rang: number
+export interface CandidateResult {
+  candidate: Candidate
+  rank: number
   /** 0–100, selon la méthode retenue. */
-  scoreFinal: number
+  finalScore: number
   /** Somme pondérée des seuls critères de notation, 0–100. */
-  scoreCriteres: number
-  affinite: Affinite
-  contributions: ContributionCritere[]
-  pointsForts: ContributionCritere[]
-  pointsFaibles: ContributionCritere[]
+  criteriaScore: number
+  affinity: Affinity
+  contributions: CriterionContribution[]
+  strengths: CriterionContribution[]
+  weaknesses: CriterionContribution[]
   /** Score obtenu avec chacune des quatre méthodes, 0–100. */
-  scoresParMethode: Record<MethodeAgregation, number>
+  scoresByMethod: Record<AggregationMethod, number>
   /** Rang obtenu avec chacune des quatre méthodes. */
-  rangsParMethode: Record<MethodeAgregation, number>
+  ranksByMethod: Record<AggregationMethod, number>
 }
 
-export interface CandidatEcarte {
-  candidat: Candidat
-  motifs: { critereId: string; note: number; seuil: number }[]
+export interface ExcludedCandidate {
+  candidate: Candidate
+  reasons: { criterionId: string; rating: number; threshold: number }[]
 }
 
-export interface Classement {
-  resultats: ResultatCandidat[]
+export interface Ranking {
+  results: CandidateResult[]
   /** Candidats sortis du classement par un seuil rédhibitoire. */
-  ecartes: CandidatEcarte[]
+  dropped: ExcludedCandidate[]
   /** Candidats retirés à la main par l'utilisateur. */
-  exclus: Candidat[]
-  sensibilite: AnalyseSensibilite
-  matrice: MatriceDecision
+  excluded: Candidate[]
+  sensitivity: SensitivityAnalysis
+  matrix: DecisionMatrix
   /**
    * Concordance moyenne entre les quatre méthodes (tau de Kendall, −1 à 1).
    * Une valeur proche de 1 signifie que le choix de la méthode ne change rien.
    */
-  concordanceMethodes: number
+  methodAgreement: number
   /** Part effective de l'affinité programmatique dans le score, 0–1. */
-  partProgramme: number
+  programShare: number
   /** Nombre de notes manquantes remplacées par la valeur neutre. */
-  notesManquantes: number
+  missingRatings: number
   /**
    * Vrai quand tous les candidats obtiennent le même score : le classement
    * n'ordonne alors rien et l'interface doit le dire plutôt que d'afficher une
    * liste numérotée qui se lirait comme un résultat.
    */
-  classementIndetermine: boolean
+  rankingUndetermined: boolean
 }
 
 /**
@@ -83,37 +83,37 @@ export interface Classement {
  * Le moteur reste pur : il reçoit ces notes en entrée plutôt que d'aller les
  * chercher.
  */
-export type NotesDynamiques = Record<string, NoteCritere[]>
+export type DynamicRatings = Record<string, CriterionRating[]>
 
-function noteDe(
-  candidat: Candidat,
-  critereId: string,
-  dynamiques: NotesDynamiques,
-): { note: number; manquante: boolean } {
-  const dynamique = dynamiques[candidat.id]?.find((n) => n.critereId === critereId)
-  if (dynamique) return { note: dynamique.note, manquante: false }
-  const trouvee = candidat.notes.find((n) => n.critereId === critereId)
-  if (!trouvee) return { note: NOTE_NEUTRE, manquante: true }
-  return { note: trouvee.note, manquante: false }
+function ratingOf(
+  candidate: Candidate,
+  criterionId: string,
+  dynamicRatings: DynamicRatings,
+): { rating: number; missing: boolean } {
+  const dynamic = dynamicRatings[candidate.id]?.find((n) => n.criterionId === criterionId)
+  if (dynamic) return { rating: dynamic.rating, missing: false }
+  const found = candidate.ratings.find((n) => n.criterionId === criterionId)
+  if (!found) return { rating: NEUTRAL_RATING, missing: true }
+  return { rating: found.rating, missing: false }
 }
 
 /** Tau de Kendall entre deux classements donnés sous forme de scores. */
 export function kendallTau(a: number[], b: number[]): number {
   const n = a.length
   if (n < 2) return 1
-  let concordants = 0
-  let discordants = 0
+  let concordant = 0
+  let discordant = 0
   for (let i = 0; i < n; i++) {
     for (let j = i + 1; j < n; j++) {
       const da = a[i] - a[j]
       const db = b[i] - b[j]
-      const produit = da * db
-      if (produit > 0) concordants++
-      else if (produit < 0) discordants++
+      const product = da * db
+      if (product > 0) concordant++
+      else if (product < 0) discordant++
     }
   }
-  const total = concordants + discordants
-  return total === 0 ? 1 : (concordants - discordants) / total
+  const total = concordant + discordant
+  return total === 0 ? 1 : (concordant - discordant) / total
 }
 
 /**
@@ -123,7 +123,7 @@ export function kendallTau(a: number[], b: number[]): number {
  * selon l'ordre des additions flottantes. Les départager reviendrait à
  * classer sur du bruit de calcul.
  */
-const EGALITE = 1e-9
+const TIE_TOLERANCE = 1e-9
 
 /**
  * Rangs avec ex æquo (1, 1, 3…).
@@ -136,18 +136,18 @@ const EGALITE = 1e-9
  * coûté sa crédibilité à Elyze en 2022, où le président sortant sortait
  * premier à égalité parce qu'il était déclaré en premier dans le code.
  */
-export function rangsDepuisScores(scores: number[]): number[] {
-  const ordre = scores.map((s, i) => ({ s, i })).sort((x, y) => y.s - x.s)
-  const rangs = new Array<number>(scores.length).fill(0)
-  let rangCourant = 1
-  ordre.forEach(({ s, i }, position) => {
-    if (position > 0 && Math.abs(s - ordre[position - 1].s) > EGALITE) {
+export function ranksFromScores(scores: number[]): number[] {
+  const order = scores.map((s, i) => ({ s, i })).sort((x, y) => y.s - x.s)
+  const ranks = new Array<number>(scores.length).fill(0)
+  let currentRank = 1
+  order.forEach(({ s, i }, position) => {
+    if (position > 0 && Math.abs(s - order[position - 1].s) > TIE_TOLERANCE) {
       // Rang « compétition » : après deux premiers ex æquo vient le troisième.
-      rangCourant = position + 1
+      currentRank = position + 1
     }
-    rangs[i] = rangCourant
+    ranks[i] = currentRank
   })
-  return rangs
+  return ranks
 }
 
 /**
@@ -158,122 +158,122 @@ export function rangsDepuisScores(scores: number[]): number[] {
  * Les quatre méthodes s'appliquent donc à la même matrice, et « 70 % de
  * programme » veut dire la même chose quelle que soit la méthode retenue.
  */
-export function calculerClassement(
-  tousCandidats: Candidat[],
+export function computeRanking(
+  allCandidates: Candidate[],
   preferences: Preferences,
-  notesDynamiques: NotesDynamiques = {},
-): Classement {
-  const exclus = tousCandidats.filter((c) => preferences.exclus.includes(c.id))
-  const candidatsRetenus = tousCandidats.filter((c) => !preferences.exclus.includes(c.id))
+  dynamicRatings: DynamicRatings = {},
+): Ranking {
+  const excluded = allCandidates.filter((c) => preferences.excluded.includes(c.id))
+  const keptCandidates = allCandidates.filter((c) => !preferences.excluded.includes(c.id))
 
   // 1. Seuils rédhibitoires — appliqués avant toute agrégation.
-  const ecartes: CandidatEcarte[] = []
-  const enLice: Candidat[] = []
-  for (const candidat of candidatsRetenus) {
-    const motifs = Object.entries(preferences.seuils)
-      .filter(([, seuil]) => seuil > 0)
-      .map(([critereId, seuil]) => ({
-        critereId,
-        note: noteDe(candidat, critereId, notesDynamiques).note,
-        seuil,
+  const dropped: ExcludedCandidate[] = []
+  const inContention: Candidate[] = []
+  for (const candidate of keptCandidates) {
+    const reasons = Object.entries(preferences.thresholds)
+      .filter(([, threshold]) => threshold > 0)
+      .map(([criterionId, threshold]) => ({
+        criterionId,
+        rating: ratingOf(candidate, criterionId, dynamicRatings).rating,
+        threshold,
       }))
-      .filter((m) => m.note < m.seuil)
-    if (motifs.length > 0) ecartes.push({ candidat, motifs })
-    else enLice.push(candidat)
+      .filter((m) => m.rating < m.threshold)
+    if (reasons.length > 0) dropped.push({ candidate, reasons })
+    else inContention.push(candidate)
   }
 
   // 2. Affinités.
-  const affinites = new Map<string, Affinite>(
-    tousCandidats.map((c) => [c.id, calculerAffinite(c, preferences.reponses)]),
+  const affinities = new Map<string, Affinity>(
+    allCandidates.map((c) => [c.id, computeAffinity(c, preferences.answers)]),
   )
 
   // 3. Matrice de décision : critères pondérés + colonne d'affinité.
-  const criteresActifs = criteres.filter((c) => (preferences.poids[c.id] ?? 0) > 0)
-  const sommePoidsCriteres = criteresActifs.reduce((acc, c) => acc + preferences.poids[c.id], 0)
-  const partProgramme =
-    sommePoidsCriteres <= 0 ? 1 : Math.min(1, Math.max(0, preferences.partProgramme))
+  const activeCriteria = criteria.filter((c) => (preferences.weight[c.id] ?? 0) > 0)
+  const criteriaWeightSum = activeCriteria.reduce((acc, c) => acc + preferences.weight[c.id], 0)
+  const programShare =
+    criteriaWeightSum <= 0 ? 1 : Math.min(1, Math.max(0, preferences.programShare))
 
-  const colonnes = [...criteresActifs.map((c) => c.id), COLONNE_AFFINITE]
-  const poidsColonnes = [
-    ...criteresActifs.map(
-      (c) => (preferences.poids[c.id] / (sommePoidsCriteres || 1)) * (1 - partProgramme),
+  const columns = [...activeCriteria.map((c) => c.id), AFFINITY_COLUMN]
+  const columnWeights = [
+    ...activeCriteria.map(
+      (c) => (preferences.weight[c.id] / (criteriaWeightSum || 1)) * (1 - programShare),
     ),
-    partProgramme,
+    programShare,
   ]
 
-  let notesManquantes = 0
-  const valeurs = enLice.map((candidat) => {
-    const ligne = criteresActifs.map((c) => {
-      const { note, manquante } = noteDe(candidat, c.id, notesDynamiques)
-      if (manquante) notesManquantes++
-      return note
+  let missingRatings = 0
+  const values = inContention.map((candidate) => {
+    const row = activeCriteria.map((c) => {
+      const { rating, missing } = ratingOf(candidate, c.id, dynamicRatings)
+      if (missing) missingRatings++
+      return rating
     })
-    ligne.push(affinites.get(candidat.id)!.score)
-    return ligne
+    row.push(affinities.get(candidate.id)!.score)
+    return row
   })
 
-  const matrice: MatriceDecision = {
-    alternatives: enLice.map((c) => c.id),
-    criteres: colonnes,
-    valeurs,
-    poids: poidsColonnes,
+  const matrix: DecisionMatrix = {
+    alternatives: inContention.map((c) => c.id),
+    criteria: columns,
+    values,
+    weight: columnWeights,
   }
 
   // 4. Scores selon les quatre méthodes.
-  const methodes = Object.keys(METHODES) as MethodeAgregation[]
-  const scoresParMethode = new Map<MethodeAgregation, number[]>(
-    methodes.map((m) => [m, agreger(matrice, m)]),
+  const methods = Object.keys(METHODS) as AggregationMethod[]
+  const scoresByMethod = new Map<AggregationMethod, number[]>(
+    methods.map((m) => [m, aggregate(matrix, m)]),
   )
-  const rangsParMethode = new Map<MethodeAgregation, number[]>(
-    methodes.map((m) => [m, rangsDepuisScores(scoresParMethode.get(m)!)]),
+  const ranksByMethod = new Map<AggregationMethod, number[]>(
+    methods.map((m) => [m, ranksFromScores(scoresByMethod.get(m)!)]),
   )
 
-  const scoresRetenus = scoresParMethode.get(preferences.methode)!
-  const poidsNormalises = normaliserPoids(poidsColonnes)
+  const selectedScores = scoresByMethod.get(preferences.method)!
+  const normalizedWeights = normalizeWeights(columnWeights)
 
-  const ordonnes = enLice
-    .map((candidat, i) => {
-      const contributions: ContributionCritere[] = colonnes.map((critereId, j) => {
-        const note = valeurs[i][j]
-        const manquante =
-          critereId !== COLONNE_AFFINITE && noteDe(candidat, critereId, notesDynamiques).manquante
+  const ordered = inContention
+    .map((candidate, i) => {
+      const contributions: CriterionContribution[] = columns.map((criterionId, j) => {
+        const rating = values[i][j]
+        const missing =
+          criterionId !== AFFINITY_COLUMN && ratingOf(candidate, criterionId, dynamicRatings).missing
         return {
-          critereId,
-          note,
-          poidsNormalise: poidsNormalises[j],
-          apport: poidsNormalises[j] * note,
-          manquante,
+          criterionId,
+          rating,
+          normalizedWeight: normalizedWeights[j],
+          contribution: normalizedWeights[j] * rating,
+          missing,
         }
       })
 
-      const contributionsCriteres = contributions.filter((c) => c.critereId !== COLONNE_AFFINITE)
-      const poidsCriteresSeuls = contributionsCriteres.reduce((a, c) => a + c.poidsNormalise, 0)
-      const scoreCriteres =
-        poidsCriteresSeuls > 0
-          ? contributionsCriteres.reduce((a, c) => a + c.apport, 0) / poidsCriteresSeuls
-          : NOTE_NEUTRE
+      const criteriaContributions = contributions.filter((c) => c.criterionId !== AFFINITY_COLUMN)
+      const criteriaOnlyWeight = criteriaContributions.reduce((a, c) => a + c.normalizedWeight, 0)
+      const criteriaScore =
+        criteriaOnlyWeight > 0
+          ? criteriaContributions.reduce((a, c) => a + c.contribution, 0) / criteriaOnlyWeight
+          : NEUTRAL_RATING
 
-      const classees = [...contributions].sort((a, b) => b.apport - a.apport)
-      const significatives = classees.filter((c) => c.poidsNormalise > 0.01)
+      const sorted = [...contributions].sort((a, b) => b.contribution - a.contribution)
+      const significant = sorted.filter((c) => c.normalizedWeight > 0.01)
 
       return {
-        candidat,
-        rang: 0,
-        scoreFinal: scoresRetenus[i] * 100,
-        scoreCriteres,
-        affinite: affinites.get(candidat.id)!,
+        candidate,
+        rank: 0,
+        finalScore: selectedScores[i] * 100,
+        criteriaScore,
+        affinity: affinities.get(candidate.id)!,
         contributions,
-        pointsForts: significatives.filter((c) => c.note >= 65).slice(0, 3),
-        pointsFaibles: significatives
-          .filter((c) => c.note <= 45)
-          .sort((a, b) => a.note - b.note)
+        strengths: significant.filter((c) => c.rating >= 65).slice(0, 3),
+        weaknesses: significant
+          .filter((c) => c.rating <= 45)
+          .sort((a, b) => a.rating - b.rating)
           .slice(0, 3),
-        scoresParMethode: Object.fromEntries(
-          methodes.map((m) => [m, scoresParMethode.get(m)![i] * 100]),
-        ) as Record<MethodeAgregation, number>,
-        rangsParMethode: Object.fromEntries(
-          methodes.map((m) => [m, rangsParMethode.get(m)![i]]),
-        ) as Record<MethodeAgregation, number>,
+        scoresByMethod: Object.fromEntries(
+          methods.map((m) => [m, scoresByMethod.get(m)![i] * 100]),
+        ) as Record<AggregationMethod, number>,
+        ranksByMethod: Object.fromEntries(
+          methods.map((m) => [m, ranksByMethod.get(m)![i]]),
+        ) as Record<AggregationMethod, number>,
       }
     })
     // À égalité de score, l'ordre d'affichage est alphabétique. Il reste
@@ -285,11 +285,11 @@ export function calculerClassement(
     // celui du spectre politique, et s'en servir revenait à faire trancher une
     // égalité par la position politique du candidat.
     .sort(
-      (a, b) => b.scoreFinal - a.scoreFinal || a.candidat.nom.localeCompare(b.candidat.nom, 'fr'),
+      (a, b) => b.finalScore - a.finalScore || a.candidate.lastName.localeCompare(b.candidate.lastName, 'fr'),
     )
 
-  const rangs = rangsDepuisScores(ordonnes.map((r) => r.scoreFinal))
-  const resultats: ResultatCandidat[] = ordonnes.map((r, i) => ({ ...r, rang: rangs[i] }))
+  const ranks = ranksFromScores(ordered.map((r) => r.finalScore))
+  const results: CandidateResult[] = ordered.map((r, i) => ({ ...r, rank: ranks[i] }))
 
   /**
    * Aucun écart entre le premier et le dernier : le classement ne veut rien
@@ -297,32 +297,32 @@ export function calculerClassement(
    * et il n'est pas rare. Afficher quand même une liste numérotée donnerait à
    * lire un classement là où il n'y a qu'un ordre d'affichage.
    */
-  const classementIndetermine =
-    ordonnes.length > 1 &&
-    Math.abs(ordonnes[0].scoreFinal - ordonnes[ordonnes.length - 1].scoreFinal) <= EGALITE
+  const rankingUndetermined =
+    ordered.length > 1 &&
+    Math.abs(ordered[0].finalScore - ordered[ordered.length - 1].finalScore) <= TIE_TOLERANCE
 
   // 5. Concordance entre méthodes : moyenne des tau de Kendall deux à deux.
-  let sommeTau = 0
-  let paires = 0
-  for (let i = 0; i < methodes.length; i++) {
-    for (let j = i + 1; j < methodes.length; j++) {
-      sommeTau += kendallTau(
-        scoresParMethode.get(methodes[i])!,
-        scoresParMethode.get(methodes[j])!,
+  let tauSum = 0
+  let pairs = 0
+  for (let i = 0; i < methods.length; i++) {
+    for (let j = i + 1; j < methods.length; j++) {
+      tauSum += kendallTau(
+        scoresByMethod.get(methods[i])!,
+        scoresByMethod.get(methods[j])!,
       )
-      paires++
+      pairs++
     }
   }
 
   return {
-    resultats,
-    ecartes,
-    exclus,
-    sensibilite: analyserSensibilite(matrice, preferences.methode),
-    matrice,
-    concordanceMethodes: paires > 0 ? sommeTau / paires : 1,
-    partProgramme,
-    notesManquantes,
-    classementIndetermine,
+    results,
+    dropped,
+    excluded,
+    sensitivity: analyzeSensitivity(matrix, preferences.method),
+    matrix,
+    methodAgreement: pairs > 0 ? tauSum / pairs : 1,
+    programShare,
+    missingRatings,
+    rankingUndetermined,
   }
 }

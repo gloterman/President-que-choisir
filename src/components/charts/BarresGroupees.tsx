@@ -1,10 +1,10 @@
-import { Figure, couleurSerie, type EntreeLegende, type Tableau } from './primitives'
+import { Figure, seriesColor, type LegendEntry, type Table } from './primitives'
 
-export interface GroupeBarres {
+export interface BarGroup {
   /** Libellé de la catégorie, en abscisse. */
-  categorie: string
+  category: string
   /** Une valeur 0–100 par série, ou `null` si non applicable. */
-  valeurs: (number | null)[]
+  values: (number | null)[]
 }
 
 /**
@@ -14,66 +14,66 @@ export interface GroupeBarres {
  * la surface — jamais par un contour, qui ajouterait de l'encre sans ajouter
  * d'information.
  */
-export function BarresGroupees({
-  titre,
-  soustitre,
+export function GroupedBars({
+  title,
+  subtitle,
   series,
-  groupes,
-  note,
-  unite = ' %',
+  groups,
+  rating,
+  unit = ' %',
 }: {
-  titre: string
-  soustitre?: string
+  title: string
+  subtitle?: string
   series: { id: string; label: string }[]
-  groupes: GroupeBarres[]
-  note?: string
-  unite?: string
+  groups: BarGroup[]
+  rating?: string
+  unit?: string
 }) {
-  const legende: EntreeLegende[] = series.map((serie, i) => ({
-    label: serie.label,
-    couleur: couleurSerie(i),
+  const legend: LegendEntry[] = series.map((series, i) => ({
+    label: series.label,
+    color: seriesColor(i),
   }))
 
-  const tableau: Tableau = {
-    entetes: ['Thème', ...series.map((s) => s.label)],
-    lignes: groupes.map((g) => [
-      g.categorie,
-      ...g.valeurs.map((v) => (v === null ? 'non exprimé' : Math.round(v))),
+  const table: Table = {
+    headers: ['Thème', ...series.map((s) => s.label)],
+    rows: groups.map((g) => [
+      g.category,
+      ...g.values.map((v) => (v === null ? 'non exprimé' : Math.round(v))),
     ]),
-    legende: titre,
+    legend: title,
   }
 
   return (
     <Figure
-      titre={titre}
-      soustitre={soustitre}
-      legende={series.length >= 2 ? legende : undefined}
-      tableau={tableau}
-      note={note}
+      title={title}
+      subtitle={subtitle}
+      legend={series.length >= 2 ? legend : undefined}
+      table={table}
+      rating={rating}
     >
       <ul className="space-y-3.5">
-        {groupes.map((groupe) => (
-          <li key={groupe.categorie}>
-            <p className="text-[0.8rem] font-medium text-ink">{groupe.categorie}</p>
+        {groups.map((group) => (
+          <li key={group.category}>
+            <p className="text-[0.8rem] font-medium text-ink">{group.category}</p>
             <div className="mt-1.5 space-y-[2px]">
-              {groupe.valeurs.map((valeur, i) => (
+              {group.values.map((value, i) => (
                 <div key={series[i]?.id ?? i} className="flex items-center gap-2">
                   <div
                     className="h-3 min-w-0 flex-1 overflow-hidden rounded-r-[4px]"
                     style={{ background: 'var(--pqc-surface-3)' }}
                   >
-                    {valeur !== null && (
+                    {value !== null && (
                       <div
                         className="h-full rounded-r-[4px]"
                         style={{
-                          width: `${Math.max(0, Math.min(100, valeur))}%`,
-                          background: couleurSerie(i),
+                          width: `${Math.max(0, Math.min(100, value))}%`,
+                          background: seriesColor(i),
                         }}
                       />
                     )}
                   </div>
                   <span className="tabular w-16 shrink-0 text-right text-[0.75rem] text-ink-2">
-                    {valeur === null ? '—' : `${Math.round(valeur)}${unite}`}
+                    {value === null ? '—' : `${Math.round(value)}${unit}`}
                   </span>
                 </div>
               ))}
