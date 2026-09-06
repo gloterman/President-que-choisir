@@ -28,10 +28,14 @@ jobs:
       - run: npm ci
 
       - name: Build
-        # Le site est servi depuis un sous-chemin sur GitHub Pages.
+        # Aucun BASE_PATH : l'archive est en chemins relatifs et fonctionne
+        # aussi bien sous le sous-chemin de GitHub Pages qu'à la racine d'un
+        # domaine propre. C'est ce qui permet de changer d'hébergeur sans
+        # recompiler — et de ne pas dépendre de celui-ci.
         run: npm run build
-        env:
-          BASE_PATH: /${{ github.event.repository.name }}/
+
+      - name: Portabilité de l’archive
+        run: npm run verifier:portabilite
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

@@ -30,3 +30,6 @@ jobs:
 
       - name: Build de production
         run: npx vite build
+
+      - name: Portabilité de l’archive
+        run: npm run verifier:portabilite

@@ -12,7 +12,8 @@
     "test:watch": "vitest",
     "lint:data": "tsx scripts/validate-data.ts",
     "typecheck": "tsc --noEmit",
-    "collecte:citations": "tsx scripts/collecter-citations.ts"
+    "collecte:citations": "tsx scripts/collecter-citations.ts",
+    "verifier:portabilite": "tsx scripts/verifier-portabilite.ts"
   },
   "dependencies": {
     "react": "^19.1.1",
