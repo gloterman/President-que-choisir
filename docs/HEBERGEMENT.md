@@ -149,10 +149,18 @@ chaîne en route.
 
 ## GitHub Pages
 
-`pages.yml` existe toujours et publie la même archive sur GitHub Pages. Deux
-adresses publiques pour un même site prêtent à confusion sur laquelle fait foi.
-Une fois Scaleway en service, désactiver GitHub Pages dans les réglages du dépôt
-ou supprimer ce workflow.
+`pages.yml` est **conservé volontairement**. Il publie la même archive sur
+GitHub Pages, ce qui donne un second exemplaire du site sans effort : si le
+bucket ou le pipeline Edge Services tombe, l'adresse GitHub reste debout. La
+portabilité de l'archive rend ce doublon gratuit — c'est le même `dist/`, sans
+recompilation ni réglage propre à l'un ou l'autre.
+
+Le point à surveiller n'est pas technique mais éditorial : **deux adresses
+publiques posent la question de celle qui fait foi**. Le domaine personnalisé
+pointe sur Scaleway et c'est lui qu'on communique ; l'adresse GitHub reste un
+filet, pas une publication. Si le site est diffusé largement, mieux vaut que les
+liens partagés portent tous le domaine propre — sans quoi une partie du public
+se retrouverait sur un exemplaire dont personne ne surveille la fraîcheur.
 
 ## Migrer ailleurs
 
