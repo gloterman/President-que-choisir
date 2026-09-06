@@ -77,9 +77,21 @@ npm run lint:data    # contrôle d'intégrité du jeu de données
 
 npm run collecte:citations -- --essai   # ce que ferait la collecte, sans appel réseau
 npm run collecte:citations              # sources gratuites, aucune clé requise
+
+npm run verifier:portabilite            # l'archive ne dépend d'aucune adresse
 ```
 
 Node 20 ou supérieur.
+
+## Hébergement
+
+Le site est statique et son archive est en **chemins relatifs** : elle fonctionne à la racine d'un
+domaine, dans un sous-répertoire, ou depuis un disque. Changer d'hébergeur ne demande donc aucune
+recompilation — le seul engagement réel est le nom de domaine.
+
+La publication vise Scaleway (Object Storage + Edge Services, ~12 €/an, données en France), par
+`.github/workflows/scaleway.yml`. Mise en place, stratégie de cache, coûts mesurés et options de
+migration : [`docs/HEBERGEMENT.md`](docs/HEBERGEMENT.md).
 
 ## Architecture
 

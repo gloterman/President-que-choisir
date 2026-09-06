@@ -1,0 +1,110 @@
+name: Déploiement Scaleway
+
+# Publie le site sur un bucket Object Storage servi par Edge Services.
+#
+# Le workflow reste inerte tant que les secrets ne sont pas renseignés : il
+# annonce ce qui manque et s'arrête sans échouer. La marche à suivre complète
+# est dans docs/HEBERGEMENT.md.
+#
+# Aucune purge de CDN n'est faite ici, volontairement. La fraîcheur est
+# assurée par les en-têtes Cache-Control posés à l'envoi, qu'Edge Services
+# respecte : cinq minutes sur l'instantané, soixante secondes sur index.html.
+# Une purge automatique aurait supposé d'installer la CLI Scaleway dans le job
+# qui détient les clés de déploiement, pour une commande dont la syntaxe n'a
+# pas pu être vérifiée. Le gain — quelques minutes de fraîcheur — ne valait ni
+# ce risque ni cette incertitude. La commande manuelle est documentée.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Un seul déploiement à la fois : deux publications simultanées pourraient
+# entrelacer leurs fichiers et laisser un index.html pointant vers des assets
+# que l'autre exécution vient de supprimer.
+concurrency:
+  group: deploiement-scaleway
+  cancel-in-progress: false
+
+jobs:
+  deployer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # L'archive doit rester hébergeable partout : un chemin absolu la
+      # figerait à une adresse et rendrait la migration impossible sans
+      # recompilation.
+      - name: Portabilité de l’archive
+        run: npm run verifier:portabilite
+
+      - name: Vérifier la configuration
+        id: config
+        env:
+          CLE: ${{ secrets.SCW_ACCESS_KEY }}
+          SECRET: ${{ secrets.SCW_SECRET_KEY }}
+          BUCKET: ${{ vars.SCW_BUCKET }}
+        run: |
+          manquants=""
+          [ -z "$CLE" ] && manquants="$manquants SCW_ACCESS_KEY(secret)"
+          [ -z "$SECRET" ] && manquants="$manquants SCW_SECRET_KEY(secret)"
+          [ -z "$BUCKET" ] && manquants="$manquants SCW_BUCKET(variable)"
+          if [ -n "$manquants" ]; then
+            echo "::notice::Déploiement ignoré, configuration incomplète :$manquants — voir docs/HEBERGEMENT.md"
+            echo "pret=non" >> "$GITHUB_OUTPUT"
+          else
+            echo "pret=oui" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publier sur Object Storage
+        if: steps.config.outputs.pret == 'oui'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.SCW_ACCESS_KEY }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.SCW_SECRET_KEY }}
+          AWS_DEFAULT_REGION: ${{ vars.SCW_REGION || 'fr-par' }}
+          BUCKET: ${{ vars.SCW_BUCKET }}
+        run: |
+          set -euo pipefail
+          REGION="${AWS_DEFAULT_REGION}"
+          S3="aws s3 --endpoint-url https://s3.${REGION}.scw.cloud --no-progress"
+
+          # L'ordre compte. Les assets d'abord : quand le nouvel index.html
+          # apparaîtra, les fichiers qu'il référence seront déjà en place.
+          # L'inverse servirait des pages cassées pendant quelques secondes.
+          echo "1/4 — assets (empreinte dans le nom, cache d'un an)"
+          $S3 sync dist/assets/ "s3://${BUCKET}/assets/" \
+            --cache-control 'public, max-age=31536000, immutable'
+
+          # L'instantané change à chaque collecte, donc cache court : c'est ce
+          # qui évite d'avoir à purger le CDN à la main. Cinq minutes de
+          # décalage sur une collecte quotidienne sont sans conséquence.
+          echo "2/4 — instantané des vérifications (cache 5 min)"
+          $S3 cp dist/donnees/factcheck.json "s3://${BUCKET}/donnees/factcheck.json" \
+            --content-type 'application/json' \
+            --cache-control 'public, max-age=300'
+
+          # index.html en dernier : c'est lui qui bascule le site sur la
+          # nouvelle version. Cache court pour qu'une publication soit visible
+          # vite, sans être rechargé à chaque navigation.
+          echo "3/4 — index.html (bascule)"
+          $S3 cp dist/index.html "s3://${BUCKET}/index.html" \
+            --content-type 'text/html; charset=utf-8' \
+            --cache-control 'public, max-age=60, must-revalidate'
+
+          # Purge des anciennes empreintes, une fois la bascule faite. Le faire
+          # avant aurait supprimé les fichiers que l'ancien index.html sert
+          # encore aux visiteurs en cours de chargement.
+          echo "4/4 — retrait des assets périmés"
+          $S3 sync dist/assets/ "s3://${BUCKET}/assets/" --delete --size-only \
+            --cache-control 'public, max-age=31536000, immutable'
