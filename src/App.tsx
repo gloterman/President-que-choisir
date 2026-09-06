@@ -1,18 +1,18 @@
 import { useEffect } from 'react'
 import { HashRouter, Route, Routes, useLocation } from 'react-router-dom'
-import { Header } from '@/components/layout/Entete'
-import { SiteFooter } from '@/components/layout/PiedDePage'
-import { RangeBar } from '@/components/layout/BarreMobile'
+import { Header } from '@/components/layout/SiteHeader'
+import { SiteFooter } from '@/components/layout/SiteFooter'
+import { MobileNav } from '@/components/layout/MobileNav'
 import { PreferencesProvider } from '@/lib/store'
 import { FactCheckProvider } from '@/lib/factcheck/store'
-import { Home } from '@/pages/Accueil'
+import { Home } from '@/pages/Home'
 import { Questionnaire } from '@/pages/Questionnaire'
-import { Criteria } from '@/pages/Criteres'
-import { Ranking } from '@/pages/Classement'
-import { Comparator } from '@/pages/Comparateur'
-import { Candidates } from '@/pages/Candidats'
-import { CandidateSheet } from '@/pages/FicheCandidat'
-import { Methodology } from '@/pages/Methodologie'
+import { Criteria } from '@/pages/Criteria'
+import { Ranking } from '@/pages/Ranking'
+import { Comparator } from '@/pages/Comparator'
+import { Candidates } from '@/pages/Candidates'
+import { CandidateSheet } from '@/pages/CandidateSheet'
+import { Methodology } from '@/pages/Methodology'
 import { Sources } from '@/pages/Sources'
 import { Verifications } from '@/pages/Verifications'
 
@@ -54,7 +54,7 @@ export function App() {
           </Routes>
         </main>
         <SiteFooter />
-        <RangeBar />
+        <MobileNav />
       </HashRouter>
       </FactCheckProvider>
     </PreferencesProvider>

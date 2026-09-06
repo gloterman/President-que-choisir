@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { candidates } from './candidats'
-import { criteria } from './criteres'
-import { axes, propositions, themes } from './referentiel'
+import { candidates } from './candidates/index'
+import { criteria } from './criteria'
+import { axes, propositions, themes } from './questionnaire'
 import { sourceById } from './sources'
 
 /**

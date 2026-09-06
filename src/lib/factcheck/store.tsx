@@ -9,7 +9,7 @@ import {
   type ReactNode,
 } from 'react'
 import { EMPTY_SNAPSHOT, type FactCheckSnapshot } from '@/data/factcheck'
-import { loadSnapshot, type SnapshotOrigin } from './chargement'
+import { loadSnapshot, type SnapshotOrigin } from './loading'
 
 /**
  * État partagé des vérifications.

@@ -1,9 +1,9 @@
 import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Badge, Card } from '@/components/ui/base'
-import { Chip } from './Pastille'
-import { Gauge } from '@/components/charts/Jauge'
-import { CANDIDACY_STATUSES } from '@/data/candidats'
+import { Chip } from './Chip'
+import { Gauge } from '@/components/charts/Gauge'
+import { CANDIDACY_STATUSES } from '@/data/candidates'
 import { clsx, percent, LEGAL_STATUS } from '@/lib/format'
 import type { Candidate, LegalStatus } from '@/data/types'
 

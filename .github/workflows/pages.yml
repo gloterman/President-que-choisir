@@ -35,7 +35,7 @@ jobs:
         run: npm run build
 
       - name: Portabilité de l’archive
-        run: npm run verifier:portabilite
+        run: npm run check:portability
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3

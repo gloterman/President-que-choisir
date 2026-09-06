@@ -75,10 +75,10 @@ npm run build        # typecheck + build de production
 npm test             # tests du moteur de notation
 npm run lint:data    # contrôle d'intégrité du jeu de données
 
-npm run collecte:citations -- --essai   # ce que ferait la collecte, sans appel réseau
-npm run collecte:citations              # sources gratuites, aucune clé requise
+npm run collect:quotes -- --essai   # ce que ferait la collecte, sans appel réseau
+npm run collect:quotes              # sources gratuites, aucune clé requise
 
-npm run verifier:portabilite            # l'archive ne dépend d'aucune adresse
+npm run check:portability            # l'archive ne dépend d'aucune adresse
 ```
 
 Node 20 ou supérieur.
@@ -119,34 +119,36 @@ conservées telles quelles, dans le code comme dans les fichiers de données.
 src/
   data/           Modèle et jeu de données — aucune logique
     types.ts        Le contrat : positions, critères, faits, affaires judiciaires
-    referentiel.ts  Thèmes, axes et propositions du questionnaire
-    criteres.ts     Les 12 critères, leurs indicateurs et leurs barèmes
+    questionnaire.ts  Thèmes, axes et propositions du questionnaire
+    criteria.ts     Les 12 critères, leurs indicateurs et leurs barèmes
     sources.ts      Registre des sources
-    candidats/      Un fichier par candidat
+    candidates/     Un fichier par candidat, nommé d'après la personne
     factcheck.ts    Citations, verdicts et format de l'instantané
-    sources-citations.ts  Sources de collecte et leurs licences
+    collection-sources.ts  Sources de collecte et leurs licences
   lib/
     scoring/        Moteur de notation — pur, testé, sans dépendance à React
-      matrice.ts      Matrice de décision et normalisations
-      methodes.ts     Les quatre méthodes d'agrégation
-      affinite.ts     Affinité programmatique et boussole 2D
-      sensibilite.ts  Analyse de sensibilité par Monte-Carlo
+      matrix.ts       Matrice de décision et normalisations
+      methods.ts      Les quatre méthodes d'agrégation
+      affinity.ts     Affinité programmatique et boussole 2D
+      random.ts       Générateur déterministe et tirages
+      sensitivity.ts  Analyse de sensibilité par Monte-Carlo
       index.ts        Orchestration du classement complet
-    factcheck/      Chargement, validation défensive, couche réseau, lecture RSS, véracité
+    factcheck/      loading, schema, network, rss, accuracy, store
     store.tsx       Préférences utilisateur, persistées en localStorage
     format.ts       Formatage et libellés
   components/
     ui/             Primitives d'interface
     charts/         Graphiques SVG et HTML
-    candidat/       Blocs propres aux fiches
+    candidate/      Blocs propres aux fiches
     layout/         En-tête, pied de page, navigation
   pages/            Une page par route
 public/
-  donnees/
+  data/
     factcheck.json  Instantané des citations et vérifications, publié avec le site
 scripts/
   validate-data.ts       Contrôle d'intégrité exécuté par `npm run lint:data`
-  collecter-citations.ts Collecte multi-sources des déclarations publiques
+  collect-quotes.ts      Collecte multi-sources des déclarations publiques
+  check-portability.ts   Refuse toute adresse absolue dans l'archive produite
 ```
 
 Le moteur de notation ne dépend ni de React ni du DOM : il se teste comme une bibliothèque et

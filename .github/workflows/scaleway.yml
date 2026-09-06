@@ -47,7 +47,7 @@ jobs:
       # figerait à une adresse et rendrait la migration impossible sans
       # recompilation.
       - name: Portabilité de l’archive
-        run: npm run verifier:portabilite
+        run: npm run check:portability
 
       - name: Vérifier la configuration
         id: config
@@ -90,7 +90,7 @@ jobs:
           # qui évite d'avoir à purger le CDN à la main. Cinq minutes de
           # décalage sur une collecte quotidienne sont sans conséquence.
           echo "2/4 — instantané des vérifications (cache 5 min)"
-          $S3 cp dist/donnees/factcheck.json "s3://${BUCKET}/donnees/factcheck.json" \
+          $S3 cp dist/data/factcheck.json "s3://${BUCKET}/data/factcheck.json" \
             --content-type 'application/json' \
             --cache-control 'public, max-age=300'
 

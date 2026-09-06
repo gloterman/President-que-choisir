@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import type { Candidate, Likert, Preferences, UserAnswer } from '@/data/types'
-import { propositions } from '@/data/referentiel'
-import { criteria } from '@/data/criteres'
-import { candidates } from '@/data/candidats'
+import { propositions } from '@/data/questionnaire'
+import { criteria } from '@/data/criteria'
+import { candidates } from '@/data/candidates'
 import {
   userCompass,
   computeAffinity,
@@ -18,7 +18,7 @@ import {
   type Ranking,
   type DecisionMatrix,
 } from './index'
-import { analyzeSensitivity } from './sensibilite'
+import { analyzeSensitivity } from './sensitivity'
 
 const matrix = (values: number[][], weight: number[]): DecisionMatrix => ({
   alternatives: values.map((_, i) => `a${i}`),

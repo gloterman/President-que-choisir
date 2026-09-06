@@ -12,7 +12,7 @@ fonctionne à la racine d'un domaine, dans un sous-répertoire quelconque, ou
 ouverte depuis un disque. Changer d'hébergeur ne demande donc aucune
 recompilation : c'est un changement DNS.
 
-`npm run verifier:portabilite` refuse toute adresse absolue dans l'archive et
+`npm run check:portability` refuse toute adresse absolue dans l'archive et
 tourne à chaque intégration continue. Le défaut serait sinon invisible — le
 site s'afficherait parfaitement à la racine et ne montrerait qu'un écran blanc
 ailleurs.
@@ -138,7 +138,7 @@ scw edge-services purge-request create pipeline-id=<ID> all=true
 
 ## Enchaînement avec la collecte
 
-`collecte.yml` s'exécute chaque nuit, met à jour `public/donnees/factcheck.json`
+`collecte.yml` s'exécute chaque nuit, met à jour `public/data/factcheck.json`
 et le pousse. Sur `main`, cette poussée déclenche `scaleway.yml` : le site est
 donc republié automatiquement après chaque collecte, sans intervention.
 

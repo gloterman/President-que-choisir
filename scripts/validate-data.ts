@@ -8,9 +8,9 @@
  * évidemment rien de l'exactitude des faits — c'est le rôle de la procédure de
  * vérification décrite dans docs/DONNEES.md.
  */
-import { candidates } from '../src/data/candidats'
-import { criteria } from '../src/data/criteres'
-import { axes, propositions, themes } from '../src/data/referentiel'
+import { candidates } from '../src/data/candidates/index'
+import { criteria } from '../src/data/criteria'
+import { axes, propositions, themes } from '../src/data/questionnaire'
 import { sources } from '../src/data/sources'
 
 const errors: string[] = []

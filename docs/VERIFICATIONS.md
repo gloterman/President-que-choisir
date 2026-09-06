@@ -78,7 +78,7 @@ D'où la séparation en deux temps :
 ```
    collecte programmée              publication              consultation
   ┌───────────────────┐        ┌──────────────────┐     ┌──────────────────┐
-  │ collecter-        │  écrit │ public/donnees/  │ lit │ le site, à       │
+  │ collect-quotes    │  écrit │ public/data/  │ lit │ le site, à       │
   │ citations.ts      │ ─────▶ │ factcheck.json   │ ───▶│ l'ouverture et   │
   │ (détient le jeton)│        │ (fichier statique)│     │ à l'actualisation│
   └───────────────────┘        └──────────────────┘     └──────────────────┘
@@ -87,9 +87,9 @@ D'où la séparation en deux temps :
 ## Lancer une collecte
 
 ```bash
-npm run collecte:citations -- --essai            # montre ce qui serait fait, sans appel réseau
-npm run collecte:citations                       # sources gratuites, aucune clé requise
-npm run collecte:citations -- --sources=bluesky  # une source en particulier
+npm run collect:quotes -- --essai            # montre ce qui serait fait, sans appel réseau
+npm run collect:quotes                       # sources gratuites, aucune clé requise
+npm run collect:quotes -- --sources=bluesky  # une source en particulier
 ```
 
 Aucun jeton n'est nécessaire. `--sources=` accepte `sites`, `bluesky`, `veille` et `x` ; sans ce
@@ -177,7 +177,7 @@ travail n'a pas été fait, et le site l'affiche comme telle : masquer les messa
 traités reviendrait à cacher le tri.
 
 Pour rendre un verdict, ajouter une entrée dans `verifications` du fichier
-`public/donnees/factcheck.json` :
+`public/data/factcheck.json` :
 
 ```json
 {

@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
-import { PageHeader } from '@/components/layout/EnTetePage'
+import { PageHeader } from '@/components/layout/PageHeader'
 import { Card, Disclosure, CardHeader } from '@/components/ui/base'
-import { criteria, criteriaByFamily } from '@/data/criteres'
-import { axes, propositions, themes } from '@/data/referentiel'
-import { candidates } from '@/data/candidats'
+import { criteria, criteriaByFamily } from '@/data/criteria'
+import { axes, propositions, themes } from '@/data/questionnaire'
+import { candidates } from '@/data/candidates'
 import { METHODS } from '@/lib/scoring'
 import type { AggregationMethod } from '@/data/types'
 

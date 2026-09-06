@@ -1,5 +1,5 @@
-import type { DecisionMatrix } from './matrice'
-import { normalizeAbsolute, normalizeWeights, normalizeVector } from './matrice'
+import type { DecisionMatrix } from './matrix'
+import { normalizeAbsolute, normalizeWeights, normalizeVector } from './matrix'
 import type { AggregationMethod } from '@/data/types'
 
 /**

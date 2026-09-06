@@ -1,7 +1,7 @@
-import type { DecisionMatrix } from './matrice'
-import { normalizeWeights } from './matrice'
-import { aggregate } from './methodes'
-import { createRng, dirichlet } from './aleatoire'
+import type { DecisionMatrix } from './matrix'
+import { normalizeWeights } from './matrix'
+import { aggregate } from './methods'
+import { createRng, dirichlet } from './random'
 import type { AggregationMethod } from '@/data/types'
 
 /**

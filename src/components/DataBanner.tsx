@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { candidates } from '@/data/candidats'
+import { candidates } from '@/data/candidates'
 import { Notice } from './ui/base'
 
 const elements = candidates.flatMap((c) => [...c.measures, ...c.facts, ...c.legal, ...c.indicators])

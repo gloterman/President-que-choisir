@@ -1,6 +1,6 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { createServer, type Server } from 'node:http'
-import { MAX_BODY, json, read, reason } from './reseau'
+import { MAX_BODY, json, read, reason } from './network'
 
 /**
  * Ces cas se jouent contre un vrai serveur local.

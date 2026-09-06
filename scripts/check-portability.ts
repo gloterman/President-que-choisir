@@ -33,7 +33,7 @@ for (const [, attribut, value] of index.matchAll(/\b(src|href)="(\/[^"]*)"/g)) {
 // fichier de données sera cherché à la racine du domaine.
 for (const path of files(DIST).filter((f) => f.endsWith('.js'))) {
   const source = readFileSync(path, 'utf8')
-  if (/["']\/donnees\/factcheck\.json["']/.test(source)) {
+  if (/["']\/data\/factcheck\.json["']/.test(source)) {
     issues.push(`${path} : l'instantané est référencé par un chemin absolu`)
   }
 }

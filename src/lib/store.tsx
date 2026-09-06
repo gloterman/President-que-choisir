@@ -8,8 +8,8 @@ import {
   type ReactNode,
 } from 'react'
 import type { Importance, Likert, AggregationMethod, Preferences } from '@/data/types'
-import { defaultWeights } from '@/data/criteres'
-import { propositions } from '@/data/referentiel'
+import { defaultWeights } from '@/data/criteria'
+import { propositions } from '@/data/questionnaire'
 
 const KEY = 'pqc.preferences.v1'
 

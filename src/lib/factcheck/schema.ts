@@ -1,4 +1,4 @@
-import { candidates } from '@/data/candidats'
+import { candidates } from '@/data/candidates'
 import {
   PLATFORMS,
   VERDICTS,

@@ -1,5 +1,5 @@
 import { Badge, Notice } from '@/components/ui/base'
-import { VerificationBadge } from './BadgeVerification'
+import { VerificationBadge } from './VerificationBadge'
 import { formatDate, LEGAL_STATUS } from '@/lib/format'
 import type { LegalCase } from '@/data/types'
 

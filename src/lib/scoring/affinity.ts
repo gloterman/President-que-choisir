@@ -1,4 +1,4 @@
-import { axes, axisById, propositions, themes } from '@/data/referentiel'
+import { axes, axisById, propositions, themes } from '@/data/questionnaire'
 import type { Candidate, Likert, UserAnswer } from '@/data/types'
 
 /**

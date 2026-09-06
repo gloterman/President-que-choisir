@@ -1,9 +1,9 @@
 /**
  * Collecte des déclarations publiques des candidats.
  *
- *   npm run collecte:citations -- --essai            # sans appel réseau
- *   npm run collecte:citations                       # sources gratuites
- *   npm run collecte:citations -- --sources=bluesky
+ *   npm run collect:quotes -- --essai            # sans appel réseau
+ *   npm run collect:quotes                       # sources gratuites
+ *   npm run collect:quotes -- --sources=bluesky
  *
  * Toutes les sources activées par défaut sont publiques, gratuites et sans
  * clé. Elles sont de deux natures :
@@ -29,7 +29,7 @@
  */
 import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { setDefaultResultOrder } from 'node:dns'
-import { candidates } from '../src/data/candidats'
+import { candidates } from '../src/data/candidates/index'
 import {
   SNAPSHOT_VERSION,
   type Quote,
@@ -43,7 +43,7 @@ import {
   WATCH_SOURCES,
   BLUESKY_SOURCE,
   type Speaker,
-} from '../src/data/sources-citations'
+} from '../src/data/collection-sources'
 import {
   urlDigest,
   watchId,
@@ -51,7 +51,7 @@ import {
   readFeed,
   normalizeName,
 } from '../src/lib/factcheck/rss'
-import { PROBE_TIMEOUT_MS, json, read, reason } from '../src/lib/factcheck/reseau'
+import { PROBE_TIMEOUT_MS, json, read, reason } from '../src/lib/factcheck/network'
 
 /**
  * Résolution IPv4 en premier.
@@ -64,7 +64,7 @@ import { PROBE_TIMEOUT_MS, json, read, reason } from '../src/lib/factcheck/resea
  */
 setDefaultResultOrder('ipv4first')
 
-const FILE = 'public/donnees/factcheck.json'
+const FILE = 'public/data/factcheck.json'
 /** Au-delà, un site déclare des flux de catégorie sans intérêt pour nous. */
 const DECLARED_FEEDS_TRIED = 3
 const MESSAGES_PER_ACCOUNT = 50

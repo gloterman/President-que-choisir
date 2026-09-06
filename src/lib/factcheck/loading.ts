@@ -16,7 +16,7 @@ import { validateSnapshot } from './schema'
  * Le site reste donc fonctionnel sans aucun service : c'est le mode par défaut.
  */
 
-const SNAPSHOT_PATH = 'donnees/factcheck.json'
+const SNAPSHOT_PATH = 'data/factcheck.json'
 const MAX_TIMEOUT_MS = 8000
 
 export type SnapshotOrigin = 'direct' | 'instantane'

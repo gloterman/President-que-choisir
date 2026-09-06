@@ -1,9 +1,9 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { SNAPSHOT_VERSION, type FactCheckSnapshot } from '@/data/factcheck'
-import { candidates } from '@/data/candidats'
+import { candidates } from '@/data/candidates'
 import { validateSnapshot, LIMITS } from './schema'
-import { accuracyReport, dynamicAccuracyRatings, MINIMUM_SAMPLE } from './veracite'
+import { accuracyReport, dynamicAccuracyRatings, MINIMUM_SAMPLE } from './accuracy'
 
 /**
  * Forme des identifiants produits par chaque plateforme.
@@ -298,7 +298,7 @@ describe('note « rapport aux faits »', () => {
 })
 
 describe('instantané publié avec le site', () => {
-  const published = JSON.parse(readFileSync('public/donnees/factcheck.json', 'utf8'))
+  const published = JSON.parse(readFileSync('public/data/factcheck.json', 'utf8'))
 
   it('est valide au regard du schéma', () => {
     const { rejected } = validateSnapshot(published)

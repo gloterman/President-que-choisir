@@ -36,9 +36,9 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: |
           if [ -n "$X_BEARER_TOKEN" ]; then
-            npm run collecte:citations -- --sources=sites,bluesky,veille,x
+            npm run collect:quotes -- --sources=sites,bluesky,veille,x
           else
-            npm run collecte:citations
+            npm run collect:quotes
           fi
 
       - name: Contrôler l’instantané produit
@@ -46,12 +46,12 @@ jobs:
 
       - name: Publier la mise à jour
         run: |
-          if git diff --quiet public/donnees/factcheck.json; then
+          if git diff --quiet public/data/factcheck.json; then
             echo "Aucune nouvelle citation."
             exit 0
           fi
           git config user.name "collecte-citations"
           git config user.email "noreply@github.com"
-          git add public/donnees/factcheck.json
+          git add public/data/factcheck.json
           git commit -m "Collecter les déclarations publiées depuis la dernière exécution"
           git push

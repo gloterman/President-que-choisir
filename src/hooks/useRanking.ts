@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
-import { candidates } from '@/data/candidats'
+import { candidates } from '@/data/candidates'
 import { computeRanking, type Ranking } from '@/lib/scoring'
-import { dynamicAccuracyRatings } from '@/lib/factcheck/veracite'
+import { dynamicAccuracyRatings } from '@/lib/factcheck/accuracy'
 import { useFactCheck } from '@/lib/factcheck/store'
 import { usePreferences } from '@/lib/store'
 

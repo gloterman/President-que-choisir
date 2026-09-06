@@ -10,7 +10,7 @@ const TABS = [
 ]
 
 /** Navigation basse, visible sur les écrans étroits uniquement. */
-export function RangeBar() {
+export function MobileNav() {
   return (
     <nav
       aria-label="Navigation rapide"

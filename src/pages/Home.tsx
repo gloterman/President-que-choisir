@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import { Card, Badge } from '@/components/ui/base'
-import { DataBanner } from '@/components/BandeauDonnees'
-import { candidates } from '@/data/candidats'
-import { criteria } from '@/data/criteres'
-import { propositions, themes } from '@/data/referentiel'
+import { DataBanner } from '@/components/DataBanner'
+import { candidates } from '@/data/candidates'
+import { criteria } from '@/data/criteria'
+import { propositions, themes } from '@/data/questionnaire'
 import { METHODS } from '@/lib/scoring'
 import { usePreferences } from '@/lib/store'
 
