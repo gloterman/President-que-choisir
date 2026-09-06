@@ -46,7 +46,7 @@ couvre la Suisse. Deux enseignements valent d'être retenus.
 **L'usage est massif.** En Suisse, en Finlande et aux Pays-Bas, **30 à 40 % des
 électeurs** consultent un tel outil avant de voter. Ce n'est pas un gadget de
 niche, et le dimensionnement de l'hébergement en tient compte (voir
-[`HEBERGEMENT.md`](HEBERGEMENT.md)).
+[`HOSTING.md`](HOSTING.md)).
 
 **Leur sourçage est meilleur que le nôtre.** Le Wahl-O-Mat ne déduit pas les
 positions des programmes : il **soumet le questionnaire aux partis**, qui se

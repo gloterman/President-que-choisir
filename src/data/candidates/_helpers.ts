@@ -56,7 +56,7 @@ export function positions(values: readonly Likert[]): Record<string, Likert> {
  * Ce sont des annuaires et des portails, pas des fiches nominatives : le lien
  * profond vers la fiche d'une personne exige de relever son identifiant sur le
  * site concerné, ce qui fait partie du travail de vérification décrit dans
- * `docs/DONNEES.md`. Mieux vaut un point d'entrée exact qu'une URL devinée.
+ * `docs/DATA.md`. Mieux vaut un point d'entrée exact qu'une URL devinée.
  */
 export const INSTITUTIONAL_LINKS = {
   hatvp: {

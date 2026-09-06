@@ -7,7 +7,7 @@ Cet outil porte sur des personnes réelles, dont certaines font l'objet de proc�
 un fait, la bonne action est de le retirer ou de le laisser au statut « à vérifier », jamais de
 l'affirmer et de corriger plus tard.
 
-La procédure de vérification est décrite dans [`docs/DONNEES.md`](docs/DONNEES.md). Elle n'est pas
+La procédure de vérification est décrite dans [`docs/DATA.md`](docs/DATA.md). Elle n'est pas
 facultative.
 
 ## Avant d'ouvrir une pull request
@@ -24,7 +24,7 @@ npm run build        # build de production
 1. **Vérifier des faits déjà saisis.** Faire passer des éléments de `a-verifier` à `verifie`, avec
    le lien profond vers la source primaire. C'est le besoin numéro un.
 2. **Renseigner les deux critères non documentés** : le rapport aux faits et l'assiduité dans les
-   mandats. Voir `docs/DONNEES.md`.
+   mandats. Voir `docs/DATA.md`.
 3. **Contester un barème.** Un barème qu'on trouve injuste se discute dans une issue, arguments à
    l'appui. Le champ `limites` de chaque critère est fait pour accueillir ces objections.
 4. **Signaler une position mal résumée.** Les positions sur les axes sont des synthèses éditoriales.

@@ -4,7 +4,7 @@ name: Déploiement Scaleway
 #
 # Le workflow reste inerte tant que les secrets ne sont pas renseignés : il
 # annonce ce qui manque et s'arrête sans échouer. La marche à suivre complète
-# est dans docs/HEBERGEMENT.md.
+# est dans docs/HOSTING.md.
 #
 # Aucune purge de CDN n'est faite ici, volontairement. La fraîcheur est
 # assurée par les en-têtes Cache-Control posés à l'envoi, qu'Edge Services
@@ -61,7 +61,7 @@ jobs:
           [ -z "$SECRET" ] && manquants="$manquants SCW_SECRET_KEY(secret)"
           [ -z "$BUCKET" ] && manquants="$manquants SCW_BUCKET(variable)"
           if [ -n "$manquants" ]; then
-            echo "::notice::Déploiement ignoré, configuration incomplète :$manquants — voir docs/HEBERGEMENT.md"
+            echo "::notice::Déploiement ignoré, configuration incomplète :$manquants — voir docs/HOSTING.md"
             echo "pret=non" >> "$GITHUB_OUTPUT"
           else
             echo "pret=oui" >> "$GITHUB_OUTPUT"

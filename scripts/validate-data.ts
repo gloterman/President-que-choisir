@@ -6,7 +6,7 @@
  * Vérifie ce qu'une relecture humaine rate : identifiants dupliqués, axes
  * manquants, sources fantômes, critères inconnus, dates mal formées. Ne dit
  * évidemment rien de l'exactitude des faits — c'est le rôle de la procédure de
- * vérification décrite dans docs/DONNEES.md.
+ * vérification décrite dans docs/DATA.md.
  */
 import { candidates } from '../src/data/candidates/index'
 import { criteria } from '../src/data/criteria'

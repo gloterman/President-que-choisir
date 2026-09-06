@@ -138,7 +138,7 @@ scw edge-services purge-request create pipeline-id=<ID> all=true
 
 ## Enchaînement avec la collecte
 
-`collecte.yml` s'exécute chaque nuit, met à jour `public/data/factcheck.json`
+`collect.yml` s'exécute chaque nuit, met à jour `public/data/factcheck.json`
 et le pousse. Sur `main`, cette poussée déclenche `scaleway.yml` : le site est
 donc republié automatiquement après chaque collecte, sans intervention.
 

@@ -7,7 +7,7 @@ import type { Source } from './types'
  * dont l'adresse est stable. Le lien profond vers la décision, la déclaration
  * ou l'article précis est ajouté au moment de la vérification de chaque fait —
  * c'est précisément ce que signifie le passage de `a-verifier` à `verifie`.
- * Voir `docs/DONNEES.md` pour la procédure.
+ * Voir `docs/DATA.md` pour la procédure.
  */
 export const sources: Source[] = [
   {

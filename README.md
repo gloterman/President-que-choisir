@@ -34,7 +34,7 @@ Les formulations ont été soumises à une relecture indépendante en août 2026
 polarités par thème, alors que c'est la position sur l'*axe* qui alimente le calcul. Deux axes
 avaient quatre énoncés sur quatre dans le même sens. R8 contrôle désormais les deux niveaux, et la
 distribution globale est passée de 69/31 à 56/44. Le détail des corrections est dans
-[`docs/DONNEES.md`](docs/DONNEES.md).
+[`docs/DATA.md`](docs/DATA.md).
 
 ## Deux principes de conception
 
@@ -64,7 +64,7 @@ Le volet judiciaire est aujourd'hui au statut **recoupé** : les décisions ont 
 rédactions et leurs références sont indiquées, y compris le communiqué de la juridiction lorsqu'il
 existe. Les positions programmatiques restent des **estimations** par construction.
 
-La procédure de passage de l'un à l'autre est décrite dans [`docs/DONNEES.md`](docs/DONNEES.md).
+La procédure de passage de l'un à l'autre est décrite dans [`docs/DATA.md`](docs/DATA.md).
 
 ## Démarrer
 
@@ -89,7 +89,7 @@ Plusieurs comparateurs existent déjà pour 2027, et les références du genre s
 institutionnelles — Wahl-O-Mat, StemWijzer, Smartvote, consultés par 30 à 40 % des électeurs dans
 leurs pays. Le précédent français Elyze (2022) rappelle par quoi ces outils meurent : un biais
 d'implémentation. Recensement, enseignements retenus et défaut du même ordre trouvé puis corrigé
-ici : [`docs/ETAT-DE-LART.md`](docs/ETAT-DE-LART.md).
+ici : [`docs/PRIOR-ART.md`](docs/PRIOR-ART.md).
 
 ## Hébergement
 
@@ -99,7 +99,7 @@ recompilation — le seul engagement réel est le nom de domaine.
 
 La publication vise Scaleway (Object Storage + Edge Services, ~12 €/an, données en France), par
 `.github/workflows/scaleway.yml`. Mise en place, stratégie de cache, coûts mesurés et options de
-migration : [`docs/HEBERGEMENT.md`](docs/HEBERGEMENT.md).
+migration : [`docs/HOSTING.md`](docs/HOSTING.md).
 
 ## Langue du code
 
