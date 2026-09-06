@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "genereLe": "2026-09-05T08:48:25.543Z",
+  "genereLe": "2026-09-06T09:09:06.225Z",
   "comptes": [
     {
       "candidatId": "melenchon",
@@ -489,6 +489,18 @@
   ],
   "verifications": [],
   "veille": [
+    {
+      "id": "veille-decodeurs-589624ed1a107857",
+      "titre": "Présidentielle 2027 : pour Gabriel Attal et Edouard Philippe, le poids d’un bilan écologique contrasté",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/05/presidentielle-2027-pour-gabriel-attal-et-edouard-philippe-le-poids-d-un-bilan-ecologique-contraste_6766350_4355770.html",
+      "editeur": "Le Monde",
+      "datePublication": "2026-09-05T14:00:04.000Z",
+      "collecteLe": "2026-09-06T09:09:05.464Z",
+      "candidatsPressentis": [
+        "attal",
+        "philippe"
+      ]
+    },
     {
       "id": "veille-decodeurs-52552b70819cac44",
       "titre": "Présidentielle 2027 : pour Jean-Luc Mélenchon, la transition écologique passe par une forte reprise en main de l’Etat",
