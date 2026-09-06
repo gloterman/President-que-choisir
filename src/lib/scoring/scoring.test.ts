@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 import type { Candidat, Likert, Preferences, ReponseUtilisateur } from '@/data/types'
 import { propositions } from '@/data/referentiel'
 import { criteres } from '@/data/criteres'
+import { candidats } from '@/data/candidats'
 import {
   boussoleUtilisateur,
   calculerAffinite,
@@ -13,6 +14,8 @@ import {
   produitPondere,
   sommePonderee,
   topsis,
+  rangsDepuisScores,
+  type Classement,
   type MatriceDecision,
 } from './index'
 import { analyserSensibilite } from './sensibilite'
@@ -365,5 +368,78 @@ describe('classement complet', () => {
       (c) => c.critereId === '__affinite',
     )
     expect(affinite!.poidsNormalise).toBeCloseTo(0.7)
+  })
+})
+
+// ---------------------------------------------------------------------------
+
+describe('égalités', () => {
+  const preferencesNeutres = (poids: number): Preferences => ({
+    reponses: {},
+    poids: Object.fromEntries(criteres.map((c) => [c.id, poids])),
+    seuils: {},
+    partProgramme: 0,
+    methode: 'somme-ponderee',
+    exclus: [],
+    comparaison: [],
+  })
+
+  it('ne fait pas dépendre le rang de l’ordre du fichier de données', () => {
+    // Le défaut qui a coûté sa crédibilité à Elyze en 2022 : à égalité, le
+    // premier déclaré dans le code sortait premier.
+    const a = candidatTest('alice', {})
+    const b = candidatTest('bruno', {})
+    const rang = (c: Classement, id: string) =>
+      c.resultats.find((r) => r.candidat.id === id)!.rang
+
+    const ordreA = calculerClassement([a, b], preferencesNeutres(3))
+    const ordreB = calculerClassement([b, a], preferencesNeutres(3))
+
+    expect(rang(ordreA, 'alice')).toBe(rang(ordreB, 'alice'))
+    expect(rang(ordreA, 'bruno')).toBe(rang(ordreB, 'bruno'))
+  })
+
+  it('donne le même rang aux candidats à égalité', () => {
+    const classement = calculerClassement(
+      [candidatTest('a', {}), candidatTest('b', {}), candidatTest('c', {})],
+      preferencesNeutres(3),
+    )
+    expect(classement.resultats.map((r) => r.rang)).toEqual([1, 1, 1])
+  })
+
+  it('reprend la numérotation après un groupe d’ex æquo', () => {
+    // Rang « compétition » : deux premiers ex æquo, puis un troisième.
+    expect(rangsDepuisScores([10, 10, 5])).toEqual([1, 1, 3])
+    expect(rangsDepuisScores([10, 5, 5])).toEqual([1, 2, 2])
+    expect(rangsDepuisScores([10, 8, 5])).toEqual([1, 2, 3])
+  })
+
+  it('tient pour égaux deux scores que seul le bruit de calcul sépare', () => {
+    expect(rangsDepuisScores([0.1 + 0.2, 0.3])).toEqual([1, 1])
+  })
+
+  it('signale un classement indéterminé quand aucun critère n’est pondéré', () => {
+    const tous = calculerClassement(
+      [candidatTest('a', {}), candidatTest('b', {})],
+      preferencesNeutres(0),
+    )
+    expect(tous.classementIndetermine).toBe(true)
+  })
+
+  it('ne signale rien sur le jeu de données réel, où les notes diffèrent', () => {
+    const reel = calculerClassement(candidats, preferencesNeutres(3))
+    expect(reel.classementIndetermine).toBe(false)
+    // Et le premier n'est alors pas premier par défaut : il devance vraiment.
+    expect(reel.resultats[0].scoreFinal).toBeGreaterThan(reel.resultats[1].scoreFinal)
+  })
+
+  it('n’ordonne plus par le spectre politique quand tout est à égalité', () => {
+    // Avec tous les poids à zéro, chaque candidat vaut 50 : la liste ne doit
+    // plus reproduire l'ordre du fichier, qui va de la gauche à la droite.
+    const plat = calculerClassement(candidats, preferencesNeutres(0))
+    expect(plat.classementIndetermine).toBe(true)
+    expect(new Set(plat.resultats.map((r) => r.rang))).toEqual(new Set([1]))
+    const noms = plat.resultats.map((r) => r.candidat.nom)
+    expect(noms).toEqual([...noms].sort((a, b) => a.localeCompare(b, 'fr')))
   })
 })

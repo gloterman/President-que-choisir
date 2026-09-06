@@ -83,6 +83,14 @@ npm run verifier:portabilite            # l'archive ne dépend d'aucune adresse
 
 Node 20 ou supérieur.
 
+## Outils comparables
+
+Plusieurs comparateurs existent déjà pour 2027, et les références du genre sont étrangères et
+institutionnelles — Wahl-O-Mat, StemWijzer, Smartvote, consultés par 30 à 40 % des électeurs dans
+leurs pays. Le précédent français Elyze (2022) rappelle par quoi ces outils meurent : un biais
+d'implémentation. Recensement, enseignements retenus et défaut du même ordre trouvé puis corrigé
+ici : [`docs/ETAT-DE-LART.md`](docs/ETAT-DE-LART.md).
+
 ## Hébergement
 
 Le site est statique et son archive est en **chemins relatifs** : elle fonctionne à la racine d'un

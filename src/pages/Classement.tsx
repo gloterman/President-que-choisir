@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
 import { EnTetePage } from '@/components/layout/EnTetePage'
 import { Alerte, Badge, Bouton, Carte, Depliant, EnteteCarte } from '@/components/ui/base'
@@ -44,6 +45,13 @@ export function Classement() {
   const { resultats, sensibilite, ecartes, exclus } = classement
 
   const premier = resultats[0]
+  // Rangs occupés par plus d'un candidat : ce sont eux qu'il faut annoter,
+  // sans quoi deux « 1 » consécutifs passent pour un défaut d'affichage.
+  const exAequo = useMemo(() => {
+    const compte = new Map<number, number>()
+    for (const r of resultats) compte.set(r.rang, (compte.get(r.rang) ?? 0) + 1)
+    return new Set([...compte].filter(([, n]) => n > 1).map(([rang]) => rang))
+  }, [resultats])
   const verdict = VERDICTS[sensibilite.verdict]
   const methodes = Object.keys(METHODES) as MethodeAgregation[]
 
@@ -93,6 +101,18 @@ export function Classement() {
         </Alerte>
       ) : (
         <div className="space-y-6">
+          {classement.classementIndetermine && (
+            <Alerte titre="Ce classement n’ordonne rien" ton="serious" icone="=">
+              Tous les candidats obtiennent le même score : aucun critère n’est pondéré et le
+              questionnaire ne départage pas non plus. Les candidats sont donc affichés{' '}
+              <strong>ex æquo</strong>, par ordre alphabétique — cet ordre ne veut rien dire.{' '}
+              <Link to="/criteres" className="font-medium text-accent hover:underline">
+                Donner du poids à au moins un critère
+              </Link>{' '}
+              ou répondre au questionnaire fera apparaître un ordre qui, lui, en aura un.
+            </Alerte>
+          )}
+
           {nbReponses === 0 && (
             <Alerte titre="Le questionnaire n’a pas encore été rempli">
               L’affinité programmatique est neutralisée à 50 % pour tout le monde : le classement ne
@@ -276,8 +296,16 @@ export function Classement() {
                 return (
                   <Carte as="li" key={resultat.candidat.id} className="p-4 sm:p-5">
                     <div className="flex flex-wrap items-center gap-3">
-                      <span className="tabular text-[1.1rem] font-semibold text-muted">
+                      <span
+                        className="tabular text-[1.1rem] font-semibold text-muted"
+                        // Un rang partagé est signalé : sans cela, deux « 1 » à
+                        // la suite se lisent comme une erreur d'affichage.
+                        title={exAequo.has(resultat.rang) ? 'Ex æquo' : undefined}
+                      >
                         {resultat.rang}
+                        {exAequo.has(resultat.rang) && (
+                          <span className="ml-0.5 text-[0.7rem] font-normal">ex æq.</span>
+                        )}
                       </span>
                       <Pastille candidat={resultat.candidat} taille="petite" />
                       <div className="min-w-0 flex-1">

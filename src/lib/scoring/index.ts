@@ -67,6 +67,12 @@ export interface Classement {
   partProgramme: number
   /** Nombre de notes manquantes remplacées par la valeur neutre. */
   notesManquantes: number
+  /**
+   * Vrai quand tous les candidats obtiennent le même score : le classement
+   * n'ordonne alors rien et l'interface doit le dire plutôt que d'afficher une
+   * liste numérotée qui se lirait comme un résultat.
+   */
+  classementIndetermine: boolean
 }
 
 /**
@@ -110,11 +116,36 @@ export function kendallTau(a: number[], b: number[]): number {
   return total === 0 ? 1 : (concordants - discordants) / total
 }
 
-function rangsDepuisScores(scores: number[]): number[] {
+/**
+ * Écart en deçà duquel deux scores sont tenus pour égaux.
+ *
+ * Deux scores mathématiquement identiques peuvent différer d'un milliardième
+ * selon l'ordre des additions flottantes. Les départager reviendrait à
+ * classer sur du bruit de calcul.
+ */
+const EGALITE = 1e-9
+
+/**
+ * Rangs avec ex æquo (1, 1, 3…).
+ *
+ * Un tri seul ne suffit pas : il numérote 1, 2, 3 même quand rien ne sépare
+ * deux candidats, et le tri de JavaScript étant stable, c'est alors l'ordre du
+ * tableau d'entrée qui tranche. Cet ordre est celui du fichier de données,
+ * c'est-à-dire ici le spectre politique — un classement se serait donc
+ * silencieusement adossé à une convention de lecture. C'est le défaut qui a
+ * coûté sa crédibilité à Elyze en 2022, où le président sortant sortait
+ * premier à égalité parce qu'il était déclaré en premier dans le code.
+ */
+export function rangsDepuisScores(scores: number[]): number[] {
   const ordre = scores.map((s, i) => ({ s, i })).sort((x, y) => y.s - x.s)
   const rangs = new Array<number>(scores.length).fill(0)
-  ordre.forEach(({ i }, position) => {
-    rangs[i] = position + 1
+  let rangCourant = 1
+  ordre.forEach(({ s, i }, position) => {
+    if (position > 0 && Math.abs(s - ordre[position - 1].s) > EGALITE) {
+      // Rang « compétition » : après deux premiers ex æquo vient le troisième.
+      rangCourant = position + 1
+    }
+    rangs[i] = rangCourant
   })
   return rangs
 }
@@ -200,7 +231,7 @@ export function calculerClassement(
   const scoresRetenus = scoresParMethode.get(preferences.methode)!
   const poidsNormalises = normaliserPoids(poidsColonnes)
 
-  const resultats: ResultatCandidat[] = enLice
+  const ordonnes = enLice
     .map((candidat, i) => {
       const contributions: ContributionCritere[] = colonnes.map((critereId, j) => {
         const note = valeurs[i][j]
@@ -245,8 +276,30 @@ export function calculerClassement(
         ) as Record<MethodeAgregation, number>,
       }
     })
-    .sort((a, b) => b.scoreFinal - a.scoreFinal)
-    .map((r, index) => ({ ...r, rang: index + 1 }))
+    // À égalité de score, l'ordre d'affichage est alphabétique. Il reste
+    // arbitraire, mais il n'est corrélé à rien : l'ordre du fichier, lui, est
+    // celui du spectre politique, et s'en servir revenait à faire trancher une
+    // égalité par la position politique du candidat.
+    // À égalité de score, l'ordre d'affichage est alphabétique. Il reste
+    // arbitraire, mais il n'est corrélé à rien : l'ordre du fichier, lui, est
+    // celui du spectre politique, et s'en servir revenait à faire trancher une
+    // égalité par la position politique du candidat.
+    .sort(
+      (a, b) => b.scoreFinal - a.scoreFinal || a.candidat.nom.localeCompare(b.candidat.nom, 'fr'),
+    )
+
+  const rangs = rangsDepuisScores(ordonnes.map((r) => r.scoreFinal))
+  const resultats: ResultatCandidat[] = ordonnes.map((r, i) => ({ ...r, rang: rangs[i] }))
+
+  /**
+   * Aucun écart entre le premier et le dernier : le classement ne veut rien
+   * dire. Le cas se produit dès que l'utilisateur laisse tous les poids à zéro,
+   * et il n'est pas rare. Afficher quand même une liste numérotée donnerait à
+   * lire un classement là où il n'y a qu'un ordre d'affichage.
+   */
+  const classementIndetermine =
+    ordonnes.length > 1 &&
+    Math.abs(ordonnes[0].scoreFinal - ordonnes[ordonnes.length - 1].scoreFinal) <= EGALITE
 
   // 5. Concordance entre méthodes : moyenne des tau de Kendall deux à deux.
   let sommeTau = 0
@@ -270,5 +323,6 @@ export function calculerClassement(
     concordanceMethodes: paires > 0 ? sommeTau / paires : 1,
     partProgramme,
     notesManquantes,
+    classementIndetermine,
   }
 }
