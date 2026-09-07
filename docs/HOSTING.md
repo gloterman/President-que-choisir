@@ -162,6 +162,31 @@ filet, pas une publication. Si le site est diffusé largement, mieux vaut que le
 liens partagés portent tous le domaine propre — sans quoi une partie du public
 se retrouverait sur un exemplaire dont personne ne surveille la fraîcheur.
 
+### Une condition préalable qui n'est pas technique
+
+**GitHub Pages sur un dépôt privé demande un plan payant** (Pro, Team ou
+Enterprise). Sur un compte gratuit, Pages ne fonctionne que sur les dépôts
+publics. Ce dépôt étant privé, trois issues seulement :
+
+1. **rendre le dépôt public** — Pages devient gratuit, et c'est cohérent avec un
+   projet dont la méthodologie ouverte est l'argument ;
+2. **passer à GitHub Pro** — le dépôt reste privé et le filet existe ;
+3. **renoncer au filet** — Scaleway est l'hébergeur retenu, ce doublon n'est pas
+   indispensable.
+
+Tant que rien n'est tranché, le workflow **ne tombe pas en échec**. Il
+construit le site, contrôle la portabilité de l'archive, puis interroge l'API
+pour savoir si Pages est activé ; sinon il s'abstient avec un message et
+s'arrête en succès.
+
+Ce choix mérite d'être justifié, car masquer un échec est en général une
+mauvaise idée. Ici, l'absence de Pages n'est pas un défaut mais une décision
+non prise : la signaler en rouge ferait échouer le dépôt à **chaque collecte
+nocturne**, sans qu'aucune correction soit possible côté code. Un rouge
+quotidien qu'on ne peut pas résoudre finit par ne plus être lu, et c'est alors
+le vrai défaut qui passe inaperçu. Toute autre panne — build, tests,
+portabilité, publication elle-même — échoue normalement.
+
 ## Migrer ailleurs
 
 L'archive étant portable, changer d'hébergeur revient à envoyer le contenu de

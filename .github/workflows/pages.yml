@@ -17,6 +17,8 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      pages_actif: ${{ steps.pages.outputs.actif }}
     steps:
       - uses: actions/checkout@v4
 
@@ -37,13 +39,37 @@ jobs:
       - name: Portabilité de l’archive
         run: npm run check:portability
 
+      # Pages n'est pas toujours disponible : sur un dépôt privé, il demande un
+      # plan payant. Ne pas l'avoir activé est un choix, pas un défaut — le
+      # signaler par un échec ferait rougir le dépôt à chaque collecte
+      # nocturne, et un rouge quotidien qui ne peut jamais passer au vert finit
+      # par ne plus être lu. On vérifie donc, et on s'abstient proprement.
+      - name: Pages est-il activé ?
+        id: pages
+        env:
+          JETON: ${{ github.token }}
+        run: |
+          code=$(curl -sS -o /dev/null -w '%{http_code}' \
+            -H "Authorization: Bearer $JETON" \
+            -H "Accept: application/vnd.github+json" \
+            "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/pages")
+          if [ "$code" = "200" ]; then
+            echo "actif=oui" >> "$GITHUB_OUTPUT"
+          else
+            echo "actif=non" >> "$GITHUB_OUTPUT"
+            echo "::notice::GitHub Pages n’est pas activé sur ce dépôt (réponse $code). Publication ignorée ; le build et le contrôle de portabilité, eux, ont bien tourné. Voir docs/HOSTING.md."
+          fi
+
       - uses: actions/configure-pages@v5
+        if: steps.pages.outputs.actif == 'oui'
       - uses: actions/upload-pages-artifact@v3
+        if: steps.pages.outputs.actif == 'oui'
         with:
           path: dist
 
   deploy:
     needs: build
+    if: needs.build.outputs.pages_actif == 'oui'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
