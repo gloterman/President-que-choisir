@@ -19,7 +19,9 @@ import { Verifications } from '@/pages/Verifications'
 /** Remet la vue en haut à chaque changement de route. */
 function SiteHeader() {
   const { pathname } = useLocation()
-  useEffect(() => window.scrollTo(0, 0), [pathname])
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
   return null
 }
 
@@ -31,14 +33,19 @@ export function App() {
       <FactCheckProvider>
       <HashRouter>
         <SiteHeader />
+        {/* HashRouter possède le hash : laisser ce lien naviguer viderait la route. */}
         <a
           href="#contenu"
+          onClick={(e) => {
+            e.preventDefault()
+            document.getElementById('contenu')?.focus()
+          }}
           className="sr-only focus:not-sr-only focus:absolute focus:left-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-accent focus:px-3 focus:py-2 focus:text-[var(--pqc-accent-ink)]"
         >
           Aller au contenu
         </a>
         <Header />
-        <main id="contenu" className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-6 sm:pb-12">
+        <main id="contenu" tabIndex={-1} className="mx-auto max-w-6xl px-4 pb-24 pt-8 sm:px-6 sm:pb-12">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/questionnaire" element={<Questionnaire />} />
