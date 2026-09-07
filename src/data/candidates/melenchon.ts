@@ -275,7 +275,7 @@ export const melenchon: Candidate = {
       id: 'melenchon-j3',
       label: 'Comptes de campagne de la présidentielle de 2017',
       summary:
-        "Enquête ouverte en 2018 après un signalement de la CNCCFP, portant sur une possible surfacturation de prestataires liés au mouvement. Quatre mises en examen ont été prononcées, visant d'autres personnes et structures ; Jean-Luc Mélenchon n'est personnellement ni mis en examen ni placé sous statut de témoin assisté à la date de revue.",
+        "Enquête ouverte en 2018 après un signalement de la CNCCFP, portant sur une possible surfacturation de prestataires liés au mouvement. Quatre mises en examen ont été prononcées, visant d'autres personnes et structures ; Jean-Luc Mélenchon n'est personnellement pas mis en examen à la date de revue. Les sources consultées divergent sur l'existence d'un statut de témoin assisté le concernant sur certains volets : faute d'accord entre elles, rien n'est affirmé ici.",
       status: 'enquete',
       short: 'Juges d’instruction, Paris',
       appeal:

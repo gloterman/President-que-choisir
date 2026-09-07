@@ -204,6 +204,22 @@ export const sources: Source[] = [
     type: 'presse',
   },
   {
+    id: 'france24-villepin-clearstream',
+    title: 'La relaxe de Dominique de Villepin confirmée dans l’affaire Clearstream',
+    publisher: 'France 24',
+    url: 'https://www.france24.com/fr/20110914-cour-appel-relaxe-dominique-villepin-affaire-clearstream-justice-france-politique',
+    date: '2011-09-14',
+    type: 'presse',
+  },
+  {
+    id: 'aljazeera-villepin-clearstream',
+    title: 'Ex-French PM’s Clearstream acquittal upheld',
+    publisher: 'Al Jazeera',
+    url: 'https://www.aljazeera.com/news/2011/9/14/ex-french-pms-clearstream-acquittal-upheld',
+    date: '2011-09-14',
+    type: 'presse',
+  },
+  {
     id: 'rts-lepen-appel',
     title: 'Peine réduite en appel pour Marine Le Pen, condamnée à 15 mois ferme d’inéligibilité',
     publisher: 'RTS',

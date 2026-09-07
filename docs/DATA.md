@@ -24,6 +24,30 @@ dont il reste à lire le document source. La règle des deux sources n'est pas d
 **testée** : `src/data/coherence.test.ts` fait échouer la suite si un élément marqué `recoupe`
 s'appuie sur une seule source.
 
+### Le plafond du bloc judiciaire
+
+Pour une condamnation pénale visant une personne nommée, `verifie` est en pratique
+inatteignable, et il faut le dire plutôt que de laisser croire l'inverse :
+
+- les arrêts de la Cour de cassation sont **pseudonymisés** (« M. [J] [O] ») — une décision
+  publiée ne peut pas être rattachée à un nom ;
+- les jugements correctionnels ne sont pas publiés ;
+- Légifrance et le site de la Cour de cassation ne permettent donc pas de confirmer qu'une
+  décision donnée concerne tel candidat.
+
+La seule source primaire atteignable est le **communiqué de presse de la juridiction**, qui
+n'existe que pour les affaires très médiatisées — et qui renvoie souvent le détail des peines
+à une annexe absente du document publié. La passe du 7 septembre 2026 l'a vérifié sur les neuf
+entrées judiciaires : aucune n'atteint `verifie`, y compris celle dont le communiqué a été lu
+intégralement.
+
+`recoupe` est donc le plafond normal de ce bloc. Un `verifie` judiciaire doit rester
+l'exception, justifiée par un document nominatif réellement ouvert.
+
+> **Attention aux faux positifs.** Une recherche sur « Zemmour cassation 16 septembre 2025 »
+> remonte un arrêt réel, à la bonne date, avec un numéro de pourvoi plausible — qui concerne
+> une tout autre affaire. Ouvrir la décision avant de la citer n'est pas une formalité.
+
 ## La procédure, en quatre temps
 
 ### 1. Retrouver la source primaire

@@ -198,13 +198,14 @@ export const lepen: Candidate = {
       summary:
         "Affaire portant sur l'emploi présumé d'assistants rémunérés par le Parlement européen pour des tâches relevant du parti national, sur la période 2004-2016. Jugée en première instance le 31 mars 2025, puis en appel du 13 janvier au 12 février 2026, l'arrêt étant rendu le 7 juillet 2026. Douze prévenus ayant fait appel ont été déclarés coupables.",
       status: 'condamnation-appel-pourvoi',
-      charge: 'Détournement de fonds publics',
+      charge:
+        "Détournement de fonds publics comme députée européenne, et complicité de détournement de fonds publics comme présidente du parti. La cour a retenu les deux qualifications contre elle.",
       short: 'Cour d’appel de Paris, chambre des appels correctionnels',
       decisionDate: '2026-07-07',
       sentence:
         "Trois ans d'emprisonnement dont deux ans avec sursis, la part ferme d'un an étant aménagée sous bracelet électronique ; 100 000 euros d'amende ; 45 mois d'inéligibilité dont 30 mois avec sursis. En première instance, la peine était de quatre ans d'emprisonnement dont deux ans ferme, 100 000 euros d'amende et cinq ans d'inéligibilité avec exécution provisoire.",
       appeal:
-        "Pourvoi en cassation formé par les condamnés et par le Parlement européen : la condamnation n'est pas définitive. Conséquence électorale : les quinze mois d'inéligibilité ferme étaient purgés au 30 juin 2026, au titre de l'exécution provisoire ordonnée en première instance — Marine Le Pen est donc éligible pour la présidentielle des 18 avril et 2 mai 2027.",
+        "La cour a retenu qu'il n'y a pas eu d'enrichissement personnel des députés européens et que seul le parti national a bénéficié des détournements. Pourvoi en cassation formé par les condamnés et par le Parlement européen : la condamnation n'est pas définitive. Conséquence électorale : les quinze mois d'inéligibilité ferme étaient purgés au 30 juin 2026, au titre de l'exécution provisoire ordonnée en première instance — Marine Le Pen est donc éligible pour la présidentielle des 18 avril et 2 mai 2027.",
       verification: 'recoupe',
       sourceIds: [
         'ca-paris-cp-20260707',

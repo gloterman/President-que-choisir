@@ -198,7 +198,7 @@ export const zemmour: Candidate = {
         "Propos tenus à l'antenne alors qu'il était éditorialiste, jugés par la cour d'appel de Paris en septembre 2024 comme excédant les limites admissibles de la liberté d'expression en raison de leur violence et de leur généralité.",
       status: 'condamnation-definitive',
       charge:
-        "Complicité d'injure publique et de provocation à la haine. Ces chefs ne relèvent pas des atteintes à la probité.",
+        "Complicité d'injure publique et de provocation à la haine. En droit de la presse, les infractions principales ont été retenues contre le directeur de publication de la chaîne, condamné à 3 000 euros d'amende — d'où la qualification de complicité. Ces chefs ne relèvent pas des atteintes à la probité.",
       short: 'Cour d’appel de Paris, pourvoi rejeté par la Cour de cassation',
       decisionDate: '2025-12-02',
       sentence: "100 jours-amende de 100 euros, soit 10 000 euros.",
@@ -210,7 +210,7 @@ export const zemmour: Candidate = {
       id: 'zemmour-j3',
       label: 'Diffamation envers un avocat',
       summary:
-        "Condamnation pour des propos tenus à l'encontre de l'avocat Patrick Klugman, à qui il reprochait de vouloir étouffer une affaire.",
+        "Condamnation pour des propos tenus en 2022 à l'encontre de l'avocat Patrick Klugman, à qui il reprochait de vouloir étouffer l'affaire Jérémie Cohen.",
       status: 'condamnation-definitive',
       charge: 'Diffamation publique. Ce chef ne relève pas des atteintes à la probité.',
       short: 'Cour d’appel, pourvoi rejeté par la Cour de cassation',

@@ -175,11 +175,11 @@ export const villepin: Candidate = {
         "Poursuivi pour son rôle supposé dans la diffusion de listings mettant en cause des personnalités politiques. Relaxé en première instance en 2010, relaxe confirmée en appel en 2011.",
       status: 'relaxe',
       short: 'Cour d’appel de Paris',
-      decisionDate: '2011-09',
+      decisionDate: '2011-09-14',
       appeal:
-        "Relaxe définitive. Le barème de probité ne retire aucun point pour une relaxe : cette entrée figure ici parce que l'affaire est associée à son nom, et pour que l'issue soit connue.",
-      verification: 'a-verifier',
-      sourceIds: ['legifrance', 'courdecassation'],
+        "Relaxe confirmée en appel, l'appel du parquet ayant été rejeté. Les sources consultées ne disent pas si un pourvoi a suivi : le caractère définitif n'est donc pas affirmé ici. Le barème de probité ne retire aucun point pour une relaxe : cette entrée figure ici parce que l'affaire est associée à son nom, et pour que l'issue soit connue.",
+      verification: 'recoupe',
+      sourceIds: ['france24-villepin-clearstream', 'aljazeera-villepin-clearstream', 'legifrance'],
     },
   ],
   indicators: [
