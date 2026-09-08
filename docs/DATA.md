@@ -48,6 +48,26 @@ l'exception, justifiée par un document nominatif réellement ouvert.
 > remonte un arrêt réel, à la bonne date, avec un numéro de pourvoi plausible — qui concerne
 > une tout autre affaire. Ouvrir la décision avant de la citer n'est pas une formalité.
 
+### Les affirmations d'absence
+
+Dix-huit indicateurs affirment une absence : « Recherche d'antécédents judiciaires — effectuée,
+aucun élément trouvé » (onze fois), « Condamnations connues — aucune » (sept fois). Ils sont
+sourcés vers Légifrance et le site de la Cour de cassation.
+
+Ces deux portails ne peuvent pas établir ce qu'on leur fait dire. Pour la raison exposée plus
+haut — les décisions publiées sont pseudonymisées — ils ne permettent pas de confirmer qu'une
+personne nommée n'a **pas** été condamnée. L'absence de résultat y signifie « rien de
+rattachable à ce nom dans un corpus qui ne porte pas les noms », pas « aucune condamnation ».
+
+Ces indicateurs disent donc en réalité : *une recherche a été menée à telle date et n'a rien
+donné*. C'est une information honnête, et le libellé « Recherche d'antécédents judiciaires »
+la rend correctement. Le libellé « Condamnations connues : aucune » va en revanche plus loin
+que ce que la source permet.
+
+Règle retenue : une affirmation d'absence reste au maximum `a-verifier`, et son libellé doit
+porter sur la recherche effectuée, jamais sur l'inexistence du fait. Aucune ne peut atteindre
+`verifie`.
+
 ## La procédure, en quatre temps
 
 ### 1. Retrouver la source primaire

@@ -165,7 +165,7 @@ export const attal: Candidate = {
   indicators: [
     { id: 'attal-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     { id: 'attal-i1', label: 'Condamnations connues', value: 'Aucune', period: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'attal-i2', label: 'Durée passée à Matignon', value: 'Environ 8 mois', period: '2024', verification: 'a-verifier', sourceIds: ['journal-officiel'] },
+    { id: 'attal-i2', label: 'Durée passée à Matignon', value: 'Environ 8 mois — nommé le 9 janvier 2024, démission acceptée le 16 juillet, affaires courantes jusqu’en septembre', period: '2024', verification: 'verifie', sourceIds: ['info-gouv-attal'] },
   ],
   lastUpdated: '2026-08-20',
 }

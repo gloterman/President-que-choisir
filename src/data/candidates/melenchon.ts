@@ -288,10 +288,10 @@ export const melenchon: Candidate = {
     {
       id: 'melenchon-i1',
       label: 'Score au premier tour de la présidentielle',
-      value: '21,95 %',
+      value: '21,95 % (7 712 520 voix)',
       period: '2022',
-      verification: 'a-verifier',
-      sourceIds: ['vie-publique'],
+      verification: 'verifie',
+      sourceIds: ['cc-2022-195-pdr'],
     },
     {
       id: 'melenchon-i2',

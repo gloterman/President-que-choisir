@@ -130,7 +130,7 @@ export const roussel: Candidate = {
   indicators: [
     { id: 'roussel-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
     { id: 'roussel-i1', label: 'Condamnations connues', value: 'Aucune', period: 'À la date de revue', verification: 'a-verifier', sourceIds: ['legifrance'] },
-    { id: 'roussel-i2', label: 'Score au premier tour de la présidentielle', value: '2,28 %', period: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+    { id: 'roussel-i2', label: 'Score au premier tour de la présidentielle', value: '2,28 % (802 422 voix)', period: '2022', verification: 'verifie', sourceIds: ['cc-2022-195-pdr'] },
   ],
   lastUpdated: '2026-08-20',
 }

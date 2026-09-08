@@ -217,7 +217,7 @@ export const lepen: Candidate = {
     },
   ],
   indicators: [
-    { id: 'lepen-i1', label: 'Score au second tour de la présidentielle', value: '41,45 %', period: '2022', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+    { id: 'lepen-i1', label: 'Score au second tour de la présidentielle', value: '41,45 % (13 288 686 voix)', period: '2022', verification: 'verifie', sourceIds: ['cc-2022-197-pdr'] },
     { id: 'lepen-i2', label: 'Condamnations définitives pour atteinte à la probité', value: 'Aucune', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
     { id: 'lepen-i3', label: 'Condamnations non définitives', value: 'Une, confirmée en appel, pourvoi en cours', period: '2025-2026', verification: 'recoupe', sourceIds: ['ca-paris-cp-20260707', 'franceinfo-lepen-appel'] },
     { id: 'lepen-i4', label: 'Inéligibilité en cours', value: 'Aucune — quinze mois fermes purgés au 30 juin 2026', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['rts-lepen-appel', 'touteleurope-lepen-appel'] },

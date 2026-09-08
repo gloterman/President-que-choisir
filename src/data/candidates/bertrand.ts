@@ -171,7 +171,7 @@ export const bertrand: Candidate = {
   legal: [],
   indicators: [
     { id: 'bertrand-i0', label: 'Recherche d’antécédents judiciaires', value: 'Effectuée, aucun élément trouvé', period: 'Au 20 août 2026', verification: 'recoupe', sourceIds: ['legifrance', 'courdecassation'] },
-    { id: 'bertrand-i1', label: 'Années à la tête d’un exécutif régional', value: 'Plus de 10 ans', period: '2015-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
+    { id: 'bertrand-i1', label: 'Années à la tête d’un exécutif régional', value: 'Plus de 10 ans', period: '2016-2026', verification: 'a-verifier', sourceIds: ['vie-publique'] },
   ],
   lastUpdated: '2026-08-20',
 }
