@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-07T09:53:30.243Z",
+  "generatedAt": "2026-09-08T09:17:51.197Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -489,6 +489,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-d2693c8a0331411a",
+      "title": "Allemagne : pourquoi le parti AfD est-il régulièrement qualifié de «néonazi» ?",
+      "url": "https://www.liberation.fr/checknews/allemagne-pourquoi-le-parti-afd-est-il-regulierement-qualifie-de-neonazi-20260908_UIGPVXMYFJASBOEC2RCTTUSBEI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-08T04:21:00.000Z",
+      "collectedAt": "2026-09-08T09:17:51.189Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-754bd6e75bfb7a60",
+      "title": "VRAI OU FAUX. Sarah&#xA0;Knafo a-t-elle raison de d&#xE9;noncer dans son livre un \"casse du si&#xE8;cle\" orchestr&#xE9; par l'Etat au d&#xE9;triment des contribuables&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-sarah-knafo-a-t-elle-raison-de-denoncer-dans-son-livre-un-casse-du-siecle-orchestre-par-l-etat-au-detriment-des-contribuables_8175293.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-08T03:56:31.000Z",
+      "collectedAt": "2026-09-08T09:17:50.598Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-76fc400a3a83e12a",
+      "title": "La France peut-elle gagner de l'argent gr&#xE2;ce &#xE0; sa propre dette ?",
+      "url": "https://www.franceinfo.fr/economie/crise/crise-de-la-dette/la-france-peut-elle-gagner-de-l-argent-grace-a-sa-propre-dette_8181416.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-07T15:45:30.000Z",
+      "collectedAt": "2026-09-08T09:17:50.598Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-a3fbd7d82addfcb8",
+      "title": "L’aide de la France à l’Ukraine, dont le RN veut « couper le robinet », représente une goutte d’eau dans les finances publiques françaises",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/07/l-aide-de-la-france-a-l-ukraine-dont-le-rn-veut-couper-le-robinet-represente-un-goutte-d-eau-dans-les-finances-publiques-francaises_6767948_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-07T13:44:38.000Z",
+      "collectedAt": "2026-09-08T09:17:49.952Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-6fd860d11fc449f3",
       "title": "Ce qu’il faut retenir de l’actualité du week-end des 5 et 6 septembre",
