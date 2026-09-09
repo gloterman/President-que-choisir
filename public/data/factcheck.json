@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-08T09:17:51.197Z",
+  "generatedAt": "2026-09-09T09:20:40.821Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,19 @@
     }
   ],
   "quotes": [
+    {
+      "id": "site-f49601217b257de6",
+      "candidateId": "retailleau",
+      "platform": "site-officiel",
+      "account": "republicains.fr",
+      "postId": "f49601217b257de6",
+      "url": "https://republicains.fr/actualites/2026/09/08/bruno-retailleau-presente-son-equipe-de-porte-paroles/",
+      "text": "Bruno Retailleau présente son équipe de porte-paroles — CP_BR_PP_809Télécharger L’article Bruno Retailleau présente son équipe de porte-paroles est apparu en premier sur Les Républicains.",
+      "claim": "Bruno Retailleau présente son équipe de porte-paroles",
+      "publishedAt": "2026-09-08T10:21:25.000Z",
+      "collectedAt": "2026-09-09T09:20:31.090Z",
+      "speaker": "parti"
+    },
     {
       "id": "bluesky-3mupgkmaqa22h",
       "candidateId": "melenchon",
@@ -489,6 +502,35 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-5c078d0616460ca7",
+      "title": "Qu’est-ce que le BAPS, ce mouvement hindou qui a pu visiter la Tour Eiffel sans la présence d’employées femmes ?",
+      "url": "https://www.liberation.fr/checknews/quest-ce-que-le-baps-ce-mouvement-hindou-qui-a-pu-visiter-la-tour-eiffel-sans-la-presence-demployees-femmes-20260909_NQVN6XFRBNDF7MLIOH32UUFWBA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-09T05:30:30.000Z",
+      "collectedAt": "2026-09-09T09:20:40.814Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-516b35126d6e661d",
+      "title": "VRAI OU FAUX. Gabriel Attal, candidat &#xE0; l'&#xE9;lection pr&#xE9;sidentielle 2027, a-t-il le droit de promouvoir sa candidature un verre d'alcool &#xE0; la main&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-gabriel-attal-candidat-a-l-election-presidentielle-2027-a-t-il-le-droit-de-promouvoir-sa-candidature-un-verre-d-alcool-a-la-main_8182991.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-09T04:03:28.000Z",
+      "collectedAt": "2026-09-09T09:20:40.121Z",
+      "likelyCandidates": [
+        "attal"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-1464ec0b7c5f034d",
+      "title": "VRAI OU FAUX. Le \"Nobel\" d'&#xE9;conomie est-il un \"soi-disant\" prix Nobel, comme le juge Jean-Luc M&#xE9;lenchon&#xA0;?",
+      "url": "https://www.franceinfo.fr/monde/prix-nobel/vrai-ou-faux-le-nobel-d-economie-est-il-un-soi-disant-prix-nobel-comme-le-juge-jean-luc-melenchon_8182844.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-09T04:00:53.000Z",
+      "collectedAt": "2026-09-09T09:20:40.121Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-d2693c8a0331411a",
       "title": "Allemagne : pourquoi le parti AfD est-il régulièrement qualifié de «néonazi» ?",
