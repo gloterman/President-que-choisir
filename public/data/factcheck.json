@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-09T09:20:40.821Z",
+  "generatedAt": "2026-09-10T09:19:46.584Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -502,6 +502,26 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-35f68595a44dd284",
+      "title": "«450 000 personnes à la charge du contribuable» : le calcul complètement bidon de Bardella sur l’immigration",
+      "url": "https://www.liberation.fr/checknews/450-000-personnes-a-la-charge-du-contribuable-le-calcul-completement-bidon-de-bardella-sur-limmigration-20260909_PE4Q2HQCPJCKVKVZHZBQA6NWIQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-09T16:52:50.000Z",
+      "collectedAt": "2026-09-10T09:19:46.576Z",
+      "likelyCandidates": [
+        "bardella"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-538af883cbd64bb3",
+      "title": "Dans les coulisses d’une campagne israélienne pour contrer les boycotts universitaires en Europe",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/09/dans-les-coulisses-d-une-campagne-israelienne-pour-contrer-les-boycotts-universitaires-en-europe_6768897_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-09T12:10:20.000Z",
+      "collectedAt": "2026-09-10T09:19:42.576Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-5c078d0616460ca7",
       "title": "Qu’est-ce que le BAPS, ce mouvement hindou qui a pu visiter la Tour Eiffel sans la présence d’employées femmes ?",
