@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-10T09:19:46.584Z",
+  "generatedAt": "2026-09-11T09:18:39.086Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mv6e4x7f4226",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mv6e4x7f4226",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mv6e4x7f4226",
+      "text": "🔴 L’espace doit rester un bien commun de l'humanité\n\nRetrouvez mon point presse à l'occasion du rassemblement des salariés du CNES, en marge du sommet sur l’Espace.\n\n👉 youtu.be/XLiHHI7IdbQ",
+      "claim": "🔴 L’espace doit rester un bien commun de l'humanité\n\nRetrouvez mon point presse à l'occasion du rassemblement des salariés du CNES, en marge du sommet sur l’Espace.\n\n👉 youtu.be/XLiHHI7IdbQ",
+      "publishedAt": "2026-09-10T15:21:32.457Z",
+      "collectedAt": "2026-09-11T09:18:36.632Z"
+    },
     {
       "id": "site-f49601217b257de6",
       "candidateId": "retailleau",
@@ -502,6 +514,73 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-9c0df401d6e60265",
+      "title": "Non, Edouard Philippe n’a pas proposé de reporter à septembre la prise de fonction du prochain président pour se reposer",
+      "url": "https://www.liberation.fr/checknews/non-edouard-philippe-na-pas-propose-de-reporter-a-septembre-la-prise-de-fonction-du-prochain-president-pour-se-reposer-20260911_QSRQ3FMJRZGPTJXLW6VWC436CU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-11T06:22:35.000Z",
+      "collectedAt": "2026-09-11T09:18:39.079Z",
+      "likelyCandidates": [
+        "philippe"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-aa3d5d35dca3e919",
+      "title": "11-Septembre : les huit principales théories du complot décortiquées",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/11/11-septembre-les-huit-principales-theories-du-complot-decortiquees_6094267_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-11T03:00:11.000Z",
+      "collectedAt": "2026-09-11T09:18:36.934Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-11d1dee33efc1bbb",
+      "title": "Un drone russe a-t-il vraiment failli percuter l’avion de Zelensky en Moldavie ?",
+      "url": "https://www.liberation.fr/checknews/un-drone-russe-a-t-il-vraiment-failli-percuter-lavion-de-zelensky-en-moldavie-20260910_OFRLIIHYG5DSNBXFKTRBNTI6BQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-10T19:14:22.000Z",
+      "collectedAt": "2026-09-11T09:18:39.079Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-361956fc7ff1e93d",
+      "title": "Les cures thermales ont-elles un intérêt médical «prouvé», comme l’avance Carole Delga ?",
+      "url": "https://www.liberation.fr/checknews/les-cures-thermales-ont-elles-un-interet-medical-prouve-comme-lavance-carole-delga-20260910_DO37K4RNCJCYJLFRN5CM4SKIGI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-10T15:03:47.000Z",
+      "collectedAt": "2026-09-11T09:18:39.079Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-e56597b9cb563df5",
+      "title": "25 ans du 11-Septembre : la guerre à Gaza ravive de vieilles théories du complot antisémites",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/10/25-ans-du-11-septembre-la-guerre-a-gaza-ravive-de-vieilles-theories-du-complot-antisemites_6769834_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-10T14:58:09.000Z",
+      "collectedAt": "2026-09-11T09:18:36.934Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-9dde16b82e5ce226",
+      "title": "Donald Trump et le 11-Septembre, 25 ans de souvenirs inventés",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/10/attentats-du-11-septembre-les-souvenirs-a-geometrie-variable-de-donald-trump_6769762_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-10T13:00:06.000Z",
+      "collectedAt": "2026-09-11T09:18:36.934Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-67764578952dbdb7",
+      "title": "A Paris, l’équipe de Gabriel Attal lance son opération «1 000 bistrots» dans une brasserie chic à 12 euros la pinte",
+      "url": "https://www.liberation.fr/checknews/a-paris-lequipe-de-gabriel-attal-lance-son-operation-1-000-bistrots-dans-une-brasserie-chic-a-12-euros-la-pinte-20260910_CRXY6JTHERAWXHYPAJVVGS57MM/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-10T10:33:13.000Z",
+      "collectedAt": "2026-09-11T09:18:39.079Z",
+      "likelyCandidates": [
+        "attal"
+      ]
+    },
     {
       "id": "veille-checknews-35f68595a44dd284",
       "title": "«450 000 personnes à la charge du contribuable» : le calcul complètement bidon de Bardella sur l’immigration",
