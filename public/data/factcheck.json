@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-11T09:18:39.086Z",
+  "generatedAt": "2026-09-12T08:58:23.435Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -514,6 +514,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-64ff217542926a27",
+      "title": "Le réchauffement climatique rendra-t-il les orages plus dangereux ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/12/le-rechauffement-climatique-rendra-t-il-les-orages-plus-dangereux_6771159_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-12T07:30:08.000Z",
+      "collectedAt": "2026-09-12T08:58:21.198Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-efceef0604c2f63e",
+      "title": "Incendie en Gironde : l’expérimentation de l’A400M a-t-elle cloué au sol d’autres bombardiers d’eau ?",
+      "url": "https://www.liberation.fr/checknews/incendie-en-gironde-lexperimentation-de-la400m-a-t-elle-cloue-au-sol-dautres-bombardiers-deau-20260911_Z7LIBRC4BJDJ7HDXGHOZTATWDU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-11T19:42:00.000Z",
+      "collectedAt": "2026-09-12T08:58:23.429Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-8fbffd4b1a1a1eba",
+      "title": "La leader d’extrême droite Alice Weidel face au chancelier Friedrich Merz : « Le Monde » décrypte deux discours antagonistes sur l’avenir de l’Allemagne",
+      "url": "https://www.lemonde.fr/international/article/2026/09/11/la-leader-d-extreme-droite-alice-weidel-face-au-chancelier-friedrich-merz-le-monde-decrypte-deux-discours-antagonistes-sur-l-avenir-de-l-allemagne_6770629_3210.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-11T18:00:01.000Z",
+      "collectedAt": "2026-09-12T08:58:21.198Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-9c0df401d6e60265",
       "title": "Non, Edouard Philippe n’a pas proposé de reporter à septembre la prise de fonction du prochain président pour se reposer",
