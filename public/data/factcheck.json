@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-12T08:58:23.435Z",
+  "generatedAt": "2026-09-13T09:55:43.868Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -514,6 +514,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-ea981888123c840e",
+      "title": "Titiou Lecoq, autrice du « Couple et l’argent » : « Longtemps, le féminisme français a eu un problème avec l’économie »",
+      "url": "https://www.lemonde.fr/argent/article/2026/09/13/titiou-lecoq-autrice-du-couple-et-l-argent-longtemps-le-feminisme-francais-a-eu-un-probleme-avec-l-economie_6772196_1657007.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-13T04:30:03.000Z",
+      "collectedAt": "2026-09-13T09:55:41.606Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-520cdfc0eeec6869",
+      "title": "Pourquoi la capacité d’absorption de carbone des forêts françaises diminue, alors que leur surface augmente ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/13/pourquoi-la-capacite-d-absorption-de-carbone-des-forets-francaises-diminue-alors-que-leur-surface-augmente_6772194_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-13T04:15:06.000Z",
+      "collectedAt": "2026-09-13T09:55:41.606Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-ebae7b44d6b5f8f0",
+      "title": "Arabie Saoudite : des images satellites révèlent l’attaque contre l’oléoduc permettant de contourner le détroit d’Ormuz",
+      "url": "https://www.liberation.fr/checknews/arabie-saoudite-des-images-satellites-revelent-lattaque-contre-loleoduc-permettant-de-contourner-le-detroit-dormuz-20260912_LWOJI4BSRVBTFAJYAGEACIRBIY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-12T10:19:30.000Z",
+      "collectedAt": "2026-09-13T09:55:43.862Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-64ff217542926a27",
       "title": "Le réchauffement climatique rendra-t-il les orages plus dangereux ?",
