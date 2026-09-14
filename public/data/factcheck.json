@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-13T09:55:43.868Z",
+  "generatedAt": "2026-09-14T10:15:20.100Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -514,6 +514,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-261d457a71b1b7ac",
+      "title": "Présidentielle 2027 : comment savoir si un sondage est fiable ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/14/election-presidentielle-2027-comment-savoir-si-un-sondage-est-fiable_6773499_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-14T06:30:48.000Z",
+      "collectedAt": "2026-09-14T10:15:17.881Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-a54efda3e3fa7552",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 12 et 13 septembre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/13/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-12-et-13-septembre_6772910_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-13T16:45:21.000Z",
+      "collectedAt": "2026-09-14T10:15:17.882Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-ea981888123c840e",
       "title": "Titiou Lecoq, autrice du « Couple et l’argent » : « Longtemps, le féminisme français a eu un problème avec l’économie »",
