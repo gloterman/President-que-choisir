@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-15T09:44:29.797Z",
+  "generatedAt": "2026-09-16T09:38:00.864Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mvkl3shc5s2v",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mvkl3shc5s2v",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mvkl3shc5s2v",
+      "text": "Le blocage des marges des raffineurs est la clé pour faire baisser les prix des carburants. LFI le propose depuis le début. Pendant ce temps, les marges de profit ont été multipliées par 4 ! Et, bien sûr, on veut faire croire que Total, par exemple, ne fait pas de bénéfices en France...",
+      "claim": "Le blocage des marges des raffineurs est la clé pour faire baisser les prix des carburants. LFI le propose depuis le début. Pendant ce temps, les marges de profit ont été multipliées par 4 ! Et, bien sûr, on veut faire croire que Total, par exemple, ne fait pas de bénéfices en France...",
+      "publishedAt": "2026-09-15T11:58:06.971Z",
+      "collectedAt": "2026-09-16T09:37:56.839Z"
+    },
     {
       "id": "bluesky-3mv6e4x7f4226",
       "candidateId": "melenchon",
@@ -514,6 +526,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-478af62b4c27b09c",
+      "title": "Comprendre la crise des finances publiques françaises en graphiques : dette, déficits et taux d’intérêt",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/16/dette-deficits-taux-d-interet-les-graphiques-pour-comprendre-la-crise-des-finances-publiques_6774888_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-16T04:00:20.000Z",
+      "collectedAt": "2026-09-16T09:37:57.013Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-cf8aeff77e6ebd36",
       "title": "« Quand Alban est diagnostiqué d’une leucémie, la vie de toute sa famille bascule » : découvrez les extraits d’une BD sur le combat d’une toxicologue contre les cancers pédiatriques",
