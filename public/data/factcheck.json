@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-16T09:38:00.864Z",
+  "generatedAt": "2026-09-17T09:46:11.725Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -526,6 +526,37 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-eccc697906d398d6",
+      "title": "«Le Casse du siècle» : retour sur les principales erreurs et manipulations de Sarah Knafo dans son «livre-enquête»",
+      "url": "https://www.liberation.fr/checknews/le-casse-du-siecle-retour-sur-les-principales-erreurs-et-manipulations-de-sarah-knafo-dans-son-livre-enquete-20260917_47SOENPHHFE5LLAZV3LV3AETU4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-17T08:19:37.000Z",
+      "collectedAt": "2026-09-17T09:46:11.714Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-7ed9f042d05dad47",
+      "title": "D’où vient la citation de Charles de Gaulle utilisée par Marine Le Pen pour défendre la «priorité nationale» ?",
+      "url": "https://www.liberation.fr/checknews/dou-vient-la-citation-de-charles-de-gaulle-utilisee-par-marine-le-pen-pour-defendre-la-priorite-nationale-20260917_RGTEJVKKPNFLVANZRTNHNAW3TQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-17T04:53:00.000Z",
+      "collectedAt": "2026-09-17T09:46:11.714Z",
+      "likelyCandidates": [
+        "lepen"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-23c0d91a97f05656",
+      "title": "VRAI OU FAUX. Est-il vrai que \"70% des Fran&#xE7;ais sont &#xE9;ligibles\" &#xE0; un logement du parc social et que \"seulement 11% d'entre eux en b&#xE9;n&#xE9;ficient\", comme l'affirme Marine Le Pen&#xA0;?",
+      "url": "https://www.franceinfo.fr/economie/vrai-ou-faux-est-il-vrai-que-70-des-francais-sont-eligibles-a-un-logement-du-parc-social-et-que-seulement-11-d-entre-eux-en-beneficient-comme-l-affirme-marine-le-pen_8195210.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-17T04:07:51.000Z",
+      "collectedAt": "2026-09-17T09:46:09.569Z",
+      "likelyCandidates": [
+        "lepen"
+      ]
+    },
     {
       "id": "veille-decodeurs-478af62b4c27b09c",
       "title": "Comprendre la crise des finances publiques françaises en graphiques : dette, déficits et taux d’intérêt",
