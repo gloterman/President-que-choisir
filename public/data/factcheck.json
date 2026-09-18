@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-17T09:46:11.725Z",
+  "generatedAt": "2026-09-18T09:20:08.659Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -526,6 +526,66 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-09ba1b648b89a6aa",
+      "title": "Qui sont les houthistes du Yémen ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/18/qui-sont-les-houthistes-du-yemen_6776739_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-18T04:30:16.000Z",
+      "collectedAt": "2026-09-18T09:20:07.464Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-5227385b2ff60e6a",
+      "title": "VRAI OU FAUX. Supprimer les certificats d'&#xE9;conomie d'&#xE9;nergie ferait-il r&#xE9;aliser une &#xE9;conomie de \"8,5&#xA0;euros par plein\" comme l'affirme Bruno Retailleau&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-supprimer-les-certificats-d-economie-d-energie-ferait-il-realiser-une-economie-de-8-5-euros-par-plein-comme-l-affirme-bruno-retailleau_8195534.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-18T04:10:13.000Z",
+      "collectedAt": "2026-09-18T09:20:08.378Z",
+      "likelyCandidates": [
+        "retailleau"
+      ]
+    },
+    {
+      "id": "veille-checknews-64bee7df01dd66a3",
+      "title": "Procès Rima Hassan : pourquoi la Licra était-elle convoquée comme «victime» avec Némésis ?",
+      "url": "https://www.liberation.fr/checknews/proces-rima-hassan-pourquoi-la-licra-etait-elle-convoquee-comme-victime-avec-nemesis-20260917_C4TP5T6QHJD3RD52CFWY6746T4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-17T16:01:15.000Z",
+      "collectedAt": "2026-09-18T09:20:08.651Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-fdaf5711b6f45cb5",
+      "title": "Geler une partie de la dette : le projet de Jean-Luc Mélenchon est-il faisable et quel serait son intérêt économique ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/17/geler-une-partie-de-la-dette-le-projet-de-jean-luc-melenchon-est-il-faisable-et-quel-serait-son-interet-economique_6776441_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-17T15:00:02.000Z",
+      "collectedAt": "2026-09-18T09:20:07.464Z",
+      "likelyCandidates": [
+        "melenchon"
+      ]
+    },
+    {
+      "id": "veille-checknews-02a9861a3604039c",
+      "title": "Téléconsultation médicale : peut-on vraiment griller la file d’attente en payant un supplément ?",
+      "url": "https://www.liberation.fr/checknews/teleconsultation-medicale-peut-on-vraiment-griller-la-file-dattente-en-payant-un-supplement-20260917_PWY6JPSWJZBQRMY7RHWGO5WCYY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-17T12:43:32.000Z",
+      "collectedAt": "2026-09-18T09:20:08.651Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-6a10bf70fcaba375",
+      "title": "Les macronistes et la gauche viennent-ils de voter une hausse du carburant au Parlement européen, comme l’affirme Jordan Bardella ?",
+      "url": "https://www.liberation.fr/checknews/les-macronistes-et-la-gauche-viennent-ils-de-voter-une-hausse-du-carburant-au-parlement-europeen-comme-laffirme-jordan-bardella-20260917_QOCD7I2ZKZFDXKT7B4HJVDEHQI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-17T10:55:52.000Z",
+      "collectedAt": "2026-09-18T09:20:08.651Z",
+      "likelyCandidates": [
+        "bardella"
+      ]
+    },
     {
       "id": "veille-checknews-eccc697906d398d6",
       "title": "«Le Casse du siècle» : retour sur les principales erreurs et manipulations de Sarah Knafo dans son «livre-enquête»",
