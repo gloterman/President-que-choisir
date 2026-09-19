@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-18T09:20:08.659Z",
+  "generatedAt": "2026-09-19T09:07:37.969Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -526,6 +526,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-4ea746ff32946763",
+      "title": "Pourquoi les garçons lisent-ils moins et moins bien que les filles ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/19/pourquoi-les-garcons-lisent-ils-moins-et-moins-bien-que-les-filles_6777215_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-19T04:00:07.000Z",
+      "collectedAt": "2026-09-19T09:07:35.463Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-367c30b7ce71ee99",
+      "title": "Sur RMC Découverte, un documentaire montre un avion Rafale lâcher un missile nucléaire sur Tel-Aviv",
+      "url": "https://www.liberation.fr/checknews/sur-rmc-decouverte-un-documentaire-montre-un-avion-rafale-lacher-un-missile-nucleaire-sur-tel-aviv-20260918_IXY6AFCK25B7REJB322B3E57QQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-18T14:10:25.000Z",
+      "collectedAt": "2026-09-19T09:07:37.961Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-198db4fe537c577a",
+      "title": "«Band of connasses» : comment une entrepreneuse s’est-elle retrouvée à devoir 1 500 euros à l’homme qui l’a insultée sur LinkedIn ?",
+      "url": "https://www.liberation.fr/checknews/band-of-connasses-comment-une-entrepreneuse-sest-elle-retrouvee-a-devoir-1-500-euros-a-lhomme-qui-la-insultee-sur-linkedin-20260918_YWWQBAE6J5HPLPVMD3FMCSAJXI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-18T14:06:58.000Z",
+      "collectedAt": "2026-09-19T09:07:37.961Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-09ba1b648b89a6aa",
       "title": "Qui sont les houthistes du Yémen ?",
