@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-19T09:07:37.969Z",
+  "generatedAt": "2026-09-20T09:33:37.609Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mvwh44tjus2c",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mvwh44tjus2c",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mvwh44tjus2c",
+      "text": "Merci au Huffington Post de contester mon analyse sur l'annexion du Groenland et mon analyse favorable du rapprochement du Premier ministre canadien auprès de l'Europe. Je lui réponds sur mon blog.\n\n👉 melenchon.fr/2026/09/19/d...",
+      "claim": "Merci au Huffington Post de contester mon analyse sur l'annexion du Groenland et mon analyse favorable du rapprochement du Premier ministre canadien auprès de l'Europe. Je lui réponds sur mon blog.\n\n👉 melenchon.fr/2026/09/19/d...",
+      "publishedAt": "2026-09-20T05:18:39.752Z",
+      "collectedAt": "2026-09-20T09:33:35.034Z"
+    },
     {
       "id": "bluesky-3mvkl3shc5s2v",
       "candidateId": "melenchon",
@@ -526,6 +538,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-e297991f28e9741d",
+      "title": "La priorit&#xE9; nationale est-elle une id&#xE9;e de gauche ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/la-priorite-nationale-est-elle-une-idee-de-gauche_8200784.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-19T14:25:29.000Z",
+      "collectedAt": "2026-09-20T09:33:36.760Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-4ea746ff32946763",
       "title": "Pourquoi les garçons lisent-ils moins et moins bien que les filles ?",
