@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-20T09:33:37.609Z",
+  "generatedAt": "2026-09-21T10:21:18.312Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -538,6 +538,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-18107529131971cd",
+      "title": "Où en est la guerre en Ukraine ? Suivez l’évolution des combats en cartes et graphiques",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/21/ou-en-est-la-guerre-en-ukraine-suivez-l-evolution-des-combats-en-cartes-et-graphiques_6696338_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-21T06:20:46.000Z",
+      "collectedAt": "2026-09-21T10:21:16.498Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-7c6daf864e10880f",
+      "title": "Carburant : la carte des prix de l’essence et du gazoil autour de chez vous",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/21/carburant-la-carte-des-prix-a-la-pompe-autour-de-chez-vous_6670140_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-21T05:49:46.000Z",
+      "collectedAt": "2026-09-21T10:21:16.498Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-9d864ffa0363e352",
+      "title": "Tout savoir sur les élections sénatoriales, scrutin peu connu mais très important",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/21/elections-senatoriales-comment-sont-elus-les-membres-du-palais-du-luxembourg_6778737_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-21T05:06:50.000Z",
+      "collectedAt": "2026-09-21T10:21:16.498Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-55e51cd4b4e2ab25",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 19 et 20 septembre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/20/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-19-et-20-septembre_6778409_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-20T17:57:15.000Z",
+      "collectedAt": "2026-09-21T10:21:16.498Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-e297991f28e9741d",
       "title": "La priorit&#xE9; nationale est-elle une id&#xE9;e de gauche ?",
