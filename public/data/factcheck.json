@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-21T10:21:18.312Z",
+  "generatedAt": "2026-09-22T09:35:35.961Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -538,6 +538,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-6a0c4db988aa125f",
+      "title": "Gilets jaunes : l’appel du 17 octobre peine à convaincre les historiques de 2018",
+      "url": "https://www.liberation.fr/checknews/gilets-jaunes-lappel-du-17-octobre-peine-a-convaincre-les-historiques-de-2018-20260922_DTAOUNMQDZA3TL5PT3OWQVD2AE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-22T07:09:00.000Z",
+      "collectedAt": "2026-09-22T09:35:35.955Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-c9cb487d0dd5b08e",
+      "title": "Sénatoriales 2026 : à quoi sert le Sénat ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/22/senatoriales-2026-a-quoi-sert-le-senat_6779792_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-22T04:30:12.000Z",
+      "collectedAt": "2026-09-22T09:35:33.791Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-ba0c9169e585ce88",
+      "title": "L’extrême droite progresse-t-elle vraiment partout en Europe ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/22/l-extreme-droite-progresse-t-elle-vraiment-partout-en-europe_6779789_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-22T04:00:23.000Z",
+      "collectedAt": "2026-09-22T09:35:33.791Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-a8f773c7ec3b94f3",
+      "title": "Le pédocriminel Joël Le Scouarnec sera-t-il «libérable» d’ici quatre ou cinq ans ?",
+      "url": "https://www.liberation.fr/checknews/le-pedocriminel-joel-le-scouarnec-sera-t-il-liberable-dici-quatre-ou-cinq-ans-20260921_EYKUPKHTHNGVLCNHORQKWICJUE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-21T17:30:12.000Z",
+      "collectedAt": "2026-09-22T09:35:35.955Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-18107529131971cd",
       "title": "Où en est la guerre en Ukraine ? Suivez l’évolution des combats en cartes et graphiques",
