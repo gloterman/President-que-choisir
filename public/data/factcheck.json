@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-22T09:35:35.961Z",
+  "generatedAt": "2026-09-23T09:40:59.429Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -538,6 +538,35 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-8d842c22e360451e",
+      "title": "Sénatoriales 2026 : qui sont les candidats ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/23/senatoriales-2026-qui-sont-les-candidats_6780576_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-23T04:00:04.000Z",
+      "collectedAt": "2026-09-23T09:40:57.139Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-5a21a7aa1bb16844",
+      "title": "«C’était ça ou mourir» de Thélyson Orélien : le livre phénomène de la rentrée littéraire a-t-il été «intégralement rédigé» avec l’IA ?",
+      "url": "https://www.liberation.fr/checknews/cetait-ca-ou-mourir-de-thelyson-orelien-le-livre-phenomene-de-la-rentree-litteraire-a-t-il-ete-integralement-redige-avec-lia-20260922_DFM4TJMW2VBVDNJQ6VJTPFY55U/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-22T16:22:14.000Z",
+      "collectedAt": "2026-09-23T09:40:59.421Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-56693b133d6d499d",
+      "title": "Eric Zemmour veut expulser les étrangers en se basant sur une loi de 1945, une approximation historique et juridique",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/22/eric-zemmour-veut-expulser-les-etrangers-en-se-basant-sur-une-loi-de-1945-une-approximation-historique-et-juridique_6780244_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-22T15:00:09.000Z",
+      "collectedAt": "2026-09-23T09:40:57.139Z",
+      "likelyCandidates": [
+        "zemmour"
+      ]
+    },
     {
       "id": "veille-checknews-6a0c4db988aa125f",
       "title": "Gilets jaunes : l’appel du 17 octobre peine à convaincre les historiques de 2018",
