@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-23T09:40:59.429Z",
+  "generatedAt": "2026-09-24T09:40:03.538Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -538,6 +538,44 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-4e872c59227bce9e",
+      "title": "Carburant : la carte des prix de l’essence et du gasoil autour de chez vous",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/24/carburant-la-carte-des-prix-de-l-essence-et-du-gasoil-autour-de-chez-vous_6670140_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-24T02:02:18.000Z",
+      "collectedAt": "2026-09-24T09:40:01.451Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-b21fc26a361196c9",
+      "title": "«Prix du public» de Radio Canada : le texte soumis par Thélyson Orélien, lauréat de l’édition 2012, était un plagiat de Louis Pauwels",
+      "url": "https://www.liberation.fr/checknews/prix-du-public-de-radio-canada-le-texte-soumis-par-thelyson-orelien-laureat-de-ledition-2012-etait-un-plagiat-de-louis-pauwels-20260923_OJ5ITOBPTJG3VEID6ZYIAADSA4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-23T19:13:13.000Z",
+      "collectedAt": "2026-09-24T09:40:03.532Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-9f520805dfdbb7d5",
+      "title": "IA et littérature : le logiciel Pangram est-il vraiment fiable ?",
+      "url": "https://www.liberation.fr/checknews/ia-et-litterature-le-logiciel-pangram-est-il-vraiment-fiable-20260923_JBS2RZKAORA6PKYOTCL2ST7E7A/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-23T18:17:20.000Z",
+      "collectedAt": "2026-09-24T09:40:03.532Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-27b6ce6be0cd692a",
+      "title": "L’Allemagne est-elle vraiment championne des arrêts maladie en Europe, loin devant la France, comme l’affirme Mélenchon ?",
+      "url": "https://www.liberation.fr/checknews/lallemagne-est-elle-vraiment-championne-des-arrets-maladie-en-europe-loin-devant-la-france-comme-laffirme-melenchon-20260923_REPJ65WSZREYLLDNAWFZK5USXU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-23T11:09:13.000Z",
+      "collectedAt": "2026-09-24T09:40:03.532Z",
+      "likelyCandidates": [
+        "melenchon"
+      ]
+    },
     {
       "id": "veille-decodeurs-8d842c22e360451e",
       "title": "Sénatoriales 2026 : qui sont les candidats ?",
