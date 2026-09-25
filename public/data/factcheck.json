@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-24T09:40:03.538Z",
+  "generatedAt": "2026-09-25T09:57:52.308Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -538,6 +538,44 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-44f1ffcbbaa34518",
+      "title": "Visite du pape en France : tout ce qu’il faut savoir sur le séjour de Léon XIV",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/25/visite-du-pape-en-france-tout-ce-qu-il-faut-savoir-sur-le-sejour-de-leon-xiv_6781935_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-25T04:00:13.000Z",
+      "collectedAt": "2026-09-25T09:57:50.146Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-c6195a37f346d319",
+      "title": "«60 milliards d’euros d’aides publiques englouties par les associations» : que vaut l’estimation reprise en une du «JDD» ?",
+      "url": "https://www.liberation.fr/checknews/60-milliards-deuros-daides-publiques-englouties-par-les-associations-que-vaut-lestimation-reprise-en-une-du-jdd-20260924_3QDYLQC4GVCKXFUHEFQKSNBZBI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-24T15:51:15.000Z",
+      "collectedAt": "2026-09-25T09:57:52.301Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-5fca8bc35beb9d3c",
+      "title": "CARTE Les pénuries de carburants dans les stations-service près de chez vous",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/24/penuries-de-carburants-est-il-difficile-de-s-approvisionner-pres-de-chez-vous-la-reponse-en-cartes_6781531_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-24T14:00:06.000Z",
+      "collectedAt": "2026-09-25T09:57:50.146Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-d79e022d29fdefab",
+      "title": "VRAI OU FAUX. Rapha&#xEB;l Glucksmann a-t-il soutenu Nicolas Sarkozy lors de la campagne pr&#xE9;sidentielle de 2007&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-raphael-glucksmann-a-t-il-soutenu-nicolas-sarkozy-lors-de-la-campagne-presidentielle-de-2007_8206151.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-24T11:05:20.000Z",
+      "collectedAt": "2026-09-25T09:57:51.570Z",
+      "likelyCandidates": [
+        "glucksmann"
+      ]
+    },
     {
       "id": "veille-decodeurs-4e872c59227bce9e",
       "title": "Carburant : la carte des prix de l’essence et du gasoil autour de chez vous",
