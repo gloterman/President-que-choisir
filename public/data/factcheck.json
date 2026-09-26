@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-25T09:57:52.308Z",
+  "generatedAt": "2026-09-26T09:40:23.863Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -23,8 +23,8 @@
     {
       "candidateId": "glucksmann",
       "platform": "site-officiel",
-      "account": "place-publique.eu",
-      "messagesExamined": 12
+      "account": "https://place-publique.eu/",
+      "error": "aucun flux : accueil injoignable (This operation was aborted (20)), aucun flux déclaré"
     },
     {
       "candidateId": "attal",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mwdnm6ogyk27",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mwdnm6ogyk27",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mwdnm6ogyk27",
+      "text": "Macron a fait le bon choix pour une autorité mondiale de l'intelligence artificielle, comme le proposent le pape, la Chine et plus de 20 pays. C'est un temps fort où l'humanité s'affirme comme telle et actrice d'un destin commun.",
+      "claim": "Macron a fait le bon choix pour une autorité mondiale de l'intelligence artificielle, comme le proposent le pape, la Chine et plus de 20 pays. C'est un temps fort où l'humanité s'affirme comme telle et actrice d'un destin commun.",
+      "publishedAt": "2026-09-25T11:19:37.602Z",
+      "collectedAt": "2026-09-26T09:40:21.717Z"
+    },
     {
       "id": "bluesky-3mvwh44tjus2c",
       "candidateId": "melenchon",
@@ -538,6 +550,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-2d3f910590e5900b",
+      "title": "VRAI OU FAUX. TotalEnergies ne fait-il vraiment \"pas de marge\" en France, comme l'affirme Emmanuel Macron&#xA0;?",
+      "url": "https://www.franceinfo.fr/environnement/energie/energies-fossiles/totalenergies/vrai-ou-faux-totalenergies-ne-fait-il-vraiment-pas-de-marge-en-france-comme-l-affirme-emmanuel-macron_8209730.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-09-26T04:55:19.000Z",
+      "collectedAt": "2026-09-26T09:40:23.225Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-99ec5e277ff797f5",
+      "title": "La propriétaire française d’un vaste patrimoine immobilier à Dubaï écrouée à Paris",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/25/la-proprietaire-francaise-d-un-vaste-patrimoine-immobilier-a-dubai-ecrouee-a-paris_6782625_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-25T17:32:44.000Z",
+      "collectedAt": "2026-09-26T09:40:22.054Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-ad0a8287107f444c",
+      "title": "Sénatoriales 2026 : qui sont les grands électeurs qui vont voter dimanche ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/25/senatoriales-2026-qui-sont-les-grands-electeurs-qui-vont-voter-dimanche_6782469_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-25T12:00:09.000Z",
+      "collectedAt": "2026-09-26T09:40:22.054Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-2b3d58849909e893",
+      "title": "IA : Jules Torres, chef du service politique au «JDD», rédige-t-il ses articles avec ChatGPT ?",
+      "url": "https://www.liberation.fr/checknews/ia-jules-torres-chef-du-service-politique-au-jdd-redige-t-il-ses-articles-avec-chatgpt-20260925_X4YVW3OK6ZD75LBEK62UY5JJOQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-25T10:37:15.000Z",
+      "collectedAt": "2026-09-26T09:40:23.855Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-44f1ffcbbaa34518",
       "title": "Visite du pape en France : tout ce qu’il faut savoir sur le séjour de Léon XIV",
