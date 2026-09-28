@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-27T10:19:27.865Z",
+  "generatedAt": "2026-09-28T11:22:54.817Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mwjfgihqec2x",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mwjfgihqec2x",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mwjfgihqec2x",
+      "text": "Dans tous les départements, LFI fait des scores bien plus larges que son nombre de grands électeurs. Dans le Rhône, Gabriel Amard nous fait entrer au Sénat, en dépit de toutes les tentatives de barrage. Heureux augure pour 2027 !",
+      "claim": "Dans tous les départements, LFI fait des scores bien plus larges que son nombre de grands électeurs. Dans le Rhône, Gabriel Amard nous fait entrer au Sénat, en dépit de toutes les tentatives de barrage. Heureux augure pour 2027 !",
+      "publishedAt": "2026-09-27T18:09:15.037Z",
+      "collectedAt": "2026-09-28T11:22:52.905Z"
+    },
     {
       "id": "bluesky-3mwdnm6ogyk27",
       "candidateId": "melenchon",
@@ -327,6 +339,19 @@
       "speaker": "candidat"
     },
     {
+      "id": "site-f8642f91265bc12a",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "f8642f91265bc12a",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-7-la-force-de-lentraide-2/",
+      "text": "Chapitre 7 : La force de l’entraide — Chapitre 7 : La force de l’entraide L’égalité des populations par la démocratie et les services publics Parmi les 200 contributions reçues, 22 sont déjà présentes dans le programme actuel dont La réouverture des accueils physiques dans les services publics La lutte contre les déserts médicaux Le soutien au tissu associatif local, notamment grâce à davantage de subventions publiques Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Certaines demandent la réouverture des lignes ferroviaires sur le territoire, la gratuité des transports et la nécessité de mettre en place une offre publique de transports diversifiée D’autres exigent davantage d’accessibilité des services publics pour les personnes à mobilité réduite Parmi les propositions nouvelles reviennent particulièrement L’ouverture de restaurants populaires rendant accessible une alimentation de qualité à toutes et tous La lutte contre l’isolement social et la solitude En finir avec l’abandon des Outre-mer Parmi les 120 contributions reçues, certaines sont déjà présentes dans le programme actuel dont Permettre l’accès aux services publics (renforcement des guichets physiques), Garantir la continuité territoriale Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Une attention spécifique est portée à la question du recrutement des fonctionnaires avec l’idée de garantir des places aux personnes ayant vécu et été formées dans les territoires ultra-marins La question de l’accès à la santé L’encadrement des prix dans les territoires ultra-marins Parmi les propositions nouvelles reviennent particulièrement La question du prix des billets d’avion entre l’hexagone et les Outre-mer Faire la société de l’entraide : généraliser l’économie sociale, solidaire et coopérative Parmi les 152 contributions reçues, 12 sont déjà présentes dans le programme actuel dont Rendre la Sécurité sociale aux travailleurs et travailleuses Améliorer l’accès de l’ESS aux financements et marchés publics Revaloriser les métiers de l’animation socio-culturelle et de l’éducation spécialisée Faciliter les conventions pluriannuelles pour lutter contre les appels à projet perpétuels Créer un service public de pompes funèbres Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Certaines mentionnent l&rsquo;obligation d’étudier la reprise d’une entreprise par les salariés sous forme de SCOP ou SCIC avec un accompagnement gratuit pour évaluer cette option D’autres appellent à prendre en compte le bénévolat dans les trimestres cotisés D’autre défendent l’idée de créer un véritable statut de proche-aidant Éradiquer la pauvreté Parmi les 270 contributions reçues, 70 sont déjà présentes dans le programme actuel dont L&rsquo;augmentation de l’allocation adulte handicapé et l’automatisation de son attribution La gratuité de la cantine et du périscolaire La sécurité sociale intégrale Le plafonnement des frais bancaires La sécurité sociale de l’alimentation Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme De nombreuses contributions mentionnent l’instauration d’une première tranche gratuite de consommation d’électricité, de chaleur, d’eau, de gaz, d&rsquo;internet, de transport, à la fois pour les courtes et les longues distances Parmi les propositions nouvelles reviennent particuliè",
+      "claim": "Chapitre 7 : La force de l’entraide",
+      "publishedAt": "2026-07-17T15:44:26.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
+      "speaker": "candidat"
+    },
+    {
       "id": "site-cef42e07f66fc54f",
       "candidateId": "melenchon",
       "platform": "site-officiel",
@@ -337,6 +362,19 @@
       "claim": "Chapitre 16 : une diplomatie altermondialiste pour la paix",
       "publishedAt": "2026-07-17T15:16:39.000Z",
       "collectedAt": "2026-09-04T21:13:58.397Z",
+      "speaker": "candidat"
+    },
+    {
+      "id": "site-979159e8e18608e9",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "979159e8e18608e9",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-16-une-diplomatie-altermondialiste-pour-la-paix-2/",
+      "text": "Chapitre 16 : une diplomatie altermondialiste pour la paix — Assumer l’indépendance de la France Parmi les 84 contributions reçues, 37 sont déjà présentes dans le programme actuel dont Sortir de l’OTAN en commençant par son commandement intégré Stopper l’alignement de la France sur l’atlantisme de l’Union Européenne et construire l’indépendance de la France vis-à-vis des États-Unis Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Beaucoup de contributions portent sur le refus de relations néocoloniales et basées sur les intérêts économiques avec les pays Africains D’autres contributions se placent en refus de la polarisation du monde et de la logique de blocs qui domine l’ordre international, elles portent la construction de nouvelles alliances non alignées en accord avec la doctrine insoumise sur les questions internationales Parmi les propositions nouvelles reviennent particulièrement Renforcer la lutte contre les ingérences étrangères Construire une défense souveraine Parmi les 104 contributions reçues, 51 sont déjà présentes dans le programme actuel dont Garantir la souveraineté de la France via l’acquisition de matériel militaire français dans les armées et la création d’un pôle public de l’armement Relancer les processus multilatéraux de désarmement nucléaire et conventionnel dans le cadre de l’ONU Faire de la France une puissance incontournable dans les technologies de rupture : miniaturisation, dronisation, intelligence artificielle, etc. Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Plusieurs contributions portent sur l’augmentation des moyens de lutte contre les cybermenaces, y compris sur les systèmes d&rsquo;information civils, et mettre en place une stratégie pluriannuelle en la matière D’autres proposent de développer des alternatives françaises aux outils étrangers et aux géants de la tech pour se protéger des cyberattaques (GPS, moteurs de recherche, logiciels utilisés par les fonctionnaires, etc.) Parmi les propositions nouvelles reviennent particulièrement Faire de la France l&rsquo;avant-garde d&rsquo;une législation éthique sur l&rsquo;usage des nouvelles technologies Renforcer l’ONU Parmi les 50 contributions reçues, une 10 sont déjà présentes dans le programme actuel dont Refuser toute intervention militaire sans mandat l’ONU et rétablir l’autorité du comité d&rsquo;état-major des Nations unies Agir pour réformer le Conseil de sécurité et de l&rsquo;Assemblée générale pour que l’ONU soit représentative du monde actuel Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Réaffirmer la primauté de l&rsquo;Organisation des Nations unies dans le règlement des différends internationaux et privilégier systématiquement les solutions diplomatiques, la médiation et le droit international Agir pour le respect du droit international Parmi les 144 contributions reçues, 101 sont déjà présentes dans le programme actuel dont En Ukraine, agir pour créer un cadre diplomatique permettant d’obtenir un cessez-le-feu, le retrait des troupes russes, et l’ouverture de négociations pour une paix durable Mettre en place des sanctions contre le gouvernement Netanyahou Interrompre l’accord d’association UE – Israël Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Appuyer les juges de la CPI, afin d&rsquo;assurer leur indép",
+      "claim": "Chapitre 16 : une diplomatie altermondialiste pour la paix",
+      "publishedAt": "2026-07-17T15:16:39.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
       "speaker": "candidat"
     },
     {
@@ -353,6 +391,19 @@
       "speaker": "candidat"
     },
     {
+      "id": "site-b9e2cb3c6c224b34",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "b9e2cb3c6c224b34",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-18-nouvelles-frontieres-de-lhumanite/",
+      "text": "Chapitre 18 : Nouvelles Frontières de l’Humanité — Protéger les mers et les océans Parmi les 40 contributions reçues, 7 sont déjà présentes dans le programme actuel dont Protéger les espaces polaires, notamment l&rsquo;Antarctique, et participer à la coopération scientifique dans ces espaces Proposer la construction de la première station sous-marine permanente sur le modèle de la station spatiale internationale Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme De nombreuses propositions défendent de créer des aires marines protégées en haute mer et de rendre réellement protectrices celles qui existent déjà en interdisant en leur sein le chalutage de fond D’autres invitent à lutter contre l’acidification des océans et la multiplication des « zones mortes » dépourvues d’oxygène D’autres proposent d’accélérer le projet d’université onusienne de la Mer, à Brest et en Polynésie française Être à la hauteur de la responsabilité maritime Parmi les 32 contributions reçues, 1 sont déjà présentes dans le programme actuel dont Mettre en œuvre un plan d’urgence pour l’éolien maritime d’un point de vue énergétique et industriel, garantir le développement de la filière au besoin par la nationalisation des activités de General electric (ex Alstom) et Siemens-Gamesa (ex Areva) Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Certaines contributions défendent de réserver les soutiens publics aux armateurs appliquant les conventions de l&rsquo;Organisation internationale du travail (OIT) et la Convention du travail maritime (MLC 2006) D’autres proposent d’identifier les bénéficiaires réels des sociétés exploitant les navires afin de lutter contre les montages opaques et les contournements de responsabilité Parmi les propositions nouvelles reviennent particulièrement Faciliter l&rsquo;accès des marins aux inspections du travail, aux soins, à l&rsquo;assistance juridique et aux représentants syndicaux lors des escales Relancer la découverte de l’Espace Parmi les 70 contributions reçues, 7 sont déjà présentes dans le programme actuel dont Proposer un programme international de dépollution de toutes les orbites et de nouvelles règles internationales d’occupation des orbites basses Proposer un nouveau traité international pour la non-appropriation des ressources spatiales, la lutte contre la pollution spatiale et la démilitarisation de l’espace Revenir sur la privatisation d’Arianespace et protéger la filière de lancement de satellites en assurant une planification des besoins à long terme, renforcer les moyens du Centre national d’études spatiales Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Certaines propositions proposent de créer un système de géolocalisation français, utilisé par défaut par tous les systèmes et appareils français ou se trouvant en France Parmi les propositions nouvelles reviennent particulièrement Créer un réseau national de stations d’observation citoyennes et la création d’un programme “une école, un satellite” pour renforcer l’éducation populaire scientifique à l’observation, et donc à la préservation du ciel",
+      "claim": "Chapitre 18 : Nouvelles Frontières de l’Humanité",
+      "publishedAt": "2026-07-17T14:54:15.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
+      "speaker": "candidat"
+    },
+    {
       "id": "site-a747d2362f92e182",
       "candidateId": "melenchon",
       "platform": "site-officiel",
@@ -363,6 +414,19 @@
       "claim": "Chapitre 15 : Une approche de santé globale",
       "publishedAt": "2026-07-17T14:53:11.000Z",
       "collectedAt": "2026-09-04T21:13:58.397Z",
+      "speaker": "candidat"
+    },
+    {
+      "id": "site-7149fb703863f87e",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "7149fb703863f87e",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-15-une-approche-de-sante-globale/",
+      "text": "Chapitre 15 : Une approche de santé globale — S’organiser pour faire face à la pandémie Parmi les 323 contributions reçues, une cinquantaine sont déjà présentes dans le programme actuel dont Créer un pôle public du médicament Interdire le dépôt de brevets sur les médicaments et les équipements nécessaires en cas d’urgence sanitaire (par exemple lors d’une épidémie) Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Plusieurs propositions mettent en avant la notion de “One Health” qui consiste à considérer la santé humaine, animale et environnementale comme une continuité. Cette logique est déjà celle du programme Faire passer la santé d’abord Parmi les 504 contributions reçues, 200 sont déjà présentes dans le programme actuel dont Reconnaître le burn out comme maladie professionnelle Instaurer le 100% Sécu Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme L’investissement dans la prévention concernant la santé mentale dans les écoles Le renforcement de la médecine de prévention à l’école et à l&rsquo;hôpital Parmi les propositions nouvelles reviennent particulièrement En finir avec la financiarisation de la santé Addictions et drogues Parmi les 240 contributions reçues, une cinquantaine sont déjà présentes dans le programme actuel dont Des précisions concernant le cannabis thérapeutique : remboursement, prescription par les médecins, etc. Des détails concernant la légalisation du cannabis, notamment sur la publicité, la protection des mineurs, le contrôle du taux de THC, etc. Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme De nombreuses contributions défendent le renforcement des politiques de prévention concernant l’alcool, le tabac et les drogues Parmi les propositions nouvelles reviennent particulièrement La fin des amendes forfaitaires délictuelles En finir avec la malbouffe Parmi les 284 contributions reçues, une soixantaine sont déjà présentes dans le programme actuel dont Faire la restauration collective à 100% biologique et locale, en imposant une option végétarienne quotidienne Interdire les additifs les plus controversés et la limitation des additifs autorisés à ceux admis dans l’agriculture biologique Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme De nombreuses contributions insistent sur la nécessité de développer l’agriculture biologique D’autres défendent l’expérimentation d’une « sécurité sociale de l’alimentation » D’autres exigent la réduction des prix sur les aliments de bonne qualité pour qu’ils soient plus accessibles Parmi les propositions nouvelles reviennent particulièrement La lutte contre la pollution des terres agricoles par les métaux lourds comme le cadmium",
+      "claim": "Chapitre 15 : Une approche de santé globale",
+      "publishedAt": "2026-07-17T14:53:11.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
       "speaker": "candidat"
     },
     {
@@ -379,6 +443,19 @@
       "speaker": "candidat"
     },
     {
+      "id": "site-0def10939a920a4b",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "0def10939a920a4b",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-14-protection-des-biens-communs-et-des-droits-de-lespece/",
+      "text": "Chapitre 14 : Protection des biens communs et des droits de l’espèce — Pollutions : désempoisonner le monde Parmi les 99 contributions reçues, 17 sont déjà présentes dans le programme actuel dont Arrêter les activités dangereuses pour la santé et l’environnement Interdire les produits chimiques les plus nocifs et les polluants éternels Gérer les risques industriels avec la création d’une autorité de sûreté indépendante des risques industriels Prendre en charge et indemniser les victimes, y compris indirectes, des essais nucléaires français et reconnaître leurs dommages environnementaux, en particulier en Polynésie Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme De nombreuses contributions plaident pour mettre en place des solutions durables et viables pour remplacer les pesticides et autres produits chimiques D’autres insistent sur la nécessité d’augmenter de manière massive le nombre d&rsquo;inspecteurs de l&rsquo;environnement (à l’Office français de la biodiversité, à Office national des forêts, etc). D’autres déclinent des propositions pour lutter contre pollution lumineuse : interdiction des enseignes lumineuses et publicités lumineuses la nuit ou normes contraignantes pour l&rsquo;éclairage privé et commercial Le droit à l’eau dans les Outre-mer Parmi les 28 contributions reçues, 16 sont déjà présentes dans le programme actuel dont Garantir l&rsquo;accès à l&rsquo;eau courante potable à tous les habitants des Outre-mer, quoi qu&rsquo;il en coûte, en s&rsquo;en donnant les moyens concrets Financer par l’État un plan d’urgence de remplacement et de sécurisation des infrastructures d’eau potable et d’assainissement dans les Outre-mer, en priorité en Guadeloupe. Ce plan devra couvrir les canalisations, captages, réservoirs, usines de potabilisation, stations d’épuration, réseaux d’assainissement, dispositifs de secours et équipements de contrôle sanitaire. Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme De nombreuses contributions proposent de créer un fonds de réparation des pollutions historiques en Outre-mer, financé par l’État et les responsables économiques identifiés D’autres insistent pour créer une brigade publique de l’eau et de l’assainissement pour les Outre-mer, composée d’ingénieurs, techniciens, hydrologues, agents de maintenance, ouvriers spécialisés et formateurs locaux Parmi les propositions nouvelles reviennent particulièrement Créer un observatoire ultramarin indépendant de l’eau, de l’assainissement et des pollutions chroniques, chargé de suivre publiquement les coupures, les fuites, la qualité de l’eau, les prix, les travaux engagés, les non-conformités, les pollutions historiques, les alertes citoyennes et les suites données par les autorités et les opérateurs L’eau, enjeu central pour l’humanité Parmi les 136 contributions reçues, 27 sont déjà présentes dans le programme actuel dont Différencier les usages de l&rsquo;eau et leur tarification (gratuité des usages vitaux) Interdire les méga-bassines Lancer un plan national pour dépolluer et réhabiliter les cours d’eau et plans d’eau (baignade) Mailler le territoire en points d’eau potable et sanitaires Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme De nombreuses personnes insistent sur la nécessité de protéger les points de captage de l&rsquo;eau potable (en amont) pour limiter les besoins de dé",
+      "claim": "Chapitre 14 : Protection des biens communs et des droits de l’espèce",
+      "publishedAt": "2026-07-17T14:41:05.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
+      "speaker": "candidat"
+    },
+    {
       "id": "site-442389c92e3d5375",
       "candidateId": "melenchon",
       "platform": "site-officiel",
@@ -389,6 +466,19 @@
       "claim": "Chapitre 13 : Les grands chantiers de la bifurcation écologique",
       "publishedAt": "2026-07-17T14:32:29.000Z",
       "collectedAt": "2026-09-04T21:13:58.398Z",
+      "speaker": "candidat"
+    },
+    {
+      "id": "site-7c60af17c2376683",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "7c60af17c2376683",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-13-les-grands-chantiers-de-la-bifurcation-ecologique/",
+      "text": "Chapitre 13 : Les grands chantiers de la bifurcation écologique — Organiser le 100 % d’énergies renouvelables en 2050 et la rénovation énergétique Parmi les 688 contributions reçues, 64 sont déjà présentes dans le programme actuel dont Annuler la libéralisation du marché de l’électricité et renationaliser EDF et Engie Mettre en place des tarifs réglementés de l’énergie avec des objectifs sociaux Favoriser les matériaux bio-sourcés Remplacer les chauffages polluants par des alternatives (pompes à chaleur…) Planifier le déploiement de technologies capables de réguler et de gérer les pics et les creux de production et de consommation d’énergie Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme La question de notre souveraineté énergétique revient dans plusieurs contributions, notamment à travers le recyclage des matériaux des technologies de production et de stockage d&rsquo;énergie et le développement d&rsquo;une production nationale (mine de lithium par exemple). Cela suppose également de garantir notre approvisionnement auprès de pays partenaires respectant des critères éthiques et écologiques. Sur la rénovation énergétique, plusieurs contributions demandent des moyens renforcés pour rendre les dispositifs réellement opérant De nombreuses contributions proposent de développer la géothermie et les réseaux de chaleur et de fraîcheur. La France insoumise prévoit dans son programme d’investir dans la recherche et le développement de certaines technologies pour assurer le développement des énergies renouvelables et la géothermie en fait partie Parmi les propositions nouvelles reviennent particulièrement Orienter l’installation des énergies renouvelables (solaire et éolienne) dans un objectif d’intérêt général et non de rentabilité privée, en prenant en compte les aspects sociaux, de production agricole et de biodiversité Développer la partie sur la réponse aux canicules (rénovation intégrant le confort d’été, brasseurs d’air, révision du DPE, réseau de froid…) Souveraineté alimentaire et révolution agricole : pour une agriculture écologique et paysanne Parmi les 409 contributions reçues, 77 sont déjà présentes dans le programme actuel dont Encourager l’installation de nouveaux agriculteurs et le développement d’exploitations à taille humaine Refonder la politique agricole commune (PAC) et orienter les aides vers l’agroécologie Planifier la réduction des doses d’engrais et pesticides et les importations de produits qui en contiennent Mettre en place une caisse de défaisance pour reprendre les dettes agricoles des convertis au 100 % bio Réguler et encadrer les marges des industriels agroalimentaires et des distributeurs Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Développer les circuits courts Lancer un plan national de formation, d’installation et de transmission des fermes Repenser et reconstruire le réseau d&rsquo;expérimentation et de conseils en agriculture pour la promotion de l&rsquo;agroécologie Prendre à bras le corps la question du mal-être agricole afin d’apporter des réponses concrètes Parmi les propositions nouvelles reviennent particulièrement Réglementer fortement les modifications génomiques Établir un objectif chiffré de plantation de haies et de bosquets sur les terrains agricoles afin de reconstruire des infrastructures agroécologiques essentielles Investir pour lancer la bifurcation de notre économie Parmi les ",
+      "claim": "Chapitre 13 : Les grands chantiers de la bifurcation écologique",
+      "publishedAt": "2026-07-17T14:32:29.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
       "speaker": "candidat"
     },
     {
@@ -405,6 +495,19 @@
       "speaker": "candidat"
     },
     {
+      "id": "site-2ee34e37d008d82b",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "2ee34e37d008d82b",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-12-planification-ecologique-2/",
+      "text": "Chapitre 12 : Planification écologique — La bifurcation pour une société de l’harmonie Parmi les 355 contributions reçues, de nombreuses sont déjà présentes dans le programme actuel dont Planifier la désartificialisation, la végétalisation des villes et des constructions humaine et y réintroduire de la biodiversité Généraliser l&rsquo;usage de critères écologiques (déchets, énergie, pollution) dans la commande publique, l’alimentation, la construction Lutter contre l&rsquo;obsolescence programmée et développer le réemploi, la réparation et le recyclage, dans cet ordre Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Développer une comptabilité écologique nationale avec de nouveaux indicateurs définis pour mesurer la santé humaine et environnementale Mettre enfin en place les mesures de la Convention citoyenne pour le Climat Beaucoup de contributions ont ajouté des exemples pour préciser la mesure « Donner les moyens humains et financiers à l’État et ses opérateurs publics », tels que l’ADEME, les parcs nationaux, les CAUE, le CNPF. S’il n’est pas possible de tout lister dans L’Avenir en commun, il est bien prévu de défendre l’intégralité des opérateurs permettant de mettre en œuvre la bifurcation écologique à rebours des coupes budgétaires faites par Macron et ses gouvernements successifs Parmi les propositions nouvelles reviennent particulièrement Transformer les horaires de travail/école/ouverture des commerces pour mieux s&rsquo;adapter au changement climatique Développer un service civique agricole L’organisation de l’État au service de la planification écologique Parmi les 232 contributions reçues, 43 sont déjà présentes dans le programme actuel dont La mise en place d’éco-régions Développer le transport ferroviaire et le rendre accessible Développer la démocratie écologique, notamment au niveau des communes avec des commissions intégrant des citoyens, des associations, etc. Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Beaucoup de mesures proposent la déconcentration de la gestion écologique pour une adaptation au plus près des conditions et évolutions locales, qui vont dans le sens de ce qui est proposé avec les éco-régions Parmi les propositions nouvelles reviennent particulièrement Revue systématique des données environnementales à chaque échelon des collectivités, les rendre publiques, accessibles et les protéger comme bien commun Les Outre-mer, avant-postes de la planification écologique Parmi les 37 contributions reçues, 12 sont déjà présentes dans le programme actuel dont Tendre vers l’autosuffisance alimentaire et développer l’agriculture vivrière locale Éradiquer l’utilisation du chlordécone et autres pesticides dangereux Investir davantage dans la préservation de la biodiversité ultramarine",
+      "claim": "Chapitre 12 : Planification écologique",
+      "publishedAt": "2026-07-17T14:28:24.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
+      "speaker": "candidat"
+    },
+    {
       "id": "site-aa76444bc39733d4",
       "candidateId": "melenchon",
       "platform": "site-officiel",
@@ -415,6 +518,19 @@
       "claim": "Chapitre 11 : Humaniser par la culture et le sport",
       "publishedAt": "2026-07-17T14:15:38.000Z",
       "collectedAt": "2026-09-04T21:13:58.398Z",
+      "speaker": "candidat"
+    },
+    {
+      "id": "site-0478750e3334000e",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "0478750e3334000e",
+      "url": "https://melenchon2027.fr/programme/synthese-des-contributions/chapitre-11-humaniser-par-la-culture-et-le-sport/",
+      "text": "Chapitre 11 : Humaniser par la culture et le sport — La bifurcation dans les arts et la culture Parmi les 552 contributions reçues, 420 sont déjà présentes dans le programme actuel dont Redonner leur capacité d’action aux associations artistiques et culturelles ainsi qu’aux maisons des jeunes et de la culture (MJC) par des conventionnements durables et les moyens financiers adaptés Défendre le maillage national des bibliothèques et médiathèques Améliorer le régime des intermittents du spectacle Étendre la gratuité dans tous les musées Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme Plusieurs contributions insistent sur l’égalité et la lutte contre les discriminations, qui fondent l’Avenir en commun. De la défense de nos principes à l&rsquo;élaboration de mesures concrètes et précises, les contributions proposent de mener une révolution citoyenne dans les arts et la culture D’autres contributions soulignent que l’accès à la culture est actuellement très concentré dans les grandes villes. L’Avenir en commun propose de revenir sur les baisses de dotations faites aux collectivités locales, condition nécessaire pour développer une culture de proximité et du quotidien accessible à toutes et tous Réindustrialiser et relocaliser pour assurer notre indépendance Parmi les 188 contributions reçues, 104 sont déjà présentes dans le programme actuel dont Renforcer l’apprentissage de la natation dans le cadre scolaire Renforcer la souveraineté des sportifs sur les fédérations Certaines contributions présentent des concepts dont l&rsquo;essence est déjà présente dans le programme La logique de marché détruit le sport. De différentes façons et sous plusieurs angles, les contributions ont démontré une volonté de mettre fin à la marchandisation extrême, afin de permettre à chacun de développer ses capacités créatrices et son estime de soi dans le respect des autres. L’accès au sport doit être garanti à toutes et tous. Par des mesures riches et diverses, de nombreuses contributions ont souligné la nécessité de construire l’égalité dans le sport, ce que nous portons dans L’Avenir en commun. Par ailleurs, cela coïncide souvent avec des propositions sur le rôle du sport dans une société de l’entraide, loin de la fétichisation du résultat. Le milieu sportif porte des objectifs d’éducation, de santé, d’accessibilité, de proximité, d’égalité femmes-hommes, d’ouverture intergénérationnelle et de fraternité Parmi les propositions nouvelles reviennent particulièrement Protéger, encadrer et encourager l’e-sport Faire la bifurcation écologique dans le sport",
+      "claim": "Chapitre 11 : Humaniser par la culture et le sport",
+      "publishedAt": "2026-07-17T14:15:38.000Z",
+      "collectedAt": "2026-09-28T11:22:19.804Z",
       "speaker": "candidat"
     },
     {
@@ -550,6 +666,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-7c479cb2a93a0c19",
+      "title": "Quiz : Savez-vous comment Céline Dion est devenue Céline Dion ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/28/savez-vous-comment-celine-dion-est-devenue-celine-dion-tentez-de-repondre-a-notre-quiz_6680831_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-28T07:38:14.000Z",
+      "collectedAt": "2026-09-28T11:22:52.960Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-45e9681b9ec40904",
+      "title": "Sénatoriales 2026 : la nouvelle composition du Sénat, en graphiques",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/27/senatoriales-2026-la-nouvelle-composition-du-senat-en-graphiques_6784562_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-27T21:46:25.000Z",
+      "collectedAt": "2026-09-28T11:22:52.960Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-0808feb5fec85972",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 26 et 27 septembre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/27/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-26-et-27-septembre_6784483_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-27T17:00:04.000Z",
+      "collectedAt": "2026-09-28T11:22:52.960Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-fd2f1231d86eb458",
+      "title": "Sénatoriales 2026 : les résultats des élections en direct et en détail",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/27/senatoriales-2026-les-resultats-des-elections-en-direct-et-en-detail_6784134_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-27T16:54:45.000Z",
+      "collectedAt": "2026-09-28T11:22:52.960Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-f7dc89e6979af1ae",
       "title": "Escroquerie aux mutuelles : l’enquête qui a démantelé une fraude généralisée dans le secteur de l’optique",
