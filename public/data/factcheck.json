@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-09-28T11:22:54.817Z",
+  "generatedAt": "2026-09-29T11:00:39.623Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -666,6 +666,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-6b427e4fbe808172",
+      "title": "«On continue de morfler» : à l’école Jeanne-d’Arc de Montrouge, les profs toujours confrontés à «des méthodes génératrices de peur»",
+      "url": "https://www.liberation.fr/checknews/on-continue-de-morfler-a-lecole-jeanne-darc-de-montrouge-les-profs-toujours-confrontes-a-des-methodes-generatrices-de-peur-20260929_LNZVD5RNRBGBVMVGGVRXOZDO3Y/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-29T05:12:00.000Z",
+      "collectedAt": "2026-09-29T11:00:39.617Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-0ca2ced25336047f",
+      "title": "Présidentielle 2027 : les candidats disent-ils la vérité sur le climat ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/29/presidentielle-2027-les-candidats-disent-ils-la-verite-sur-le-climat_6785555_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-29T04:30:09.000Z",
+      "collectedAt": "2026-09-29T11:00:37.296Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-80f90f0227d245df",
+      "title": "L’IGPN saisie après un tir policier en plein visage d’un lycéen, lors d’un blocus dans le Val-d’Oise",
+      "url": "https://www.liberation.fr/checknews/ligpn-saisie-apres-un-tir-policier-en-plein-visage-dun-lyceen-lors-dun-blocus-dans-le-val-doise-20260928_KUVRA4XQLRBFNIOM4S2PRI7T4Y/",
+      "publisher": "Libération",
+      "publishedAt": "2026-09-28T16:17:02.000Z",
+      "collectedAt": "2026-09-29T11:00:39.617Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-efcd43bd9eaeaf94",
+      "title": "Quel est vraiment le niveau de vie des retraités en France ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/28/quel-est-vraiment-le-niveau-de-vie-des-retraites-en-france_6785049_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-09-28T12:14:49.000Z",
+      "collectedAt": "2026-09-29T11:00:37.296Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-7c479cb2a93a0c19",
       "title": "Quiz : Savez-vous comment Céline Dion est devenue Céline Dion ?",
