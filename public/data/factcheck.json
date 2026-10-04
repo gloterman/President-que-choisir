@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-03T10:10:09.696Z",
+  "generatedAt": "2026-10-04T10:50:32.617Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -704,6 +704,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-332f5d25a343754f",
+      "title": "Présidentielle 2027 : pourquoi la CSG divise autant les candidats",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/04/presidentielle-2027-pourquoi-la-csg-divise-autant-les-candidats_6788112_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-04T08:00:08.000Z",
+      "collectedAt": "2026-10-04T10:50:30.443Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-c617a3c4617b53c4",
       "title": "Vol Flydubai : non, la différence de couleur des semelles sur deux photos ne prouve pas une mise en scène",
