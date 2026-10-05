@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-04T10:50:32.617Z",
+  "generatedAt": "2026-10-05T11:58:56.619Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -705,6 +705,33 @@
   "verifications": [],
   "watch": [
     {
+      "id": "veille-decodeurs-66f39d5d1db330e9",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 3 et 4 octobre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/04/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-3-et-4-octobre_6788324_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-04T17:10:55.000Z",
+      "collectedAt": "2026-10-05T11:58:54.623Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-6d1625dd315eae04",
+      "title": "Comment une faille logicielle a entraîné des fuites de données de l’Etat, touchant jusqu’à l’agence de cybersécurité",
+      "url": "https://www.liberation.fr/checknews/comment-une-faille-logicielle-a-entraine-des-fuites-de-donnees-de-letat-touchant-jusqua-lagence-de-cybersecurite-20261004_QKGW47ZOFJE2XA54VDLN3EXCJ4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-04T14:36:00.000Z",
+      "collectedAt": "2026-10-05T11:58:56.611Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-6b7eb653522281a9",
+      "title": "Dans les coulisses de Viginum, la cellule gouvernementale d’experts qui traque les ingérences étrangères sur Internet",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/04/a-viginum-les-analystes-cherchent-a-anticiper-les-ingerences-etrangeres-si-on-s-arrete-a-la-menace-prorusse-on-se-coupe-d-une-partie-du-sujet_6788259_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-04T12:00:06.000Z",
+      "collectedAt": "2026-10-05T11:58:54.623Z",
+      "likelyCandidates": []
+    },
+    {
       "id": "veille-decodeurs-332f5d25a343754f",
       "title": "Présidentielle 2027 : pourquoi la CSG divise autant les candidats",
       "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/04/presidentielle-2027-pourquoi-la-csg-divise-autant-les-candidats_6788112_4355770.html",
@@ -720,6 +747,15 @@
       "publisher": "Libération",
       "publishedAt": "2026-10-02T16:53:55.000Z",
       "collectedAt": "2026-10-03T10:10:09.688Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-03e584db5ad0815e",
+      "title": "Budget : le fonds vert est-il vraiment en hausse comme l’a affirmé la ministre de la transition écologique ?",
+      "url": "https://www.lemonde.fr/planete/article/2026/10/02/budget-le-fonds-vert-pour-la-transition-ecologique-est-il-vraiment-en-hausse-comme-l-a-affirme-la-ministre-monique-barbut_6787184_3244.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-02T15:36:45.000Z",
+      "collectedAt": "2026-10-05T11:58:54.623Z",
       "likelyCandidates": []
     },
     {
