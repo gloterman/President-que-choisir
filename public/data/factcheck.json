@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-05T11:58:56.619Z",
+  "generatedAt": "2026-10-06T11:39:40.017Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mx6zom4mwc2c",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mx6zom4mwc2c",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mx6zom4mwc2c",
+      "text": "Merci aux jeunes gens d'HEC qui m'ont reçu hier pour une rencontre d'échange. Merci aux milliers de jeunes qui vont manifester aujourd'hui. Notre pays a la chance d'avoir une jeune génération impliquée dans son destin et prête à le prendre en main.",
+      "claim": "Merci aux jeunes gens d'HEC qui m'ont reçu hier pour une rencontre d'échange. Merci aux milliers de jeunes qui vont manifester aujourd'hui. Notre pays a la chance d'avoir une jeune génération impliquée dans son destin et prête à le prendre en main.",
+      "publishedAt": "2026-10-06T08:37:36.646Z",
+      "collectedAt": "2026-10-06T11:39:35.543Z"
+    },
     {
       "id": "bluesky-3mwvjhhtdus2m",
       "candidateId": "melenchon",
@@ -704,6 +716,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-79ee25d412ce1e16",
+      "title": "Guyancourt : l’action de la Coordination rurale, qui a déversé des déchets devant un centre des impôts, a-t-elle conduit à des interpellations ?",
+      "url": "https://www.liberation.fr/checknews/guyancourt-laction-de-la-coordination-rurale-qui-a-deverse-des-dechets-devant-un-centre-des-impots-a-t-elle-conduit-a-des-interpellations-20261006_4DXPCSA7ARHEHA4CSVOLSSX7E4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-06T10:23:43.000Z",
+      "collectedAt": "2026-10-06T11:39:40.009Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-b8ce5b8d9aec61c3",
+      "title": "Sénatoriales : quels sont les nouveaux groupes au Palais du Luxembourg ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/05/senatoriales-quels-sont-les-nouveaux-groupes-au-palais-du-luxembourg_6788573_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-05T17:55:52.000Z",
+      "collectedAt": "2026-10-06T11:39:35.719Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-66f39d5d1db330e9",
       "title": "Ce qu’il faut retenir de l’actualité du week-end des 3 et 4 octobre",
