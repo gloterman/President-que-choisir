@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-06T11:39:40.017Z",
+  "generatedAt": "2026-10-07T11:28:09.635Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -47,8 +47,8 @@
     {
       "candidateId": "retailleau",
       "platform": "site-officiel",
-      "account": "republicains.fr",
-      "messagesExamined": 50
+      "account": "https://republicains.fr/",
+      "error": "aucun flux : accueil 403, aucun flux déclaré"
     },
     {
       "candidateId": "lepen",
@@ -716,6 +716,60 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-9006f559405fc63d",
+      "title": "«Un enfant de 8 ans a ingéré autant de sucre que son grand-père durant toute sa vie» : une idée citée partout, mais sortie de nulle part",
+      "url": "https://www.liberation.fr/checknews/un-enfant-de-8-ans-a-ingere-autant-de-sucre-que-son-grand-pere-durant-toute-sa-vie-une-idee-citee-partout-mais-sortie-de-nulle-part-20261007_KQIOX2W4DZFRBBZQO2PFIZEMM4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-07T05:00:00.000Z",
+      "collectedAt": "2026-10-07T11:28:09.627Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-3a004198e4fa369d",
+      "title": "VRAI OU FAUX. Le budget pr&#xE9;voit-il \"650&#xA0;millions en moins\" pour l'Education nationale et \"1&#xA0;600&#xA0;postes de professeurs en moins\", comme l'affirme LFI&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-le-budget-prevoit-il-650-millions-en-moins-pour-l-education-nationale-et-1-600-postes-de-professeurs-en-moins-comme-l-affirme-lfi_8223316.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-07T03:58:20.000Z",
+      "collectedAt": "2026-10-07T11:28:09.046Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-b851896af9df938d",
+      "title": "Articles supprimés, messages officiels modifiés… Que sait-on vraiment du décès d’une employée d’un labo de recherche sur la peste en Sibérie ?",
+      "url": "https://www.liberation.fr/checknews/articles-supprimes-messages-officiels-modifies-que-sait-on-vraiment-du-deces-dune-employee-dun-labo-sur-la-peste-en-siberie-20261006_AA6YI6FRRBAWNK3MPWPADD6HDY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-06T18:37:50.000Z",
+      "collectedAt": "2026-10-07T11:28:09.627Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-4e90161cf74535d9",
+      "title": "A Metz, la jeune fille touchée à la poitrine par un policier aurait «réfuté» toute agression sexuelle, selon le parquet",
+      "url": "https://www.liberation.fr/checknews/a-metz-la-jeune-fille-touchee-a-la-poitrine-par-un-policier-aurait-refute-toute-agression-sexuelle-selon-le-parquet-20261006_BK36GW2W3VEXTDEKMV3UG2LI34/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-06T16:19:00.000Z",
+      "collectedAt": "2026-10-07T11:28:09.628Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-f715f93072b6e782",
+      "title": "Policiers gazant des lycéens depuis une voiture à Troyes : de nouvelles vidéos mettent à mal la version de la préfecture",
+      "url": "https://www.liberation.fr/checknews/policiers-gazant-des-lyceens-depuis-une-voiture-a-troyes-de-nouvelles-videos-mettent-a-mal-la-version-de-la-prefecture-20261006_RBIFCG6KUFG7RPGQJBQP5SLDWQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-06T15:36:50.000Z",
+      "collectedAt": "2026-10-07T11:28:09.628Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-fe92f1b208976223",
+      "title": "Rima Hassan a-t-elle renversé et piétiné les drapeaux d’Israël et de l’UE lors d’un hommage aux victimes du 7 Octobre au Parlement européen ?",
+      "url": "https://www.liberation.fr/checknews/rima-hassan-a-t-elle-renverse-et-pietine-les-drapeaux-disrael-et-de-lue-lors-dun-hommage-aux-victimes-du-7-octobre-au-parlement-europeen-20261006_4MJUU73SM5DGXBVOSWYL3SQHOA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-06T12:59:13.000Z",
+      "collectedAt": "2026-10-07T11:28:09.628Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-79ee25d412ce1e16",
       "title": "Guyancourt : l’action de la Coordination rurale, qui a déversé des déchets devant un centre des impôts, a-t-elle conduit à des interpellations ?",
