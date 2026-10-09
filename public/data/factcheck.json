@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-08T11:43:42.938Z",
+  "generatedAt": "2026-10-09T11:36:51.814Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mxerglchu22d",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mxerglchu22d",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mxerglchu22d",
+      "text": "La Bastille est reprise. Démonstration puissante de la jeunesse qui porte ses revendications de la plus belle façon qui soit ! Fierté immense. Rendez-vous mardi 13 octobre à l'appel des syndicats de jeunes et des salariés.",
+      "claim": "La Bastille est reprise. Démonstration puissante de la jeunesse qui porte ses revendications de la plus belle façon qui soit ! Fierté immense. Rendez-vous mardi 13 octobre à l'appel des syndicats de jeunes et des salariés.",
+      "publishedAt": "2026-10-08T15:25:55.849Z",
+      "collectedAt": "2026-10-09T11:36:49.556Z"
+    },
     {
       "id": "bluesky-3mx6zom4mwc2c",
       "candidateId": "melenchon",
@@ -716,6 +728,71 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-05580a6c3a0a1a2d",
+      "title": "Primaire à gauche : comparez les propositions des cinq candidats",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/09/primaire-a-gauche-comparez-les-propositions-des-cinq-candidats_6790548_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-09T09:38:22.000Z",
+      "collectedAt": "2026-10-09T11:36:49.804Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-2f3809f0c5edb8b8",
+      "title": "Le sinueux parcours de Ségolène Royal et Raphaël Glucksmann, deux candidats de gauche qui s’accusent d’être de droite",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/09/le-sinueux-parcours-de-segolene-royal-et-raphael-glucksmann-deux-candidats-de-gauche-qui-s-accusent-d-etre-de-droite_6790533_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-09T08:00:03.000Z",
+      "collectedAt": "2026-10-09T11:36:49.804Z",
+      "likelyCandidates": [
+        "glucksmann"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-6d3406617aa4e51d",
+      "title": "La France enquête sur les contrats de Thales en Azerbaïdjan, dénoncés par un ex-responsable emprisonné",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/09/la-france-enquete-sur-les-contrats-de-thales-en-azerbaidjan-denonces-par-un-ex-responsable-emprisonne_6790512_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-09T04:30:04.000Z",
+      "collectedAt": "2026-10-09T11:36:49.804Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-3032ac1f13bd7c8d",
+      "title": "Que sait-on des boucliers «éblouissants» utilisés par des forces de l’ordre lors des manifestations du 6 octobre ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-des-boucliers-eblouissants-utilises-par-des-forces-de-lordre-lors-des-manifestations-du-6-octobre-20261008_2BQSFWYXBFCGFIVQUDFDEBUMMQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-08T18:26:18.000Z",
+      "collectedAt": "2026-10-09T11:36:51.807Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-dfedb2c307ccad77",
+      "title": "Que sait-on d’Adrien J., l’homme qui s’en prend à Rima Hassan dans une vidéo en exhibant un fusil à pompe ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-dadrien-j-lhomme-qui-sen-prend-a-rima-hassan-dans-une-video-en-exhibant-un-fusil-a-pompe-20261008_R7CTXWPXGRCL7JRESPHEQJPMNA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-08T17:12:33.000Z",
+      "collectedAt": "2026-10-09T11:36:51.807Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-d661aa28581af6d1",
+      "title": "Des images d&#xE9;tourn&#xE9;es et g&#xE9;n&#xE9;r&#xE9;es par IA alimentent les soup&#xE7;ons de peste en Russie",
+      "url": "https://www.franceinfo.fr/sante/des-images-detournees-et-generees-par-ia-alimentent-les-soupcons-de-peste-en-russie_8228785.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-08T17:00:02.000Z",
+      "collectedAt": "2026-10-09T11:36:51.105Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-7a7da64c03f04ff8",
+      "title": "Blocages, manifestations : quelles sont les pratiques autorisées pour les forces de l’ordre ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/08/blocages-manifestations-quelles-sont-les-pratiques-autorisees-pour-les-forces-de-l-ordre_6790209_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-08T12:52:47.000Z",
+      "collectedAt": "2026-10-09T11:36:49.804Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-1079a22af395de0a",
       "title": "«On va leur mettre dans la gueule» : ouverture d’une enquête après qu’un 4×4 de police a foncé sur des lycéens à Dunkerque",
