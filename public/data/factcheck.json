@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-09T11:36:51.814Z",
+  "generatedAt": "2026-10-10T10:54:49.288Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -728,6 +728,53 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-77224282d3b5404e",
+      "title": "Qui est Bérénice Levet, la philosophe qui s’oppose vivement à la mobilisation lycéenne ?",
+      "url": "https://www.liberation.fr/checknews/qui-est-berenice-levet-la-philosophe-qui-soppose-vivement-a-la-mobilisation-lyceenne-20261010_5MYW3N3HPNER5B2KHBYX4EIFWE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-10T08:51:00.000Z",
+      "collectedAt": "2026-10-10T10:54:49.282Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-6a968b82732dc79e",
+      "title": "Qu’est-ce que le marché européen de l’électricité, dont plusieurs candidats à la présidentielle veulent sortir ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/10/qu-est-ce-que-le-marche-europeen-de-l-electricite-dont-plusieurs-candidats-a-la-presidentielle-veulent-sortir_6790978_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-10T08:30:08.000Z",
+      "collectedAt": "2026-10-10T10:54:47.485Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-f9555ace45631b90",
+      "title": "Mouvement lycéen : la police peut-elle faire le tri dans les pancartes des manifestants ?",
+      "url": "https://www.liberation.fr/checknews/mouvement-lyceen-la-police-peut-elle-faire-le-tri-dans-les-pancartes-des-manifestants-20261009_AN32PUGPDVDBZNO3BJBBUFSURI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-09T16:50:51.000Z",
+      "collectedAt": "2026-10-10T10:54:49.282Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-a654f6a7d5bf7443",
+      "title": "Mobilisation lycéenne : sept graphiques pour mesurer l’état de l’école",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/09/mouvement-des-lyceens-7-graphiques-pour-mesurer-l-etat-de-l-ecole_6790599_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-09T15:11:54.000Z",
+      "collectedAt": "2026-10-10T10:54:47.485Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-78236a0238e84fbd",
+      "title": "Ecrits antisémites : contrairement à ce qu’affirme Jordan Bardella, un compte Facebook associé à un de ses mails personnels existe toujours",
+      "url": "https://www.liberation.fr/checknews/ecrits-antisemites-contrairement-a-ce-quaffirme-jordan-bardella-un-compte-facebook-associe-a-un-de-ses-mails-personnels-existe-toujours-20261009_VRU6HCTBXNDTBIYGFG2LNWFR2Y/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-09T13:19:58.000Z",
+      "collectedAt": "2026-10-10T10:54:49.282Z",
+      "likelyCandidates": [
+        "bardella"
+      ]
+    },
     {
       "id": "veille-decodeurs-05580a6c3a0a1a2d",
       "title": "Primaire à gauche : comparez les propositions des cinq candidats",
