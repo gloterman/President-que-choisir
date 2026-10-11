@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-10T10:54:49.288Z",
+  "generatedAt": "2026-10-11T11:09:24.367Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,31 @@
     }
   ],
   "quotes": [
+    {
+      "id": "site-be60f1419d53f560",
+      "candidateId": "tondelier",
+      "platform": "site-officiel",
+      "account": "lesecologistes.fr",
+      "postId": "be60f1419d53f560",
+      "url": "https://lesecologistes.fr/posts/2GKJ0SAea2PJcRUd5YZcPR/lycees-des-milliers-d-interpellations-et-des-gardes-a-vue-denoncees-comme-des-pratiques-de-terrorisation",
+      "text": "Lycées : des milliers d’interpellations et des gardes à vue dénoncées comme des pratiques de “terrorisation” — Lycées : des milliers d’interpellations et des gardes à vue dénoncées comme des pratiques de “terrorisation”",
+      "claim": "Lycées : des milliers d’interpellations et des gardes à vue dénoncées comme des pratiques de “terrorisation”",
+      "publishedAt": "2026-10-10T19:49:37.000Z",
+      "collectedAt": "2026-10-11T11:08:51.579Z",
+      "speaker": "parti"
+    },
+    {
+      "id": "bluesky-3mxjoafhrhk2f",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mxjoafhrhk2f",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mxjoafhrhk2f",
+      "text": "🔴 Ce mouvement de la jeunesse est le plus ample depuis 50 ans !\n\n👉 youtu.be/2QZwlpyS3qk\n\nBon visionnage et n'hésitez pas à partager !",
+      "claim": "🔴 Ce mouvement de la jeunesse est le plus ample depuis 50 ans !\n\n👉 youtu.be/2QZwlpyS3qk\n\nBon visionnage et n'hésitez pas à partager !",
+      "publishedAt": "2026-10-10T14:12:05.870Z",
+      "collectedAt": "2026-10-11T11:09:21.053Z"
+    },
     {
       "id": "bluesky-3mxerglchu22d",
       "candidateId": "melenchon",
@@ -728,6 +753,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-54bd55b6e8f3d32e",
+      "title": "Mobilisation lycéenne : quand les images «améliorées» par l’IA génèrent des fausses pistes",
+      "url": "https://www.liberation.fr/checknews/mouvement-lyceen-quand-les-images-ameliorees-par-lia-generent-des-fausses-pistes-20261011_Z5BPXSWSDFFUVMBDFRQIYQ4AKA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-11T04:00:01.000Z",
+      "collectedAt": "2026-10-11T11:09:24.355Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-1745383445ff1164",
+      "title": "Provocation polici&#xE8;re ? Que faisait vraiment ce policier en civil &#xE0; Reims ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/provocation-policiere-que-faisait-vraiment-ce-policier-en-civil-a-reims_8231656.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-10T14:24:23.000Z",
+      "collectedAt": "2026-10-11T11:09:22.563Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-5dfeeafed93d6374",
+      "title": "Mouvement lycéen : un policier en civil a-t-il tenté de casser la vitrine d’un Chicken Street à Aubervilliers ?",
+      "url": "https://www.liberation.fr/checknews/mouvement-lyceen-un-policier-en-civil-a-t-il-tente-de-casser-la-vitrine-dun-chicken-street-a-aubervilliers-20261010_ONQPSAXRUJARJIB2ARU5B43KJA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-10T11:44:52.000Z",
+      "collectedAt": "2026-10-11T11:09:24.355Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-77224282d3b5404e",
       "title": "Qui est Bérénice Levet, la philosophe qui s’oppose vivement à la mobilisation lycéenne ?",
