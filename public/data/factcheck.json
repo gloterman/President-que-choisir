@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-11T11:09:24.367Z",
+  "generatedAt": "2026-10-12T12:38:58.258Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -753,6 +753,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-247e69abeafa52c8",
+      "title": "Présidentielle 2027 : qui sont les principaux candidats déclarés ou probables ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/12/presidentielle-2027-qui-sont-les-principaux-candidats-declares-ou-probables_6680905_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-12T11:13:56.000Z",
+      "collectedAt": "2026-10-12T12:38:55.925Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-40f90c3296645f4f",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 10 et 11 octobre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/11/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-10-et-11-octobre_6792074_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-11T16:43:31.000Z",
+      "collectedAt": "2026-10-12T12:38:55.925Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-54bd55b6e8f3d32e",
       "title": "Mobilisation lycéenne : quand les images «améliorées» par l’IA génèrent des fausses pistes",
