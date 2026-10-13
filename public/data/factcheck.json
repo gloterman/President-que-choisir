@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-12T12:38:58.258Z",
+  "generatedAt": "2026-10-13T12:24:57.066Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -753,6 +753,35 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-f287b3e0f542a623",
+      "title": "Non, la désinformation russe n’a pas ralenti après les attaques ukrainiennes sur les infrastructures du géant informatique Yandex",
+      "url": "https://www.liberation.fr/checknews/non-la-desinformation-russe-na-pas-ralenti-apres-les-attaques-ukrainiennes-sur-les-infrastructures-du-geant-informatique-yandex-20261013_LZRD62D6BJG6FKJ7N2GWIZBKRA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-13T11:20:59.000Z",
+      "collectedAt": "2026-10-13T12:24:57.061Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-ce9f45a6e58c3afb",
+      "title": "Les frappes de drones ukrainiennes sur des data centers en Russie ont-elles donn&#xE9; un s&#xE9;rieux coup &#xE0; la d&#xE9;sinformation pro-russe&#xA0;?",
+      "url": "https://www.franceinfo.fr/monde/europe/manifestations-en-ukraine/les-frappes-de-drones-ukrainiennes-sur-des-data-centers-en-russie-ont-elles-donne-un-serieux-coup-a-la-desinformation-pro-russe_8234284.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-12T16:30:45.000Z",
+      "collectedAt": "2026-10-13T12:24:56.394Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-831fb646d83ff32e",
+      "title": "Des « brebis galeuses » aux accusations contre Jordan Bardella, un antisémitisme persistant dans le Rassemblement national « dédiabolisé »",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/12/des-brebis-galeuses-aux-accusations-contre-jordan-bardella-un-antisemitisme-persistant-dans-le-rassemblement-national-dediabolise_6792644_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-12T14:00:01.000Z",
+      "collectedAt": "2026-10-13T12:24:53.894Z",
+      "likelyCandidates": [
+        "bardella"
+      ]
+    },
     {
       "id": "veille-decodeurs-247e69abeafa52c8",
       "title": "Présidentielle 2027 : qui sont les principaux candidats déclarés ou probables ?",
