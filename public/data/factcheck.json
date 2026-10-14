@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-13T12:24:57.066Z",
+  "generatedAt": "2026-10-14T09:52:53.321Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -753,6 +753,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-47386a4a66afdd66",
+      "title": "Octobre rose : les accusations de Mathilde Panot reposent-elles sur des faits avérés ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/13/octobre-rose-les-accusations-de-mathilde-panot-reposent-elles-sur-des-faits-averes_6793172_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-13T19:08:19.000Z",
+      "collectedAt": "2026-10-14T09:52:51.438Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-f287b3e0f542a623",
       "title": "Non, la désinformation russe n’a pas ralenti après les attaques ukrainiennes sur les infrastructures du géant informatique Yandex",
