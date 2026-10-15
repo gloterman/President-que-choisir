@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-14T09:52:53.321Z",
+  "generatedAt": "2026-10-15T09:33:36.361Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -753,6 +753,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-dbd774da9620a77d",
+      "title": "Mobilisation lycéenne : que recouvre le chiffre de 900 policiers et gendarmes blessés, annoncé par le ministre de l’Intérieur ?",
+      "url": "https://www.liberation.fr/checknews/mobilisation-lyceenne-que-recouvre-le-chiffre-de-900-policiers-et-gendarmes-blesses-annonce-par-le-ministre-de-linterieur-20261014_PKSVVAJHORC4NNHQWDFHOXLRB4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-14T13:24:33.000Z",
+      "collectedAt": "2026-10-15T09:33:36.353Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-262b5bfcb945a020",
+      "title": "Gaza dévastée par trois ans de guerre : les preuves vues du ciel",
+      "url": "https://www.liberation.fr/checknews/gaza-devastee-par-trois-ans-de-guerre-les-preuves-vues-du-ciel-20261014_DMCGVEV5DJASRKWHZSOE35AN6A/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-14T10:19:32.000Z",
+      "collectedAt": "2026-10-15T09:33:36.353Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-47386a4a66afdd66",
       "title": "Octobre rose : les accusations de Mathilde Panot reposent-elles sur des faits avérés ?",
