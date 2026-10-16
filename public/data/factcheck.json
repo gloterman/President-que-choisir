@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-15T09:33:36.361Z",
+  "generatedAt": "2026-10-16T09:26:23.196Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -47,8 +47,8 @@
     {
       "candidateId": "retailleau",
       "platform": "site-officiel",
-      "account": "republicains.fr",
-      "messagesExamined": 50
+      "account": "https://republicains.fr/",
+      "error": "aucun flux : accueil lu, aucun flux déclaré"
     },
     {
       "candidateId": "lepen",
@@ -753,6 +753,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-f6f87b9d6762f1b8",
+      "title": "VRAI OU FAUX. Conflit d'int&#xE9;r&#xEA;ts, liens avec Isra&#xEB;l, votes en faveur des pesticides&#x2026; On a v&#xE9;rifi&#xE9; les affirmations de Mathilde Panot sur Octobre rose",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-conflit-d-interets-liens-avec-israel-votes-en-faveur-des-pesticides-on-a-verifie-les-affirmations-de-mathilde-panot-sur-octobre-rose_8236957.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-16T03:37:51.000Z",
+      "collectedAt": "2026-10-16T09:26:21.878Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-5be0988a3ce75bce",
+      "title": "Le pouvoir d’achat des Français a-t-il vraiment décroché ? Ce que disent les chiffres",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/16/le-pouvoir-d-achat-des-francais-a-t-il-vraiment-decroche-ce-que-disent-les-chiffres_6795107_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-16T03:30:04.000Z",
+      "collectedAt": "2026-10-16T09:26:20.411Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-cb5864e4560b4e19",
+      "title": "Mobilisation lycéenne : à Paris, des policiers victimes de leur propre grenade explosive",
+      "url": "https://www.liberation.fr/checknews/mobilisation-lyceenne-a-paris-des-policiers-victimes-de-leur-propre-grenade-explosive-20261015_2CYRCSHJW5A2NH4LTALYR6GODQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-15T16:36:33.000Z",
+      "collectedAt": "2026-10-16T09:26:23.191Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-dbd774da9620a77d",
       "title": "Mobilisation lycéenne : que recouvre le chiffre de 900 policiers et gendarmes blessés, annoncé par le ministre de l’Intérieur ?",
