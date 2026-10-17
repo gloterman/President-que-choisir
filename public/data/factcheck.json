@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-16T09:26:23.196Z",
+  "generatedAt": "2026-10-17T08:57:41.236Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -47,8 +47,8 @@
     {
       "candidateId": "retailleau",
       "platform": "site-officiel",
-      "account": "https://republicains.fr/",
-      "error": "aucun flux : accueil lu, aucun flux déclaré"
+      "account": "republicains.fr",
+      "messagesExamined": 50
     },
     {
       "candidateId": "lepen",
@@ -753,6 +753,35 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-08526b2a0b58efce",
+      "title": "VRAI OU FAUX. N'y a-t-il eu que 38&#xA0;bacheliers qui \"n'ont pas eu de solution\" sur Parcoursup en 2025, comme l'affirme le gouvernement&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-n-y-a-t-il-eu-que-38-bacheliers-qui-n-ont-pas-eu-de-solution-sur-parcoursup-en-2025-comme-l-affirme-le-gouvernement_8239924.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-17T05:00:08.000Z",
+      "collectedAt": "2026-10-17T08:57:40.551Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-bc702d67ef8656b7",
+      "title": "Lille : comment des militants d’extrême droite proches de Génération Zemmour et de la Cocarde ont passé à tabac un homme tombé au sol",
+      "url": "https://www.liberation.fr/checknews/lille-comment-des-militants-dextreme-droite-proches-de-generation-zemmour-et-de-la-cocarde-ont-passe-a-tabac-un-homme-tombe-au-sol-20261016_3ZXIPICL6FELXOESG6MCTCUMAY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-16T17:27:09.000Z",
+      "collectedAt": "2026-10-17T08:57:41.228Z",
+      "likelyCandidates": [
+        "zemmour"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-199187e45c811858",
+      "title": "Parcoursup : le gouvernement minimise-t-il le nombre de candidats sans affectation ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/16/parcoursup-le-gouvernement-minimise-t-il-le-nombre-de-candidats-sans-affectation_6795576_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-16T15:59:32.000Z",
+      "collectedAt": "2026-10-17T08:57:39.923Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-f6f87b9d6762f1b8",
       "title": "VRAI OU FAUX. Conflit d'int&#xE9;r&#xEA;ts, liens avec Isra&#xEB;l, votes en faveur des pesticides&#x2026; On a v&#xE9;rifi&#xE9; les affirmations de Mathilde Panot sur Octobre rose",
