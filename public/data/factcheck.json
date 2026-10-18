@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-17T08:57:41.236Z",
+  "generatedAt": "2026-10-18T09:17:00.666Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,31 @@
     }
   ],
   "quotes": [
+    {
+      "id": "site-65a3e9378dd10a7d",
+      "candidateId": "tondelier",
+      "platform": "site-officiel",
+      "account": "lesecologistes.fr",
+      "postId": "65a3e9378dd10a7d",
+      "url": "https://lesecologistes.fr/posts/5eN83OZYw5M4RNbnFLdS8Y/budget-2027-54-milliards-d-efforts-pour-les-fourmis-150-milliards-pour-la-cigale-du-nucleaire",
+      "text": "Budget 2027 : 54 milliards d’efforts pour les fourmis, 150 milliards pour la cigale du nucléaire — Budget 2027 : 54 milliards d’efforts pour les fourmis, 150 milliards pour la cigale du nucléaire",
+      "claim": "Budget 2027 : 54 milliards d’efforts pour les fourmis, 150 milliards pour la cigale du nucléaire",
+      "publishedAt": "2026-10-18T09:05:45.000Z",
+      "collectedAt": "2026-10-18T09:16:31.541Z",
+      "speaker": "parti"
+    },
+    {
+      "id": "bluesky-3my35pcmrb22q",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3my35pcmrb22q",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3my35pcmrb22q",
+      "text": "Pendant que les chaînes d'info inondent d'images de violence dans des dizaines de villes, tout se déroule dans le calme avec des dizaines de milliers de gens calmement mobilisés. Deux mondes, deux réalités.",
+      "claim": "Pendant que les chaînes d'info inondent d'images de violence dans des dizaines de villes, tout se déroule dans le calme avec des dizaines de milliers de gens calmement mobilisés. Deux mondes, deux réalités.",
+      "publishedAt": "2026-10-17T13:04:07.884Z",
+      "collectedAt": "2026-10-18T09:16:58.035Z"
+    },
     {
       "id": "site-be60f1419d53f560",
       "candidateId": "tondelier",
