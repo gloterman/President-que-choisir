@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-18T09:17:00.666Z",
+  "generatedAt": "2026-10-19T10:26:49.913Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -778,6 +778,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-ed541fed51ca5aa3",
+      "title": "Du Kenya à Paris : d’où vient cette photo modifiée par IA d’une panthère rose manifestant dans les rues de la capitale ?",
+      "url": "https://www.liberation.fr/international/du-kenya-a-paris-dou-vient-cette-photo-modifiee-par-ia-dune-panthere-rose-manifestant-dans-les-rues-de-la-capitale-20261018_SCHWQ4NODZENFHGXOCG6UQJZG4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-18T17:16:36.000Z",
+      "collectedAt": "2026-10-19T10:26:49.905Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-989e5635c8078b8c",
+      "title": "Mouvement du 17 octobre : cette photo de personnes âgées en sous-vêtements est-elle authentique ou générée par IA ?",
+      "url": "https://www.liberation.fr/checknews/mouvement-du-17-octobre-cette-photo-de-personnes-agees-en-sous-vetements-est-elle-authentique-ou-generee-par-ia-20261018_LRDPMTYFGJDATNRVGGIV2EUQXI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-18T16:53:42.000Z",
+      "collectedAt": "2026-10-19T10:26:49.905Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-ddf89ec486a36148",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 17 et 18 octobre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/18/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-17-et-18-octobre_6797086_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-18T15:48:02.000Z",
+      "collectedAt": "2026-10-19T10:26:48.020Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-08526b2a0b58efce",
       "title": "VRAI OU FAUX. N'y a-t-il eu que 38&#xA0;bacheliers qui \"n'ont pas eu de solution\" sur Parcoursup en 2025, comme l'affirme le gouvernement&#xA0;?",
