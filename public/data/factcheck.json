@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-19T10:26:49.913Z",
+  "generatedAt": "2026-10-20T09:45:31.848Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -778,6 +778,69 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-e4586ec5b93fb4cf",
+      "title": "Comment une manifestation est censée se dérouler, de la déclaration préalable à l’encadrement sur le terrain",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/20/comment-une-manifestation-est-censee-se-derouler-de-la-declaration-prealable-a-l-encadrement-sur-le-terrain_6797897_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-20T09:24:57.000Z",
+      "collectedAt": "2026-10-20T09:45:28.275Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-d2a82b70709fb3be",
+      "title": "VRAI OU FAUX. Un couple d'octog&#xE9;naires a-t-il &#xE9;t&#xE9; d&#xE9;pouill&#xE9; et d&#xE9;nud&#xE9; en marge des manifestations du 17 octobre&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-un-couple-d-octogenaires-a-t-il-ete-depouille-et-denude-en-marge-des-manifestations-du-17-octobre_8243974.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-20T03:54:40.000Z",
+      "collectedAt": "2026-10-20T09:45:31.036Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-9d6a545b4d647094",
+      "title": "La DGSI dément que des armes de guerre aient été retrouvées parmi les émeutiers du 17 octobre, comme annoncé sur CNews",
+      "url": "https://www.liberation.fr/checknews/la-dgsi-dement-que-des-armes-de-guerre-aient-ete-retrouvees-parmi-les-emeutiers-du-17-octobre-comme-annonce-sur-cnews-20261019_XP76P433JZERLLLW2RVBPDATZM/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-19T19:29:53.000Z",
+      "collectedAt": "2026-10-20T09:45:31.842Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-55be65ce6a4b5080",
+      "title": "17 octobre : le «street medic» frappé par des CRS place de la République à Paris n’est pas mort",
+      "url": "https://www.liberation.fr/checknews/17-octobre-le-street-medic-frappe-par-des-crs-place-de-la-republique-a-paris-nest-pas-mort-20261019_JKIAESIYZZCQZDD2N6AC3QIZHQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-19T17:47:52.000Z",
+      "collectedAt": "2026-10-20T09:45:31.842Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-b8fd84d549f9af01",
+      "title": "Mobilisation du 17 octobre : non, «les commerces détenus par des juifs» n’ont pas été ciblés à Marseille",
+      "url": "https://www.liberation.fr/checknews/mobilisation-du-17-octobre-non-les-commerces-detenus-par-des-juifs-nont-pas-ete-cibles-a-marseille-20261019_YF7GPASSENBOJNJ4VLPC4HM6GE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-19T15:49:30.000Z",
+      "collectedAt": "2026-10-20T09:45:31.842Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-ff7260d7421db7ee",
+      "title": "VRAI OU FAUX. Des policiers ont-ils vol&#xE9; des chaussures dans un magasin Lacoste pill&#xE9; &#xE0; Limoges, en marge de la manifestation du 17 octobre&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-des-policiers-ont-ils-vole-des-chaussures-dans-un-magasin-lacoste-pille-a-limoges-en-marge-de-la-manifestation-du-17-octobre_8243950.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-19T15:08:14.000Z",
+      "collectedAt": "2026-10-20T09:45:31.036Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-43702b400645de5e",
+      "title": "Couple âgé prétendument dépouillé à Paris : le parquet affirme n’avoir aucune «remontée» sur le sujet",
+      "url": "https://www.liberation.fr/checknews/couple-age-pretendument-depouille-a-paris-le-parquet-affirme-navoir-aucune-remontee-sur-le-sujet-20261019_WUEZ2P2AUNHMZCFMRLCZCCZNVE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-19T12:59:55.000Z",
+      "collectedAt": "2026-10-20T09:45:31.842Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-ed541fed51ca5aa3",
       "title": "Du Kenya à Paris : d’où vient cette photo modifiée par IA d’une panthère rose manifestant dans les rues de la capitale ?",
