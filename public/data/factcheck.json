@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-21T09:46:58.367Z",
+  "generatedAt": "2026-10-22T09:46:48.432Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -778,6 +778,69 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-c4bbe7fba49138de",
+      "title": "CARTE. Couvre-feux en France : suivez les mesures de restriction dans les villes concernées en temps réel",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/22/la-carte-des-couvre-feux-et-des-interdictions-de-manifester-le-24-octobre-en-france-suivez-les-mesures-de-restriction-dans-les-villes-concernees-en-temps-reel_6798285_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-22T09:44:44.000Z",
+      "collectedAt": "2026-10-22T09:46:46.412Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-f3a7adc92a758f1a",
+      "title": "Austen : comment les noms des tempêtes sont-ils choisis ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/22/austen-comment-les-noms-des-tempetes-sont-ils-choisis_5182473_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-22T09:38:05.000Z",
+      "collectedAt": "2026-10-22T09:46:46.412Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-4ec418596f1c9000",
+      "title": "Le député Raphaël Arnault a-t-il été la cible d’une tentative d’interpellation policière à la gare de Lyon, comme l’affirme LFI ?",
+      "url": "https://www.liberation.fr/checknews/le-depute-raphael-arnault-a-t-il-ete-la-cible-dune-tentative-dinterpellation-policiere-a-la-gare-de-lyon-comme-laffirme-lfi-20261021_ITZP5I2RJBAIZPEDHJH4CM2ZPE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-21T15:01:32.000Z",
+      "collectedAt": "2026-10-22T09:46:48.425Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-ed6e8861d9f17cb2",
+      "title": "En Guadeloupe, le port et l’aéroport au cœur des stratégies de corruption des narcotrafiquants",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/21/en-guadeloupe-le-port-et-l-aeroport-au-c-ur-des-strategies-de-corruption-des-narcotrafiquants_6798256_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-21T13:00:13.000Z",
+      "collectedAt": "2026-10-22T09:46:46.412Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-a1ab5a543d8310e7",
+      "title": "« La corruption aux Antilles n’est pas une fatalité, mais une réalité face à laquelle tous les acteurs doivent se mobiliser »",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/21/la-corruption-aux-antilles-n-est-pas-une-fatalite-mais-une-realite-face-a-laquelle-tous-les-acteurs-doivent-se-mobiliser_6798247_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-21T12:30:08.000Z",
+      "collectedAt": "2026-10-22T09:46:46.412Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-a25ec8ee1e1f2f18",
+      "title": "En Guadeloupe et en Martinique, une opération inédite de sensibilisation pour enrayer la corruption galopante : « On fait face à de vieilles habitudes »",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/21/en-guadeloupe-et-en-martinique-une-operation-inedite-de-sensibilisation-pour-enrayer-la-corruption-galopante-on-fait-face-a-de-vieilles-habitudes_6798245_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-21T12:07:21.000Z",
+      "collectedAt": "2026-10-22T09:46:46.412Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-55059833e7876b78",
+      "title": "17 octobre : la police nationale a-t-elle publié une image de saisie générée par IA ?",
+      "url": "https://www.liberation.fr/checknews/17-octobre-la-police-nationale-a-t-elle-publie-une-image-de-saisie-generee-par-ia-20261021_WVGFQGS4E5HPTMC6PUTRKIFIYM/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-21T12:02:02.000Z",
+      "collectedAt": "2026-10-22T09:46:48.425Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-b9c7b13b93d58e4a",
       "title": "De l’état d’urgence à la responsabilité collective des manifestants, les propositions sécuritaires post-17 octobre sont-elles vraiment applicables ?",
