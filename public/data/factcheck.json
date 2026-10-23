@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-22T09:46:48.432Z",
+  "generatedAt": "2026-10-23T09:42:40.837Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -778,6 +778,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-beab35747a1d2201",
+      "title": "Tour de France de 1903 à 2027 : quels sont les départements gagnants et perdants du tracé ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/23/tour-de-france-de-1903-a-2027-quels-sont-les-departements-gagnants-et-perdants-du-trace_5153251_4355772.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-23T08:21:55.000Z",
+      "collectedAt": "2026-10-23T09:42:37.557Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-380e1c87f2b504d8",
+      "title": "«J’ai eu des règles hémorragiques» : l’exposition aux gaz lacrymogènes menace-t-elle la santé gynécologique ?",
+      "url": "https://www.liberation.fr/checknews/jai-eu-des-regles-hemorragiques-lexposition-aux-gaz-lacrymogenes-menace-t-elle-la-sante-gynecologique-20261023_L2ATWGTJXRCJPMLH7KY2UHUFRY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-23T07:00:00.000Z",
+      "collectedAt": "2026-10-23T09:42:40.833Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-f518d195fb643a38",
+      "title": "CARTE. Couvre-feux et manifestations du 24 octobre : suivez les restrictions et interdictions en temps réel",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/23/la-carte-des-couvre-feux-et-des-interdictions-de-manifester-le-24-octobre-en-france-en-temps-reel_6798285_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-23T05:32:37.000Z",
+      "collectedAt": "2026-10-23T09:42:37.557Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-d5429be5d372f45e",
+      "title": "Mort d’un manifestant le 17 octobre à Paris : la famille de Christophe M. envisage de porter plainte pour «violences volontaires»",
+      "url": "https://www.liberation.fr/checknews/mort-dun-manifestant-le-17-octobre-a-paris-la-famille-de-christophe-m-envisage-de-porter-plainte-pour-violences-volontaires-20261022_QMYG2GIKJVENNAG23QXBZMTVFU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-22T10:27:59.000Z",
+      "collectedAt": "2026-10-23T09:42:40.833Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-c4bbe7fba49138de",
       "title": "CARTE. Couvre-feux en France : suivez les mesures de restriction dans les villes concernées en temps réel",
