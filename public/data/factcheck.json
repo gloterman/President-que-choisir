@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-23T09:42:40.837Z",
+  "generatedAt": "2026-10-24T09:15:00.978Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -778,6 +778,60 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-a56565fd08d9143a",
+      "title": "VRAI OU FAUX. Existe-t-il vraiment des \"policiers casseurs\", en civil et infiltr&#xE9;s dans les manifestations, qui commettent des d&#xE9;gradations&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-existe-t-il-vraiment-des-policiers-casseurs-en-civil-et-infiltres-dans-les-manifestations-qui-commettent-des-degradations_8250637.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-24T04:59:36.000Z",
+      "collectedAt": "2026-10-24T09:14:59.923Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-ca05cc8ae3b0ccc9",
+      "title": "Fusillade à Trappes : comment les réseaux sociaux ont jeté en pâture le profil d’un innocent",
+      "url": "https://www.liberation.fr/checknews/fusillade-a-trappes-comment-les-reseaux-sociaux-ont-jete-en-pature-le-profil-dun-innocent-20261023_IOPSGSYQ2VD33DDHTGFVHVDFUU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-23T17:06:40.000Z",
+      "collectedAt": "2026-10-24T09:15:00.972Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-61d14ca8a66332d8",
+      "title": "Maintien de l’ordre : CRS, RAID, GIGN… quelles forces sont prévues sur le terrain pour les mobilisations du 24 octobre ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/23/maintien-de-l-ordre-crs-raid-gign-quelles-forces-sont-prevues-sur-le-terrain-pour-les-mobilisations-du-24-octobre_6799091_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-23T14:45:06.000Z",
+      "collectedAt": "2026-10-24T09:14:58.254Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-6683afd9f24ab432",
+      "title": "Le gaz lacrymogène est-il dangereux pour la santé ? Ce qu’en dit la science",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/23/le-gaz-lacrymogene-est-il-dangereux-pour-la-sante-ce-qu-en-dit-la-science_6799078_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-23T13:00:02.000Z",
+      "collectedAt": "2026-10-24T09:14:58.255Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-5dcf53ea1d89d673",
+      "title": "Le 17 octobre a suscité une vague de désinformation de grande ampleur, en France comme à l’étranger",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/23/le-17-octobre-a-suscite-une-vague-de-desinformation-de-grande-ampleur-en-france-comme-a-l-etranger_6799061_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-23T10:31:39.000Z",
+      "collectedAt": "2026-10-24T09:14:58.255Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-339fad2738b9ff4b",
+      "title": "Russie, Iran, Algérie ou Israël : y a-t-il vraiment eu des ingérences étrangères autour du mouvement du 17 octobre ?",
+      "url": "https://www.liberation.fr/checknews/russie-iran-algerie-ou-israel-y-a-t-il-vraiment-eu-des-ingerences-etrangeres-autour-du-mouvement-du-17-octobre-20261023_YTW5KPAHUNB2TLGQZRJV7FSGKE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-23T10:07:45.000Z",
+      "collectedAt": "2026-10-24T09:15:00.972Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-beab35747a1d2201",
       "title": "Tour de France de 1903 à 2027 : quels sont les départements gagnants et perdants du tracé ?",
