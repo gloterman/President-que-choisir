@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-24T09:15:00.978Z",
+  "generatedAt": "2026-10-25T09:31:55.016Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,30 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mymtoq7fj223",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mymtoq7fj223",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mymtoq7fj223",
+      "text": "Victoire totale du mouvement social. La marche s'est rassemblée au nouveau point autorisé et déferle dans le calme sur plus de quatre kilomètres.",
+      "claim": "Victoire totale du mouvement social. La marche s'est rassemblée au nouveau point autorisé et déferle dans le calme sur plus de quatre kilomètres.",
+      "publishedAt": "2026-10-24T13:52:46.444Z",
+      "collectedAt": "2026-10-25T09:31:52.991Z"
+    },
+    {
+      "id": "bluesky-3mymqkt3sqc2m",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mymqkt3sqc2m",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mymqkt3sqc2m",
+      "text": "🔴️️️️ M. Macron, il est temps de céder, après il ne restera plus que la porte de sortie\n\n👉️️️️️️ youtu.be/EmZXws6X3fk\n\nBon visionnage et n'hésitez pas à partager !",
+      "claim": "🔴️️️️ M. Macron, il est temps de céder, après il ne restera plus que la porte de sortie\n\n👉️️️️️️ youtu.be/EmZXws6X3fk\n\nBon visionnage et n'hésitez pas à partager !",
+      "publishedAt": "2026-10-24T12:56:54.029Z",
+      "collectedAt": "2026-10-25T09:31:52.991Z"
+    },
     {
       "id": "site-65a3e9378dd10a7d",
       "candidateId": "tondelier",
@@ -778,6 +802,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-e81677cd254b156c",
+      "title": "Passage à l’heure d’hiver : pourquoi le changement d’heure est si critiqué",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/24/passage-a-l-heure-d-hiver-pourquoi-le-changement-d-heure-est-si-critique_5348679_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-24T15:18:22.000Z",
+      "collectedAt": "2026-10-25T09:31:53.198Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-a56565fd08d9143a",
       "title": "VRAI OU FAUX. Existe-t-il vraiment des \"policiers casseurs\", en civil et infiltr&#xE9;s dans les manifestations, qui commettent des d&#xE9;gradations&#xA0;?",
