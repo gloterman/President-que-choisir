@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-25T09:31:55.016Z",
+  "generatedAt": "2026-10-26T10:41:49.626Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-fdc398832f922cb5",
+      "title": "Comment des « prêts toxiques » chinois ont alimenté une spirale de surendettement en Zambie",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/26/comment-des-prets-toxiques-chinois-ont-alimente-une-spirale-de-surendettement-en-zambie_6800383_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-26T04:00:05.000Z",
+      "collectedAt": "2026-10-26T10:41:47.930Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-7026c85a1b97f9f7",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 24 et 25 octobre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/25/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-24-et-25-octobre_6800109_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-25T18:11:57.000Z",
+      "collectedAt": "2026-10-26T10:41:47.930Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-e81677cd254b156c",
       "title": "Passage à l’heure d’hiver : pourquoi le changement d’heure est si critiqué",
