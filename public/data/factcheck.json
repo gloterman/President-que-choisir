@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-26T10:41:49.626Z",
+  "generatedAt": "2026-10-27T10:09:51.009Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-0d95dae51c2bbbe1",
+      "title": "Budget 2027 : les dates-clés des prochaines semaines",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/27/budget-2027-les-dates-cles-des-prochaines-semaines_6801100_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-27T04:30:02.000Z",
+      "collectedAt": "2026-10-27T10:09:48.898Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-fdc398832f922cb5",
       "title": "Comment des « prêts toxiques » chinois ont alimenté une spirale de surendettement en Zambie",
