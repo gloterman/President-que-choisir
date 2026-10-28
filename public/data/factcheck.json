@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-27T10:09:51.009Z",
+  "generatedAt": "2026-10-28T10:56:36.052Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-1fac7833a0dc6232",
+      "title": "VRAI OU FAUX. Le suspect de l'attentat raciste de Trappes, Kevin T., a-t-il &#xE9;t&#xE9; photographi&#xE9; lors d'une r&#xE9;union propalestinienne ?",
+      "url": "https://www.franceinfo.fr/faits-divers/terrorisme/attentat-raciste-a-trappes/vrai-ou-faux-le-suspect-de-l-attentat-raciste-de-trappes-kevin-t-a-t-il-ete-photographie-lors-d-une-reunion-propalestinienne_8255995.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-27T15:03:15.000Z",
+      "collectedAt": "2026-10-28T10:56:35.305Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-0d95dae51c2bbbe1",
       "title": "Budget 2027 : les dates-clés des prochaines semaines",
