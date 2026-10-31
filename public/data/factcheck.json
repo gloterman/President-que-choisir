@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-30T11:08:20.577Z",
+  "generatedAt": "2026-10-31T10:41:43.832Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,44 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-5b4a010c6260f904",
+      "title": "VRAI OU FAUX. La France est-elle le pays le moins s&#xE9;lectif pour acc&#xE9;der &#xE0; l'enseignement sup&#xE9;rieur, comme l'affirme le ministre Philippe Baptiste&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-la-france-est-elle-le-pays-le-moins-selectif-pour-acceder-a-l-enseignement-superieur-comme-l-affirme-le-ministre-philippe-baptiste_8260157.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-31T06:28:18.000Z",
+      "collectedAt": "2026-10-31T10:41:43.149Z",
+      "likelyCandidates": [
+        "philippe"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-19b1bee29fb42198",
+      "title": "Midterms aux Etats-Unis : le petit guide pour tout comprendre aux élections de mi-mandat",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/31/midterms-aux-etats-unis-le-petit-guide-pour-tout-comprendre-aux-elections-de-mi-mandat_6803393_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-31T05:00:20.000Z",
+      "collectedAt": "2026-10-31T10:41:40.876Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-cb7318e8de3f1d5c",
+      "title": "Blanchiment : Monaco sort de la « liste grise » du Groupe d’action financière grâce aux « progrès » de son arsenal de contrôle",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/30/blanchiment-monaco-sort-de-la-liste-grise-du-groupe-d-action-financiere-grace-aux-progres-de-son-arsenal-de-controle_6803119_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-10-30T16:30:23.000Z",
+      "collectedAt": "2026-10-31T10:41:40.876Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-b3854db0a63cf7e3",
+      "title": "Michelle Gamelle, la marque de croquettes pour chiens lancée par Natoo, appartient-elle à Vincent Bolloré ?",
+      "url": "https://www.liberation.fr/checknews/michelle-gamelle-la-marque-de-croquettes-pour-chiens-lancee-par-natoo-appartient-elle-a-vincent-bollore-20261030_EYW357J2KRBFLNHVG6UDROVE4A/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-30T15:47:16.000Z",
+      "collectedAt": "2026-10-31T10:41:43.826Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-19b50c3832ca15b5",
       "title": "Data centers : sur les chantiers de construction européens, des travailleurs exploités dans un climat de « terreur »",
