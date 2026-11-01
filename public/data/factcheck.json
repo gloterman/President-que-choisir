@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-10-31T10:41:43.832Z",
+  "generatedAt": "2026-11-01T11:36:54.815Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-4a4660389a262a68",
+      "title": "Non, la situation à Berlin n’est pas «totalement folle» après les manifestations de samedi",
+      "url": "https://www.liberation.fr/checknews/non-la-situation-a-berlin-nest-pas-totalement-folle-apres-les-manifestations-de-samedi-20261101_L4VFI5CTKZHS7ON5NH3VAX5BGM/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-01T09:57:41.000Z",
+      "collectedAt": "2026-11-01T11:36:54.810Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-a7b43f47032f9603",
+      "title": "Toussaint : de quand date la tradition des chrysanthèmes ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/01/toussaint-de-quand-date-la-tradition-des-chrysanthemes_5208593_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-01T04:54:09.000Z",
+      "collectedAt": "2026-11-01T11:36:52.931Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-02dfd887f6b36615",
+      "title": "Le calendrier des jours fériés en 2026 (et pour les années suivantes)",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/01/le-calendrier-des-jours-feries-en-2026-et-pour-les-annees-suivantes_6660223_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-01T04:01:54.000Z",
+      "collectedAt": "2026-11-01T11:36:52.931Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-9caf5c1dc6d6842c",
+      "title": "Piratage de Binance : comment la plateforme d’échange de cryptomonnaies s’est-elle fait dérober l’équivalent de 6 milliards de dollars ?",
+      "url": "https://www.liberation.fr/checknews/piratage-de-binance-comment-la-plateforme-dechange-de-cryptomonnaies-sest-elle-fait-derober-lequivalent-de-6-milliards-de-dollars-20261031_UZB2FVREURGWVJBNB3QCI6YRKI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-31T12:16:45.000Z",
+      "collectedAt": "2026-11-01T11:36:54.810Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-5b4a010c6260f904",
       "title": "VRAI OU FAUX. La France est-elle le pays le moins s&#xE9;lectif pour acc&#xE9;der &#xE0; l'enseignement sup&#xE9;rieur, comme l'affirme le ministre Philippe Baptiste&#xA0;?",
