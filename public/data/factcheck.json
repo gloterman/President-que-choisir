@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-01T11:36:54.815Z",
+  "generatedAt": "2026-11-02T12:59:56.736Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-c676f44759bb5620",
+      "title": "« Dubai Papers » : l’heure du procès pour une « officine de fraude fiscale à grande échelle »",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/02/dubai-papers-l-heure-du-proces-pour-une-officine-de-fraude-fiscale-a-grande-echelle_6804884_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-02T05:00:15.000Z",
+      "collectedAt": "2026-11-02T12:59:54.026Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-cf0100cd68ce4ac5",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 31 octobre et 1er novembre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/01/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-31-octobre-et-1er-novembre_6804531_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-01T17:30:06.000Z",
+      "collectedAt": "2026-11-02T12:59:54.026Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-87e6a0992277a6e2",
+      "title": "Midterms 2026 : le parti au pouvoir perd-il toujours ces élections de mi-parcours ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/01/midterms-2026-le-parti-au-pouvoir-perd-il-toujours-ces-elections-de-mi-parcours_6804526_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-01T16:31:39.000Z",
+      "collectedAt": "2026-11-02T12:59:54.026Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-4a4660389a262a68",
       "title": "Non, la situation à Berlin n’est pas «totalement folle» après les manifestations de samedi",
