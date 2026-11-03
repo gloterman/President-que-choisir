@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-02T12:59:56.736Z",
+  "generatedAt": "2026-11-03T12:33:38.080Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-498b1976304426b3",
+      "title": "CARTE Midterms 2026 : les résultats en temps réel",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/03/midterms-2026-decouvrez-en-temps-reel-les-cartes-des-resultats_6805570_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-03T10:48:18.000Z",
+      "collectedAt": "2026-11-03T12:33:35.594Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-1ee8ca744d81ac8f",
+      "title": "Prix Goncourt : quel est le profil type des lauréats ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/03/prix-goncourt-quel-est-le-profil-type-des-laureats_6651568_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-03T06:02:08.000Z",
+      "collectedAt": "2026-11-03T12:33:35.594Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-c837e750f940b6d4",
+      "title": "Pourquoi la modification de la Constitution, exigée par le RN pour appliquer son programme, est très compliquée",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/02/pourquoi-la-modification-de-la-constitution-exigee-par-le-rn-pour-appliquer-son-programme-est-tres-compliquee_6805252_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-02T13:00:04.000Z",
+      "collectedAt": "2026-11-03T12:33:35.594Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-c676f44759bb5620",
       "title": "« Dubai Papers » : l’heure du procès pour une « officine de fraude fiscale à grande échelle »",
