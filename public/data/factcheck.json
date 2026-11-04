@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-03T12:33:38.080Z",
+  "generatedAt": "2026-11-04T12:43:37.712Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -802,6 +802,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-6b0b3630411a1dd0",
+      "title": "Résultats des Midterms 2026 : les élections américaines de mi-mandat en cartes et en temps réel",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/04/les-resultats-des-midterms-2026-en-cartes-et-en-temps-reel_6805570_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-04T11:36:26.000Z",
+      "collectedAt": "2026-11-04T12:43:35.571Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-183d6051324b151c",
+      "title": "Une centaine de «personnes ancrées à gauche» : qui sont les militants empêchés de manifester le 31 octobre par le gouvernement ?",
+      "url": "https://www.liberation.fr/checknews/une-centaine-de-personnes-ancrees-a-gauche-qui-sont-les-militants-empeches-de-manifester-le-31-octobre-par-le-gouvernement-20261104_RGBWSNQC5ZCOXCDWMFBYYY2I7I/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-04T11:16:01.000Z",
+      "collectedAt": "2026-11-04T12:43:37.704Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-e116629f5eec47e6",
+      "title": "Que sait-on de cette vidéo montrant des véhicules de police allemands circuler sur une autoroute en Pologne ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-de-cette-video-montrant-des-vehicules-de-police-allemands-circuler-sur-une-autoroute-en-pologne-20261103_EZRFHQ3CDREKPJXAVVIYDXW3Z4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-03T18:14:13.000Z",
+      "collectedAt": "2026-11-04T12:43:37.704Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-e38cebf1291c8603",
+      "title": "Non, les lycéens participant à un blocus ne risquent pas une mention sur Parcoursup",
+      "url": "https://www.liberation.fr/checknews/non-les-lyceens-participant-a-un-blocus-ne-risquent-pas-une-mention-sur-parcoursup-20261103_YRKTDOM26JEOLP3SIIS743IXLA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-03T16:45:28.000Z",
+      "collectedAt": "2026-11-04T12:43:37.704Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-498b1976304426b3",
       "title": "CARTE Midterms 2026 : les résultats en temps réel",
