@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-04T12:43:37.712Z",
+  "generatedAt": "2026-11-05T12:53:43.809Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mzkatlhmjs22",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mzkatlhmjs22",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mzkatlhmjs22",
+      "text": "Ce soir, l’incroyable et jamais vu a eu lieu. \n\nLe projet de budget du gouvernement a eu 458 voix contre et ….. 0 voix pour. \n\nÇa sent le temps perdu et annonce le 49.3 et donc la censure.",
+      "claim": "Ce soir, l’incroyable et jamais vu a eu lieu. \n\nLe projet de budget du gouvernement a eu 458 voix contre et ….. 0 voix pour. \n\nÇa sent le temps perdu et annonce le 49.3 et donc la censure.",
+      "publishedAt": "2026-11-05T06:35:20.299Z",
+      "collectedAt": "2026-11-05T12:53:40.525Z"
+    },
     {
       "id": "bluesky-3mymtoq7fj223",
       "candidateId": "melenchon",
@@ -802,6 +814,60 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-e62ab4541cfd8ea2",
+      "title": "Comment la pauvreté progresse dans la population française",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/05/comment-la-pauvrete-progresse-dans-la-population-francaise_6806829_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-05T07:30:08.000Z",
+      "collectedAt": "2026-11-05T12:53:40.842Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-7b8e1e30f263accc",
+      "title": "Manifestations contre la vie ch&#xE8;re : des vid&#xE9;os ont-elles disparu des r&#xE9;seaux sociaux ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/manifestations-contre-la-vie-chere-des-videos-ont-elles-disparu-des-reseaux-sociaux_8268335.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-04T19:25:54.000Z",
+      "collectedAt": "2026-11-05T12:53:43.013Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-54202b3974787e5d",
+      "title": "Soldats allemands en Pologne : une vieille vidéo de Donald Tusk refait surface sur fond de fake news",
+      "url": "https://www.liberation.fr/checknews/des-soldats-allemands-ont-ils-ete-deployes-en-pologne-en-pleine-crise-politique-20261104_JFTU5EUVC5CKNKQ46NK5EHQACM/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-04T16:39:05.000Z",
+      "collectedAt": "2026-11-05T12:53:43.801Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-6d6dd1dec32370a4",
+      "title": "Midterms 2026 : que peuvent faire les démocrates face au président Trump après leur victoire ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/04/midterms-2026-que-peuvent-faire-les-democrates-face-au-president-trump-apres-leur-victoire_6806315_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-04T15:40:39.000Z",
+      "collectedAt": "2026-11-05T12:53:40.842Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-53a71f8b464589e4",
+      "title": "Midterms 2026 : visualisez en cartes et en graphiques les premiers enseignements du scrutin",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/04/midterms-2026-visualisez-en-cartes-et-en-graphiques-les-premiers-enseignements-du-scrutin_6806235_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-04T13:48:07.000Z",
+      "collectedAt": "2026-11-05T12:53:40.842Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-b6e7cd7ca951dc39",
+      "title": "«Supprimer CNews» : qui est Lucas Massoni, l’homme à l’origine de la pétition qui a dépassé les 800 000 signatures  ?",
+      "url": "https://www.liberation.fr/checknews/qui-est-lhomme-a-lorigine-de-la-petition-appelant-a-supprimer-cnews-20261104_PVS2TRC6NVC2RM4OUSBNMVF4UY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-04T13:12:25.000Z",
+      "collectedAt": "2026-11-05T12:53:43.801Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-6b0b3630411a1dd0",
       "title": "Résultats des Midterms 2026 : les élections américaines de mi-mandat en cartes et en temps réel",
