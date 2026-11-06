@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-05T12:53:43.809Z",
+  "generatedAt": "2026-11-06T12:39:20.008Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -54,13 +54,13 @@
       "candidateId": "lepen",
       "platform": "site-officiel",
       "account": "https://rassemblementnational.fr/",
-      "error": "aucun flux : accueil lu, aucun flux déclaré"
+      "error": "aucun flux : accueil 307, aucun flux déclaré"
     },
     {
       "candidateId": "bardella",
       "platform": "site-officiel",
       "account": "https://rassemblementnational.fr/",
-      "error": "aucun flux : accueil lu, aucun flux déclaré"
+      "error": "aucun flux : accueil 307, aucun flux déclaré"
     },
     {
       "candidateId": "zemmour",
@@ -814,6 +814,37 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-8e8cc411e413b442",
+      "title": "«Choisissez un mode de connexion» : ce message de Meta démontre que Jordan Bardella a toujours un compte Facebook lié à son adresse Hotmail",
+      "url": "https://www.liberation.fr/checknews/choisissez-un-mode-de-connexion-ce-message-de-meta-demontre-que-jordan-bardella-a-toujours-un-compte-facebook-lie-a-son-adresse-hotmail-20261106_X5CVQR2OCNFSJEVUTH5CMSA7VM/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-06T09:06:54.000Z",
+      "collectedAt": "2026-11-06T12:39:20.002Z",
+      "likelyCandidates": [
+        "bardella"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-0553f802c6474fc8",
+      "title": "Donner moins d’argent à l’Europe : la proposition de Marine Le Pen est-elle réaliste ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/06/donner-moins-d-argent-a-l-europe-la-proposition-de-marine-le-pen-est-elle-realiste_6807742_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-06T08:40:32.000Z",
+      "collectedAt": "2026-11-06T12:39:18.184Z",
+      "likelyCandidates": [
+        "lepen"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-e88d0263e822564e",
+      "title": "Le gaz lacrymog&#xE8;ne a-t-il des effets sur les cycles menstruels ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/le-gaz-lacrymogene-a-t-il-des-effets-sur-les-cycles-menstruels_8269799.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-05T19:35:22.000Z",
+      "collectedAt": "2026-11-06T12:39:19.307Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-e62ab4541cfd8ea2",
       "title": "Comment la pauvreté progresse dans la population française",
