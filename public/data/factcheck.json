@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-06T12:39:20.008Z",
+  "generatedAt": "2026-11-07T11:26:15.116Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -814,6 +814,51 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-50def5b9753a1842",
+      "title": "Les produits végétaux «ultratransformés» sont-ils par définition mauvais pour la santé ?",
+      "url": "https://www.liberation.fr/checknews/les-produits-vegetaux-ultratransformes-sont-ils-par-definition-mauvais-pour-la-sante-20261107_ZWIDVHEJ7VEVZH55JZSCAJYBNU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-07T10:45:00.000Z",
+      "collectedAt": "2026-11-07T11:26:15.110Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-331f60758a9babca",
+      "title": "VRAI OU FAUX. Le minist&#xE8;re de l'Education nationale a-t-il envoy&#xE9; un mail demandant de signaler les enseignants gr&#xE9;vistes solidaires de la mobilisation des lyc&#xE9;ens&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-le-ministere-de-l-education-nationale-a-t-il-envoye-un-mail-demandant-de-signaler-les-enseignants-grevistes-solidaires-de-la-mobilisation-des-lyceens_8269187.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-07T06:23:41.000Z",
+      "collectedAt": "2026-11-07T11:26:14.456Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-8771c22c209df15f",
+      "title": "Immigration : les données-clés pour éclairer le débat",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/07/immigration-les-donnees-cles-pour-eclairer-le-debat_6808243_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-07T05:00:51.000Z",
+      "collectedAt": "2026-11-07T11:26:13.516Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-038a42eb2adc8e20",
+      "title": "«Supprimer CNews» : que sont devenues les autres pétitions à l’Assemblée nationale ayant recueilli plus de 500 000 signatures ?",
+      "url": "https://www.liberation.fr/checknews/supprimer-cnews-que-sont-devenues-les-autres-petitions-a-lassemblee-nationale-ayant-recueilli-plus-de-500-000-signatures-20261106_YD6HMHM3T5FTFNGLWOIGOURFEU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-06T17:23:24.000Z",
+      "collectedAt": "2026-11-07T11:26:15.110Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-9536646e3a7752c6",
+      "title": "Que sait-on de l’«altercation» entre policiers et gendarmes à Paris lors de la manifestation du 5 novembre ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-de-laltercation-entre-policiers-et-gendarmes-a-paris-lors-de-la-manifestation-du-5-novembre-20261106_2TG4ZHMCQNH5TAV6EF55P2TJ7Y/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-06T16:07:46.000Z",
+      "collectedAt": "2026-11-07T11:26:15.110Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-8e8cc411e413b442",
       "title": "«Choisissez un mode de connexion» : ce message de Meta démontre que Jordan Bardella a toujours un compte Facebook lié à son adresse Hotmail",
