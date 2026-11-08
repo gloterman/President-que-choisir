@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-07T11:26:15.116Z",
+  "generatedAt": "2026-11-08T11:38:40.448Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,30 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3mzqha6sczs2e",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mzqha6sczs2e",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mzqha6sczs2e",
+      "text": "Vous étiez plus de 20 000 sur place et plus de 70 000 à suivre en ligne notre grand meeting au Bourget !\n\nMerci à toutes et tous ! Marchons notre chemin, jusqu’à la victoire !",
+      "claim": "Vous étiez plus de 20 000 sur place et plus de 70 000 à suivre en ligne notre grand meeting au Bourget !\n\nMerci à toutes et tous ! Marchons notre chemin, jusqu’à la victoire !",
+      "publishedAt": "2026-11-07T17:45:44.107Z",
+      "collectedAt": "2026-11-08T11:38:37.055Z"
+    },
+    {
+      "id": "bluesky-3mzqd6p4xsc2x",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3mzqd6p4xsc2x",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3mzqd6p4xsc2x",
+      "text": "🔴️️️️️️ C’EST HISTORIQUE !\n\nVous êtes plus de 20 000 au grand meeting de présentation de notre programme de gouvernement !\n\nDe nouveau, nous réalisons avec vous une démonstration de la force insoumise !\n\nMarchons notre chemin, jusqu’à la victoire !",
+      "claim": "🔴️️️️️️ C’EST HISTORIQUE !\n\nVous êtes plus de 20 000 au grand meeting de présentation de notre programme de gouvernement !\n\nDe nouveau, nous réalisons avec vous une démonstration de la force insoumise !\n\nMarchons notre chemin, jusqu’à la victoire !",
+      "publishedAt": "2026-11-07T16:33:19.156Z",
+      "collectedAt": "2026-11-08T11:38:37.055Z"
+    },
     {
       "id": "bluesky-3mzkatlhmjs22",
       "candidateId": "melenchon",
@@ -814,6 +838,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-a9de240e4cab2f1e",
+      "title": "VRAI OU FAUX. Que sait-on d'un suppos&#xE9; \"centre de torture\" militaire ukrainien&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-que-sait-on-d-un-suppose-centre-de-torture-militaire-ukrainien_8269061.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-08T06:14:48.000Z",
+      "collectedAt": "2026-11-08T11:38:39.133Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-9873cd7c2bf752c6",
+      "title": "Ce film de Sylvain Chomet pour Dior a-t-il été réalisé avec l’IA ?",
+      "url": "https://www.liberation.fr/checknews/ce-film-de-sylvain-chomet-pour-dior-a-t-il-ete-realise-avec-lia-20261107_QURVF5TQIJC7LCFJ6JA2TS5WFQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-07T17:12:59.000Z",
+      "collectedAt": "2026-11-08T11:38:40.440Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-50def5b9753a1842",
       "title": "Les produits végétaux «ultratransformés» sont-ils par définition mauvais pour la santé ?",
