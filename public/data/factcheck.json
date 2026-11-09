@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-08T11:38:40.448Z",
+  "generatedAt": "2026-11-09T13:31:40.063Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -838,6 +838,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-9bc0ea01e6e7907c",
+      "title": "Manifestation du 7 novembre : les Centaures de la gendarmerie ont-ils utilisé des «canons à son» à Bordeaux ?",
+      "url": "https://www.liberation.fr/checknews/manifestation-du-7-novembre-les-centaures-de-la-gendarmerie-ont-ils-utilise-des-canons-a-son-a-bordeaux-20261108_2OZYNSRDXRFPRESHHXPI5I4JKA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-08T18:06:38.000Z",
+      "collectedAt": "2026-11-09T13:31:40.056Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-4692d5c29ecac848",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 7 et 8 novembre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/08/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-7-et-8-novembre_6808453_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-08T16:40:41.000Z",
+      "collectedAt": "2026-11-09T13:31:38.063Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-a9de240e4cab2f1e",
       "title": "VRAI OU FAUX. Que sait-on d'un suppos&#xE9; \"centre de torture\" militaire ukrainien&#xA0;?",
