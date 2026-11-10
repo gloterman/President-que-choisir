@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-09T13:31:40.063Z",
+  "generatedAt": "2026-11-10T13:10:46.215Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -838,6 +838,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-8b709f1bada52629",
+      "title": "Un lyc&#xE9;en de 15 ans interpell&#xE9; en cale&#xE7;on&#xA0;: que s'est-il pass&#xE9; &#xE0; Aulnay-sous-Bois ?",
+      "url": "https://www.franceinfo.fr/faits-divers/police/un-lyceen-de-15-ans-interpelle-en-calecon-que-s-est-il-passe-a-aulnay-sous-bois_8275082.html#xtor=RSS-3-%5Bgeneral%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-09T19:46:33.000Z",
+      "collectedAt": "2026-11-10T13:10:45.506Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-9bc0ea01e6e7907c",
       "title": "Manifestation du 7 novembre : les Centaures de la gendarmerie ont-ils utilisé des «canons à son» à Bordeaux ?",
