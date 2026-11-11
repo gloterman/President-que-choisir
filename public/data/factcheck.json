@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-10T13:10:46.215Z",
+  "generatedAt": "2026-11-11T12:19:54.584Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -839,12 +839,50 @@
   "verifications": [],
   "watch": [
     {
+      "id": "veille-checknews-5547e1b242313601",
+      "title": "Que sait-on de l’homme mort à Châtelet, en marge des manifestations, dans la nuit du 18 au 19 octobre ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-de-lhomme-mort-a-chatelet-en-marge-des-manifestations-dans-la-nuit-du-18-au-19-octobre-20261111_37D6ASB5X5FI5COMGVYTRLRY5E/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-11T11:41:11.000Z",
+      "collectedAt": "2026-11-11T12:19:54.578Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-01b92dde08b7f985",
+      "title": "Sophie Binet est-elle la premi&#xE8;re dirigeante de la CGT &#xE0; n'avoir jamais travaill&#xE9; dans le priv&#xE9;, comme l'affirme le d&#xE9;put&#xE9; RN Jean-Philippe Tanguy ?",
+      "url": "https://www.franceinfo.fr/economie/syndicats/sophie-binet-est-elle-la-premiere-dirigeante-de-la-cgt-a-n-avoir-jamais-travaille-dans-le-prive-comme-l-affirme-le-depute-rn-jean-philippe-tanguy_8276849.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-10T19:47:19.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
+      "likelyCandidates": [
+        "philippe"
+      ]
+    },
+    {
+      "id": "veille-checknews-8f3a794755f789a5",
+      "title": "Attentat en Pologne : avalanche de fake news sur l’identité et les motivations du tireur",
+      "url": "https://www.liberation.fr/checknews/attentat-en-pologne-avalanche-de-fake-news-sur-lidentite-et-les-motivations-du-tireur-20261110_SAXE2E7JSRD7LFVJ5NCMGTLOHY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-10T17:48:10.000Z",
+      "collectedAt": "2026-11-11T12:19:54.578Z",
+      "likelyCandidates": []
+    },
+    {
       "id": "veille-vrai-ou-faux-8b709f1bada52629",
       "title": "Un lyc&#xE9;en de 15 ans interpell&#xE9; en cale&#xE7;on&#xA0;: que s'est-il pass&#xE9; &#xE0; Aulnay-sous-Bois ?",
       "url": "https://www.franceinfo.fr/faits-divers/police/un-lyceen-de-15-ans-interpelle-en-calecon-que-s-est-il-passe-a-aulnay-sous-bois_8275082.html#xtor=RSS-3-%5Bgeneral%5D",
       "publisher": "franceinfo",
       "publishedAt": "2026-11-09T19:46:33.000Z",
       "collectedAt": "2026-11-10T13:10:45.506Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-7e1f60fa50ef7127",
+      "title": "Un lyc&#xE9;en de 15 ans interpell&#xE9; en cale&#xE7;on&#xA0;: que s'est-il pass&#xE9; &#xE0; Aulnay-sous-Bois ?",
+      "url": "https://www.franceinfo.fr/faits-divers/police/un-lyceen-de-15-ans-interpelle-en-calecon-que-s-est-il-passe-a-aulnay-sous-bois_8275082.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-09T19:46:33.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
       "likelyCandidates": []
     },
     {
@@ -875,6 +913,15 @@
       "likelyCandidates": []
     },
     {
+      "id": "veille-vrai-ou-faux-f140a19289367238",
+      "title": "VRAI OU FAUX. Que sait-on d'un suppos&#xE9; \"centre de torture\" militaire ukrainien&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-que-sait-on-d-un-suppose-centre-de-torture-militaire-ukrainien_8269061.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-08T06:14:48.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
+      "likelyCandidates": []
+    },
+    {
       "id": "veille-checknews-9873cd7c2bf752c6",
       "title": "Ce film de Sylvain Chomet pour Dior a-t-il été réalisé avec l’IA ?",
       "url": "https://www.liberation.fr/checknews/ce-film-de-sylvain-chomet-pour-dior-a-t-il-ete-realise-avec-lia-20261107_QURVF5TQIJC7LCFJ6JA2TS5WFQ/",
@@ -899,6 +946,15 @@
       "publisher": "franceinfo",
       "publishedAt": "2026-11-07T06:23:41.000Z",
       "collectedAt": "2026-11-07T11:26:14.456Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-a05524235a2a8399",
+      "title": "VRAI OU FAUX. Le minist&#xE8;re de l'Education nationale a-t-il envoy&#xE9; un mail demandant de signaler les enseignants gr&#xE9;vistes solidaires de la mobilisation des lyc&#xE9;ens&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-le-ministere-de-l-education-nationale-a-t-il-envoye-un-mail-demandant-de-signaler-les-enseignants-grevistes-solidaires-de-la-mobilisation-des-lyceens_8269187.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-07T06:23:41.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
       "likelyCandidates": []
     },
     {
@@ -960,6 +1016,15 @@
       "likelyCandidates": []
     },
     {
+      "id": "veille-vrai-ou-faux-5ec8fcbc3e52a475",
+      "title": "Le gaz lacrymog&#xE8;ne a-t-il des effets sur les cycles menstruels ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/le-gaz-lacrymogene-a-t-il-des-effets-sur-les-cycles-menstruels_8269799.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-05T19:35:22.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
+      "likelyCandidates": []
+    },
+    {
       "id": "veille-decodeurs-e62ab4541cfd8ea2",
       "title": "Comment la pauvreté progresse dans la population française",
       "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/05/comment-la-pauvrete-progresse-dans-la-population-francaise_6806829_4355770.html",
@@ -975,6 +1040,15 @@
       "publisher": "franceinfo",
       "publishedAt": "2026-11-04T19:25:54.000Z",
       "collectedAt": "2026-11-05T12:53:43.013Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-13c0247bd5aef3da",
+      "title": "Manifestations contre la vie ch&#xE8;re : des vid&#xE9;os ont-elles disparu des r&#xE9;seaux sociaux ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/manifestations-contre-la-vie-chere-des-videos-ont-elles-disparu-des-reseaux-sociaux_8268335.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-04T19:25:54.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
       "likelyCandidates": []
     },
     {
@@ -1151,6 +1225,17 @@
       ]
     },
     {
+      "id": "veille-vrai-ou-faux-ef8ae4ff642ed4be",
+      "title": "VRAI OU FAUX. La France est-elle le pays le moins s&#xE9;lectif pour acc&#xE9;der &#xE0; l'enseignement sup&#xE9;rieur, comme l'affirme le ministre Philippe Baptiste&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-la-france-est-elle-le-pays-le-moins-selectif-pour-acceder-a-l-enseignement-superieur-comme-l-affirme-le-ministre-philippe-baptiste_8260157.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-31T06:28:18.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
+      "likelyCandidates": [
+        "philippe"
+      ]
+    },
+    {
       "id": "veille-decodeurs-19b1bee29fb42198",
       "title": "Midterms aux Etats-Unis : le petit guide pour tout comprendre aux élections de mi-mandat",
       "url": "https://www.lemonde.fr/les-decodeurs/article/2026/10/31/midterms-aux-etats-unis-le-petit-guide-pour-tout-comprendre-aux-elections-de-mi-mandat_6803393_4355770.html",
@@ -1220,6 +1305,15 @@
       "publisher": "franceinfo",
       "publishedAt": "2026-10-28T14:03:07.000Z",
       "collectedAt": "2026-10-29T11:13:39.080Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-ef0b616e9efc029b",
+      "title": "VRAI OU FAUX. Attention aux images et vid&#xE9;os virales diffus&#xE9;es sur les r&#xE9;seaux sociaux apr&#xE8;s l'accident de train en Espagne",
+      "url": "https://www.franceinfo.fr/monde/espagne/les-images-deja-virales-de-la-grave-collision-de-deux-trains-a-grande-vitesse-en-espagne_8257357.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-10-28T14:03:07.000Z",
+      "collectedAt": "2026-11-11T12:19:53.967Z",
       "likelyCandidates": []
     },
     {
@@ -3523,24 +3617,6 @@
       "publisher": "Libération",
       "publishedAt": "2026-07-13T16:10:24.000Z",
       "collectedAt": "2026-09-04T21:03:40.070Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-23f13a855aef1b28",
-      "title": "Que sait-on d’une fausse vidéo de menace du Hezbollah contre la France, apparue jeudi sur X ?",
-      "url": "https://www.liberation.fr/checknews/que-sait-on-dune-fausse-video-de-menace-du-hezbollah-contre-la-france-apparue-jeudi-sur-x-20260711_COPZBWGSVJDPPBU2K3AOT4AAMU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-11T11:01:52.000Z",
-      "collectedAt": "2026-09-04T21:03:40.070Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-afp-factuel-f1cbee4141b99451",
-      "title": "France",
-      "url": "https://factuel.afp.com/node/1",
-      "publisher": "Agence France-Presse",
-      "publishedAt": "2023-06-07T14:54:28.000Z",
-      "collectedAt": "2026-09-04T21:03:39.184Z",
       "likelyCandidates": []
     }
   ]
