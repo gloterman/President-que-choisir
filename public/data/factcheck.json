@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-11T12:19:54.584Z",
+  "generatedAt": "2026-11-12T13:29:22.635Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3n22j7t3eo22i",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3n22j7t3eo22i",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3n22j7t3eo22i",
+      "text": "Plus de 3000 personnes à La Souterraine dans la Creuse !\n\nBravo et merci ! Nous montrons que nous sommes la force !\n\n👉️️ youtube.com/live/xZoKroZ...",
+      "claim": "Plus de 3000 personnes à La Souterraine dans la Creuse !\n\nBravo et merci ! Nous montrons que nous sommes la force !\n\n👉️️ youtube.com/live/xZoKroZ...",
+      "publishedAt": "2026-11-11T17:47:56.685Z",
+      "collectedAt": "2026-11-12T13:29:20.238Z"
+    },
     {
       "id": "bluesky-3mzqha6sczs2e",
       "candidateId": "melenchon",
@@ -838,6 +850,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-e8e137c3c2942e24",
+      "title": "VRAI OU FAUX. La TVA &#xE0; 0% sur les produits de premi&#xE8;re n&#xE9;cessit&#xE9; a-t-elle \"fait baisser l'ensemble des prix\" en Espagne et en Pologne, comme l'affirme S&#xE9;bastien Chenu&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-la-tva-a-0-sur-les-produits-de-premiere-necessite-a-t-elle-fait-baisser-l-ensemble-des-prix-en-espagne-et-en-pologne-comme-l-affirme-sebastien-chenu_8276051.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-12T05:06:47.000Z",
+      "collectedAt": "2026-11-12T13:29:21.640Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-1dcb074f2cfe54b1",
+      "title": "R&#xE9;f&#xE9;rendum dans le Donbass : pourquoi la proposition de Jean-Luc M&#xE9;lenchon fait r&#xE9;agir jusqu&#x2019;&#xE0; Kiev",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/referendum-dans-le-donbass-pourquoi-la-proposition-de-jean-luc-melenchon-fait-reagir-jusqu-a-kiev_8278241.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-11T19:31:22.000Z",
+      "collectedAt": "2026-11-12T13:29:21.640Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-006a50b6b782bae7",
+      "title": "La fuite de données révélant que 400 000 Russes sont morts en Ukraine est-elle crédible ?",
+      "url": "https://www.liberation.fr/checknews/la-fuite-de-donnees-revelant-que-400-000-russes-sont-morts-en-ukraine-est-elle-credible-20261111_TMKCRVT4DJFG5AQ4W4LS5AWJVU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-11T14:36:40.000Z",
+      "collectedAt": "2026-11-12T13:29:22.628Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-5547e1b242313601",
       "title": "Que sait-on de l’homme mort à Châtelet, en marge des manifestations, dans la nuit du 18 au 19 octobre ?",
@@ -3590,33 +3629,6 @@
       "publisher": "Libération",
       "publishedAt": "2026-07-15T19:07:52.000Z",
       "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-ac81b9f7a3ab5b12",
-      "title": "Coupes budgétaires, retards industriels : le renouvellement des Canadair français, une promesse de Macron toujours non tenue",
-      "url": "https://www.liberation.fr/checknews/coupes-budgetaires-retards-industriels-le-renouvellement-des-canadair-francais-une-promesse-de-macron-toujours-non-tenue-20260715_4IBUFL7T5FHSJJPVXC4QPWWEN4/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-15T15:50:50.000Z",
-      "collectedAt": "2026-09-04T21:03:40.070Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-d93af958b8217323",
-      "title": "«Chat Control» : comment le texte décrié de lutte contre la pédocriminalité, initialement rejeté par le Parlement européen, a-t-il finalement pu être adopté ?",
-      "url": "https://www.liberation.fr/checknews/chat-control-comment-le-texte-decrie-de-lutte-contre-la-pedocriminalite-initialement-rejete-par-le-parlement-europeen-a-t-il-finalement-pu-etre-adopte-20260715_4BBOGOUYVRHTLFTVUKN3QMVNAU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-15T05:20:00.000Z",
-      "collectedAt": "2026-09-04T21:03:40.070Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-e4c4574562fc4139",
-      "title": "Brut a-t-il diffusé l’image d’un enfant portant «le bandeau du Hamas» dans une vidéo sur le manque d’eau potable en Vendée ?",
-      "url": "https://www.liberation.fr/checknews/brut-a-t-il-diffuse-limage-dun-enfant-portant-le-bandeau-du-hamas-dans-une-video-sur-le-manque-deau-potable-en-vendee-20260713_XV2WICINIRAKXGIG3A76BPKJWE/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-13T16:10:24.000Z",
-      "collectedAt": "2026-09-04T21:03:40.070Z",
       "likelyCandidates": []
     }
   ]
