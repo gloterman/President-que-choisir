@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-12T13:29:22.635Z",
+  "generatedAt": "2026-11-13T12:46:08.446Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,30 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3n26z7hqxds2k",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3n26z7hqxds2k",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3n26z7hqxds2k",
+      "text": "🔴️️️️️️ Nous allons relancer la filière textile en France\n\nRetrouvez mon point presse au salon du Made in France.\n\n👉️️️️️️ youtu.be/SO2oL5FFNEU",
+      "claim": "🔴️️️️️️ Nous allons relancer la filière textile en France\n\nRetrouvez mon point presse au salon du Made in France.\n\n👉️️️️️️ youtu.be/SO2oL5FFNEU",
+      "publishedAt": "2026-11-13T12:44:43.635Z",
+      "collectedAt": "2026-11-13T12:46:04.678Z"
+    },
+    {
+      "id": "bluesky-3n252mqa7d22l",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3n252mqa7d22l",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3n252mqa7d22l",
+      "text": "⚡️️️️️️️ On l'a fait ! Plus de 500 000 soutiens pour ma candidature à l'élection présidentielle !\n\nOn continue, jusqu'à la victoire ! Signez et faites signer sur : jlm27.fr/p/j4VuXNIJZb",
+      "claim": "⚡️️️️️️️ On l'a fait ! Plus de 500 000 soutiens pour ma candidature à l'élection présidentielle !\n\nOn continue, jusqu'à la victoire ! Signez et faites signer sur : jlm27.fr/p/j4VuXNIJZb",
+      "publishedAt": "2026-11-12T18:04:42.997Z",
+      "collectedAt": "2026-11-13T12:46:04.678Z"
+    },
     {
       "id": "bluesky-3n22j7t3eo22i",
       "candidateId": "melenchon",
@@ -850,6 +874,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-b57efa94aa8a5a03",
+      "title": "ENQUETE. Informations d&#xE9;tourn&#xE9;es, crainte d'une cyberattaque, th&#xE9;ories du complot... Comment l'infox sur un black-out mondial le 17 novembre s'est propag&#xE9;e",
+      "url": "https://www.franceinfo.fr/internet/securite-sur-internet/cyberattaques/enquete-informations-detournees-crainte-d-une-cyberattaque-theories-du-complot-comment-l-infox-sur-un-black-out-mondial-le-17-novembre-s-est-propagee_8279762.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-13T06:07:46.000Z",
+      "collectedAt": "2026-11-13T12:46:07.776Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-c2ffd59013b792d5",
+      "title": "VRAI OU FAUX. Une hausse du smic &#xE0; 1&#xA0;700 euros entra&#xEE;nerait-elle la destruction de 230&#xA0;000&#xA0;emplois, comme l'affirme le gouvernement&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-une-hausse-du-smic-a-1-700-euros-entrainerait-elle-la-destruction-de-230-000-emplois-comme-l-affirme-le-gouvernement_8274335.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-13T04:52:34.000Z",
+      "collectedAt": "2026-11-13T12:46:07.776Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-8b87e74e3416be2c",
+      "title": "Les clés pour comprendre le débat sur les « gros héritages »",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/12/les-cles-pour-comprendre-le-debat-sur-les-gros-heritages_6809137_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-12T17:14:28.000Z",
+      "collectedAt": "2026-11-13T12:46:04.849Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-e8e137c3c2942e24",
       "title": "VRAI OU FAUX. La TVA &#xE0; 0% sur les produits de premi&#xE8;re n&#xE9;cessit&#xE9; a-t-elle \"fait baisser l'ensemble des prix\" en Espagne et en Pologne, comme l'affirme S&#xE9;bastien Chenu&#xA0;?",
@@ -3603,33 +3654,6 @@
       "likelyCandidates": [
         "attal"
       ]
-    },
-    {
-      "id": "veille-checknews-c35badfe488127c2",
-      "title": "Doctolib : pourquoi la plateforme veut utiliser vos données de santé pour un projet de recherche avec l’IA",
-      "url": "https://www.liberation.fr/checknews/doctolib-pourquoi-la-plateforme-veut-utiliser-vos-donnees-de-sante-pour-un-projet-de-recherche-avec-lia-20260716_TCGZ4NZTQNCCVCDKCUMTZMC2JY/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-16T15:00:00.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-369bda26a455808d",
-      "title": "Que sait-on de ces images montrant un policier municipal tirer sur deux fugitifs après qu’ils ont lancé un feu d’artifice ?",
-      "url": "https://www.liberation.fr/checknews/que-sait-on-de-ces-images-montrant-un-policier-municipal-tirer-sur-deux-fugitifs-apres-quils-ont-lance-un-feu-dartifice-20260716_HVUKKKQOTJEZXMIPERC5A5XQTI/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-16T12:59:05.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-f6d8e5c828979579",
-      "title": "Coupe du monde 2026 : que sait-on des accusations qui visent la Fédération argentine de football ?",
-      "url": "https://www.liberation.fr/checknews/coupe-du-monde-2026-que-sait-on-des-accusations-qui-visent-la-federation-argentine-de-football-20260715_WPLZEDYXKBEM7BS4Q2JCAUKMH4/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-15T19:07:52.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
     }
   ]
 }
