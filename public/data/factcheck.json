@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-13T12:46:08.446Z",
+  "generatedAt": "2026-11-14T11:53:32.514Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -874,6 +874,24 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-1c6942bdadef2da7",
+      "title": "VRAI OU FAUX. Le minist&#xE8;re de l'Education nationale minimise-t-il le nombre de lyc&#xE9;es bloqu&#xE9;s&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-le-ministere-de-l-education-nationale-minimise-t-il-le-nombre-de-lycees-bloques_8280680.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-14T06:12:12.000Z",
+      "collectedAt": "2026-11-14T11:53:32.247Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-e173087feea08007",
+      "title": "Tout comprendre au smic, le salaire minimum que le gouvernement va revaloriser",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/13/tout-comprendre-au-smic-le-salaire-minimum-que-le-gouvernement-va-revaloriser_6809379_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-13T18:30:05.000Z",
+      "collectedAt": "2026-11-14T11:53:31.348Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-b57efa94aa8a5a03",
       "title": "ENQUETE. Informations d&#xE9;tourn&#xE9;es, crainte d'une cyberattaque, th&#xE9;ories du complot... Comment l'infox sur un black-out mondial le 17 novembre s'est propag&#xE9;e",
@@ -3632,28 +3650,6 @@
       "publishedAt": "2026-07-18T09:26:00.000Z",
       "collectedAt": "2026-09-04T21:03:40.069Z",
       "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-e7c2dab5ef106c6e",
-      "title": "Non, Mélenchon n’a pas proposé Matignon à Montebourg chez Ruquier en 2017",
-      "url": "https://www.liberation.fr/checknews/non-melenchon-na-pas-propose-matignon-a-montebourg-chez-ruquier-en-2017-20260717_N6CWSV6KGJHALNJOFETFQJDRZQ/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-17T14:19:49.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": [
-        "melenchon"
-      ]
-    },
-    {
-      "id": "veille-checknews-c8526062535ce9a3",
-      "title": "Feux de forêt : les petits arrangements avec la vérité de Gabriel Attal, accusé d’avoir empêché l’achat de deux Canadair",
-      "url": "https://www.liberation.fr/checknews/feux-de-foret-les-petits-arrangements-avec-la-verite-de-gabriel-attal-accuse-davoir-empeche-lachat-de-deux-canadair-20260717_K2AXQWTJHZCPNAWPSJTLUR6GXQ/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-17T12:54:27.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": [
-        "attal"
-      ]
     }
   ]
 }
