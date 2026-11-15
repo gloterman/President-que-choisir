@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-14T11:53:32.514Z",
+  "generatedAt": "2026-11-15T12:25:30.196Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -874,6 +874,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-515182038499cde6",
+      "title": "H&#xF4;pital public : le mod&#xE8;le de Valenciennes est-il vraiment aussi efficace qu'on le dit ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/hopital-public-le-modele-de-valenciennes-est-il-vraiment-aussi-efficace-qu-on-le-dit_8282579.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-14T15:40:41.000Z",
+      "collectedAt": "2026-11-15T12:25:29.556Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-1c6942bdadef2da7",
       "title": "VRAI OU FAUX. Le minist&#xE8;re de l'Education nationale minimise-t-il le nombre de lyc&#xE9;es bloqu&#xE9;s&#xA0;?",
@@ -3639,15 +3648,6 @@
       "url": "https://www.liberation.fr/checknews/apres-la-mort-du-senateur-americain-lindsey-graham-un-deferlement-de-rumeurs-contradictoires-20260718_VCPTGF65V5E3DLKFQFYBJJNQ5U/",
       "publisher": "Libération",
       "publishedAt": "2026-07-18T13:10:00.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-a1248974ebf7699d",
-      "title": "Non, il n’est pas interdit de se maquiller dans les wagons de la RATP ou de la SNCF",
-      "url": "https://www.liberation.fr/checknews/non-il-nest-pas-interdit-de-se-maquiller-dans-les-wagons-de-la-ratp-ou-de-la-sncf-20260718_FSPAVT54PFCBDN2K23TS7CHK6A/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-18T09:26:00.000Z",
       "collectedAt": "2026-09-04T21:03:40.069Z",
       "likelyCandidates": []
     }
