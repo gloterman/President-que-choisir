@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-15T12:25:30.196Z",
+  "generatedAt": "2026-11-16T13:17:25.331Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -874,6 +874,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-b2dba65a82ae8baa",
+      "title": "«Le Masque et la Plume» : France Inter a-t-elle vraiment censuré le critique Arnaud Viviant à propos du livre de Rima Hassan ?",
+      "url": "https://www.liberation.fr/checknews/le-masque-et-la-plume-france-inter-a-t-elle-vraiment-censure-le-critique-arnaud-viviant-a-propos-du-livre-de-rima-hassan-20261116_SLBWRFGAS5CLZCO7HHZRXHC4T4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-16T06:00:00.000Z",
+      "collectedAt": "2026-11-16T13:17:25.323Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-c76fe49b42a6c7a0",
+      "title": "En Suisse, l’inculpation inédite d’un journaliste du fait d’une loi sur les banques nourrit des inquiétudes",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/16/en-suisse-l-inculpation-inedite-d-un-journaliste-via-la-loi-sur-les-banques-nourrit-des-inquietudes_6811403_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-16T05:00:06.000Z",
+      "collectedAt": "2026-11-16T13:17:22.549Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-4c80a693caf05f3a",
+      "title": "Ce qu’il faut retenir de l’actualité du week-end des 14 et 15 novembre",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/15/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-14-et-15-novembre_6811043_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-15T17:56:38.000Z",
+      "collectedAt": "2026-11-16T13:17:22.549Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-7129612726cd2252",
+      "title": "40 affirmations-chocs des candidats à la présidentielle de 2027 et de leurs soutiens fact-checkées",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/15/presidentielle-2027-40-declarations-des-candidats-et-de-leurs-soutiens-passees-au-crible_6811018_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-15T13:19:59.000Z",
+      "collectedAt": "2026-11-16T13:17:22.549Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-515182038499cde6",
       "title": "H&#xF4;pital public : le mod&#xE8;le de Valenciennes est-il vraiment aussi efficace qu'on le dit ?",
@@ -3612,42 +3648,6 @@
       "url": "https://www.liberation.fr/checknews/2018/10/02/un-ministre-est-il-oblige-de-continuer-a-travailler-si-le-president-refuse-sa-demission_1682585/",
       "publisher": "Libération",
       "publishedAt": "2026-07-22T14:41:38.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-bceb265a96272ccc",
-      "title": "Non, l’Education nationale n’a pas décidé d’arrêter d’enseigner le russe en France",
-      "url": "https://www.liberation.fr/checknews/non-leducation-nationale-na-pas-decide-darreter-denseigner-le-russe-en-france-20260722_25UYJMA6DNC35L64WMGOS5X2PM/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-22T14:25:18.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-8d2a20c416377a39",
-      "title": "L’interdiction des réseaux sociaux aux moins de 15 ans est-elle applicable ?",
-      "url": "https://www.liberation.fr/checknews/interdiction-des-reseaux-sociaux-au-moins-de-15-ans-sans-lue-un-texte-a-la-portee-limitee-et-minimaliste-20260722_5H37QTAINJBA3EJWS2B6LRYPGM/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-22T03:34:00.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-edbfe8b7cdd7e545",
-      "title": "Netflix demande-t-il aux cinéastes de «répéter trois ou quatre fois» l’intrigue pour les spectateurs distraits, comme le dit Matt Damon ?",
-      "url": "https://www.liberation.fr/checknews/netflix-demande-t-il-aux-cineastes-de-repeter-trois-ou-quatre-fois-lintrigue-pour-les-spectateurs-distraits-comme-le-dit-matt-damon-20260719_WIFB5UHWDFHMBB5ZZ5SZ3DKPVA/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-19T10:14:02.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-f54ff4c6d0ab3870",
-      "title": "Après la mort du sénateur américain Lindsey Graham, un déferlement de rumeurs contradictoires",
-      "url": "https://www.liberation.fr/checknews/apres-la-mort-du-senateur-americain-lindsey-graham-un-deferlement-de-rumeurs-contradictoires-20260718_VCPTGF65V5E3DLKFQFYBJJNQ5U/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-18T13:10:00.000Z",
       "collectedAt": "2026-09-04T21:03:40.069Z",
       "likelyCandidates": []
     }
