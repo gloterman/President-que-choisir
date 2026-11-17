@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-16T13:17:25.331Z",
+  "generatedAt": "2026-11-17T14:02:30.003Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,32 @@
     }
   ],
   "quotes": [
+    {
+      "id": "site-998f69fd5b6216f7",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "998f69fd5b6216f7",
+      "url": "https://melenchon2027.fr/communique/plan-pauvrete/",
+      "text": "La France insoumise publie son plan pour abolir la pauvreté — Ce lundi 16 novembre, la France insoumise présente son plan pour répondre à l’urgence sociale dans laquelle est plongé notre pays, à l’occasion du débat des Restos du cœur diffusé sur TF1/LCI, auquel participe son candidat Jean-Luc Mélenchon. Les plans thématiques détaillent les mesures du gouvernement insoumis dans chaque domaine de l’action publique. Ils complètent L’Avenir en commun, le livre-programme publié le vendredi 6 novembre 2026. Dans notre pays, 11 millions de personnes sont en insécurité alimentaire, 4 millions sont mal logées, 350 000 personnes sont sans domicile fixe, une mère isolée sur trois et 20% des étudiant·es vivent sous le seuil de pauvreté. Cette crise sociale sans précédent a un responsable : Emmanuel Macron. Son bilan : 1 million de pauvres en plus, des politiques au service des plus riches sur le dos de l’écrasante majorité des Français·es, et une persécution organisée des plus pauvres. Macron est le président qui aura supprimé l’impôt sur la fortune et, en même temps, celui qui aura baissé les APL et les indemnités chômage. Pour la France insoumise, la lutte contre la pauvreté est centrale. Nous engagerons donc des chantiers de très grande ampleur pour l’abolir. Dès notre arrivée au pouvoir, nous créerons un état d’urgence sociale. Cela nous permettra, notamment, de : bloquer les prix des produits de première nécessité (alimentation, énergie, etc.) réquisitionner les logements vides bloquer les loyers, y compris commerciaux encadrer les frais bancaires geler les remboursements de crédits ou de dettes personnelles Au-delà de ces mesures d’urgence, ce plan détaille entre autres choses comment nous allons : augmenter le SMIC à 1700 euros net sortir de la pauvreté structurelle, notamment grâce à la garantie d’autonomie, qui permettra à toute personne résidant en France de disposer d’un revenu au moins égal au seuil de pauvreté garantir à toutes et tous l’accès aux services et réseaux essentiels à la vie rendre effectif l’accès aux droits et lutter contre le non-recours",
+      "claim": "La France insoumise publie son plan pour abolir la pauvreté",
+      "publishedAt": "2026-11-16T17:58:05.000Z",
+      "collectedAt": "2026-11-17T14:01:53.635Z",
+      "speaker": "candidat"
+    },
+    {
+      "id": "site-e76a04fb8d50f38e",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "e76a04fb8d50f38e",
+      "url": "https://melenchon2027.fr/actualites/communique/plan-textile/",
+      "text": "La France insoumise publie son plan d’investissement productif dans le textile — Ce vendredi 13 novembre, la France insoumise présente son plan d’investissement productif dans le secteur textile à l’occasion de la présence d’une délégation au salon du Made in France. C&rsquo;est le troisième plan d’investissement productif publié par la France insoumise, après ceux sur le BTP/logement et l’automobile. Cette série de documents détaille les investissements nécessaires dans les filières stratégiques pour répondre aux besoins écologiques et sociaux du pays. Ils complètent l’Avenir en commun, livre-programme sorti le 6 novembre. Le secteur textile a été profondément affaibli en France par l’organisation du libre-échange généralisé. Près de 350 000 emplois ont été perdus en 50 ans et seuls 3 % des vêtements achetés en France sont fabriqués dans le pays. En plus des enjeux économiques et sociaux, le modèle actuel de l’industrie pose des défis écologiques, notamment en matière d’émission de gaz à effet de serre et de quantité de déchets, et de souveraineté, alors que de nombreux équipements professionnels sont fabriqués à l’étranger. Le plan d’investissement productif de la France insoumise prévoit de passer de 3 % de vêtements consommés en France produits en France à 10 % et à 25 % issus de l&rsquo;économie circulaire. Pour cela, nous reconstituerons une filière d’habillement grand public abordable autour du lin et du chanvre, cultures qui présentent de nombreux atouts pour le textile. Le pôle public bancaire aidera à développer la filature, le tissage, et la confection sur la base d&rsquo;engagements pluriannuels avec leurs fournisseurs. Pour répondre aux enjeux environnementaux et aider la production locale, le plan prévoit de mettre à contribution les productions les plus néfastes d’un point de vue environnemental pour changer le comportement des grandes plateformes et de flécher le produit vers le Made in France. Nous interdirons les produits chimiques dangereux dans l’habillement. Nous lancerons la grande bifurcation circulaire du secteur en développant en priorité le réemploi et en s’appuyant sur l’économie sociale et solidaire, aujourd’hui maltraitée. Le plan propose également de créer une plateforme numérique publique de vente de vêtements, de flécher la commande publique vers des productions locales à l’heure où les tenues des fonctionnaires sont souvent fabriquées à l’autre bout du monde, de développer les textiles professionnels et techniques, d’investir dans la recherche et dans la formation aux savoir-faire du secteur.",
+      "claim": "La France insoumise publie son plan d’investissement productif dans le textile",
+      "publishedAt": "2026-11-13T14:00:00.000Z",
+      "collectedAt": "2026-11-17T14:01:53.635Z",
+      "speaker": "candidat"
+    },
     {
       "id": "bluesky-3n26z7hqxds2k",
       "candidateId": "melenchon",
@@ -874,6 +900,78 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-595f9eb8ff926d95",
+      "title": "Un mois après le 17 octobre, où en est l’indemnisation des commerces dégradés et pillés ?",
+      "url": "https://www.liberation.fr/checknews/un-mois-apres-le-17-octobre-ou-en-est-lindemnisation-des-commerces-degrades-et-pilles-20261117_YEDY4ZIDGBC4LLLJFO6WI6TMXE/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-17T08:00:00.000Z",
+      "collectedAt": "2026-11-17T14:02:29.997Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-8dfea9cf4aae8727",
+      "title": "« Inside Deutsche Bank » : notre journaliste raconte cette enquête titanesque sur ce que la banque voulait garder secret",
+      "url": "https://www.lemonde.fr/podcasts/article/2026/11/17/inside-deutsche-bank-plongee-dans-la-banque-aux-mille-scandales_6812919_5463015.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-17T06:30:09.000Z",
+      "collectedAt": "2026-11-17T14:02:24.898Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-b44617cc20476dd9",
+      "title": "« Inside Deutsche Bank » : malgré les scandales et la guerre en Ukraine, la banque a tenté de préserver son activité avec les Russes",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/17/inside-deutsche-bank-malgre-les-scandales-et-la-guerre-en-ukraine-la-banque-a-tente-de-preserver-son-activite-avec-les-russes_6812915_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-17T06:00:15.000Z",
+      "collectedAt": "2026-11-17T14:02:24.898Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-ca3b7d42a64c1338",
+      "title": "« Inside Deutsche Bank », une enquête de 230 journalistes et 50 médias sur 15 millions de fichiers",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/17/inside-deutsche-bank-une-enquete-de-230-journalistes-et-50-medias-sur-15-millions-de-fichiers_6812914_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-17T06:00:04.000Z",
+      "collectedAt": "2026-11-17T14:02:24.898Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-03ed5d20dd964352",
+      "title": "« Inside Deutsche Bank » : les secrets inavouables du géant bancaire révélés par 15 millions de documents confidentiels",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/17/inside-deutsche-bank-les-secrets-inavouables-du-geant-bancaire-reveles-par-15-millions-de-documents-confidentiels_6812911_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-17T05:58:02.000Z",
+      "collectedAt": "2026-11-17T14:02:24.898Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-6f3b40365ebfa4a9",
+      "title": "PFAS : comment le lobby des fluoropolymères manœuvre pour sauver ses polluants éternels d’une interdiction européenne",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/17/polluants-eternels-comment-le-lobby-des-fluoropolymeres-man-uvre-pour-sauver-ses-pfas-d-une-interdiction-europeenne_6812892_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-17T04:30:03.000Z",
+      "collectedAt": "2026-11-17T14:02:24.898Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-f3a2a82ef6fca7c4",
+      "title": "Retraites : existe-t-il des trimestres valid&#xE9;s sans travailler ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/retraites-existe-t-il-des-trimestres-valides-sans-travailler_8285468.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-16T21:00:31.000Z",
+      "collectedAt": "2026-11-17T14:02:29.184Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-67f43462b1b227e8",
+      "title": "Gaza est-elle accessible aux reporters étrangers, comme l’affirme une journaliste du «JDD» ?",
+      "url": "https://www.liberation.fr/checknews/gaza-est-elle-accessible-aux-reporters-etrangers-comme-laffirme-une-journaliste-du-jdd-20261116_AU6WSB6DH5FTFF222XKLJ7HBZI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-16T17:56:18.000Z",
+      "collectedAt": "2026-11-17T14:02:29.997Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-b2dba65a82ae8baa",
       "title": "«Le Masque et la Plume» : France Inter a-t-elle vraiment censuré le critique Arnaud Viviant à propos du livre de Rima Hassan ?",
@@ -3576,78 +3674,6 @@
       "url": "https://www.liberation.fr/checknews/incendies-en-gironde-la-commune-du-porge-a-t-elle-ete-sacrifiee-pour-sauver-les-villas-cossues-du-cap-ferret-20260731_BRHGYJZT35HHXG5HXCGYTLPVBI/",
       "publisher": "Libération",
       "publishedAt": "2026-07-31T17:59:26.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-0a7e1c9b035a0fdf",
-      "title": "Bally Bagayoko ment-il en affirmant que «chaque élève de 3e» de sa ville «recevra un vélo gratuit» à la rentrée ?",
-      "url": "https://www.liberation.fr/checknews/bally-bagayoko-ment-il-en-affirmant-que-chaque-eleve-de-3e-de-sa-ville-recevra-un-velo-gratuit-a-la-rentree-20260730_K77KWJJKAJEFRNQRJM3NTWRBHE/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-30T18:30:52.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-b3eb29c9e0f5dac5",
-      "title": "Coupe du monde : la pétition réclamant l’exclusion de l’Argentine par la Fifa était fausse",
-      "url": "https://www.liberation.fr/checknews/coupe-du-monde-la-petition-reclamant-lexclusion-de-largentine-par-la-fifa-etait-fausse-20260729_6MOD6NSJ6RGERNOEJSTRD4HMYA/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-29T16:34:36.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-c5207016cb203a87",
-      "title": "Que sait-on de l’Agrif, cette association d’extrême droite qui a fait reconnaître la notion de racisme anti-Blancs dans l’affaire de Crépol ?",
-      "url": "https://www.liberation.fr/checknews/que-sait-on-de-lagrif-cette-association-dextreme-droite-qui-a-fait-reconnaitre-la-notion-de-racisme-anti-blancs-dans-laffaire-de-crepol-20260728_3ZHCTYFY3RDIBCYWX7FC6RXTMI/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-28T10:01:35.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-1b85b5d18813a4e4",
-      "title": "Canadair : moins de deux tiers des appareils étaient opérationnels ces derniers jours pendant les grands incendies",
-      "url": "https://www.liberation.fr/checknews/canadair-moins-de-deux-tiers-des-appareils-etaient-operationnels-ces-derniers-jours-20260727_6ORD3FYYZVH63FK5DD56OIR3EM/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-27T15:37:41.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-22ae7ae26674bdc2",
-      "title": "Lunettes connectées Meta : que faire quand on est filmé à son insu ?",
-      "url": "https://www.liberation.fr/checknews/lunettes-connectees-meta-que-faire-quand-on-est-filme-a-son-insu-20260727_53Z4HX25WZHOZHX7ZXQ3CJ4TUE/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-27T12:31:07.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-1169a3fcf229bce3",
-      "title": "Origines, tarifs, communication… Les curieuses méthodes de Climloc, spécialisée dans la location express de climatiseurs mobiles",
-      "url": "https://www.liberation.fr/checknews/origines-tarifs-communication-les-curieuses-methodes-de-climloc-specialisee-dans-la-location-express-de-climatiseurs-mobiles-20260725_THUQH3BDE5ECPBAY3FHHW6T3O4/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-25T12:01:24.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-c952a561815c51a4",
-      "title": "Nombre de moteurs, disponibilité des avions : les mauvais chiffres du ministère de l’Intérieur sur les Canadair",
-      "url": "https://www.liberation.fr/checknews/nombre-de-moteurs-disponibilite-des-avions-les-mauvais-chiffres-du-ministere-de-linterieur-sur-les-canadair-20260723_HCKLXLPTCNCNXP4Y7NRXXWB3LU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-23T15:18:24.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-45ee7673fc14fb16",
-      "title": "Un ministre est-il obligé de continuer à travailler si le président refuse sa démission ?",
-      "url": "https://www.liberation.fr/checknews/2018/10/02/un-ministre-est-il-oblige-de-continuer-a-travailler-si-le-president-refuse-sa-demission_1682585/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-22T14:41:38.000Z",
       "collectedAt": "2026-09-04T21:03:40.069Z",
       "likelyCandidates": []
     }
