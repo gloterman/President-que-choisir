@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-17T14:02:30.003Z",
+  "generatedAt": "2026-11-18T13:37:13.038Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -900,6 +900,89 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-cf85b8aea4a4d166",
+      "title": "« Inside Deutsche Bank » : comment le géant bancaire a découvert qu’il avait servi d’intermédiaire à un gigantesque réseau de blanchiment",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/18/inside-deutsche-bank-comment-le-geant-bancaire-a-decouvert-qu-il-avait-servi-d-intermediaire-a-un-gigantesque-reseau-de-blanchiment_6813105_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-18T10:00:47.000Z",
+      "collectedAt": "2026-11-18T13:37:09.623Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-8eb21b4565280523",
+      "title": "Jean-Luc Mélenchon et l’Ukraine : ce que disent les votes de LFI au Parlement européen",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/18/jean-luc-melenchon-et-l-ukraine-ce-que-disent-les-votes-de-la-france-insoumise-au-parlement-europeen_6813096_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-18T08:45:01.000Z",
+      "collectedAt": "2026-11-18T13:37:09.623Z",
+      "likelyCandidates": [
+        "melenchon"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-505417bb995ad64a",
+      "title": "« Inside Deutsche Bank » : les contorsions du géant bancaire pour financer les marchands d’armes",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/18/inside-deutsche-bank-les-contorsions-du-geant-bancaire-pour-financer-les-marchands-d-armes_6813080_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-18T05:58:00.000Z",
+      "collectedAt": "2026-11-18T13:37:09.623Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-887ac91d8a55c778",
+      "title": "Faut-il encore réformer les retraites ? Les faits à connaître pour comprendre le débat",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/18/faut-il-encore-reformer-les-retraites-les-faits-a-connaitre-pour-comprendre-le-debat_6813070_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-18T05:00:10.000Z",
+      "collectedAt": "2026-11-18T13:37:09.623Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-3e619ebdf8e99b35",
+      "title": "La France participe-t-elle \"directement\" &#xE0; la guerre en Ukraine, comme l'affirme le Kremlin ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/la-france-participe-t-elle-directement-a-la-guerre-en-ukraine-comme-l-affirme-le-kremlin_8287025.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-17T19:13:27.000Z",
+      "collectedAt": "2026-11-18T13:37:12.373Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-d7206d59e2884e2f",
+      "title": "Sur quels éléments s’appuie le Premier ministre pour accuser des agents publics d’avoir fourni des mortiers d’artifice à des lycéens ?",
+      "url": "https://www.liberation.fr/checknews/sur-quels-elements-sappuie-le-premier-ministre-pour-accuser-des-agents-publics-davoir-fourni-des-mortiers-dartifice-a-des-lyceens-20261117_VTEPJFH6ANAGTGYCRJKX3CI4WQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-17T19:05:43.000Z",
+      "collectedAt": "2026-11-18T13:37:13.032Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-9b0306da511bb296",
+      "title": "« Inside Deutsche Bank » : que révèle la plus grande enquête bancaire jamais menée ?",
+      "url": "https://www.lemonde.fr/videos/video/2026/11/17/inside-deutsche-bank-que-revele-la-plus-grande-enquete-bancaire-jamais-menee_6813018_1669088.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-17T17:22:27.000Z",
+      "collectedAt": "2026-11-18T13:37:09.623Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-c1f5c8e941471a79",
+      "title": "Pourquoi Franceinfo a-t-elle précisé en direct le nom du compagnon d’Anne-Cécile Mailfert, présidente de la Fondation des femmes ?",
+      "url": "https://www.liberation.fr/checknews/pourquoi-franceinfo-a-t-elle-precise-en-direct-le-nom-du-compagnon-danne-cecile-mailfert-presidente-de-la-fondation-des-femmes-20261117_H3ZK5JQ7NBD5LKBVMLWXRAMAIA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-17T15:54:24.000Z",
+      "collectedAt": "2026-11-18T13:37:13.032Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-08b3b3239508bd56",
+      "title": "« Inside Deutsche Bank » : les documents secrets qui lient Donald Trump à l’argent sale azerbaïdjanais",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/17/inside-deutsche-bank-les-documents-secrets-qui-lient-donald-trump-a-l-argent-sale-azerbaidjanais_6812989_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-17T15:00:03.000Z",
+      "collectedAt": "2026-11-18T13:37:09.623Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-595f9eb8ff926d95",
       "title": "Un mois après le 17 octobre, où en est l’indemnisation des commerces dégradés et pillés ?",
@@ -1844,6 +1927,15 @@
       "publisher": "Libération",
       "publishedAt": "2026-10-19T12:59:55.000Z",
       "collectedAt": "2026-10-20T09:45:31.842Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-45ee7673fc14fb16",
+      "title": "Un ministre est-il obligé de continuer à travailler si le président refuse sa démission ?",
+      "url": "https://www.liberation.fr/checknews/2018/10/02/un-ministre-est-il-oblige-de-continuer-a-travailler-si-le-president-refuse-sa-demission_1682585/",
+      "publisher": "Libération",
+      "publishedAt": "2026-10-19T11:28:08.000Z",
+      "collectedAt": "2026-11-18T13:37:13.032Z",
       "likelyCandidates": []
     },
     {
@@ -3583,98 +3675,6 @@
       "publisher": "Le Monde",
       "publishedAt": "2026-08-13T15:00:02.000Z",
       "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-59600b1a40d41c4f",
-      "title": "Eclipse de 1999 : L’Etat avait-il distribué 30 millions de lunettes gratuites?",
-      "url": "https://www.liberation.fr/checknews/eclipse-de-1999-non-letat-navait-pas-distribue-30-millions-de-lunettes-gratuites-20260812_YHJFZMILUNGR7O4SJ2AJZGBZ4I/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-12T15:10:30.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-2c06fa3ca9ce07dc",
-      "title": "Les lendemains difficiles du fact-checking après un âge d’or lors de la crise due au Covid-19",
-      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/12/les-lendemains-difficiles-du-fact-checking-apres-un-age-d-or-lors-de-la-crise-due-au-covid-19_6745075_3451060.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-12T15:00:04.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-d36295462397a700",
-      "title": "Feux de forêt : la France brûle-t-elle davantage aujourd’hui qu’il y a cinquante ans ?",
-      "url": "https://www.liberation.fr/checknews/feux-de-foret-la-france-brule-t-elle-davantage-aujourdhui-quil-y-a-cinquante-ans-20260812_I5IPR7SPEJFFDL2SQWEFWJTUZM/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-12T12:35:56.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-9b8c259b94bb7cbf",
-      "title": "Facebook et les fausses informations, dix ans d’hésitations et une volte-face de Zuckerberg",
-      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/11/facebook-et-les-fausses-informations-dix-ans-d-hesitations-et-une-volte-face-de-zuckerberg_6744010_3451060.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-11T15:00:08.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-791e27e424acadc2",
-      "title": "Nucléaire : en raison de la canicule, l’été 2026 bat des records d’indisponibilité des réacteurs",
-      "url": "https://www.liberation.fr/checknews/nucleaire-en-raison-de-la-canicule-lete-2026-bat-des-records-dindisponibilite-des-reacteurs-20260808_LZ6D2PG5WFCNTJVCMLKLMN7SKE/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-08T16:31:54.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-7a2f3d38b2d729d8",
-      "title": "Ceuta : sur les réseaux sociaux, une nouvelle mobilisation s’organise pour le 15 août, entre appels au départ et fausses informations",
-      "url": "https://www.liberation.fr/checknews/ceuta-sur-les-reseaux-sociaux-une-nouvelle-mobilisation-sorganise-pour-le-15-aout-entre-appels-au-depart-et-fausses-informations-20260806_5V4IHECG4ZHTLM2VLUQ2IQXRTU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-06T17:36:39.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-80370abba4f4fb44",
-      "title": "Gabriel Attal, conseiller municipal… à mi-temps",
-      "url": "https://www.liberation.fr/checknews/gabriel-attal-conseiller-municipal-a-mi-temps-20260806_7ANJD4D6FRDDHNDXOUAJ53RLIQ/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-06T13:08:50.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": [
-        "attal"
-      ]
-    },
-    {
-      "id": "veille-checknews-0e338616f3cfb452",
-      "title": "Incendies en Gironde : qui est Benoît Bartherotte, l’intrigant «sauveur du Cap-Ferret» ?",
-      "url": "https://www.liberation.fr/checknews/incendies-en-gironde-qui-est-benoit-bartherotte-lintrigant-sauveur-du-cap-ferret-20260805_W7MRZM5R3NHODLBYLR337Q3HCQ/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-05T13:45:07.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-87b0d15f6692a73b",
-      "title": "A Gaza, d’immenses tranchées creusées par Tsahal réduisent encore un peu plus l’espace laissé aux Palestiniens",
-      "url": "https://www.liberation.fr/checknews/a-gaza-dimmenses-tranchees-creusees-par-tsahal-reduisent-encore-un-peu-plus-lespace-laisse-aux-palestiniens-20260803_DJL3JKFEIFDMXN7K3PJMJNI53U/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-03T16:36:48.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-0d35b11702f36e74",
-      "title": "Incendies en Gironde : la commune du Porge a-t-elle été «sacrifiée» pour sauver les villas cossues du Cap Ferret ?",
-      "url": "https://www.liberation.fr/checknews/incendies-en-gironde-la-commune-du-porge-a-t-elle-ete-sacrifiee-pour-sauver-les-villas-cossues-du-cap-ferret-20260731_BRHGYJZT35HHXG5HXCGYTLPVBI/",
-      "publisher": "Libération",
-      "publishedAt": "2026-07-31T17:59:26.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
       "likelyCandidates": []
     }
   ]
