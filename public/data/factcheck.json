@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-18T13:37:13.038Z",
+  "generatedAt": "2026-11-19T14:03:56.436Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -900,6 +900,71 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-362b7fb4f03e73dc",
+      "title": "Electricité coupée, subventions rabotées… les villes RN entretiennent-elles vraiment des «relations excellentes» avec les associations ?",
+      "url": "https://www.liberation.fr/checknews/electricite-coupee-subventions-rabotees-les-villes-rn-entretiennent-elles-vraiment-des-relations-excellentes-avec-les-associations-20261119_3PUXUYZIV5A3LB2R4I3UEXPFCA/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-19T11:40:00.000Z",
+      "collectedAt": "2026-11-19T14:03:56.429Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-8aa5c346fe342950",
+      "title": "VRAI OU FAUX. Des membres du personnel de l'Education nationale sont-ils complices des violences commises en marge des mobilisations lyc&#xE9;ennes, comme l'affirme le gouvernement&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-des-membres-du-personnel-de-l-education-nationale-sont-ils-complices-des-violences-commises-en-marge-des-mobilisations-lyceennes-comme-l-affirme-le-gouvernement_8286719.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-19T06:56:06.000Z",
+      "collectedAt": "2026-11-19T14:03:55.719Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-69e4275dd44bda6a",
+      "title": "« Inside Deutsche Bank » : derrière la façade verte, les coulisses du greenwashing de la banque allemande",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/19/inside-deutsche-bank-derriere-la-facade-verte-les-coulisses-du-greenwashing-de-la-banque-allemande_6813239_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-19T05:58:05.000Z",
+      "collectedAt": "2026-11-19T14:03:52.814Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-bf4dd6b05525ab86",
+      "title": "Mobilisation lyc&#xE9;enne : \"40 membres de l'&#xC9;ducation nationale\" ont-ils &#xE9;t&#xE9; complices de violences commises, comme l'avance S&#xE9;bastien Lecornu ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/mobilisation-lyceenne-40-membres-de-l-education-nationale-ont-ils-ete-complices-de-violences-commises-comme-l-avance-sebastien-lecornu_8288870.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-18T19:20:01.000Z",
+      "collectedAt": "2026-11-19T14:03:55.719Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-73e4cbc600b46545",
+      "title": "Perpignan : des CRS avaient-ils le droit d’obliger une militante communiste à retirer sa chasuble pour quitter une manifestation ?",
+      "url": "https://www.liberation.fr/checknews/perpignan-des-crs-avaient-ils-le-droit-dobliger-une-militante-communiste-a-retirer-sa-chasuble-pour-quitter-une-manifestation-20261118_6NDFKVTLEJER5MZYGNYKDSQ5RQ/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-18T18:36:56.000Z",
+      "collectedAt": "2026-11-19T14:03:56.429Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-bf50661875d042aa",
+      "title": "Exonération d’impôt des jeunes gagnant jusqu’à 5 900 euros : quand Marine Le Pen veut aider les 1 % les plus aisés",
+      "url": "https://www.liberation.fr/checknews/exoneration-dimpot-des-moins-de-30-ans-quand-marine-le-pen-veut-aider-les-1-les-plus-aises-20261118_BOQZS7MJMNA4JAN6YXUYOEU76M/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-18T16:02:46.000Z",
+      "collectedAt": "2026-11-19T14:03:56.429Z",
+      "likelyCandidates": [
+        "lepen"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-ef7c6744f79bd68e",
+      "title": "« Inside Deutsche Bank » : en Colombie, le « robinet » d’argent « coulait » sans frein",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/18/inside-deutsche-bank-en-colombie-le-robinet-d-argent-coulait-sans-frein_6813141_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-18T14:00:06.000Z",
+      "collectedAt": "2026-11-19T14:03:52.814Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-cf85b8aea4a4d166",
       "title": "« Inside Deutsche Bank » : comment le géant bancaire a découvert qu’il avait servi d’intermédiaire à un gigantesque réseau de blanchiment",
@@ -3610,71 +3675,6 @@
       "publisher": "Libération",
       "publishedAt": "2026-08-18T15:46:29.000Z",
       "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-bf64d4350c25eee8",
-      "title": "Quiz : saurez-vous remettre dans l’ordre ces grands procès qui ont marqué la France ?",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/18/quiz-saurez-vous-remettre-dans-l-ordre-ces-grands-proces-qui-ont-marque-la-france_6748835_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-18T08:00:05.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-1a5c860b88d8752a",
-      "title": "Piratage du fisc : la France est-elle davantage touchée par les cyberattaques que les autres pays ?",
-      "url": "https://www.liberation.fr/checknews/piratage-du-fisc-la-france-est-elle-davantage-touchee-par-les-cyberattaques-que-les-autres-pays-20260817_JCQDWOQLX5CZRJ256G54DMS7TU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-17T16:38:55.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-185b45b586eabf88",
-      "title": "Ce qu’il faut retenir de l’actualité du week-end des 15 et 16 août",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/16/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-15-et-16-aout_6747683_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-16T17:17:33.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-5e5d8e5170c27f14",
-      "title": "A Qusra, en Cisjordanie, deux familles palestiniennes sont toujours assiégées par des colons israéliens",
-      "url": "https://www.liberation.fr/checknews/a-qusra-en-cisjordanie-deux-familles-palestiniennes-sont-toujours-assiegees-par-des-colons-20260814_BKDAJK464RBHXDU46EWKCKRGHQ/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-14T16:12:41.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-5d4093eab7f44765",
-      "title": "Jordan Bardella, l’écrivain qui valait un million",
-      "url": "https://www.liberation.fr/checknews/jordan-bardella-lecrivain-qui-valait-un-million-20260814_BOPMQNXNFJHIPBA423SGFASFNI/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-14T15:14:59.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": [
-        "bardella"
-      ]
-    },
-    {
-      "id": "veille-decodeurs-9d3856e571441254",
-      "title": "L’éducation de la société civile, une arme contre la désinformation qui sévit en Europe",
-      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/14/l-education-de-la-societe-civile-une-arme-contre-la-desinformation-qui-sevit-en-europe_6746271_3451060.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-14T15:00:16.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-a72da9e7c78902ca",
-      "title": "Adieu « fake news », bonjour « FIMI » : le lexique de la désinformation fait peau neuve",
-      "url": "https://www.lemonde.fr/series-d-ete/article/2026/08/13/adieu-fake-news-bonjour-fimi-le-lexique-de-la-desinformation-fait-peau-neuve_6745813_3451060.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-13T15:00:02.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
       "likelyCandidates": []
     }
   ]
