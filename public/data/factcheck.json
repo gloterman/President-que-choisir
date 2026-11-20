@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-19T14:03:56.436Z",
+  "generatedAt": "2026-11-20T13:46:25.734Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -900,6 +900,42 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-c187e4c6e69fe3cb",
+      "title": "Pesticides : des parents d’élèves somment l’Etat d’élargir le périmètre de non-traitement autour des écoles",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/20/pesticides-des-parents-d-eleves-somment-l-etat-d-elargir-le-perimetre-de-non-traitement-autour-des-ecoles_6813595_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-20T06:11:55.000Z",
+      "collectedAt": "2026-11-20T13:46:23.338Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-aec4c7f62e8a1dbe",
+      "title": "Jeffrey Epstein a-t-il &#xE9;t&#xE9; assassin&#xE9; en prison, comme l&#x2019;affirme une &#xE9;tude ind&#xE9;pendante ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/jeffrey-epstein-a-t-il-ete-assassine-en-prison-comme-l-affirme-une-etude-independante_8290571.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-19T19:20:15.000Z",
+      "collectedAt": "2026-11-20T13:46:24.883Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-ee10b68f3e73b566",
+      "title": "« Inside Deutsche Bank » : comment l’argent du clan Al-Assad a circulé en Europe, malgré les enquêtes judiciaires",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/19/inside-deutsche-bank-comment-l-argent-du-clan-al-assad-a-circule-en-europe-malgre-les-enquetes-judiciaires_6813322_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-19T15:00:00.000Z",
+      "collectedAt": "2026-11-20T13:46:23.338Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-173dd87e94789e62",
+      "title": "Des Allemands profitent-ils vraiment de leurs congés de formation pour jouer à GTA VI ?",
+      "url": "https://www.liberation.fr/checknews/des-allemands-profitent-ils-vraiment-de-leurs-conges-de-formation-pour-jouer-a-gta-vi-20261119_LOUGDGSLFRD5NKHBWFMU6EOFAY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-19T14:50:02.000Z",
+      "collectedAt": "2026-11-20T13:46:25.725Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-362b7fb4f03e73dc",
       "title": "Electricité coupée, subventions rabotées… les villes RN entretiennent-elles vraiment des «relations excellentes» avec les associations ?",
@@ -3639,42 +3675,6 @@
       "publisher": "Le Monde",
       "publishedAt": "2026-08-20T16:38:29.000Z",
       "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-8168a5c03d9aa075",
-      "title": "Fuites de données : à quel prix se vendent vos informations personnelles ?",
-      "url": "https://www.liberation.fr/checknews/fuites-de-donnees-a-quel-prix-se-vendent-vos-informations-personnelles-20260820_2W3KQEJYVNGSRNFPA4UFKQ5UXQ/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-20T15:36:25.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-eb40e57bdd0bbd72",
-      "title": "Cyberharcèlement : pourquoi Lena Situations et ses amis influenceurs sont-ils accusés d’avoir lâché l’agente Gisèle Journo ?",
-      "url": "https://www.liberation.fr/checknews/cyberharcelement-pourquoi-lena-situations-et-ses-amis-influenceurs-sont-ils-accuses-davoir-lache-lagente-gisele-journo-20260820_ARUOPHO4HFHHLHMXQXMW55QJHA/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-20T07:08:09.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-vrai-ou-faux-9a5257710b0229f9",
-      "title": "VRAI OU FAUX. Les prix des fruits et l&#xE9;gumes n'ont-ils vraiment pas augment&#xE9; malgr&#xE9; la s&#xE9;cheresse, comme l'affirme la ministre de l'Agriculture&#xA0;?",
-      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-les-prix-des-fruits-et-legumes-n-ont-ils-vraiment-pas-augmente-malgre-la-secheresse-comme-l-affirme-la-ministre-de-l-agriculture_8152010.html#xtor=RSS-3-%5Bgeneral%5D",
-      "publisher": "franceinfo",
-      "publishedAt": "2026-08-20T03:57:56.000Z",
-      "collectedAt": "2026-09-04T21:03:39.325Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-56cfa5b158653eca",
-      "title": "Fuite de données : après le fisc, le groupe ZeroBytes revendique une attaque visant des milliers d’élèves de l’Education nationale",
-      "url": "https://www.liberation.fr/checknews/fuite-de-donnees-apres-le-fisc-le-groupe-zerobytes-revendique-une-attaque-visant-des-milliers-deleves-de-leducation-nationale-20260818_NN6A4GDNBJBLPDOUNJ27X6PH5M/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-18T15:46:29.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
       "likelyCandidates": []
     }
   ]
