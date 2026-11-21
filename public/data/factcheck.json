@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-20T13:46:25.734Z",
+  "generatedAt": "2026-11-21T13:11:33.338Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,19 @@
     }
   ],
   "quotes": [
+    {
+      "id": "site-332fe6e9be3a5bf8",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "332fe6e9be3a5bf8",
+      "url": "https://melenchon2027.fr/communique/plan-enfance/",
+      "text": "La France insoumise publie son plan pour garantir les droits des enfants — Ce jeudi 19 novembre, la France insoumise présente son plan pour construire une république à hauteur d’enfants, à l’occasion d’un dialogue exceptionnel organisé par l’Institut La Boétie et la France insoumise en présence de Jean-Luc Mélenchon, Marianne Maximi, Alice Gayraud, Davy Beauvois, Émilie Philippe et Vittorio Leone. Les plans thématiques détaillent les mesures du gouvernement insoumis dans chaque domaine de l’action publique. Ils complètent L’Avenir en commun, le livre-programme publié le vendredi 6 novembre 2026. Dans notre pays, un enfant est victime de violences sexuelles toutes les trois minutes, un enfant meurt tous les cinq jours sous les coups de ses parents et 3 millions d’enfants vivent sous le seuil de pauvreté, un niveau qui n’avait pas été atteint depuis 1996. Pour la France insoumise, il y a urgence à cesser de considérer les enfants comme le prolongement des adultes qui s’occupent d’eux mais bien comme des sujets de droits à part entière. Nous défendons un autre horizon qui met les droits des enfants au cœur de l’action publique et qui combat les logiques de domination responsables des violences. Dès notre arrivée au pouvoir, nous commencerons par prendre des mesures prioritaires pour mettre les enfants en sécurité notamment à travers : la garantie du droit au logement, à une alimentation saine, à des conditions dignes pour étudier, à l’eau et aux soins pour tous les enfants un plan global pour mettre fin aux violences faites aux enfants fondé notamment sur les revendications de la Ciivise la reconstruction de l’Aide sociale à l’enfance (ASE) et de la justice des enfants la lutte contre toutes les discriminations dont sont victimes les enfants Au-delà de ces mesures d’urgence, ce plan détaille entre autres choses comment nous allons : garantir à tous les enfants une naissance digne et le droit à vivre en bonne santé créer un vrai service public de la petite enfance faire véritablement place aux enfants dans la cité reconstruire des temps et des infrastructures dédiées à l’autonomie et l’émancipation des enfants défendre à l’international les droits des enfants",
+      "claim": "La France insoumise publie son plan pour garantir les droits des enfants",
+      "publishedAt": "2026-11-19T15:20:00.000Z",
+      "collectedAt": "2026-11-21T13:11:06.181Z",
+      "speaker": "candidat"
+    },
     {
       "id": "site-998f69fd5b6216f7",
       "candidateId": "melenchon",
@@ -900,6 +913,33 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-efbd471328ed0703",
+      "title": "Présidentielle 2027 : qui sont les candidats déclarés ou probables ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/21/presidentielle-2027-qui-sont-les-candidats-declares-ou-probables_6680905_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-21T12:13:25.000Z",
+      "collectedAt": "2026-11-21T13:11:31.479Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-8d41cb6073feff76",
+      "title": "Contenus IA : Google supprime de son moteur de recherche plusieurs sites d’actu (dont «Marie France»)",
+      "url": "https://www.liberation.fr/checknews/contenus-ia-google-supprime-de-son-moteur-de-recherche-plusieurs-sites-dactu-dont-marie-france-20261120_DBIDSLMBOZHRZBZV4YCAZWWKGI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-20T18:42:57.000Z",
+      "collectedAt": "2026-11-21T13:11:33.333Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-d9ddb1529092302e",
+      "title": "« Inside Deutsche Bank » : le gouvernement allemand réclame de la « transparence » sur les révélations de l’enquête journalistique",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/20/inside-deutsche-bank-le-gouvernement-allemand-reclame-de-la-transparence-sur-les-revelations-de-l-enquete-journalistique_6813660_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-20T16:00:32.000Z",
+      "collectedAt": "2026-11-21T13:11:31.479Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-c187e4c6e69fe3cb",
       "title": "Pesticides : des parents d’élèves somment l’Etat d’élargir le périmètre de non-traitement autour des écoles",
@@ -3645,35 +3685,6 @@
       "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/23/vous-revenez-de-vacances-rattrapez-l-actualite-que-vous-avez-manquee-cet-ete-avec-le-recapator_6754234_4355770.html",
       "publisher": "Le Monde",
       "publishedAt": "2026-08-23T13:14:40.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-1f5c9967ea4b63bb",
-      "title": "Villa en Sicile : Edouard Philippe ciblé par une nouvelle campagne russe de désinformation",
-      "url": "https://www.liberation.fr/checknews/villa-en-sicile-detournement-de-fonds-publics-edouard-philippe-cible-par-une-nouvelle-campagne-russe-de-desinformation-20260821_AWMF4WZ7OFAZTFV7MUTGGORR34/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-21T17:10:51.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": [
-        "philippe"
-      ]
-    },
-    {
-      "id": "veille-checknews-b8fc483c44f5993d",
-      "title": "Comment le gouvernement israélien a fabriqué un institut de recherche fictif pour influencer les IA génératives",
-      "url": "https://www.liberation.fr/checknews/comment-le-gouvernement-israelien-a-fabrique-un-institut-de-recherche-fictif-pour-influencer-les-ia-generatives-20260821_V6IBCTSWN5AIJBPBMYGVA6NQFU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-21T14:19:43.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-dc7cc9aece188995",
-      "title": "Nucléaire : visualisez l’impact des canicules sur la production des centrales françaises",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/20/nucleaire-visualisez-l-impact-des-canicules-sur-la-production-des-centrales-francaises_6751125_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-20T16:38:29.000Z",
       "collectedAt": "2026-09-04T21:03:37.956Z",
       "likelyCandidates": []
     }
