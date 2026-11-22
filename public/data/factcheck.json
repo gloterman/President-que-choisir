@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-21T13:11:33.338Z",
+  "generatedAt": "2026-11-22T12:59:14.565Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -913,6 +913,15 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-286690a02468cb81",
+      "title": "«Legend», HugoDécrypte ou Blast : quels créateurs de contenus et médias en ligne sont vraiment concernés par la régulation de l’Arcom ?",
+      "url": "https://www.liberation.fr/checknews/legend-hugodecrypte-ou-blast-quels-createurs-de-contenus-et-medias-en-ligne-sont-vraiment-concernes-par-la-regulation-de-larcom-20261121_DVECUULTW5BTNH232B2IBVLBT4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-21T13:37:17.000Z",
+      "collectedAt": "2026-11-22T12:59:14.559Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-efbd471328ed0703",
       "title": "Présidentielle 2027 : qui sont les candidats déclarés ou probables ?",
@@ -3676,15 +3685,6 @@
       "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/23/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-22-et-23-aout_6754436_4355770.html",
       "publisher": "Le Monde",
       "publishedAt": "2026-08-23T16:03:38.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-9409bca2c354243a",
-      "title": "Que s’est-il passé cet été ? Les 30 événements à retenir de juin et juillet",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/23/vous-revenez-de-vacances-rattrapez-l-actualite-que-vous-avez-manquee-cet-ete-avec-le-recapator_6754234_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-23T13:14:40.000Z",
       "collectedAt": "2026-09-04T21:03:37.956Z",
       "likelyCandidates": []
     }
