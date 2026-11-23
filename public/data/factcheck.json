@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-22T12:59:14.565Z",
+  "generatedAt": "2026-11-23T15:36:06.875Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -913,6 +913,35 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-d6d16cdcdc6e93f0",
+      "title": "«Types cagoulés tirant au mortier» liés au député Louis Boyard : le ministre Jeanbrun incapable d’étayer ses accusations",
+      "url": "https://www.liberation.fr/checknews/types-cagoules-tirant-au-mortier-lies-au-depute-louis-boyard-le-ministre-jeanbrun-incapable-detayer-ses-accusations-20261123_E5U2S2BR4VGFRFRS4NRR56JB2M/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-23T14:39:11.000Z",
+      "collectedAt": "2026-11-23T15:36:06.867Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-e9ebad39de3eede7",
+      "title": "Dominique de Villepin peut-il vraiment affirmer qu’il n’a «jamais privatisé les autoroutes» ?",
+      "url": "https://www.liberation.fr/checknews/dominique-de-villepin-peut-il-vraiment-affirmer-quil-na-jamais-privatise-les-autoroutes-20261123_3AHSHY3WSBH4RE3CRFYCNGG5KY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-23T09:41:56.000Z",
+      "collectedAt": "2026-11-23T15:36:06.867Z",
+      "likelyCandidates": [
+        "villepin"
+      ]
+    },
+    {
+      "id": "veille-decodeurs-32f5543e8782e538",
+      "title": "Présidentielle 2027 : découvrez les grandes tendances des sondages avec notre agrégateur",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/22/presidentielle-2027-decouvrez-ce-que-disent-les-sondages-avec-notre-agregateur_6814213_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-22T13:00:03.000Z",
+      "collectedAt": "2026-11-23T15:36:04.252Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-286690a02468cb81",
       "title": "«Legend», HugoDécrypte ou Blast : quels créateurs de contenus et médias en ligne sont vraiment concernés par la régulation de l’Arcom ?",
@@ -3659,33 +3688,6 @@
       "publisher": "Libération",
       "publishedAt": "2026-08-25T13:53:14.000Z",
       "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-d309fff2b7e9543c",
-      "title": "Non, «Libération» n’a pas supprimé de commentaire de Rima Hassan sur Instagram",
-      "url": "https://www.liberation.fr/checknews/non-liberation-na-pas-supprime-de-commentaire-de-rima-hassan-sur-instagram-20260825_GERDURYNPJCBJB56D4THSTDCJU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-25T08:53:28.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-83a85bf19e2c571e",
-      "title": "«Prenez un café» avec un Français, «appelez la police» avec un Arabe : quand l’IA de Google reproduit des biais racistes",
-      "url": "https://www.liberation.fr/checknews/prenez-un-cafe-avec-un-francais-appelez-la-police-avec-un-arabe-quand-lia-de-google-reproduit-des-biais-racistes-20260824_NFD4WW6WRBHIHGP6ZAKUM6HFYE/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-24T14:51:50.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-effc2c044d60d874",
-      "title": "Ce qu’il faut retenir de l’actualité du week-end des 22 et 23 août",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/23/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-22-et-23-aout_6754436_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-23T16:03:38.000Z",
-      "collectedAt": "2026-09-04T21:03:37.956Z",
       "likelyCandidates": []
     }
   ]
