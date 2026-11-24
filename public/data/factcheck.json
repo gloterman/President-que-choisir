@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-23T15:36:06.875Z",
+  "generatedAt": "2026-11-24T15:28:05.335Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3n3274hlgyk2j",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3n3274hlgyk2j",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3n3274hlgyk2j",
+      "text": "Malraux nous quittait il y a 50 ans. Avec son « musée imaginaire », André Malraux a ouvert le regard sur l'égale dignité des cultures et la fécondité de la créolisation.\n\nÀ l'heure du retour des extrêmes droites, il demeure, pour toujours, au Panthéon antifasciste.",
+      "claim": "Malraux nous quittait il y a 50 ans. Avec son « musée imaginaire », André Malraux a ouvert le regard sur l'égale dignité des cultures et la fécondité de la créolisation.\n\nÀ l'heure du retour des extrêmes droites, il demeure, pour toujours, au Panthéon antifasciste.",
+      "publishedAt": "2026-11-24T08:12:18.178Z",
+      "collectedAt": "2026-11-24T15:28:02.997Z"
+    },
     {
       "id": "site-332fe6e9be3a5bf8",
       "candidateId": "melenchon",
@@ -913,6 +925,26 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-vrai-ou-faux-78fea28a4e3fdccf",
+      "title": "VRAI OU FAUX. Emplois, ouvertures d'usines, investissements &#xE9;trangers&#x2026; On a v&#xE9;rifi&#xE9; trois affirmations d'Emmanuel Macron sur son bilan industriel",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-emplois-ouvertures-d-usines-investissements-etrangers-on-a-verifie-trois-affirmations-d-emmanuel-macron-sur-son-bilan-industriel_8295941.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-24T04:56:17.000Z",
+      "collectedAt": "2026-11-24T15:28:04.602Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-5937756312bfac0e",
+      "title": "David Lisnard fait-il des \"appels du pied\" &#xE0; l'extr&#xEA;me droite comme l'affirme Jean-Fran&#xE7;ois Cop&#xE9; ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/david-lisnard-fait-il-des-appels-du-pied-a-l-extreme-droite-comme-l-affirme-jean-francois-cope_8296674.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-23T19:49:49.000Z",
+      "collectedAt": "2026-11-24T15:28:04.602Z",
+      "likelyCandidates": [
+        "lisnard"
+      ]
+    },
     {
       "id": "veille-checknews-d6d16cdcdc6e93f0",
       "title": "«Types cagoulés tirant au mortier» liés au député Louis Boyard : le ministre Jeanbrun incapable d’étayer ses accusations",
@@ -3670,24 +3702,6 @@
       "publisher": "Le Monde",
       "publishedAt": "2026-08-26T09:55:18.000Z",
       "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-vrai-ou-faux-1cb2b2ce4aaa60ca",
-      "title": "VRAI OU FAUX. Budget 2027&#xA0;: une nouvelle loi sp&#xE9;ciale co&#xFB;terait-elle 15&#xA0;milliards d'euros suppl&#xE9;mentaires &#xE0; la France&#xA0;?",
-      "url": "https://www.franceinfo.fr/economie/vrai-ou-faux-budget-2027-une-nouvelle-loi-speciale-couterait-elle-15-milliards-d-euros-supplementaires-a-la-france_8159672.html#xtor=RSS-3-%5Bgeneral%5D",
-      "publisher": "franceinfo",
-      "publishedAt": "2026-08-26T03:55:26.000Z",
-      "collectedAt": "2026-09-04T21:03:39.325Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-5f52b7079941226f",
-      "title": "Gaza : comment les nécrologies de combattants publiées par le Hamas percutent le décompte des journalistes tués par l’armée israélienne",
-      "url": "https://www.liberation.fr/checknews/gaza-comment-les-necrologies-de-combattants-publiees-par-le-hamas-percutent-le-decompte-des-journalistes-tues-par-larmee-israelienne-20260825_M2RBBS4BCFBMBFTVXDUFBJVFHQ/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-25T13:53:14.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
       "likelyCandidates": []
     }
   ]
