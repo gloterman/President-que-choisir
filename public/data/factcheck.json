@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-24T15:28:05.335Z",
+  "generatedAt": "2026-11-25T15:13:37.015Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -925,6 +925,53 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-2696d318bdfb9221",
+      "title": "Racisme : que dit vraiment l’étude citée par Marine Le Pen pour affirmer qu’il n’existe «pas de discrimination» à l’embauche ?",
+      "url": "https://www.liberation.fr/checknews/racisme-que-dit-vraiment-letude-citee-par-marine-le-pen-pour-affirmer-quil-nexiste-pas-de-discrimination-a-lembauche-20261125_6PS6DFE5GRFK3HGE4XXWTKUVB4/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-25T08:30:45.000Z",
+      "collectedAt": "2026-11-25T15:13:37.007Z",
+      "likelyCandidates": [
+        "lepen"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-e3a58a56e661ba65",
+      "title": "Migrants renvoy&#xE9;s au Rwanda : un accord qui change tout ?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/migrants-renvoyes-au-rwanda-un-accord-qui-change-tout_8298333.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-24T20:19:59.000Z",
+      "collectedAt": "2026-11-25T15:13:36.367Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-b93d58bf51fb1f71",
+      "title": "Guerre en Ukraine : pourquoi les pertes russes pourraient s’élever à 700 000 soldats tués",
+      "url": "https://www.liberation.fr/checknews/guerre-en-ukraine-pourquoi-les-pertes-russes-pourraient-selever-a-700-000-soldats-tues-20261124_Z3QV66Z26RFPZDQZSVADZFWJEY/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-24T19:27:36.000Z",
+      "collectedAt": "2026-11-25T15:13:37.007Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-8c756502c00b0a12",
+      "title": "VRAI OU FAUX. Les visiteurs de l'Assembl&#xE9;e nationale peuvent-ils tourner une vid&#xE9;o &#xE0; connotation politique dans l'h&#xE9;micycle&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-les-visiteurs-de-l-assemblee-nationale-peuvent-ils-tourner-une-video-a-connotation-politique-dans-l-hemicycle_8297472.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-24T17:32:32.000Z",
+      "collectedAt": "2026-11-25T15:13:36.367Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-a0d2e56e5798026a",
+      "title": "Où en sont les affaires concernant Nicolas Sarkozy ?",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/24/ou-en-sont-les-affaires-concernant-nicolas-sarkozy_6071603_4355771.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-24T16:37:50.000Z",
+      "collectedAt": "2026-11-25T15:13:35.241Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-vrai-ou-faux-78fea28a4e3fdccf",
       "title": "VRAI OU FAUX. Emplois, ouvertures d'usines, investissements &#xE9;trangers&#x2026; On a v&#xE9;rifi&#xE9; trois affirmations d'Emmanuel Macron sur son bilan industriel",
@@ -3657,51 +3704,6 @@
       "publisher": "franceinfo",
       "publishedAt": "2026-08-28T03:57:50.000Z",
       "collectedAt": "2026-09-04T21:03:39.325Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-aa942bff6b2d0ab9",
-      "title": "Deauville : le retrait d’une photo de Gaza à un festival a été précédé d’une campagne d’un militant pro-israélien",
-      "url": "https://www.liberation.fr/checknews/deauville-le-retrait-dune-photo-de-gaza-a-un-festival-a-ete-precede-dune-campagne-dun-militant-pro-israelien-20260827_XWUE6P4PV5B6PCVAWVNRRXBPU4/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-27T13:25:15.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-e398109bc058c4a3",
-      "title": "Inondations au Népal : du glacier jusqu’aux villages emportés par la boue, ce que montrent les images de la catastrophe",
-      "url": "https://www.liberation.fr/checknews/inondations-au-nepal-du-glacier-jusquaux-villages-emportes-par-la-boue-ce-que-montrent-les-images-de-la-catastrophe-20260827_U6PUXARV45EUTKVHLDZZWFI3T4/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-27T11:27:11.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-b09f31d7776cd790",
-      "title": "« Objection ! », « On a un mandat », « Je veux un avocat »… Ces clichés issus des séries américaines qui n’existent pas dans la justice française",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/27/objection-on-a-un-mandat-je-veux-un-avocat-ces-cliches-issus-des-series-americaines-qui-n-existent-pas-dans-la-justice-francaise_6758245_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-27T08:35:23.000Z",
-      "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-ee4ceacb7456e932",
-      "title": "Israël, Taiwan, Qatar : ces pays où les parlementaires français sont le plus invités, pour des séjours «tous frais payés»",
-      "url": "https://www.liberation.fr/checknews/israel-taiwan-qatar-dans-quels-pays-les-parlementaires-francais-sont-ils-le-plus-souvent-invites-tous-frais-payes-20260826_77FCUTJX5RFCVAJT73WAFTBNPY/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-26T15:40:02.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-ede7f997abd0e418",
-      "title": "Rougeole aux Etats-Unis : où en est l’épidémie et pourquoi elle inquiète",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/26/rougeole-aux-etats-unis-ou-en-est-l-epidemie-et-pourquoi-elle-inquiete_6757358_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-26T09:55:18.000Z",
-      "collectedAt": "2026-09-04T21:03:37.955Z",
       "likelyCandidates": []
     }
   ]
