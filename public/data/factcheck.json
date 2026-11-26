@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-25T15:13:37.015Z",
+  "generatedAt": "2026-11-26T14:38:52.804Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -925,6 +925,62 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-d4d2a337b102f987",
+      "title": "En Grèce, le « mini Dubaï » de la Méditerranée, zone immobilière de luxe, fortement contaminé aux PFAS",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/26/en-grece-le-mini-dubai-de-la-mediterranee-zone-immobiliere-de-luxe-fortement-contamine-aux-pfas_6815528_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-26T12:00:15.000Z",
+      "collectedAt": "2026-11-26T14:38:50.283Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-54d1cdaa496a2492",
+      "title": "Mouvement lycéen : retour sur deux mois de mensonges du gouvernement",
+      "url": "https://www.liberation.fr/checknews/les-ministres-vont-devoir-rendre-des-comptes-retour-sur-les-nombreux-mensonges-du-gouvernement-sur-le-mouvement-lyceen-20261126_KN3SZW6UJ5FRJIW2VL7L4D2BGI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-26T06:18:26.000Z",
+      "collectedAt": "2026-11-26T14:38:52.796Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-9baf306302549160",
+      "title": "Derrière les messages antisémites de Jordan Bardella, une archive certifiée, une adresse e-mail et un profil Facebook dormant",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/26/derriere-les-messages-antisemites-de-jordan-bardella-une-archive-certifiee-une-adresse-e-mail-et-un-profil-facebook-dormant_6815483_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-26T05:55:01.000Z",
+      "collectedAt": "2026-11-26T14:38:50.283Z",
+      "likelyCandidates": [
+        "bardella"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-3bfbdd7ed4b6f5a0",
+      "title": "Teddy Riner et le roi du Maroc : liaisons dangereuses ?",
+      "url": "https://www.franceinfo.fr/sports/judo/teddy-riner/teddy-riner-et-le-roi-du-maroc-liaisons-dangereuses_8300217.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-25T19:36:26.000Z",
+      "collectedAt": "2026-11-26T14:38:52.050Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-checknews-a0587c05e3d4cb88",
+      "title": "Qu’est-ce qu’Artex, ce logiciel d’intrusion dopé à l’IA qui fait trembler le monde de la cybersécurité ?",
+      "url": "https://www.liberation.fr/checknews/quest-ce-quartex-ce-logiciel-dintrusion-dope-a-lia-qui-fait-trembler-le-monde-de-la-cybersecurite-20261125_BW7WXDE3UNBTDP5DEABGHFJWFI/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-25T18:24:47.000Z",
+      "collectedAt": "2026-11-26T14:38:52.796Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-ed38cebcef7db1c3",
+      "title": "Scandale Orpea : la Haute autorité de l’audit se penche sur les manquements du cabinet Deloitte",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/25/scandale-orpea-la-haute-autorite-de-l-audit-se-penche-sur-le-role-du-cabinet-deloitte-pour-couvrir-les-errements-du-geant-des-ehpad_6815132_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-25T16:00:02.000Z",
+      "collectedAt": "2026-11-26T14:38:50.283Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-checknews-2696d318bdfb9221",
       "title": "Racisme : que dit vraiment l’étude citée par Marine Le Pen pour affirmer qu’il n’existe «pas de discrimination» à l’embauche ?",
@@ -3648,62 +3704,6 @@
       "publisher": "Le Monde",
       "publishedAt": "2026-08-30T16:30:08.000Z",
       "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-a7d6759256317bf9",
-      "title": "Canicules, incendies, sécheresse : comprendre l’été exceptionnel de la France en graphiques",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/30/canicules-incendies-secheresse-l-ete-exceptionnel-de-la-france-en-graphiques_6760743_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-30T04:17:52.000Z",
-      "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-25e814951e45ca14",
-      "title": "Tremblement de terre, lac proglaciaire ou éboulement : quelle est la cause réelle de la coulée de boue mortelle au Népal ?",
-      "url": "https://www.liberation.fr/checknews/tremblement-de-terre-lac-proglaciaire-ou-eboulement-quelle-est-la-cause-reelle-de-la-coulee-de-boue-mortelle-au-nepal-20260828_U24L27BTN5G3LI372BUTPOFQ5I/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-29T06:33:01.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-checknews-dd95c6c521ba4480",
-      "title": "Marseille : le voisin de Sébastien Delogu, soupçonné de vol de montre de luxe, est-il «ressorti libre» ?",
-      "url": "https://www.liberation.fr/checknews/marseille-le-voisin-de-sebastien-delogu-soupconne-de-vol-de-montre-de-luxe-est-il-ressorti-libre-20260828_WK3R4IDETVH33JXDKZRXJTKELI/",
-      "publisher": "Libération",
-      "publishedAt": "2026-08-28T17:18:48.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-vrai-ou-faux-3ce9525b7416de95",
-      "title": "Vrai ou faux. Les arr&#xEA;ts de travail courts sont-ils prescrits en \"open bar\" comme l'affirme Edouard Philippe ?",
-      "url": "https://www.franceinfo.fr/sante/les-arrets-de-travail-courts-sont-ils-prescrits-en-open-bar-comme-l-affirme-edouard-philippe_8166740.html#xtor=RSS-3-%5Bgeneral%5D",
-      "publisher": "franceinfo",
-      "publishedAt": "2026-08-28T15:51:48.000Z",
-      "collectedAt": "2026-09-04T21:03:39.325Z",
-      "likelyCandidates": [
-        "philippe"
-      ]
-    },
-    {
-      "id": "veille-decodeurs-9a9858dec91e0aaa",
-      "title": "Qu’est-ce que la psychose post-partum, au cœur du procès de Lindsay Clancy aux Etats-Unis ?",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/28/qu-est-ce-que-la-psychose-post-partum-au-c-ur-du-proces-de-lindsay-clancy-aux-etats-unis_6758998_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-28T11:35:04.000Z",
-      "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-vrai-ou-faux-712d4a8e73d02740",
-      "title": "VRAI OU FAUX. Cumuler un mandat d'adjoint au maire et un emploi se fait-il vraiment \"partout\" &#xE0; cause \"d'indemnit&#xE9;s trop faibles\", comme l'affirme Eric Coquerel&#xA0;?",
-      "url": "https://www.franceinfo.fr/politique/vrai-ou-faux-cumuler-un-mandat-d-adjoint-au-maire-et-un-emploi-se-fait-il-vraiment-partout-a-cause-d-indemnites-trop-faibles-comme-l-affirme-eric-coquerel_8162489.html#xtor=RSS-3-%5Bgeneral%5D",
-      "publisher": "franceinfo",
-      "publishedAt": "2026-08-28T03:57:50.000Z",
-      "collectedAt": "2026-09-04T21:03:39.325Z",
       "likelyCandidates": []
     }
   ]
