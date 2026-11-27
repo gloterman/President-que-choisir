@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-26T14:38:52.804Z",
+  "generatedAt": "2026-11-27T14:34:37.608Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -76,6 +76,57 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3n3ab75tqac24",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3n3ab75tqac24",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3n3ab75tqac24",
+      "text": "Le prétendu grand plan pour l'apprentissage, ridicule parti pris pour une forme exclusive d'alternance, a permis 3 milliards d'euros de fraude, montre la Cour des comptes ! Autant d'argent de perdu pour le lycée professionnel ! Voilà la macronie dans toute sa prétention et son incompétence.",
+      "claim": "Le prétendu grand plan pour l'apprentissage, ridicule parti pris pour une forme exclusive d'alternance, a permis 3 milliards d'euros de fraude, montre la Cour des comptes ! Autant d'argent de perdu pour le lycée professionnel ! Voilà la macronie dans toute sa prétention et son incompétence.",
+      "publishedAt": "2026-11-26T18:05:34.541Z",
+      "collectedAt": "2026-11-27T14:34:36.146Z"
+    },
+    {
+      "id": "site-d1acb28668195ea5",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "d1acb28668195ea5",
+      "url": "https://melenchon2027.fr/actualites/reponse-aux-mensonges-de-terra-nova-sur-notre-programme-energie/",
+      "text": "Réponse aux mensonges de Terra Nova sur notre programme énergie — Avant de revenir point par point sur les critiques que Nicolas Goldberg, responsable du pôle énergie de Terra Nova, adresse à notre programme sur son volet énergie, commençons par quelques remarques globales. D’une part, l’analyse de Terra Nova se base sur notre livre-programme L’Avenir en commun publié le 6 novembre. Le programme énergie de la France insoumise ne se limite pas à ce document et sera complété par deux documents programmatiques complémentaires : un plan thématique et un plan d’investissement productif. L’un comme l’autre préciseront nos propositions, la trajectoire du mix énergétique que nous visons et les investissements nécessaires pour y parvenir. L’analyse de Terra Nova ne s’appuie pas sur notre programme complet. Elle est donc malhonnête : l’auteur mentionne d’ailleurs qu’il est au courant de la sortie de ces plans dans son article. Pourquoi n’a-t-il pas attendu leur sortie ? Son analyse se fonde également sur des reprises parcellaires de notre livre-programme L’Avenir en commun et des extrapolations mensongères du type « un 100% énergies renouvelables (Enr) qui oublie l’éolien terrestre et le solaire ». Le procédé est fallacieux : chercher dans ce qui n’est pas écrit, plutôt dans ce qui est écrit. Nous annonçons une sortie des énergies fossiles en 2050 et de l’énergie nucléaire en 2060, ce qui compte tenu de tous les scénarios de RTE exige évidemment le déploiement massif du solaire et de l’éolien, terrestre comme maritime. L’un comme l’autre font partie intégrante de « la montée en puissance des énergies renouvelables » inscrite dans le programme. Nous visons un mix énergétique qui allie différentes énergies renouvelables, l’éolien, l’hydraulique, le photovoltaïque, la géothermie, etc. Ces dernières sont complémentaires. Leur développement sera planifié et nous aurons recours aux diverses sources d’énergie, les plus adaptées aux conditions locales météorologiques et géographiques. En parallèle, nous déploierons des technologies de stockage d’énergie et des mécanismes nécessaires à l’équilibre d’un système énergétique 100 % renouvelable. D’autre part, sous couvert de critiques enrobées dans un vocabulaire technicien, la note dresse en réalité une critique des orientations politiques de la grande bifurcation économique et industrielle qu’appelle le passage au 100% Enr et que propose la France insoumise. Elle fait les éloges de la politique macroniste et efface très méthodiquement ses responsabilités dans le retard de la France en termes de développement des énergies renouvelables, retard que le prochain gouvernement aura à rattraper. Le bilan est accablant : destruction des filières industrielles françaises d’Enr, retard dans leur déploiement, sous investissement chronique des collectivités et des opérateurs de l’Etat chargés de l&rsquo;installation des énergies renouvelables, absence totale de planification et d’adaptation des infrastructures énergétiques etc. Notre programme est extrêmement ambitieux car nous n’avons pas le choix. Il y a urgence à organiser la bifurcation énergétique qui a été méthodiquement empêchée pendant 10 ans par les macronistes et leurs alliés climatosceptiques du Rassemblement national. 1. Énergies renouvelables : encadrer leur développement pour le rendre possible Les énergies renouvelables (éolien, solaire, hydro-électrique, hydrolien, géothermie…) sont le pilier de notre stratégie énergétique, et leur développement massif ",
+      "claim": "Réponse aux mensonges de Terra Nova sur notre programme énergie",
+      "publishedAt": "2026-11-26T17:53:00.000Z",
+      "collectedAt": "2026-11-27T14:34:12.085Z",
+      "speaker": "candidat"
+    },
+    {
+      "id": "site-12fea304a1e4a0de",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "12fea304a1e4a0de",
+      "url": "https://melenchon2027.fr/actualites/communique/la-france-insoumise-publie-son-plan-pour-construire-une-societe-feministe-et-emancipatrice/",
+      "text": "La France insoumise publie son plan pour construire une société féministe et émancipatrice — Ce mercredi 25 novembre, à l’occasion de la Journée internationale pour l&rsquo;élimination de la violence à l&rsquo;égard des femmes, la France insoumise présente son plan pour construire une société féministe et émancipatrice. Les plans thématiques détaillent les mesures du gouvernement insoumis dans chaque domaine de l’action publique. Ils complètent L’Avenir en commun, le livre-programme publié le vendredi 6 novembre 2026. Depuis 2017, Emmanuel Macron prétend faire de la lutte pour les droits des femmes la grande cause de ses deux quinquennats. Les opérations de communication et les numéros verts n’éradiquent pas les violences. Sept ans après #MeToo, les procès des violeurs de Mazan et de Le Scouarnec ont démontré l’ampleur et le caractère systémique des violences sexistes et sexuelles qui gangrènent la société. Les saignées budgétaires qui ont guidé les politiques macronistes ont eu des conséquences très concrètes sur la vie des femmes : précarité grandissante, coût de la maternité qui explose, accès à l’IVG toujours non garanti, etc. Ces politiques ont été couplées à des attaques de l’extrême droite contre les droits des femmes. Il y a urgence à tourner la page du patriarcat pour être à la hauteur de son époque. La Nouvelle France peut envoyer un message à toutes les femmes qui luttent dans le monde en étant pionnière dans l’abolition des dominations. Nous prendrons des mesures pour éradiquer les violences sexistes et sexuelles : Allouer a minima les 3 milliards d’euros de budget demandés par les associations Garantir la prise en charge à 100 % par la Sécurité sociale d’un parcours de soins spécialisé en psychotraumatisme pour toutes les victimes de violences sexuelles, quel que soit leur âge ou la date de commission des faits Assurer une formation spécifique et obligatoire, initiale et continue pour tous·tes les professionnel·les en lien avec les victimes (santé, police, justice, éducation nationale, services sociaux, etc.) Créer de nouveaux droits sociaux pour les salariées victimes de violences conjugales Ce plan détaille également comment nous allons entrer pleinement dans l’ère de l’émancipation des femmes : Assurer l’égalité de revenus entre les femmes et les hommes Garantir le droit à disposer de son corps et l’accès à la santé Lutter contre l’inégalité dans la parentalité, la précarité des mères et reconnaître toutes les familles Garantir une budgétisation transparente qui prenne en compte le genre Porter une diplomatie féministe afin de contribuer aux combats des droits des femmes dans le monde en augmentant les financements internationaux",
+      "claim": "La France insoumise publie son plan pour construire une société féministe et émancipatrice",
+      "publishedAt": "2026-11-25T16:20:00.000Z",
+      "collectedAt": "2026-11-27T14:34:12.085Z",
+      "speaker": "candidat"
+    },
+    {
+      "id": "site-ffbb5044e211a3eb",
+      "candidateId": "melenchon",
+      "platform": "site-officiel",
+      "account": "melenchon2027.fr",
+      "postId": "ffbb5044e211a3eb",
+      "url": "https://melenchon2027.fr/actualites/communique/la-france-insoumise-publie-son-plan-pour-redonner-a-la-mer-le-gout-du-futur/",
+      "text": "La France insoumise publie son plan pour redonner à la mer le goût du futur — Ce mercredi 25 novembre, la France insoumise présente son plan pour redonner à la mer le goût du futur, la jour de la participation de Jean-Luc Mélenchon au grand oral des Assises de l’économie de la mer à Montpellier. Les plans thématiques détaillent les mesures du gouvernement insoumis dans chaque domaine de l’action publique. Ils complètent L’Avenir en commun, le livre-programme publié le vendredi 6 novembre 2026. Le peuple humain se caractérise par sa dépendance absolue à l’océan mondial. Deux tiers de la population mondiale vivent à moins de 100 kilomètres d’une côte et trois milliards de personnes dépendent de ses ressources pour survivre. Pourtant, ce bien commun de l’humanité est encore très largement inconnu et sa destruction s’accélère à cause du changement climatique et des activités capitalistes. Il y a donc urgence à agir pour protéger l’océan et mettre l’économie de la mer au service de la planification écologique. La France est le deuxième espace maritime mondial et est présente dans toutes les eaux du monde, elle a donc une responsabilité particulière en la matière. Dès notre arrivée au pouvoir, nous commencerons par prendre des mesures pour répondre aux urgences en mer, comme par exemple : en interdisant l’accès des 12 milles côtiers français aux navires-usines de pêche en stoppant le canal Seine-Nord Europe en accélérant le calendrier de réalisation des nouveaux projets éoliens en mer Au-delà de ces mesures d’urgence, ce plan détaille entre autres choses comment nous allons : renforcer la protection de nos espaces maritimes et littoraux nous porter scientifiquement à cette nouvelle frontière former aux métiers de la mer de demain planifier le déploiement des énergies marines renouvelables déployer la pêche durable et l’aquaculture extensive et écologique faire la bifurcation écologique du transport maritime mettre la construction navale au service de la bifurcation écologique instaurer un protectionnisme écologique au service de la marine marchande",
+      "claim": "La France insoumise publie son plan pour redonner à la mer le goût du futur",
+      "publishedAt": "2026-11-25T10:00:00.000Z",
+      "collectedAt": "2026-11-27T14:34:12.085Z",
+      "speaker": "candidat"
+    },
     {
       "id": "bluesky-3n3274hlgyk2j",
       "candidateId": "melenchon",
@@ -925,6 +976,37 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-decodeurs-0af479ebb4c2c094",
+      "title": "Les subtiles oscillations de David Lisnard, du vote Macron à la main tendue au RN",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/27/les-subtiles-oscillations-de-david-lisnard-du-vote-macron-a-la-main-tendue-au-rn_6815839_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-27T10:30:12.000Z",
+      "collectedAt": "2026-11-27T14:34:36.309Z",
+      "likelyCandidates": [
+        "lisnard"
+      ]
+    },
+    {
+      "id": "veille-vrai-ou-faux-2643989b3a58d713",
+      "title": "VRAI OU FAUX. Devient-on plus frileux en vieillissant&#xA0;?",
+      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-devient-on-plus-frileux-en-vieillissant_8299254.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-27T04:52:06.000Z",
+      "collectedAt": "2026-11-27T14:34:37.197Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-vrai-ou-faux-e324a6030e7ddf93",
+      "title": "Pr&#xE9;sidentielle 2027&#xA0;: l'exp&#xE9;rience de David Lisnard dans le priv&#xE9; est-elle une r&#xE9;ussite&#xA0;?",
+      "url": "https://www.franceinfo.fr/elections/presidentielle-2027-l-experience-de-david-lisnard-dans-le-prive-est-elle-une-reussite_8301930.html#xtor=RSS-3-%5Bvrai-ou-fake%5D",
+      "publisher": "franceinfo",
+      "publishedAt": "2026-11-26T19:10:44.000Z",
+      "collectedAt": "2026-11-27T14:34:37.197Z",
+      "likelyCandidates": [
+        "lisnard"
+      ]
+    },
     {
       "id": "veille-decodeurs-d4d2a337b102f987",
       "title": "En Grèce, le « mini Dubaï » de la Méditerranée, zone immobilière de luxe, fortement contaminé aux PFAS",
@@ -3678,33 +3760,6 @@
       "likelyCandidates": [
         "lepen"
       ]
-    },
-    {
-      "id": "veille-vrai-ou-faux-50aa3004d466acab",
-      "title": "VRAI OU FAUX. \"Absolument pas cr&#xE9;dible juridiquement\"&#xA0;: le RN peut-il vraiment interdire le port du voile dans l'espace public&#xA0;?",
-      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-absolument-pas-credible-juridiquement-le-rn-peut-il-vraiment-interdire-le-port-du-voile-dans-l-espace-public_8170601.html#xtor=RSS-3-%5Bgeneral%5D",
-      "publisher": "franceinfo",
-      "publishedAt": "2026-09-01T03:54:06.000Z",
-      "collectedAt": "2026-09-04T21:03:39.325Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-2167442879bceeeb",
-      "title": "Retraite des femmes : les règles changent le 1ᵉʳ septembre, quelles conséquences pour les mères ?",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/31/retraite-des-femmes-les-regles-changent-le-1er-septembre-quels-impacts-pour-les-meres_6762517_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-31T13:10:17.000Z",
-      "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": []
-    },
-    {
-      "id": "veille-decodeurs-9000a6bc2287e768",
-      "title": "Ce qu’il faut retenir de l’actualité du week-end des 29 et 30 août",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/08/30/ce-qu-il-faut-retenir-de-l-actualite-du-week-end-des-29-et-30-aout_6761426_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-08-30T16:30:08.000Z",
-      "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": []
     }
   ]
 }
