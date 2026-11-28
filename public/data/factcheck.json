@@ -1,6 +1,6 @@
 {
   "version": 3,
-  "generatedAt": "2026-11-27T14:34:37.608Z",
+  "generatedAt": "2026-11-28T13:48:39.698Z",
   "accounts": [
     {
       "candidateId": "melenchon",
@@ -12,7 +12,7 @@
       "candidateId": "roussel",
       "platform": "site-officiel",
       "account": "https://www.pcf.fr/",
-      "error": "aucun flux : accueil 403, aucun flux déclaré"
+      "error": "aucun flux : accueil lu, aucun flux déclaré"
     },
     {
       "candidateId": "tondelier",
@@ -76,6 +76,18 @@
     }
   ],
   "quotes": [
+    {
+      "id": "bluesky-3n3d2yykrgk2g",
+      "candidateId": "melenchon",
+      "platform": "bluesky",
+      "account": "jlmelenchon.bsky.social",
+      "postId": "3n3d2yykrgk2g",
+      "url": "https://bsky.app/profile/jlmelenchon.bsky.social/post/3n3d2yykrgk2g",
+      "text": "1000 personnes dans les quatre salles de Berlin, plus de 15 000 sur les réseaux en direct : le passage à Berlin est un succès d'amitié et de fraternité franco-allemande, n'en déplaise aux pisse-vinaigres médiatico-français.",
+      "claim": "1000 personnes dans les quatre salles de Berlin, plus de 15 000 sur les réseaux en direct : le passage à Berlin est un succès d'amitié et de fraternité franco-allemande, n'en déplaise aux pisse-vinaigres médiatico-français.",
+      "publishedAt": "2026-11-27T20:52:44.439Z",
+      "collectedAt": "2026-11-28T13:48:38.561Z"
+    },
     {
       "id": "bluesky-3n3ab75tqac24",
       "candidateId": "melenchon",
@@ -976,6 +988,35 @@
   ],
   "verifications": [],
   "watch": [
+    {
+      "id": "veille-checknews-68510e3db1d71e82",
+      "title": "Ecrits antisémites : est-il vrai que Jordan Bardella a choisi «la procédure la plus lente» pour attaquer «Mediapart» ?",
+      "url": "https://www.liberation.fr/checknews/ecrits-antisemites-est-il-vrai-que-jordan-bardella-a-choisi-la-procedure-la-plus-lente-pour-attaquer-mediapart-20261128_ZMXB2IPCX5CDHDLQ2UQERF2H2E/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-28T06:08:00.000Z",
+      "collectedAt": "2026-11-28T13:48:39.692Z",
+      "likelyCandidates": [
+        "bardella"
+      ]
+    },
+    {
+      "id": "veille-checknews-a74e6ddaf9275207",
+      "title": "Que sait-on du voyage en Israël de plusieurs influenceurs d’extrême droite, dont Mila et Adrien J., l’homme qui a menacé Rima Hassan ?",
+      "url": "https://www.liberation.fr/checknews/que-sait-on-du-voyage-en-israel-de-plusieurs-influenceurs-dextreme-droite-dont-mila-et-adrien-j-lhomme-qui-a-menace-rima-hassan-20261127_PNWD65K5RFB4LO3VSX3LHFSWVU/",
+      "publisher": "Libération",
+      "publishedAt": "2026-11-27T19:22:21.000Z",
+      "collectedAt": "2026-11-28T13:48:39.692Z",
+      "likelyCandidates": []
+    },
+    {
+      "id": "veille-decodeurs-67cfd07606e90ba3",
+      "title": "Scandale Orpea : les commissaires aux comptes seront fixés sur leur sort le 24 mars 2027",
+      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/11/27/scandale-orpea-les-commissaires-aux-comptes-seront-fixes-sur-leur-sort-le-24-mars-2027_6815925_4355770.html",
+      "publisher": "Le Monde",
+      "publishedAt": "2026-11-27T18:38:25.000Z",
+      "collectedAt": "2026-11-28T13:48:38.579Z",
+      "likelyCandidates": []
+    },
     {
       "id": "veille-decodeurs-0af479ebb4c2c094",
       "title": "Les subtiles oscillations de David Lisnard, du vote Macron à la main tendue au RN",
@@ -3727,39 +3768,6 @@
       "publishedAt": "2026-09-02T10:03:37.000Z",
       "collectedAt": "2026-09-04T21:03:39.325Z",
       "likelyCandidates": []
-    },
-    {
-      "id": "veille-vrai-ou-faux-c842780ad6a9a79e",
-      "title": "VRAI OU FAUX. Marine Tondelier a-t-elle raison de dire qu'une loi sur la transmission d'entreprises familiales est \"d&#xE9;tourn&#xE9;e\" pour \"servir d'optimisation fiscale\" ?",
-      "url": "https://www.franceinfo.fr/vrai-ou-fake/vrai-ou-faux-marine-tondelier-a-t-elle-raison-de-dire-qu-une-loi-sur-la-transmission-d-entreprises-familiales-est-detournee-pour-servir-d-optimisation-fiscale_8166221.html#xtor=RSS-3-%5Bgeneral%5D",
-      "publisher": "franceinfo",
-      "publishedAt": "2026-09-02T03:56:28.000Z",
-      "collectedAt": "2026-09-04T21:03:39.325Z",
-      "likelyCandidates": [
-        "tondelier"
-      ]
-    },
-    {
-      "id": "veille-checknews-55be3b5e487e5297",
-      "title": "Comment le site de campagne de Jean-Luc Mélenchon a-t-il été qualifié de «dangereux» sur X ?",
-      "url": "https://www.liberation.fr/checknews/comment-le-site-de-campagne-de-jean-luc-melenchon-a-t-il-ete-qualifie-de-dangereux-sur-x-20260901_Q2JGWCVNIBDNXKDICUMOBZGBCU/",
-      "publisher": "Libération",
-      "publishedAt": "2026-09-01T17:46:58.000Z",
-      "collectedAt": "2026-09-04T21:03:40.069Z",
-      "likelyCandidates": [
-        "melenchon"
-      ]
-    },
-    {
-      "id": "veille-decodeurs-cbcabde9ceb2b62a",
-      "title": "Présidentielle 2027 : souverainisme et air conditionné, les deux piliers de Marine Le Pen et du RN pour lutter contre le dérèglement climatique",
-      "url": "https://www.lemonde.fr/les-decodeurs/article/2026/09/01/presidentielle-2027-souverainisme-et-air-conditionne-les-deux-piliers-de-marine-le-pen-et-du-rn-pour-lutter-contre-le-dereglement-climatique_6763489_4355770.html",
-      "publisher": "Le Monde",
-      "publishedAt": "2026-09-01T14:00:19.000Z",
-      "collectedAt": "2026-09-04T21:03:37.955Z",
-      "likelyCandidates": [
-        "lepen"
-      ]
     }
   ]
 }
